@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" promptOnRemoteOverwrite="CHECK_CONTENT" serverName="AMPI@CRF" createEmptyFolders="true" exclude=".svn;.cvs;.idea;.DS_Store;.git;.hg;*.hprof;*.pyc; *dspproj;*.hex;*.params;*.xml; *PARAM.h; *NumBytes*; *IC_2*; *defines.h; *_1.h; *REG.h" autoUploadExternalChanges="true" notifyRemoteChanges="true" showAutoUploadSettingsWarning="false">
+    <serverData>
+      <paths name="AMPI@CRF">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/Documents/Python/AMP" local="$PROJECT_DIR$" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/SigmaStudio/Settings" />
+            <excludedPath local="true" path="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1" />
+            <excludedPath local="true" path="$PROJECT_DIR$/SigmaStudio/AMPI_1_IC 2" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+      <paths name="AMPI@HOME">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/Documents/Python/AMP" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>

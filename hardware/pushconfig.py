@@ -1,7 +1,8 @@
-#!/usr/bin/python -B 
+#!/usr/bin/python -B
 #
 import eeprom
-import dsp_i2c
+#import dsp_i2c
+import adau1701
 import sigmaimporter
 import sys
 import getopt
@@ -15,6 +16,7 @@ DSP=2
 def write_device(data, destination=DSP,verbose=0):
 	if destination==EEPROM:
 		addr=0
+
 		code=sigmaimporter.txbuffer_data_to_eeprom(data);
 		data.append(0) # end code
 		# split into 32 byte blocks
@@ -30,14 +32,15 @@ def write_device(data, destination=DSP,verbose=0):
 			addr=block["address"]
 			data=block["data"]
 			print "Writing {0} at {1:04X} ({1}), {2} byte".format(block["name"],addr,len(data))
-			dsp_i2c.dsp_write_block(addr,data,verbose)
-	
+			#dsp_i2c.dsp_write_block(addr,data,verbose)
+			adau1701.dsp_write_block(addr,data,verbose)
+
 
 def usage(myname):
-	print "Usage: "	
+	print "Usage: "
 	print " {} [-e] [-v] [-t type]".format(myname)
 	print "   -e: write to EEPROM instead of writing to the DSP itself"
-	print "   -t type: type of the DSP chip (only ADAU1701 supported today)"
+	print "   -t: type: type of the DSP chip (only ADAU1701 supported today)"
 	print "   -v: verbose"
 
 def main(argv):
@@ -63,7 +66,6 @@ def main(argv):
 	except Exception:
 		usage(myname)
 		exit(2)
-	
 
 	data=sigmaimporter.read_txbuffer(file)
 	if (len(data)==0):
@@ -74,3 +76,12 @@ def main(argv):
 
 if __name__ == "__main__":
     main(sys.argv)
+
+# mpv http://www.nasa.gov/mp3/590331main_ringtone_smallStep.mp3
+# aplay -t raw -r 48000 -c 2 -f S16_LE /dev/zero
+# vcgencmd get_throttled	// Power status. trottled=0x50005 =  bad 0x50000 = good
+# sudo apt-get update
+# sudo apt-get dist-upgrade
+
+# // BanditRock
+# vlc http://fm02-icecast.mtg-r.net/fm02_mp3

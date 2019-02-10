@@ -26,7 +26,7 @@ from hardware import sigmaimporter, adau1701
 __all__ = []
 __version__ = 0.1
 __date__ = '2013-11-11'
-__updated__ = '2013-11-11'
+__updated__ = '2019-01-13'
 
 DEBUG = 1
 TESTRUN = 0

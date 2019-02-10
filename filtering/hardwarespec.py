@@ -129,7 +129,7 @@ def main():
 
     
     hw = HardwareSpec()
-    hw.param_h="../../demofiles/generic-4way/generic-4way_IC_1_PARAM.h"
+    hw.param_h="/home/pi/Documents/Python/AMP/demofiles/generic-4way/TxBuffer_IC_1.dat"
     hw.read_param_h()
     print hw.address
     
