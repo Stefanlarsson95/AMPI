@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b6b007ba-f81f-4744-a8d4-1408351f435c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="b6b007ba-f81f-4744-a8d4-1408351f435c" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +43,7 @@
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
-              <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -162,7 +159,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.pushconfig">
+  <component name="RunManager" selected="Python Remote Debug.RPI_AMP">
     <configuration name="adau1701" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="AMP" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -289,7 +286,7 @@
       <workItem from="1548929628461" duration="1979000" />
       <workItem from="1549211391178" duration="12554000" />
       <workItem from="1549287413953" duration="8136000" />
-      <workItem from="1549823036780" duration="9026000" />
+      <workItem from="1549823036780" duration="9324000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <created>1547339870271</created>
@@ -302,7 +299,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105520000" />
+    <option name="totallyTimeSpent" value="105818000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -315,7 +312,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49919224" visible="true" weight="0.27530363" />
       <window_info id="Structure" order="1" sideWeight="0.50080776" side_tool="true" weight="0.25" />
@@ -651,7 +647,7 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
