@@ -1,0 +1,16 @@
+0 ICSigma100In1 O_C0_A0_P3_out Link0 O_C0_A0_P4_out Link1
+1 SquareAlg1 O_C51_A0_P1_out Link3
+2 TriAlg1 O_C58_A0_P1_out Link2
+3 SquareAlg2
+4 TriAlg2
+5 EQ1940Dual1 I_C83_A0_P1_in Link0 I_C83_A0_P2_in Link1 O_C83_A0_P3_out Link5 O_C83_A0_P4_out Link4
+6 ICSigma100Out5 I_C31_A0_P1_in Link3
+7 ICSigma100Out6 I_C33_A0_P1_in Link2
+8 ReadBackAlg1 I_C11_A0_P1_in Link4
+9 Gain1940AlgNS2 I_C47_A1_P1_in Link4 O_C47_A1_P2_out Link7
+10 Gain1940AlgNS1 I_C47_A0_P1_in Link5 O_C47_A0_P2_out Link6
+11 ReadBackAlg2 I_C14_A0_P1_in Link5
+12 ICSigma100Out3 I_C18_A0_P1_in Link6
+13 ICSigma100Out1 I_C27_A0_P1_in Link6
+14 ICSigma100Out4 I_C20_A0_P1_in Link7
+15 ICSigma100Out2 I_C44_A0_P1_in Link7

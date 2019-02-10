@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- *
+ * This software is distributed in the hope that it will be useful,
+ * but is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * This software may only be used to program products purchased from
+ * Analog Devices for incorporation by you into audio products that
+ * are intended for resale to audio product end users. This software
+ * may not be distributed whole or in any part to third parties.
+ *
+ * Copyright © 2019 Analog Devices, Inc. All rights reserved.
+ */
+-->
+<!--NetList XML file-->
+<NetList>
+    <IC name=" IC 1 " type="DSPSigma100">
+        <Schematic>
+            <Algorithm name="ICSigma100In1" friendlyname="170x\140x input" cell="Input1 ">
+                <Link pin="O_C0_A0_P3_out" dir="out" link="Link0" />
+                <Link pin="O_C0_A0_P4_out" dir="out" link="Link1" />
+            </Algorithm>
+            <Algorithm name="SquareAlg1" friendlyname="Square Wave" cell="Square1 ">
+                <Link pin="O_C51_A0_P1_out" dir="out" link="Link3" />
+            </Algorithm>
+            <Algorithm name="TriAlg1" friendlyname="Triangle Wave" cell="Triangle1 ">
+                <Link pin="O_C58_A0_P1_out" dir="out" link="Link2" />
+            </Algorithm>
+            <Algorithm name="SquareAlg2" friendlyname="Square Wave" cell="Square1_2 " />
+            <Algorithm name="TriAlg2" friendlyname="Triangle Wave" cell="Triangle1_2 " />
+            <Algorithm name="EQ1940Dual1" friendlyname="2 Channel - Double Precision" cell="Gen Filter1 ">
+                <Link pin="I_C83_A0_P1_in" dir="in" link="Link0" />
+                <Link pin="I_C83_A0_P2_in" dir="in" link="Link1" />
+                <Link pin="O_C83_A0_P3_out" dir="out" link="Link5" />
+                <Link pin="O_C83_A0_P4_out" dir="out" link="Link4" />
+            </Algorithm>
+            <Algorithm name="ICSigma100Out5" friendlyname="170x\140x output" cell="Output1_3 ">
+                <Link pin="I_C31_A0_P1_in" dir="in" link="Link3" />
+            </Algorithm>
+            <Algorithm name="ICSigma100Out6" friendlyname="170x\140x output" cell="Output2_3 ">
+                <Link pin="I_C33_A0_P1_in" dir="in" link="Link2" />
+            </Algorithm>
+            <Algorithm name="ReadBackAlg1" friendlyname="Data Capture Register Readback" cell="ReadBack_R ">
+                <Link pin="I_C11_A0_P1_in" dir="in" link="Link4" />
+            </Algorithm>
+            <Algorithm name="Gain1940AlgNS2" friendlyname="Gain (no slew)" cell="Single 1 ">
+                <Link pin="I_C47_A1_P1_in" dir="in" link="Link4" />
+                <Link pin="O_C47_A1_P2_out" dir="out" link="Link7" />
+            </Algorithm>
+            <Algorithm name="Gain1940AlgNS1" friendlyname="Gain (no slew)" cell="Single 1 ">
+                <Link pin="I_C47_A0_P1_in" dir="in" link="Link5" />
+                <Link pin="O_C47_A0_P2_out" dir="out" link="Link6" />
+            </Algorithm>
+            <Algorithm name="ReadBackAlg2" friendlyname="Data Capture Register Readback" cell="ReadBack_L ">
+                <Link pin="I_C14_A0_P1_in" dir="in" link="Link5" />
+            </Algorithm>
+            <Algorithm name="ICSigma100Out3" friendlyname="170x\140x output" cell="Output1_2 ">
+                <Link pin="I_C18_A0_P1_in" dir="in" link="Link6" />
+            </Algorithm>
+            <Algorithm name="ICSigma100Out1" friendlyname="170x\140x output" cell="Output1_4 ">
+                <Link pin="I_C27_A0_P1_in" dir="in" link="Link6" />
+            </Algorithm>
+            <Algorithm name="ICSigma100Out4" friendlyname="170x\140x output" cell="Output2_2 ">
+                <Link pin="I_C20_A0_P1_in" dir="in" link="Link7" />
+            </Algorithm>
+            <Algorithm name="ICSigma100Out2" friendlyname="170x\140x output" cell="Output2_4 ">
+                <Link pin="I_C44_A0_P1_in" dir="in" link="Link7" />
+            </Algorithm>
+        </Schematic>
+    </IC>
+</NetList>

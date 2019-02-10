@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b6b007ba-f81f-4744-a8d4-1408351f435c" name="Default Changelist" comment="" />
+    <list default="true" id="b6b007ba-f81f-4744-a8d4-1408351f435c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,15 +61,24 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/filtering/sigmastudio.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-659" />
+            <state relative-caret-position="-573" />
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hardware/adau1701.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="110" column="39" lean-forward="true" selection-start-line="110" selection-start-column="39" selection-end-line="110" selection-end-column="39" />
+            <state relative-caret-position="219">
+              <caret line="113" column="8" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -137,36 +149,27 @@
     <option name="width" value="849" />
     <option name="height" value="443" />
   </component>
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
             <path>
-              <item name="Python_AMPI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Python_AMPI" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Python_AMPI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Python_AMPI" type="462c0819:PsiDirectoryNode" />
-              <item name="demofiles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Python_AMPI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Python_AMPI" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -217,28 +220,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hardware/adau1701.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="dump-eeprom" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="AMP" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hardware" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hardware/dump-eeprom.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -314,7 +295,6 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.dump-eeprom" />
       <item itemvalue="Python.pushconfig" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python.image_composition" />
@@ -327,7 +307,6 @@
         <item itemvalue="Python.main" />
         <item itemvalue="Python.image_composition" />
         <item itemvalue="Python.pushconfig" />
-        <item itemvalue="Python.dump-eeprom" />
       </list>
     </recent_temporary>
   </component>
@@ -353,7 +332,7 @@
       <workItem from="1548929628461" duration="1979000" />
       <workItem from="1549211391178" duration="12554000" />
       <workItem from="1549287413953" duration="8136000" />
-      <workItem from="1549823036780" duration="7369000" />
+      <workItem from="1549823036780" duration="8494000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <created>1547339870271</created>
@@ -366,7 +345,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103863000" />
+    <option name="totallyTimeSpent" value="104988000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -380,7 +359,7 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49919224" visible="true" weight="0.27530363" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49919224" visible="true" weight="0.27530363" />
       <window_info id="Structure" order="1" sideWeight="0.50080776" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -396,7 +375,7 @@
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50183374" side_tool="true" weight="0.47032475" />
       <window_info anchor="bottom" id="Python Console" order="11" weight="0.3268206" />
       <window_info anchor="bottom" id="File Transfer" order="12" weight="0.36944938" />
-      <window_info anchor="bottom" content_ui="combo" x="43" y="111" width="649" height="464" id="Terminal" order="13" sideWeight="0.49816626" visible="true" weight="0.3516874" />
+      <window_info active="true" anchor="bottom" content_ui="combo" x="43" y="111" width="649" height="464" id="Terminal" order="13" sideWeight="0.49816626" visible="true" weight="0.3516874" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -677,9 +656,6 @@
     <entry file="file://$PROJECT_DIR$/demofiles/generic-4way/generic-4way_IC_1_PARAM.h">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/configure_dsp.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -702,15 +678,22 @@
         <state relative-caret-position="-132" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/filtering/sigmastudio.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-659" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hardware/adau1701.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="110" column="39" lean-forward="true" selection-start-line="110" selection-start-column="39" selection-end-line="110" selection-end-column="39" />
+        <state relative-caret-position="219">
+          <caret line="113" column="8" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filtering/sigmastudio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-573" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
