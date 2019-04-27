@@ -1,1 +1,16 @@
+-- SW
 - compare DSP memory and TxBuffer file
+- Selfboot imp
+- Controll DSP volume
+- Integrate AMPI controlls
+- Oled imp
+- WebGUI imp
+
+-- HW
+- Rotary encoder con + imp
+- Motor + Vu controller con + imp
+- Amp En con + imp
+- Amp temp con + imp
+- Fan rpm contr imp
+- ADAU1701 reset con + imp
+-

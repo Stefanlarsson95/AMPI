@@ -5,6 +5,8 @@
 
 import re
 
+
+
 #
 # hexdump a block of data to console
 #
@@ -23,7 +25,7 @@ def hex_line_to_int(line):
 	d=[]
 	for value in line.split(","):
 		value=value.strip()
-		if (value.startswith("0x")):
+		if value.startswith("0x"):
 			d.append(int(value,16))
 	return d
 
@@ -105,7 +107,6 @@ def txbuffer_data_to_eeprom(blocks,verbose=0):
 
 
 if __name__ == "__main__":
-	data=read_txbuffer("demo/txbuffer.dat")
+	data=read_txbuffer("/home/pi/Documents/Python/AMP/demofiles/generic-4way/TxBuffer_IC_1.dat")
 	dump_data(txbuffer_data_to_eeprom(data,1))
-	
 	

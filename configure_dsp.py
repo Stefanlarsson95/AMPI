@@ -26,7 +26,7 @@ from hardware import sigmaimporter, adau1701
 __all__ = []
 __version__ = 0.1
 __date__ = '2013-11-11'
-__updated__ = '2013-11-11'
+__updated__ = '2019-01-13'
 
 DEBUG = 1
 TESTRUN = 0
@@ -43,7 +43,7 @@ def main(argv=None):
     program_longdesc = '''''' # optional - give further explanation about what the program does
     program_license = "Copyright 2013 Daniel Matuschek (Crazy Audio)\
                 Licensed under the Apache License 2.0\nhttp://www.apache.org/licenses/LICENSE-2.0"
- 
+
 
     parser = argparse.ArgumentParser(version=program_version_string, epilog=program_longdesc, description=program_license)
     parser.add_argument('xmlfile',help='the name of a filter configuration file')
