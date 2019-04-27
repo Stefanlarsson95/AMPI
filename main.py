@@ -3,7 +3,7 @@
 
 @author:     Stefan Larsson
 
-@copyright:  2019 organization_name. All rights reserved.
+@copyright:  2019 Stefan Larsson. All rights reserved.
 
 @license:    license
 

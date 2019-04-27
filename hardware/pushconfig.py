@@ -85,3 +85,6 @@ if __name__ == "__main__":
 
 # // BanditRock
 # vlc http://fm02-icecast.mtg-r.net/fm02_mp3
+
+# // Core temp
+# /opt/vc/bin/vcgencmd measure_temp

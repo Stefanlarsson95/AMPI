@@ -62,7 +62,7 @@ def main():
         "pixelart3.jpg",
         "pixelart4.jpg",
         "pixelart5.jpg",
-        #"minutestomidnight2.jpg"
+        "minutestomidnight2.jpg"
 
     ]
 
