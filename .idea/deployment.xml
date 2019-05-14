@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData">
+  <component name="PublishConfigData" autoUpload="Always" serverName="pi@172.16.0.182:22">
     <serverData>
       <paths name="AMPI@CRF">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/Documents/Python/AMPI" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
@@ -23,6 +23,14 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="pi@172.16.0.182:22">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/pi/Documents/Python/AMPI" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
     </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
   </component>
 </project>

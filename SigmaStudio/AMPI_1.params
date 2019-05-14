@@ -1,175 +1,266 @@
-Cell Name         = Square1
-Parameter Name    = SquareAlg1mask
-Parameter Address = 0
-Parameter Value   = 255
+Cell Name         = ReadBack_R
+Parameter Name    = ReadBackAlg1
+Parameter Address = 2074
+Readback Address = 0
 Parameter Data :
-0x00, 0x00, 0x00, 0xFF, 
+0x02 ,	0xFA ,	
 
 
-
-Cell Name         = Square1
-Parameter Name    = SquareAlg1freq
-Parameter Address = 1
-Parameter Value   = 0.0183333158493042
-Parameter Data :
-0x00, 0x02, 0x58, 0xBF, 
-
-
-
-Cell Name         = Square1
-Parameter Name    = SquareAlg1ison
-Parameter Address = 2
+Cell Name         = ReadBack_R
+Parameter Name    = ReadBackAlg1
+Parameter Address = 2074
+Readback Address = 0
 Parameter Value   = 0
 Parameter Data :
-0x00, 0x00, 0x00, 0x00, 
+0x00 ,	0x00 ,	0x00 ,	
 
 
-
-Cell Name         = Triangle1
-Parameter Name    = TriAlg1mask
-Parameter Address = 7
-Parameter Value   = 3
+Cell Name         = ReadBack_L
+Parameter Name    = ReadBackAlg2
+Parameter Address = 2074
+Readback Address = 0
 Parameter Data :
-0x00, 0x00, 0x00, 0x03, 
+0x03 ,	0x06 ,	
 
 
-
-Cell Name         = Triangle1
-Parameter Name    = TriAlg1freq
-Parameter Address = 8
-Parameter Value   = 0.0366666316986084
-Parameter Data :
-0x00, 0x04, 0xB1, 0x7E, 
-
-
-
-Cell Name         = Triangle1
-Parameter Name    = TriAlg1ison
-Parameter Address = 9
+Cell Name         = ReadBack_L
+Parameter Name    = ReadBackAlg2
+Parameter Address = 2074
+Readback Address = 0
 Parameter Value   = 0
 Parameter Data :
-0x00, 0x00, 0x00, 0x00, 
-
-
-
-Cell Name         = Triangle1
-Parameter Name    = TriAlg1
-Parameter Address = 3
-Parameter Data :
-0x00, 0x00, 0x00, 0x00, 
-0x00, 0x80, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 
-0xFF, 0x80, 0x00, 0x00, 
-
-
-
-Cell Name         = Square1_2
-Parameter Name    = SquareAlg2mask
-Parameter Address = 10
-Parameter Value   = 255
-Parameter Data :
-0x00, 0x00, 0x00, 0xFF, 
-
-
-
-Cell Name         = Square1_2
-Parameter Name    = SquareAlg2freq
-Parameter Address = 11
-Parameter Value   = 0.018291711807251
-Parameter Data :
-0x00, 0x02, 0x57, 0x62, 
-
-
-
-Cell Name         = Square1_2
-Parameter Name    = SquareAlg2ison
-Parameter Address = 12
-Parameter Value   = 0
-Parameter Data :
-0x00, 0x00, 0x00, 0x00, 
-
-
-
-Cell Name         = Triangle1_2
-Parameter Name    = TriAlg2mask
-Parameter Address = 17
-Parameter Value   = 3
-Parameter Data :
-0x00, 0x00, 0x00, 0x03, 
-
-
-
-Cell Name         = Triangle1_2
-Parameter Name    = TriAlg2freq
-Parameter Address = 18
-Parameter Value   = 0.0367083549499512
-Parameter Data :
-0x00, 0x04, 0xB2, 0xDC, 
-
-
-
-Cell Name         = Triangle1_2
-Parameter Name    = TriAlg2ison
-Parameter Address = 19
-Parameter Value   = 0
-Parameter Data :
-0x00, 0x00, 0x00, 0x00, 
-
-
-
-Cell Name         = Triangle1_2
-Parameter Name    = TriAlg2
-Parameter Address = 13
-Parameter Data :
-0x00, 0x00, 0x00, 0x00, 
-0x00, 0x80, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 
-0xFF, 0x80, 0x00, 0x00, 
-
+0x00 ,	0x00 ,	0x00 ,	
 
 
 Cell Name         = Single 1
 Parameter Name    = Gain1940AlgNS1
-Parameter Address = 21
-Parameter Value   = 0.125892519950867
+Parameter Address = 3
+Parameter Value   = 1
 Parameter Data :
-0x00, 0x10, 0x1D, 0x3F, 
+0x00, 0x80, 0x00, 0x00, 
 
 
 
 Cell Name         = Single 1
 Parameter Name    = Gain1940AlgNS2
-Parameter Address = 20
-Parameter Value   = 0.125892519950867
+Parameter Address = 4
+Parameter Value   = 1
 Parameter Data :
-0x00, 0x10, 0x1D, 0x3F, 
+0x00, 0x80, 0x00, 0x00, 
 
+
+
+Cell Name         = SW vol 1
+Parameter Name    = ExtSWGainDB1step
+Parameter Address = 2
+Parameter Value   = 0.000244140625
+Parameter Data :
+0x00, 0x00, 0x08, 0x00, 
+
+
+
+Cell Name         = ReadBack1
+Parameter Name    = ReadBackAlg3
+Parameter Address = 2074
+Readback Address = 0
+Parameter Data :
+0x02 ,	0x7A ,	
+
+
+Cell Name         = ReadBack1
+Parameter Name    = ReadBackAlg3
+Parameter Address = 2074
+Readback Address = 0
+Parameter Value   = 0
+Parameter Data :
+0x00 ,	0x00 ,	0x00 ,	
+
+
+Cell Name         = ReadBack1_2
+Parameter Name    = ReadBackAlg4
+Parameter Address = 2074
+Readback Address = 0
+Parameter Data :
+0x02 ,	0x86 ,	
+
+
+Cell Name         = ReadBack1_2
+Parameter Name    = ReadBackAlg4
+Parameter Address = 2074
+Readback Address = 0
+Parameter Value   = 0
+Parameter Data :
+0x00 ,	0x00 ,	0x00 ,	
+
+
+Cell Name         = Mix_Aux_Mic_IN
+Parameter Name    = StMuxSwSlew1coeffname
+Parameter Address = 1
+Parameter Value   = 1
+Parameter Data :
+0x00, 0x00, 0x00, 0x01, 
+
+
+
+Cell Name         = Gen Filter1_2
+Parameter Name    = EQ1940Dual10B1
+Parameter Address = 5
+Parameter Value   = 0.0429733991622925
+Parameter Data :
+0x00 ,	0x05 ,	0x80 ,	0x27 ,	
+
+
+
+Cell Name         = Gen Filter1_2
+Parameter Name    = EQ1940Dual11B1
+Parameter Address = 6
+Parameter Value   = 0
+Parameter Data :
+0x00 ,	0x00 ,	0x00 ,	0x00 ,	
+
+
+
+Cell Name         = Gen Filter1_2
+Parameter Name    = EQ1940Dual12B1
+Parameter Address = 7
+Parameter Value   = -0.0429733991622925
+Parameter Data :
+0x0F ,	0xFA ,	0x7F ,	0xD9 ,	
+
+
+
+Cell Name         = Gen Filter1_2
+Parameter Name    = EQ1940Dual11A1
+Parameter Address = 8
+Parameter Value   = 1.90995514392853
+Parameter Data :
+0x00 ,	0xF4 ,	0x79 ,	0x69 ,	
+
+
+
+Cell Name         = Gen Filter1_2
+Parameter Name    = EQ1940Dual12A1
+Parameter Address = 9
+Parameter Value   = -0.914053320884705
+Parameter Data :
+0x0F ,	0x8B ,	0x00 ,	0x4D ,	
+
+
+
+Cell Name         = Mix_Aux_Mic_OUT
+Parameter Name    = StMuxSwSlew2coeffname
+Parameter Address = 0
+Parameter Value   = 0
+Parameter Data :
+0x00, 0x00, 0x00, 0x00, 
+
+
+
+Cell Name         = ReadBack1_3
+Parameter Name    = ReadBackAlg5
+Parameter Address = 2074
+Readback Address = 0
+Parameter Data :
+0x02 ,	0x92 ,	
+
+
+Cell Name         = ReadBack1_3
+Parameter Name    = ReadBackAlg5
+Parameter Address = 2074
+Readback Address = 0
+Parameter Value   = 0
+Parameter Data :
+0x00 ,	0x00 ,	0x00 ,	
+
+
+Cell Name         = ReadBack1_4
+Parameter Name    = ReadBackAlg6
+Parameter Address = 2074
+Readback Address = 0
+Parameter Data :
+0x02 ,	0x9E ,	
+
+
+Cell Name         = ReadBack1_4
+Parameter Name    = ReadBackAlg6
+Parameter Address = 2074
+Readback Address = 0
+Parameter Value   = 0
+Parameter Data :
+0x00 ,	0x00 ,	0x00 ,	
+
+
+Cell Name         = Loudness L&H1
+Parameter Name    = LoudnessLH1001iir_coeff_b0_hi
+Parameter Address = 12
+Parameter Data :
+0x00, 0x33, 0x39, 0x32, 
+0xFF, 0xCC, 0xC6, 0xCE, 
+0x00, 0x33, 0x39, 0x32, 
+0x00, 0x01, 0x00, 0x39, 
+0x00, 0x7E, 0xFF, 0xC7, 
+
+
+
+Cell Name         = Loudness L&H1
+Parameter Name    = LoudnessLH1001target
+Parameter Address = 17
+Parameter Value   = 0.158489346504211
+Parameter Data :
+0x00, 0x14, 0x49, 0x61, 
+
+
+
+Cell Name         = Loudness L&H1
+Parameter Name    = LoudnessLH1001level_low
+Parameter Address = 10
+Parameter Data :
+0x01, 0x11, 0xEB, 0x85, 
+0x00, 0xFD, 0x70, 0xA4, 
+
+
+
+Cell Name         = Room_noice_value
+Parameter Name    = ReadBackAlg7
+Parameter Address = 2074
+Readback Address = 0
+Parameter Data :
+0x02 ,	0xAA ,	
+
+
+Cell Name         = Room_noice_value
+Parameter Name    = ReadBackAlg7
+Parameter Address = 2074
+Readback Address = 0
+Parameter Value   = 0
+Parameter Data :
+0x00 ,	0x00 ,	0x00 ,	
 
 
 Parameter data for: IC 1 (Hexadecimal format starting at parameter address 0)
 See also AMPI_1.hex file
-0x00 , 	0x00 , 	0x00 , 	0xFF , 	
-0x00 , 	0x02 , 	0x58 , 	0xBF , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x01 , 	
+0x00 , 	0x00 , 	0x08 , 	0x00 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0xFF , 	0x80 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x03 , 	
-0x00 , 	0x04 , 	0xB1 , 	0x7E , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0xFF , 	
-0x00 , 	0x02 , 	0x57 , 	0x62 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
+0x00 , 	0x05 , 	0x80 , 	0x27 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0xFF , 	0x80 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x03 , 	
-0x00 , 	0x04 , 	0xB2 , 	0xDC , 	
+0x0F , 	0xFA , 	0x7F , 	0xD9 , 	
+0x00 , 	0xF4 , 	0x79 , 	0x69 , 	
+0x0F , 	0x8B , 	0x00 , 	0x4D , 	
+0x01 , 	0x11 , 	0xEB , 	0x85 , 	
+0x00 , 	0xFD , 	0x70 , 	0xA4 , 	
+0x00 , 	0x33 , 	0x39 , 	0x32 , 	
+0xFF , 	0xCC , 	0xC6 , 	0xCE , 	
+0x00 , 	0x33 , 	0x39 , 	0x32 , 	
+0x00 , 	0x01 , 	0x00 , 	0x39 , 	
+0x00 , 	0x7E , 	0xFF , 	0xC7 , 	
+0x00 , 	0x14 , 	0x49 , 	0x61 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x10 , 	0x1D , 	0x3F , 	
-0x00 , 	0x10 , 	0x1D , 	0x3F , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
@@ -1174,28 +1265,28 @@ See also AMPI_1.hex file
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 
 Parameter data for: IC 1 (Binary format starting at parameter address 0)
-00000000	00000000	00000000	11111111	
-00000000	00000010	01011000	10111111	
 00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000001	
+00000000	00000000	00001000	00000000	
 00000000	10000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-11111111	10000000	00000000	00000000	
-00000000	00000000	00000000	00000011	
-00000000	00000100	10110001	01111110	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	11111111	
-00000000	00000010	01010111	01100010	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
 00000000	10000000	00000000	00000000	
+00000000	00000101	10000000	00100111	
 00000000	00000000	00000000	00000000	
-11111111	10000000	00000000	00000000	
-00000000	00000000	00000000	00000011	
-00000000	00000100	10110010	11011100	
+00001111	11111010	01111111	11011001	
+00000000	11110100	01111001	01101001	
+00001111	10001011	00000000	01001101	
+00000001	00010001	11101011	10000101	
+00000000	11111101	01110000	10100100	
+00000000	00110011	00111001	00110010	
+11111111	11001100	11000110	11001110	
+00000000	00110011	00111001	00110010	
+00000000	00000001	00000000	00111001	
+00000000	01111110	11111111	11000111	
+00000000	00010100	01001001	01100001	
 00000000	00000000	00000000	00000000	
-00000000	00010000	00011101	00111111	
-00000000	00010000	00011101	00111111	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	

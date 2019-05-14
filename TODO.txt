@@ -1,7 +1,7 @@
+TODO
 -- SW
 - compare DSP memory and TxBuffer file
 - Selfboot imp
-- Controll DSP volume
 - Integrate AMPI controlls
 - Oled imp
 - WebGUI imp

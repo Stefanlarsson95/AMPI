@@ -15,12 +15,12 @@ Pin:  Usage | Pin:  Usage
 15:Fan B RPM|16(23): 12V Enable|
 17: 3.3V VolPot|18:|
 19:SPI_MOSI|20:|
-21:Na|22:|
+21:Na|22(25):|
 25:SPI_CLK|26:|
 25:GND|26:|
-37:Na|28(1):|
-29:Na|30:|
-31:Na|32(12): Fan A|
+27:Na|28(1):|
+29(5):Na|30:|
+31(6):Na|32(12): Fan A|
 33:Fan B|34:|
 35:I2S_LRCK|36(16): Motor B|
 37:Na|38:|
