@@ -107,6 +107,7 @@ def txbuffer_data_to_eeprom(blocks,verbose=0):
 
 
 if __name__ == "__main__":
-	data=read_txbuffer("/home/pi/Documents/Python/AMP/demofiles/generic-4way/TxBuffer_IC_1.dat")
+	data=read_txbuffer("/home/pi/Documents/Python/AMPI/SigmaStudio/TxBuffer_IC_1.dat")
+	# txbuffer_data_to_eeprom(data, 1)
 	dump_data(txbuffer_data_to_eeprom(data,1))
 	

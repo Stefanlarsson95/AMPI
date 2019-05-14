@@ -133,10 +133,10 @@ def make_font(name, size):
 
 device = ssd1322(spi(device=0, port=0))
 
-if device.height >= 16:
-    font = make_font("code2000.ttf", 12)
-else:
-    font = make_font("pixelmix.ttf", 8)
+#if device.height >= 16:
+ #   font = make_font("code2000.ttf", 12)
+#else:
+#    font = make_font("pixelmix.ttf", 8)
 
 image_composition = ImageComposition(device)
 
@@ -144,17 +144,17 @@ try:
     while True:
         for title in titles:
             synchroniser = Synchroniser()
-            ci_song = ComposableImage(TextImage(device, title[0], font).image, position=(0, 1))
-            ci_artist = ComposableImage(TextImage(device, title[1], font).image, position=(0, 30))
-            song = Scroller(image_composition, ci_song, 100, synchroniser)
-            artist = Scroller(image_composition, ci_artist, 100, synchroniser)
+            #ci_song = ComposableImage(TextImage(device, title[0], font).image, position=(0, 1))
+            #ci_artist = ComposableImage(TextImage(device, title[1], font).image, position=(0, 30))
+            #song = Scroller(image_composition, ci_song, 100, synchroniser)
+            #artist = Scroller(image_composition, ci_artist, 100, synchroniser)
             cycles = 0
 
             while cycles < 3:
-                artist.tick()
-                song.tick()
+                #artist.tick()
+                #song.tick()
                 time.sleep(0.025)
-                cycles = song.get_cycles()
+                #cycles = song.get_cycles()
 
                 with canvas(device, background=image_composition()) as draw:
                     image_composition.refresh()
