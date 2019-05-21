@@ -1,8 +1,8 @@
 StMuxSwSlew2coeffname_6 0
 StMuxSwSlew1coeffname_7 1
 ExtSWGainDB1step_15 2
-Gain1940AlgNS1_18 3
-Gain1940AlgNS2_19 4
+Gain1940AlgNS3_18 3
+Gain1940AlgNS4_19 4
 EQ1940Dual10B1_20 5
 EQ1940Dual11B1_20 6
 EQ1940Dual12B1_20 7
@@ -16,3 +16,6 @@ LoudnessLH1001iir_coeff_a1_hi_21 14
 LoudnessLH1001iir_coeff_b0_low_21 15
 LoudnessLH1001iir_coeff_a1_low_21 16
 LoudnessLH1001target_21 17
+SurroundAlg194010_23 18
+SurroundAlg194011_23 19
+SurroundAlg194012_23 20
