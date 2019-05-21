@@ -31,15 +31,14 @@ def print_header():
     room = header.defines
     print room[5]
 def main():
-    print_header()
-    #while True:
-        #scrolling_pixelart.device = device
-        #scrolling_pixelart.main()
+    #print_header()
+    while True:
+        scrolling_pixelart.device = device
+        scrolling_pixelart.main()
         #albumart.device = device
         #albumart.main()
         #carousel.device=device
         #carousel.main()
-
 
 if __name__ == "__main__":
     try:

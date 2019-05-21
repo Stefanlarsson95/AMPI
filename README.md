@@ -33,7 +33,7 @@ vcgencmd measure_temp
 
 ````bash
 cd /sys/bus/w1/devices
-cd 28-XXXXXXXXXXXX
+cd 28-02146367e1ff 
 cat w1_slave
  ````
 
