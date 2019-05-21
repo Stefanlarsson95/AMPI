@@ -29,3 +29,12 @@ vcgencmd get_throttled
 vcgencmd measure_temp
  ````
 
+#### RPI AMP temp
+
+````bash
+cd /sys/bus/w1/devices
+cd 28-XXXXXXXXXXXX
+cat w1_slave
+ ````
+
+
