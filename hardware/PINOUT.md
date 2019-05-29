@@ -20,7 +20,7 @@ Pin:  Usage | Pin:  Usage
 25:GND|26:|
 27:Na|28(1):|
 29(5):Na|30:|
-31(6):Na|32(12): Fan A|
+31(6d  ):Na|32(12): Fan A|
 33:Fan B|34:|
 35:I2S_LRCK|36(16): Motor B|
 37:Na|38:|

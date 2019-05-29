@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="pi@172.16.0.182:22">
+  <component name="PublishConfigData" serverName="Volumio@home">
     <serverData>
       <paths name="AMPI@CRF">
         <serverdata>
@@ -23,14 +23,20 @@
           </mappings>
         </serverdata>
       </paths>
-      <paths name="pi@172.16.0.182:22">
+      <paths name="Volumio@home">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/pi/Documents/Python/AMPI" local="$PROJECT_DIR$" />
+            <mapping deploy="AMPI" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="volumio@172.16.0.182:22">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/pycharm_project_893" local="$PROJECT_DIR$" />
           </mappings>
         </serverdata>
       </paths>
     </serverData>
-    <option name="myAutoUpload" value="ALWAYS" />
   </component>
 </project>
