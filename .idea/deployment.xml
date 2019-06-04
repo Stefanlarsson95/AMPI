@@ -2,20 +2,6 @@
 <project version="4">
   <component name="PublishConfigData" serverName="Volumio@home">
     <serverData>
-      <paths name="AMPI@CRF">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/Documents/Python/AMPI" local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="AMPI@HOME">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
       <paths name="TX1@CRF">
         <serverdata>
           <mappings>
@@ -27,13 +13,6 @@
         <serverdata>
           <mappings>
             <mapping deploy="AMPI" local="$PROJECT_DIR$" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="volumio@172.16.0.182:22">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/tmp/pycharm_project_893" local="$PROJECT_DIR$" />
           </mappings>
         </serverdata>
       </paths>

@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-vcgencmd measure_temp
+sudo /opt/vc/bin/vcgencmd measure_temp

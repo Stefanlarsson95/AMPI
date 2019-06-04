@@ -69,69 +69,60 @@ Parameter Data :
 
 Cell Name         = Gen Filter1_2
 Parameter Name    = EQ1940Dual10B1
-Parameter Address = 30
-Parameter Value   = 0.0429733991622925
+Parameter Address = 28
+Parameter Value   = 0.00848758220672607
 Parameter Data :
-0x00 ,	0x05 ,	0x80 ,	0x27 ,	
+0x00 ,	0x01 ,	0x16 ,	0x1F ,	
 
 
 
 Cell Name         = Gen Filter1_2
 Parameter Name    = EQ1940Dual11B1
-Parameter Address = 31
-Parameter Value   = 0
+Parameter Address = 29
+Parameter Value   = 0.0169751644134521
 Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
+0x00 ,	0x02 ,	0x2C ,	0x3E ,	
 
 
 
 Cell Name         = Gen Filter1_2
 Parameter Name    = EQ1940Dual12B1
-Parameter Address = 32
-Parameter Value   = -0.0429733991622925
+Parameter Address = 30
+Parameter Value   = 0.00848758220672607
 Parameter Data :
-0x0F ,	0xFA ,	0x7F ,	0xD9 ,	
+0x00 ,	0x01 ,	0x16 ,	0x1F ,	
 
 
 
 Cell Name         = Gen Filter1_2
 Parameter Name    = EQ1940Dual11A1
-Parameter Address = 33
-Parameter Value   = 1.90995514392853
+Parameter Address = 31
+Parameter Value   = 1.95243299007416
 Parameter Data :
-0x00 ,	0xF4 ,	0x79 ,	0x69 ,	
+0x00 ,	0xF9 ,	0xE9 ,	0x53 ,	
 
 
 
 Cell Name         = Gen Filter1_2
 Parameter Name    = EQ1940Dual12A1
-Parameter Address = 34
-Parameter Value   = -0.914053320884705
+Parameter Address = 32
+Parameter Value   = -0.958470344543457
 Parameter Data :
-0x0F ,	0x8B ,	0x00 ,	0x4D ,	
+0x0F ,	0x85 ,	0x50 ,	0xD8 ,	
 
 
 
 Cell Name         = Mix_Aux_Rpi_OUT
 Parameter Name    = StMuxSwSlew2coeffname
 Parameter Address = 2
-Parameter Value   = 0
+Parameter Value   = 1
 Parameter Data :
-0x00, 0x00, 0x00, 0x00, 
+0x00, 0x00, 0x00, 0x01, 
 
 
 
 Cell Name         = Surround1
 Parameter Name    = SurroundAlg194010
-Parameter Address = 35
-Parameter Value   = 1.56521248817444
-Parameter Data :
-0x00, 0xC8, 0x58, 0xE2, 
-
-
-
-Cell Name         = Surround1
-Parameter Name    = SurroundAlg194011
 Parameter Address = 36
 Parameter Value   = 1.56521248817444
 Parameter Data :
@@ -140,8 +131,17 @@ Parameter Data :
 
 
 Cell Name         = Surround1
-Parameter Name    = SurroundAlg194012
+Parameter Name    = SurroundAlg194011
 Parameter Address = 37
+Parameter Value   = 1.56521248817444
+Parameter Data :
+0x00, 0xC8, 0x58, 0xE2, 
+
+
+
+Cell Name         = Surround1
+Parameter Name    = SurroundAlg194012
+Parameter Address = 38
 Parameter Value   = 1.56521248817444
 Parameter Data :
 0x00, 0xC8, 0x58, 0xE2, 
@@ -150,15 +150,6 @@ Parameter Data :
 
 Cell Name         = Surround1
 Parameter Name    = SurroundAlg194010
-Parameter Address = 35
-Parameter Value   = 1.56521248817444
-Parameter Data :
-0x00, 0xC8, 0x58, 0xE2, 
-
-
-
-Cell Name         = Surround1
-Parameter Name    = SurroundAlg194011
 Parameter Address = 36
 Parameter Value   = 1.56521248817444
 Parameter Data :
@@ -167,8 +158,17 @@ Parameter Data :
 
 
 Cell Name         = Surround1
-Parameter Name    = SurroundAlg194012
+Parameter Name    = SurroundAlg194011
 Parameter Address = 37
+Parameter Value   = 1.56521248817444
+Parameter Data :
+0x00, 0xC8, 0x58, 0xE2, 
+
+
+
+Cell Name         = Surround1
+Parameter Name    = SurroundAlg194012
+Parameter Address = 38
 Parameter Value   = 1.56521248817444
 Parameter Data :
 0x00, 0xC8, 0x58, 0xE2, 
@@ -177,15 +177,6 @@ Parameter Data :
 
 Cell Name         = Surround1
 Parameter Name    = SurroundAlg194010
-Parameter Address = 35
-Parameter Value   = 1.56521248817444
-Parameter Data :
-0x00, 0xC8, 0x58, 0xE2, 
-
-
-
-Cell Name         = Surround1
-Parameter Name    = SurroundAlg194011
 Parameter Address = 36
 Parameter Value   = 1.56521248817444
 Parameter Data :
@@ -194,8 +185,17 @@ Parameter Data :
 
 
 Cell Name         = Surround1
-Parameter Name    = SurroundAlg194012
+Parameter Name    = SurroundAlg194011
 Parameter Address = 37
+Parameter Value   = 1.56521248817444
+Parameter Data :
+0x00, 0xC8, 0x58, 0xE2, 
+
+
+
+Cell Name         = Surround1
+Parameter Name    = SurroundAlg194012
+Parameter Address = 38
 Parameter Value   = 1.56521248817444
 Parameter Data :
 0x00, 0xC8, 0x58, 0xE2, 
@@ -204,19 +204,28 @@ Parameter Data :
 
 Cell Name         = Multiple 1
 Parameter Name    = Gain1940AlgNS3
-Parameter Address = 28
-Parameter Value   = 1
+Parameter Address = 33
+Parameter Value   = 0.630957365036011
 Parameter Data :
-0x00, 0x80, 0x00, 0x00, 
+0x00, 0x50, 0xC3, 0x36, 
 
 
 
 Cell Name         = Multiple 1
 Parameter Name    = Gain1940AlgNS4
-Parameter Address = 29
-Parameter Value   = 1.25892543792725
+Parameter Address = 34
+Parameter Value   = 0.630957365036011
 Parameter Data :
-0x00, 0xA1, 0x24, 0x78, 
+0x00, 0x50, 0xC3, 0x36, 
+
+
+
+Cell Name         = Multiple 1
+Parameter Name    = Gain1940AlgNS5
+Parameter Address = 35
+Parameter Value   = 0.125892519950867
+Parameter Data :
+0x00, 0x10, 0x1D, 0x3F, 
 
 
 
@@ -492,7 +501,7 @@ Parameter Data :
 
 Cell Name         = DCB1
 Parameter Name    = DCBlockAlgDoublePrec1pole
-Parameter Address = 38
+Parameter Address = 39
 Parameter Value   = 0.999899983406067
 Parameter Data :
 0x00, 0x7F, 0xFC, 0xB9, 
@@ -501,7 +510,7 @@ Parameter Data :
 
 Cell Name         = DCB1
 Parameter Name    = DCBlockAlgDoublePrec2pole
-Parameter Address = 39
+Parameter Address = 40
 Parameter Value   = 0.999899983406067
 Parameter Data :
 0x00, 0x7F, 0xFC, 0xB9, 
@@ -523,9 +532,9 @@ Parameter Data :
 Cell Name         = Loudness L&H1
 Parameter Name    = LoudnessLH1001target
 Parameter Address = 26
-Parameter Value   = 0.199526190757751
+Parameter Value   = 0.0562341213226318
 Parameter Data :
-0x00, 0x19, 0x8A, 0x13, 
+0x00, 0x07, 0x32, 0xAE, 
 
 
 
@@ -560,7 +569,7 @@ Parameter data for: IC 1 (Hexadecimal format starting at parameter address 0)
 See also AMPI_1.hex file
 0x03 , 	0x40 , 	0x00 , 	0x00 , 	
 0x03 , 	0x40 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x01 , 	
 0x00 , 	0x00 , 	0x00 , 	0x01 , 	
 0x00 , 	0x89 , 	0x62 , 	0xDE , 	
 0x0E , 	0xEE , 	0x4B , 	0xB2 , 	
@@ -584,21 +593,21 @@ See also AMPI_1.hex file
 0x00 , 	0x33 , 	0x39 , 	0x32 , 	
 0x00 , 	0x01 , 	0x00 , 	0x39 , 	
 0x00 , 	0x7E , 	0xFF , 	0xC7 , 	
-0x00 , 	0x19 , 	0x8A , 	0x13 , 	
+0x00 , 	0x07 , 	0x32 , 	0xAE , 	
 0x00 , 	0x00 , 	0x08 , 	0x00 , 	
-0x00 , 	0x80 , 	0x00 , 	0x00 , 	
-0x00 , 	0xA1 , 	0x24 , 	0x78 , 	
-0x00 , 	0x05 , 	0x80 , 	0x27 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x0F , 	0xFA , 	0x7F , 	0xD9 , 	
-0x00 , 	0xF4 , 	0x79 , 	0x69 , 	
-0x0F , 	0x8B , 	0x00 , 	0x4D , 	
+0x00 , 	0x01 , 	0x16 , 	0x1F , 	
+0x00 , 	0x02 , 	0x2C , 	0x3E , 	
+0x00 , 	0x01 , 	0x16 , 	0x1F , 	
+0x00 , 	0xF9 , 	0xE9 , 	0x53 , 	
+0x0F , 	0x85 , 	0x50 , 	0xD8 , 	
+0x00 , 	0x50 , 	0xC3 , 	0x36 , 	
+0x00 , 	0x50 , 	0xC3 , 	0x36 , 	
+0x00 , 	0x10 , 	0x1D , 	0x3F , 	
 0x00 , 	0xC8 , 	0x58 , 	0xE2 , 	
 0x00 , 	0xC8 , 	0x58 , 	0xE2 , 	
 0x00 , 	0xC8 , 	0x58 , 	0xE2 , 	
 0x00 , 	0x7F , 	0xFC , 	0xB9 , 	
 0x00 , 	0x7F , 	0xFC , 	0xB9 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
@@ -1586,7 +1595,7 @@ See also AMPI_1.hex file
 Parameter data for: IC 1 (Binary format starting at parameter address 0)
 00000011	01000000	00000000	00000000	
 00000011	01000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	00000001	
 00000000	00000000	00000000	00000001	
 00000000	10001001	01100010	11011110	
 00001110	11101110	01001011	10110010	
@@ -1610,21 +1619,21 @@ Parameter data for: IC 1 (Binary format starting at parameter address 0)
 00000000	00110011	00111001	00110010	
 00000000	00000001	00000000	00111001	
 00000000	01111110	11111111	11000111	
-00000000	00011001	10001010	00010011	
+00000000	00000111	00110010	10101110	
 00000000	00000000	00001000	00000000	
-00000000	10000000	00000000	00000000	
-00000000	10100001	00100100	01111000	
-00000000	00000101	10000000	00100111	
-00000000	00000000	00000000	00000000	
-00001111	11111010	01111111	11011001	
-00000000	11110100	01111001	01101001	
-00001111	10001011	00000000	01001101	
+00000000	00000001	00010110	00011111	
+00000000	00000010	00101100	00111110	
+00000000	00000001	00010110	00011111	
+00000000	11111001	11101001	01010011	
+00001111	10000101	01010000	11011000	
+00000000	01010000	11000011	00110110	
+00000000	01010000	11000011	00110110	
+00000000	00010000	00011101	00111111	
 00000000	11001000	01011000	11100010	
 00000000	11001000	01011000	11100010	
 00000000	11001000	01011000	11100010	
 00000000	01111111	11111100	10111001	
 00000000	01111111	11111100	10111001	
-00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	

@@ -14,13 +14,13 @@ Pin:  Usage | Pin:  Usage
 13(27):Amp !ON|14:|
 15:Fan B RPM|16(23): 12V Enable|
 17: 3.3V VolPot|18:|
-19:SPI_MOSI|20:|
+19:SPI_MOSI|20:GND|
 21:Na|22(25):|
-25:SPI_CLK|26:|
+25:SPI_CLK|24:|
 25:GND|26:|
 27:Na|28(1):|
-29(5):Na|30:|
-31(6d  ):Na|32(12): Fan A|
+29(5):Na(rotA)|30:|
+31(6):Na(rotB)|32(12): Fan A|
 33:Fan B|34:|
 35:I2S_LRCK|36(16): Motor B|
 37:Na|38:|
