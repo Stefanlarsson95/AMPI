@@ -6,6 +6,7 @@ import adau1701
 import sigmaimporter
 import sys
 import getopt
+import time
 
 sys.dont_write_bytecode = True
 
@@ -75,6 +76,7 @@ def main(argv):
         exit(1)
 
     write_device(data, destination, verbose)
+    adau1701.close_i2c()
 
 
 if __name__ == "__main__":

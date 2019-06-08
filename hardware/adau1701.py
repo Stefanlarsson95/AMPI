@@ -128,6 +128,10 @@ def memory_map_from_blocks(blocks):
 	return mem
 
 
+def close_i2c():
+	smb.close()
+
+
 #
 # Demo code
 #

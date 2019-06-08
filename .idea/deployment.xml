@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="Volumio@home">
+  <component name="PublishConfigData" serverName="Volumio@home" exclude=".svn;.cvs;.idea;.DS_Store;.git;.hg;*.hprof;*.pyc;venv">
     <serverData>
       <paths name="TX1@CRF">
         <serverdata>
@@ -12,7 +12,7 @@
       <paths name="Volumio@home">
         <serverdata>
           <mappings>
-            <mapping deploy="AMPI" local="$PROJECT_DIR$" />
+            <mapping deploy="/home/volumio/AMPI" local="$PROJECT_DIR$" />
           </mappings>
         </serverdata>
       </paths>

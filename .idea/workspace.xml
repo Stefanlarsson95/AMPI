@@ -4,31 +4,20 @@
     <list default="true" id="f81297d6-3297-4659-859e-a27130698568" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi/i2s-soundcard-overlay.dts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi" beforeDir="false" afterPath="$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi/adau1701-i2s.dts" beforeDir="false" afterPath="$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi/adau1701-i2s.dts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RpiTemp.sh" beforeDir="false" afterPath="$PROJECT_DIR$/RpiTemp.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1.dspproj" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1.dspproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1.hex" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1.hex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1.params" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1.params" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1_IC_1.h" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1_IC_1.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1_IC_1_PARAM.h" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1_IC_1_PARAM.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1_IC_1_REG.h" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1_IC_1_REG.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1_NetList.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1_NetList.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/as_code.enc" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/as_code.enc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list.cir2" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list.cir2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/compiler_output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/compiler_output.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/hex_program_data.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/hex_program_data.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/hex_program_simdata.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/hex_program_simdata.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/program_data.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/program_data.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/spi_map.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/spi_map.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SigmaStudio/TxBuffer_IC_1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/TxBuffer_IC_1.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SigmaStudio/defines.h" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/defines.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/amp_setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/amp_setup.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardware/PINOUT.md" beforeDir="false" afterPath="$PROJECT_DIR$/hardware/PINOUT.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hardware/adau1701.py" beforeDir="false" afterPath="$PROJECT_DIR$/hardware/adau1701.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hardware/pushconfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/hardware/pushconfig.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,8 +30,8 @@
     <SUITE FILE_PATH="coverage/AMPI$oledui__1_.coverage" NAME="oledui (1) Coverage Results" MODIFIED="1559582682069" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/" />
     <SUITE FILE_PATH="coverage/AMPI$sigmaimporter.coverage" NAME="sigmaimporter Coverage Results" MODIFIED="1557859418101" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hardware" />
     <SUITE FILE_PATH="coverage/AMPI$albumart.coverage" NAME="albumart Coverage Results" MODIFIED="1557691197768" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/oled" />
-    <SUITE FILE_PATH="coverage/AMPI$pushconfig.coverage" NAME="pushconfig Coverage Results" MODIFIED="1558114209089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hardware" />
     <SUITE FILE_PATH="coverage/AMPI$oledui.coverage" NAME="oledui Coverage Results" MODIFIED="1559582688156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/" />
+    <SUITE FILE_PATH="coverage/AMPI$pushconfig.coverage" NAME="pushconfig Coverage Results" MODIFIED="1560019885330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hardware" />
     <SUITE FILE_PATH="coverage/AMPI$clock.coverage" NAME="clock Coverage Results" MODIFIED="1559580393744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/oled" />
     <SUITE FILE_PATH="coverage/AMPI$device.coverage" NAME="device Coverage Results" MODIFIED="1559579818908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/.PyCharm2018.3/system/remote_sources/-142839436/-1227933812/luma/emulator" />
     <SUITE FILE_PATH="coverage/AMPI$Doctests_in_sys_info.coverage" NAME="Doctests in sys_info Coverage Results" MODIFIED="1558129362941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/oled" />
@@ -64,20 +53,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="true" current-in-tab="false">
-        <entry file="remoteDeploymentFS://&lt;2ad41d33-b855-4f55-8091-bb191db8dbd8&gt;/home/volumio/Volumio-OledUI/oledui.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi/i2s-soundcard-overlay.dts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="447" column="29" selection-start-line="447" selection-start-column="29" selection-end-line="447" selection-end-column="29" />
+            <state relative-caret-position="442">
+              <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi/i2s-soundcard-overlay.dts">
+        <entry file="file://$PROJECT_DIR$/amp_setup.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="26" column="37" lean-forward="true" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
+            <state relative-caret-position="221">
+              <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SigmaStudio/TxBuffer_IC_1.dat">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="35003">
+              <caret line="2059" column="11" selection-start-line="2059" selection-start-column="11" selection-end-line="2059" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hardware/adau1701.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hardware/pushconfig.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1326">
+              <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
+              <folding>
+                <element signature="e#23#36#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -104,14 +123,13 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/hardware/PINOUT" />
         <option value="$PROJECT_DIR$/HMI/__init__.py" />
-        <option value="$PROJECT_DIR$/hardware/pushconfig.py" />
         <option value="$PROJECT_DIR$/hardware/sigmaimporter.py" />
         <option value="$PROJECT_DIR$/oled/image_composition.py" />
         <option value="$PROJECT_DIR$/oled/albumart.py" />
@@ -128,16 +146,18 @@
         <option value="$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi/adau1701-i2s.dts" />
         <option value="$PROJECT_DIR$/RpiTemp.sh" />
         <option value="&lt;2ad41d33-b855-4f55-8091-bb191db8dbd8&gt;/mpd_oled/mpd_oled_fifo.conf" />
-        <option value="$PROJECT_DIR$/amp_setup.sh" />
         <option value="$PROJECT_DIR$/hardware/PINOUT.md" />
         <option value="&lt;2ad41d33-b855-4f55-8091-bb191db8dbd8&gt;/Volumio-OledUI/oledui.py" />
         <option value="$USER_HOME$/.PyCharm2018.3/system/remote_sources/-142839436/-1227933812/luma/emulator/device.py" />
         <option value="&lt;2ad41d33-b855-4f55-8091-bb191db8dbd8&gt;/usr/local/lib/python2.7/dist-packages/luma/emulator/device.py" />
         <option value="&lt;2ad41d33-b855-4f55-8091-bb191db8dbd8&gt;/home/volumio/Volumio-OledUI/oledui.py" />
+        <option value="$PROJECT_DIR$/hardware/adau1701.py" />
+        <option value="$PROJECT_DIR$/hardware/pushconfig.py" />
+        <option value="$PROJECT_DIR$/amp_setup.sh" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="15" />
     <option name="y" value="30" />
     <option name="width" value="1890" />
@@ -149,7 +169,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -160,22 +179,23 @@
             <path>
               <item name="AMPI" type="b2602c69:ProjectViewProjectNode" />
               <item name="AMPI" type="462c0819:PsiDirectoryNode" />
-              <item name="ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi" type="462c0819:PsiDirectoryNode" />
+              <item name="hardware" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../volumio-buddy" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/SigmaStudio/TxBuffer_IC_1.dat" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi/adau1701-i2s.dts" />
     <property name="two.files.diff.last.used.folder" value="$USER_HOME$/Documents/RPI/AMPI/Python_AMPI" />
@@ -199,7 +219,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.oledui">
+  <component name="RunManager" selected="Python.pushconfig">
     <configuration name="clock" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="AMPI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -236,28 +256,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$USER_HOME$/.PyCharm2018.3/system/remote_sources/-142839436/-1227933812/luma/emulator/device.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="AMPI" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -310,20 +308,42 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="pushconfig" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="AMPI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hardware" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hardware/pushconfig.py" />
+      <option name="PARAMETERS" value="C:\Users\Stefan\PycharmProjects\AMPI\SigmaStudio\TxBuffer_IC_1.dat" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Python.main" />
       <item itemvalue="Python.clock" />
       <item itemvalue="Python.device" />
       <item itemvalue="Python.oledui" />
       <item itemvalue="Python.oledui (1)" />
+      <item itemvalue="Python.pushconfig" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.pushconfig" />
         <item itemvalue="Python.oledui" />
         <item itemvalue="Python.oledui (1)" />
         <item itemvalue="Python.clock" />
         <item itemvalue="Python.device" />
-        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
@@ -351,6 +371,7 @@
       <workItem from="1559161306197" duration="178000" />
       <workItem from="1559162739170" duration="10578000" />
       <workItem from="1559247340745" duration="22293000" />
+      <workItem from="1560020974377" duration="530000" />
     </task>
     <servers />
   </component>
@@ -363,7 +384,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117096000" />
+    <option name="totallyTimeSpent" value="118626000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -378,12 +399,12 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3065032" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2979744" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.24702059" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24702059" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39931935" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -394,39 +415,14 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.234827" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32827735" />
-      <window_info anchor="bottom" id="File Transfer" order="13" weight="0.19826652" />
+      <window_info anchor="bottom" id="File Transfer" order="13" visible="true" weight="0.19826652" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Remote Host" order="3" weight="0.66364604" />
+      <window_info anchor="right" id="Remote Host" order="3" visible="true" weight="0.21588486" />
       <window_info anchor="right" id="SciView" order="4" weight="0.3291506" />
       <window_info anchor="right" id="Database" order="5" weight="0.32995737" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3069498" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.09926262" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39931935" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.18743229" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.234827" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32827735" />
-      <window_info anchor="bottom" id="File Transfer" order="13" weight="0.19826652" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Remote Host" order="3" weight="0.66409266" />
-      <window_info anchor="right" id="SciView" order="4" weight="0.3291506" />
-      <window_info anchor="right" id="Database" order="5" weight="0.32995737" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -568,11 +564,6 @@
     <entry file="file://$PROJECT_DIR$/SigmaStudio/NumBytes_IC_1.dat">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/SigmaStudio/TxBuffer_IC_1.dat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34696" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/oled/hotspot/common.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="131">
@@ -595,13 +586,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hardware/sigma-tcp-adau1701/license.txt">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hardware/adau1701.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hardware/sigma-tcp-adau1701/README">
       <provider selected="true" editor-type-id="text-editor">
@@ -675,16 +659,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hardware/pushconfig.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
-          <folding>
-            <element signature="e#23#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hardware/eeprom.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -703,13 +677,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="681">
           <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/amp_setup.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -741,17 +708,17 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hardware/PINOUT.md">
-      <provider editor-type-id="text-editor">
-        <state>
-          <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="272">
             <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state>
+          <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -793,8 +760,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi/i2s-soundcard-overlay.dts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="26" column="37" lean-forward="true" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
+        <state relative-caret-position="442">
+          <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SigmaStudio/TxBuffer_IC_1.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="35003">
+          <caret line="2059" column="11" selection-start-line="2059" selection-start-column="11" selection-end-line="2059" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hardware/pushconfig.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1326">
+          <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
+          <folding>
+            <element signature="e#23#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hardware/adau1701.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amp_setup.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
         </state>
       </provider>
     </entry>
