@@ -3,11 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="f81297d6-3297-4659-859e-a27130698568" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi/i2s-soundcard-overlay.dts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hardware/volume.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fonts/FONT_LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fonts/PixelOperator.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fonts/Roboto-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fonts/fa-solid-900.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/connection.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/shutdown.ppm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/volumio_logo.ppm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/display.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/pushbutton.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/rotaryencoder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oledui.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oledui.service" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi" beforeDir="false" afterPath="$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi/adau1701-i2s.dts" beforeDir="false" afterPath="$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi/adau1701-i2s.dts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,15 +76,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/-142839436/-1227933812/smbus2/smbus2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="86">
-              <caret line="455" selection-start-line="455" selection-end-line="455" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hardware/eeprom.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="175">
@@ -94,13 +96,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hardware/volume.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
               <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/display.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/LICENSE">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -213,6 +225,21 @@
             <path>
               <item name="AMPI" type="b2602c69:ProjectViewProjectNode" />
               <item name="AMPI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AMPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AMPI" type="462c0819:PsiDirectoryNode" />
+              <item name="fonts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AMPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AMPI" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AMPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AMPI" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -404,7 +431,7 @@
       <workItem from="1559161306197" duration="178000" />
       <workItem from="1559162739170" duration="10578000" />
       <workItem from="1559247340745" duration="22293000" />
-      <workItem from="1560020974377" duration="26117000" />
+      <workItem from="1560020974377" duration="26364000" />
     </task>
     <servers />
   </component>
@@ -417,7 +444,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="144213000" />
+    <option name="totallyTimeSpent" value="144460000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -445,8 +472,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.18743229" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.23268206" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32827735" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.23268206" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.3268206" />
       <window_info anchor="bottom" id="File Transfer" order="13" weight="0.3143872" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -531,23 +558,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/oled/carousel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1751">
-          <caret line="108" column="8" selection-start-line="108" selection-start-column="8" selection-end-line="108" selection-end-column="8" />
-          <folding>
-            <element signature="e#430#443#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hardware/sigmaimporter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hardware/sigma-tcp-adau1701/i2c.c">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -869,6 +879,12 @@
           <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/display.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LICENSE">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">
