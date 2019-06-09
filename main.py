@@ -10,30 +10,25 @@
 @contact:    stefanlarsson95@gmail.com
 @deffield    updated: 2019-02-03
 '''
+import sys
+from hardware import adau1701 as DSP
+from hardware import pushconfig, sigmaimporter
 
 
-from luma.core.interface.serial import spi
-from luma.oled.device import ssd1322
-from oled import scrolling_pixelart
 
 
-# oled device config
-device = ssd1322(spi(device=0, port=0))
 
-# ADAU1701 configs
-
-
-def print_header():
+'''def print_header():
     header = CppHeaderParser.CppHeader('/home/pi/Documents/Python/AMPI/SigmaStudio/AMPI_1_IC_1_PARAM.h')
     #for defs in header.defines:
         #print " %s" % defs
     room = header.defines
-    print room[5]
+    print room[5]'''
+
+
 def main():
-    #print_header()
-    while True:
-        scrolling_pixelart.device = device
-        scrolling_pixelart.main()
+    print(DSP.read_back(0x00A6), DSP.read_back(0x0082), DSP.read_back(0x008E), DSP.read_back(0x009A))
+
 
 if __name__ == "__main__":
     try:

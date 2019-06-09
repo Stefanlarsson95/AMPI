@@ -11,9 +11,9 @@ Done Reading Parameter list ...
 ################## Summary ########################
 (Note: Estimates are based on a 48 kHz sample rate)
   
-Number of instructions used (out of a possible 1024 ) = 370
+Number of instructions used (out of a possible 1024 ) = 385
   
-Data RAM used (out of a possible 2048 ) = 165
+Data RAM used (out of a possible 2048 ) = 171
   
 Parameter RAM used (out of a possible 1024 ) = 41
   

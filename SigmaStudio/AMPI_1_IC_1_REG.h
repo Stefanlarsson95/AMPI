@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\Stefan\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_1_REG.h
  *
- * Created:        Saturday, June 8, 2019 9:15:41 PM
+ * Created:        Sunday, June 9, 2019 3:46:32 PM
  * Description:    AMPI_1:IC 1 control register definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -108,12 +108,12 @@
 /* MpCfg0  - Registers (IC 1) */
 #define REG_MPCFG0_IC_1_ADDR                      0x820
 #define REG_MPCFG0_IC_1_BYTE                      3
-#define REG_MPCFG0_IC_1_VALUE                     0x447744
+#define REG_MPCFG0_IC_1_VALUE                     0x44FF44
 
 /* MpCfg1  - Registers (IC 1) */
 #define REG_MPCFG1_IC_1_ADDR                      0x821
 #define REG_MPCFG1_IC_1_BYTE                      3
-#define REG_MPCFG1_IC_1_VALUE                     0x44F774
+#define REG_MPCFG1_IC_1_VALUE                     0x44FF74
 
 /* AnalogPowerDownRegister  - Registers (IC 1) */
 #define REG_ANALOGPOWERDOWNREGISTER_IC_1_ADDR     0x822
@@ -336,9 +336,9 @@
 #define R17_MFSELECT1_IC_1                        0x4    /* 100b	[6:4] */
 #define R17_MFINVERT1_IC_1                        0x0    /* 0b	[7] */
 #define R17_MFSELECT2_IC_1                        0x7    /* 111b	[10:8] */
-#define R17_MFINVERT2_IC_1                        0x0    /* 0b	[11] */
+#define R17_MFINVERT2_IC_1                        0x1    /* 1b	[11] */
 #define R17_MFSELECT3_IC_1                        0x7    /* 111b	[14:12] */
-#define R17_MFINVERT3_IC_1                        0x0    /* 0b	[15] */
+#define R17_MFINVERT3_IC_1                        0x1    /* 1b	[15] */
 #define R17_MFSELECT4_IC_1                        0x4    /* 100b	[18:16] */
 #define R17_MFINVERT4_IC_1                        0x0    /* 0b	[19] */
 #define R17_MFSELECT5_IC_1                        0x4    /* 100b	[22:20] */
@@ -374,7 +374,7 @@
 #define R18_MFSELECT7_IC_1                        0x7    /* 111b	[6:4] */
 #define R18_MFINVERT7_IC_1                        0x0    /* 0b	[7] */
 #define R18_MFSELECT8_IC_1                        0x7    /* 111b	[10:8] */
-#define R18_MFINVERT8_IC_1                        0x0    /* 0b	[11] */
+#define R18_MFINVERT8_IC_1                        0x1    /* 1b	[11] */
 #define R18_MFSELECT9_IC_1                        0x7    /* 111b	[14:12] */
 #define R18_MFINVERT9_IC_1                        0x1    /* 1b	[15] */
 #define R18_MFSELECT10_IC_1                       0x4    /* 100b	[18:16] */

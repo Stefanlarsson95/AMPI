@@ -76,7 +76,6 @@ def main(argv):
         exit(1)
 
     write_device(data, destination, verbose)
-    adau1701.close_i2c()
 
 
 if __name__ == "__main__":
