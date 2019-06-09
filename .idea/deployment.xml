@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="Volumio@home" exclude=".svn;.cvs;.idea;.DS_Store;.git;.hg;*.hprof;*.pyc;venv">
+  <component name="PublishConfigData" autoUpload="Always" serverName="Volumio@home" exclude=".svn;.cvs;.idea;.DS_Store;.git;.hg;*.hprof;*.pyc;venv">
     <serverData>
       <paths name="TX1@CRF">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="Volumio@CRF">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/volumio/AMPI" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
@@ -17,5 +24,6 @@
         </serverdata>
       </paths>
     </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
   </component>
 </project>

@@ -3,9 +3,10 @@
 # Hardware routines for the ADAU1701
 # addressing is always done in 16bit
 
-import math 
+import math
+import numpy as np
 try:
-	from smbus import SMBus
+	from smbus2 import SMBus, i2c_msg,SMBusWrapper
 	i2c_available=True
 	smb=SMBus(1);
 except ImportError:
@@ -128,13 +129,51 @@ def memory_map_from_blocks(blocks):
 	return mem
 
 
-def close_i2c():
-	smb.close()
+def read_back(addr):
+	a1=addr/256
+	a0=addr%256
+	dsp_write_small_block(0x081A, [a1, a0])
+	write = i2c_msg.write(I2C_SLAVEADDR, [0x08, 0x1A])
+	rd = i2c_msg.read(I2C_SLAVEADDR, 3)
+	with SMBusWrapper(1) as bus:
+		bus.i2c_rdwr(write, rd)
+	'''MSB first, convert from 5.19 to 5.27 format'''
+	val = list(rd)
+	ret = (np.uint32(np.uint(val[0])) << 24 | np.uint32(val[1]) << 16 | np.uint32(val[2]) << 8 & 0xFFFFFF00)
+	ret = (float(ret)/(np.uint32(1) << 27))
+	return ret
 
 
-#
-# Demo code
-#
+
+
+
+
+
+'''
+void readBack(uint8_t dspAddress, uint16_t address, uint16_t capturecount, float *value){
+
+  uint8_t buf[3];
+  int32_t word32 = 0;
+
+  buf[0] = capturecount >> 8;
+  buf[1] = (uint8_t)capturecount & 0xFF;
+  AIDA_WRITE_REGISTER(dspAddress, address, 2, buf);    // readBack operation
+
+  memset(buf, 0, 3);
+
+  AIDA_READ_REGISTER(dspAddress, address, 3, buf);
+
+  word32 = ((uint32_t)buf[0]<<24 | (uint32_t)buf[1]<<16 | (uint32_t)buf[2]<<8)&0xFFFFFF00; // MSB first, convert from 5.19 to 5.27 format
+
+  if(word32==0)
+    word32 = 1;
+
+  *value = ((float)word32/((uint32_t)1 << 27)); // I'm converting from 5.27 int32 to maintain sign
+}
+'''
+
+
+
 def main():
 	print "0	   {:07x}".format(float_to_28bit_fixed(0))
 	print "16-1LSB {:07x}".format(float_to_28bit_fixed(16-LSB_SIGMA))
