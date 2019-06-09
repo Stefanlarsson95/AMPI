@@ -3,31 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f81297d6-3297-4659-859e-a27130698568" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi/i2s-soundcard-overlay.dts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hardware/volume.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi" beforeDir="false" afterPath="$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi/adau1701-i2s.dts" beforeDir="false" afterPath="$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi/adau1701-i2s.dts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1.dspproj" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1.dspproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1.hex" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1.hex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1.params" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1.params" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1_IC_1.h" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1_IC_1.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1_IC_1_PARAM.h" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1_IC_1_PARAM.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1_IC_1_REG.h" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1_IC_1_REG.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1_NetList.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1_NetList.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/as_code.enc" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/as_code.enc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list.cir2" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list.cir2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/compiler_output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/compiler_output.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/hex_program_data.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/hex_program_data.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/hex_program_simdata.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/hex_program_simdata.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/program_data.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/program_data.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/spi_map.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/spi_map.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/trap.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/trap.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/trap.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/trap.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/TxBuffer_IC_1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/TxBuffer_IC_1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/defines.h" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/defines.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardware/adau1701.py" beforeDir="false" afterPath="$PROJECT_DIR$/hardware/adau1701.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardware/pushconfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/hardware/pushconfig.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,7 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/AMPI$main.coverage" NAME="main Coverage Results" MODIFIED="1560123088938" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AMPI$main.coverage" NAME="main Coverage Results" MODIFIED="1560123107236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AMPI$oledui__1_.coverage" NAME="oledui (1) Coverage Results" MODIFIED="1559582682069" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/" />
     <SUITE FILE_PATH="coverage/AMPI$sigmaimporter.coverage" NAME="sigmaimporter Coverage Results" MODIFIED="1557859418101" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hardware" />
     <SUITE FILE_PATH="coverage/AMPI$albumart.coverage" NAME="albumart Coverage Results" MODIFIED="1557691197768" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/oled" />
@@ -103,14 +82,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+            <state relative-caret-position="306">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
               <folding>
-                <element signature="e#210#216#0" expanded="true" />
+                <element signature="e#210#220#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hardware/volume.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
             </state>
           </provider>
         </entry>
@@ -167,8 +155,8 @@
       <find>0x081A</find>
       <find>force</find>
       <find>readback</find>
-      <find>AIDA_READ_REGISTER</find>
       <find>I2C_SMBUS_WRITE</find>
+      <find>AIDA_READ_REGISTER</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -203,14 +191,15 @@
         <option value="$PROJECT_DIR$/hardware/adau1701.py" />
         <option value="$PROJECT_DIR$/hardware/pushconfig.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/hardware/volume.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-11" />
-    <option name="y" value="-11" />
-    <option name="width" value="1943" />
-    <option name="height" value="1043" />
+    <option name="x" value="15" />
+    <option name="y" value="30" />
+    <option name="width" value="1890" />
+    <option name="height" value="960" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -224,16 +213,6 @@
             <path>
               <item name="AMPI" type="b2602c69:ProjectViewProjectNode" />
               <item name="AMPI" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AMPI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AMPI" type="462c0819:PsiDirectoryNode" />
-              <item name="hardware" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AMPI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AMPI" type="462c0819:PsiDirectoryNode" />
-              <item name="SigmaStudio" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -425,7 +404,7 @@
       <workItem from="1559161306197" duration="178000" />
       <workItem from="1559162739170" duration="10578000" />
       <workItem from="1559247340745" duration="22293000" />
-      <workItem from="1560020974377" duration="25147000" />
+      <workItem from="1560020974377" duration="26117000" />
     </task>
     <servers />
   </component>
@@ -438,7 +417,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143243000" />
+    <option name="totallyTimeSpent" value="144213000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -451,14 +430,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24939272" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21781376" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24689165" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.24689165" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39786857" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -473,18 +451,18 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Remote Host" order="3" visible="true" weight="0.21538462" />
+      <window_info anchor="right" id="Remote Host" order="3" weight="0.21538462" />
       <window_info anchor="right" id="SciView" order="4" weight="0.3291506" />
       <window_info anchor="right" id="Database" order="5" weight="0.32995737" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30121458" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21781376" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24689165" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39869988" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.24689165" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39786857" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
@@ -492,13 +470,13 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.18743229" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.2340195" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.23268206" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32827735" />
-      <window_info anchor="bottom" id="File Transfer" order="13" weight="0.19826652" />
+      <window_info anchor="bottom" id="File Transfer" order="13" weight="0.3143872" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Remote Host" order="3" weight="0.21588486" />
+      <window_info anchor="right" id="Remote Host" order="3" weight="0.21538462" />
       <window_info anchor="right" id="SciView" order="4" weight="0.3291506" />
       <window_info anchor="right" id="Database" order="5" weight="0.32995737" />
     </layout-to-restore>
@@ -553,13 +531,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/oled/albumart.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/oled/carousel.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1751">
@@ -644,9 +615,6 @@
           <caret line="537" column="9" selection-start-line="537" selection-start-column="9" selection-end-line="537" selection-end-column="9" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HMI/stats_i2c.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/hardware/sigma-tcp-adau1701/sigma_tcp.c_ORIG">
       <provider selected="true" editor-type-id="text-editor" />
@@ -818,13 +786,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Documents/ARDUINO/AidaDSP/Software/Libraries/Arduino/Aida/AidaDSP.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="1605" column="3" selection-start-line="1605" selection-start-column="3" selection-end-line="1605" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
@@ -880,13 +841,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/HMI/stats_i2c.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1092" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+        <state relative-caret-position="306">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
           <folding>
-            <element signature="e#210#216#0" expanded="true" />
+            <element signature="e#210#220#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/ARDUINO/AidaDSP/Software/Libraries/Arduino/Aida/AidaDSP.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="1605" column="3" selection-start-line="1605" selection-start-column="3" selection-end-line="1605" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hardware/volume.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
         </state>
       </provider>
     </entry>
