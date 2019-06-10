@@ -129,10 +129,8 @@ def memory_map_from_blocks(blocks):
 	return mem
 
 
-def read_back(addr):
-	a1=addr/256
-	a0=addr%256
-	dsp_write_small_block(0x081A, [a1, a0])
+def read_back(H_addr, L_addr):
+	dsp_write_small_block(0x081A, [H_addr, L_addr])
 	write = i2c_msg.write(I2C_SLAVEADDR, [0x08, 0x1A])
 	rd = i2c_msg.read(I2C_SLAVEADDR, 3)
 	with SMBusWrapper(1) as bus:
@@ -173,11 +171,9 @@ void readBack(uint8_t dspAddress, uint16_t address, uint16_t capturecount, float
 '''
 
 
-
 def main():
-	print "0	   {:07x}".format(float_to_28bit_fixed(0))
-	print "16-1LSB {:07x}".format(float_to_28bit_fixed(16-LSB_SIGMA))
-	print "8	   {:07x}".format(float_to_28bit_fixed(8))
-	print "-16	   {:07x}".format(float_to_28bit_fixed(-16))
-	print "0.25	   {:07x}".format(float_to_28bit_fixed(0.25))
-	print "-0.25   {:07x}".format(float_to_28bit_fixed(-0.25))	
+	print(read_back(0x00, 0xA6))
+
+
+if __name__ == '__main__':
+	main()

@@ -13,7 +13,9 @@ import os
 import sys
 import json
 import RPi.GPIO as GPIO
-GPIO.setmode(GPIO.BCM) 
+GPIO.setmode(GPIO.BCM)
+from hardware import volume
+
 
 from time import time, sleep
 from threading import Thread
@@ -537,3 +539,5 @@ while True:
             pass
         volumioIO.emit('play', {'value':oled.playPosition})
     sleep(0.1)
+    'Check volume routine'
+    #volume.get_hw_vol()
