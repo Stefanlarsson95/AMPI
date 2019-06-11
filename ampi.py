@@ -14,7 +14,7 @@ import sys
 import json
 import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
-from hardware import volume
+from hardware import volume as Vol
 
 
 from time import time, sleep
@@ -52,6 +52,8 @@ PIXEL_SHIFT_TIME = 120    #time between picture position shifts in sec.
 interface = spi(device=0, port=0)
 oled = ssd1322(interface)
 
+vol = Vol.VOLUME()
+
 oled.WIDTH = 256
 oled.HEIGHT = 64
 oled.state = STATE_NONE
@@ -68,10 +70,14 @@ oled.playlistoptions = []
 oled.queue = []
 oled.libraryFull = []
 oled.libraryNames = []
-oled.volumeControlDisabled = False
-oled.volume = 100
+#oled.volumeControlDisabled = False
+oled.volume = vol.volume
 
-emit_volume = False
+source = None
+
+
+
+emit_volume = True
 emit_track = False
 
 image = Image.new('RGB', (oled.WIDTH + 4, oled.HEIGHT + 4))  #enlarged for pixelshift
@@ -136,14 +142,20 @@ def LoadPlaylist(playlistname):
     SetState(STATE_PLAYER)
 
 def onPushState(data):
-    #print(data)
+    global source
+    if 'trackType' in data:
+        s = data['trackType']
+        if s != source:
+            print "New source: ", str(s)
+            source = s
+
     if 'title' in data:
         newSong = data['title']
     else:
         newSong = ''
     if newSong is None:
         newSong = ''
-        
+
     if 'artist' in data:
         newArtist = data['artist']
     else:
@@ -159,6 +171,7 @@ def onPushState(data):
 
     if 'seek' in data:
         oled.ptime = data['seek']
+        NowPlayingScreen.ptime = oled.ptime
 
     if 'duration' in data:
         oled.duration = data['duration']
@@ -166,6 +179,7 @@ def onPushState(data):
     if oled.state != STATE_VOLUME:            #get volume on startup and remote control
         try:                                  #it is either number or unicode text
             oled.volume = int(data['volume'])
+            check_volume()
         except (KeyError, ValueError):
             pass
     
@@ -193,10 +207,10 @@ def onPushQueue(data):
     print('Queue length is ' + str(len(oled.queue)))
 
 def onPushBrowseSources(data):
-#    print('Browse sources:')
-#    for item in data:
-#        print(item['uri']) 
-    pass
+    print('Browse sources:')
+    for item in data:
+        print(item['uri'])
+
 
 def onLibraryBrowse(data):
     oled.libraryFull = data
@@ -245,8 +259,9 @@ class NowPlayingScreen():
         self.fontaw = fontaw
         self.playingText1 = StaticText(self.height, self.width, row1, font2, center=True)
         self.playingText2 = ScrollText(self.height, self.width, row2, font)
-        self.icon = {'play':'\uf04b', 'pause':'\uf04c', 'stop':'\uf04d'}
+        self.icon = {'play':'\uf04b', 'pause':'\uf04c', 'stop':'\uf04d', 'mute':'\uf026', 'normalVol':'\uf027', 'highVol':'\uf028'}
         self.playingIcon = self.icon['play']
+        self.volumeIcon = self.icon['mute']
         self.iconcountdown = 0
         self.text1Pos = (3, 6)
         self.text2Pos = (3, 21)#37
@@ -279,8 +294,6 @@ class NowPlayingScreen():
                 self.played = float(self.ptime / self.duration) / 10
             except:
                 self.played = 0
-            #print(float(self.ptime)/1000)
-            #print(time() - self.tStart)
 
             self.playingText1.DrawOn(image, self.text1Pos)
             self.playingText2.DrawOn(image, self.text2Pos)
@@ -290,6 +303,13 @@ class NowPlayingScreen():
             compositeimage = Image.composite(self.alfaimage, image.convert('RGBA'), self.alfaimage)
             image.paste(compositeimage.convert('RGB'), (0, 0))
             self.iconcountdown -= 1
+        if oled.volume in range(1, 50, 1):
+            self.volumeIcon = ['normVol']
+        elif oled.volume > 50:
+            self.volumeIcon = ['highVol']
+        else:
+            self.volumeIcon = ['mute']
+
 
     def SetPlayingIcon(self, state, time=0):
         if state in self.icon:
@@ -302,27 +322,27 @@ class NowPlayingScreen():
         self.iconcountdown = time
 
 
-class VolumeScreen():
+class VolumeScreen:
     def __init__(self, height, width, volume, font, font2):
         self.height = height
         self.width = width
         self.font = font
         self.font2 = font2
         self.volumeLabel = None
-        self.labelPos = (10, 5)
+        self.labelPos = (10, 3)
         self.volumeNumber = None
-        self.numberPos = (10, 25)
-        self.barHeight = 22
-        self.barWidth = 140
+        self.numberPos = (225, 50)
+        self.barHeight = 8
+        self.barWidth = 195
         self.volumeBar = Bar(self.height, self.width, self.barHeight, self.barWidth)
-        self.barPos = (85, 27)
-        self.volume = 0
+        self.barPos = (30, 40)
         self.DisplayVolume(volume)
+        self.volume = volume
 
     def DisplayVolume(self, volume):
         self.volume = volume
-        self.volumeNumber = StaticText(self.height, self.width, str(volume) + '%', self.font)
-        self.volumeLabel = StaticText(self.height, self.width, 'Volume', self.font2)
+        self.volumeNumber = StaticText(self.height, self.width, str(volume) + '%', self.font2, True)
+        self.volumeLabel = StaticText(self.height, self.width, 'Volume', self.font, True)
         self.volumeBar.SetFilledPercentage(volume)
 
     def DrawOn(self, image):
@@ -330,7 +350,7 @@ class VolumeScreen():
         self.volumeNumber.DrawOn(image, self.numberPos)
         self.volumeBar.DrawOn(image, self.barPos)
 
-class MenuScreen():
+class MenuScreen:
     def __init__(self, height, width, font2, menuList, selected=0, rows=3, label='', showIndex=False):
         self.height = height
         self.width = width
@@ -390,6 +410,7 @@ class MenuScreen():
             self.menuText[0].DrawOn(image, (15, self.menuYPos))
 
 
+'''
 def LeftKnob_RotaryEvent(dir):
     global emit_volume
     if not oled.volumeControlDisabled and oled.state != STATE_PLAYLIST_MENU:
@@ -405,6 +426,39 @@ def LeftKnob_RotaryEvent(dir):
         else:
             oled.modal.DisplayVolume(oled.volume)
         emit_volume = True
+'''
+
+
+'''
+Check if volume is right
+'''
+
+def check_volume():
+    global emit_volume
+    if vol.t_scan + vol.update_hw_interval < time() and abs(oled.volume - vol.get_hw_vol()) > vol.HYSTERES:#  New hardware volume -> set remote volume
+        vol.update_hw_interval = 0.1
+        oled.volume = vol.hw_volume
+        vol.volume = vol.hw_volume
+        emit_volume = True
+    elif not oled.volume == vol.volume:#  New remote volume -> set hardware volume
+        vol.set_hw_vol(oled.volume)
+        vol.volume = oled.volume
+    else:# same volume
+        if oled.state != STATE_VOLUME:
+            vol.update_hw_interval = 1
+        return False
+
+    if oled.state != STATE_PLAYLIST_MENU:
+        oled.stateTimeout = 2.0
+        if oled.state != STATE_VOLUME:
+            SetState(STATE_VOLUME)
+        else:
+            try:
+                oled.modal.DisplayVolume(oled.volume)
+            except AttributeError as msg:
+                print("Error Displaying volume! ", msg)
+    return True# new volume event
+
 
 def LeftKnob_PushEvent(hold_time):
     global UPDATE_INTERVAL
@@ -477,6 +531,8 @@ def RightKnob_PushEvent(hold_time):
         oled.stateTimeout = 20.0
         volumioIO.emit('browseLibrary',{'uri':'music-library'})
 
+
+'''Startup'''
 #LeftKnob_Push = PushButton(3, max_time=3)
 #LeftKnob_Push.setCallback(LeftKnob_PushEvent)
 #LeftKnob_Rotation = RotaryEncoder(5, 6, pulses_per_cycle=4)cd
@@ -507,7 +563,7 @@ volumioIO.on('pushState', onPushState)
 volumioIO.on('pushListPlaylist', onPushListPlaylist)
 volumioIO.on('pushQueue', onPushQueue)
 volumioIO.on('pushBrowseSources', onPushBrowseSources)
-volumioIO.on('pushBrowseLibrary', onLibraryBrowse)
+#volumioIO.on('pushBrowseLibrary', onLibraryBrowse)
 
 # get list of Playlists and initial state
 volumioIO.emit('listPlaylist')
@@ -526,6 +582,8 @@ else:
 if oled.playState != 'play':
     volumioIO.emit('play', {'value':oled.playPosition})
 
+oled.volume = vol.volume
+
 while True:
     if emit_volume:
         emit_volume = False
@@ -538,6 +596,5 @@ while True:
         except IndexError:
             pass
         volumioIO.emit('play', {'value':oled.playPosition})
+    check_volume()
     sleep(0.1)
-    'Check volume routine'
-    #volume.get_hw_vol()

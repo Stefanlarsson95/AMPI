@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\Stefan\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_1_PARAM.h
  *
- * Created:        Sunday, June 9, 2019 3:46:32 PM
+ * Created:        Tuesday, June 11, 2019 11:18:03 PM
  * Description:    AMPI_1:IC 1 parameter RAM definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -52,44 +52,44 @@
 #define COUNT_PARAMEQ1                                 30
 #define DEVICE_PARAMEQ1                                "IC1"
 #define ADDR_PARAMEQ1_ST0_B0                           4
-#define FIXPT_PARAMEQ1_ST0_B0                          0x008962DD
-#define VALUE_PARAMEQ1_ST0_B0                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.07332962979475)
+#define FIXPT_PARAMEQ1_ST0_B0                          0x00894375
+#define VALUE_PARAMEQ1_ST0_B0                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.07237113783577)
 #define TYPE_PARAMEQ1_ST0_B0                           SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_PARAMEQ1_ST0_B0                           4
-#define FIXPT_PARAMEQ1_ST0_B0                          0x008962DD
-#define VALUE_PARAMEQ1_ST0_B0                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.07332962979475)
+#define FIXPT_PARAMEQ1_ST0_B0                          0x00894375
+#define VALUE_PARAMEQ1_ST0_B0                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.07237113783577)
 #define TYPE_PARAMEQ1_ST0_B0                           SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_PARAMEQ1_ST0_B1                           5
-#define FIXPT_PARAMEQ1_ST0_B1                          0xFEEE4BB3
-#define VALUE_PARAMEQ1_ST0_B1                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(-2.13831492717801)
+#define FIXPT_PARAMEQ1_ST0_B1                          0xFEEDFAFD
+#define VALUE_PARAMEQ1_ST0_B1                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(-2.14077794976257)
 #define TYPE_PARAMEQ1_ST0_B1                           SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_PARAMEQ1_ST0_B1                           5
-#define FIXPT_PARAMEQ1_ST0_B1                          0xFEEE4BB3
-#define VALUE_PARAMEQ1_ST0_B1                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(-2.13831492717801)
+#define FIXPT_PARAMEQ1_ST0_B1                          0xFEEDFAFD
+#define VALUE_PARAMEQ1_ST0_B1                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(-2.14077794976257)
 #define TYPE_PARAMEQ1_ST0_B1                           SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_PARAMEQ1_ST0_B2                           6
-#define FIXPT_PARAMEQ1_ST0_B2                          0x008853C8
-#define VALUE_PARAMEQ1_ST0_B2                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.06505686080218)
+#define FIXPT_PARAMEQ1_ST0_B2                          0x0088C3E6
+#define VALUE_PARAMEQ1_ST0_B2                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.0684784577762)
 #define TYPE_PARAMEQ1_ST0_B2                           SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_PARAMEQ1_ST0_B2                           6
-#define FIXPT_PARAMEQ1_ST0_B2                          0x008853C8
-#define VALUE_PARAMEQ1_ST0_B2                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.06505686080218)
+#define FIXPT_PARAMEQ1_ST0_B2                          0x0088C3E6
+#define VALUE_PARAMEQ1_ST0_B2                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.0684784577762)
 #define TYPE_PARAMEQ1_ST0_B2                           SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_PARAMEQ1_ST0_A0                           7
-#define FIXPT_PARAMEQ1_ST0_A0                          0x00FF6F8B
-#define VALUE_PARAMEQ1_ST0_A0                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.99559160224728)
+#define FIXPT_PARAMEQ1_ST0_A0                          0x00FFBADD
+#define VALUE_PARAMEQ1_ST0_A0                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.99789022866729)
 #define TYPE_PARAMEQ1_ST0_A0                           SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_PARAMEQ1_ST0_A0                           7
-#define FIXPT_PARAMEQ1_ST0_A0                          0x00FF6F8B
-#define VALUE_PARAMEQ1_ST0_A0                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.99559160224728)
+#define FIXPT_PARAMEQ1_ST0_A0                          0x00FFBADD
+#define VALUE_PARAMEQ1_ST0_A0                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.99789022866729)
 #define TYPE_PARAMEQ1_ST0_A0                           SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_PARAMEQ1_ST0_A1                           8
-#define FIXPT_PARAMEQ1_ST0_A1                          0xFF808E45
-#define VALUE_PARAMEQ1_ST0_A1                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(-0.995658389115774)
+#define FIXPT_PARAMEQ1_ST0_A1                          0xFF8042F2
+#define VALUE_PARAMEQ1_ST0_A1                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(-0.997957092464372)
 #define TYPE_PARAMEQ1_ST0_A1                           SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_PARAMEQ1_ST0_A1                           8
-#define FIXPT_PARAMEQ1_ST0_A1                          0xFF808E45
-#define VALUE_PARAMEQ1_ST0_A1                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(-0.995658389115774)
+#define FIXPT_PARAMEQ1_ST0_A1                          0xFF8042F2
+#define VALUE_PARAMEQ1_ST0_A1                          SIGMASTUDIOTYPE_FIXPOINT_CONVERT(-0.997957092464372)
 #define TYPE_PARAMEQ1_ST0_A1                           SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_PARAMEQ1_ST1_B0                           9
 #define FIXPT_PARAMEQ1_ST1_B0                          0x0076D87A

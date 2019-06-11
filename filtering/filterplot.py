@@ -50,7 +50,7 @@ def plot_response(node):
 # Demo code
 
 def main():
-    n = dspxml.network_from_xml_string('<network samplerate="48000">\
+    n = dspxml.network_from_minidom('<network samplerate="48000">\
         <input name="input1"/>\
         <biquad name="bq1" input="input1" type="lowpass" frequency="1000" q="0.7" />\
         <biquad name="bq2" input="bq1" type="highpass" frequency="100" q="0.7" />\

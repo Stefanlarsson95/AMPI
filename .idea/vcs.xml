@@ -3,6 +3,5 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/volumio-buddy" vcs="Git" />
   </component>
 </project>

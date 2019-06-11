@@ -3,6 +3,7 @@ The AMPI Project
 
 ##### Base on:
 https://github.com/usul27/hifiberry-dsp
+
 https://github.com/diehardsk/Volumio-OledUI
 
 ## Instructions
@@ -10,7 +11,7 @@ https://github.com/diehardsk/Volumio-OledUI
 #### Configure DPS
 Run command:
 ````bash
-python hardware/pushconfig.py SigmaStudio/TxBuffer_IC_1.dat
+./AMPI/push_config.sh
 ````
 
 #### Check voltage
@@ -34,4 +35,16 @@ cd 28-02146367e1ff
 cat w1_slave
  ````
 
+#### Instalation
+
+### installation steps
+```
+chmod +x ~/AMPI/ampi.py
+sudo cp ~/AMPI/ampi.service /lib/systemd/system/
+sudo cp ~/AMPI/dsp_config.service /lib/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable ampi.service
+sudo systemctl enable dsp_config.service
+reboot
+```
 
