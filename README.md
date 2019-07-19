@@ -17,14 +17,14 @@ Run command:
 #### Check voltage
 Power status. trottled: x50005 =  bad 0x50000 = good
 ````bash
-vcgencmd get_throttled	
+sudo vcgencmd get_throttled	
 ````
 
 
 #### RPI Core temp
 
 ````bash
-vcgencmd measure_temp
+sudo vcgencmd measure_temp
  ````
 
 #### RPI AMP temp

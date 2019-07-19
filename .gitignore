@@ -1,5 +1,7 @@
+.idea
 .settings
 *.pyc
 .project
 .pydevproject
 .metadataitde
+/venv
