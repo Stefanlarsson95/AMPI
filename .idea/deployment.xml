@@ -19,7 +19,7 @@
       <paths name="Volumio@home">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/volumio/AMPI" local="$PROJECT_DIR$" />
+            <mapping deploy="/AMPIv2" local="$PROJECT_DIR$" />
           </mappings>
         </serverdata>
       </paths>
