@@ -102,7 +102,7 @@ class HardwareSpec(object):
                     except KeyError:
                         if not ignoremissing:
                             raise Exception("Address for {}.{} not found in parameter definition".format(n.name,v))
-                    res[str(addr)]=filtermath.db_to_gain(gains[i])
+                    res[str(addr)]= filtermath.db_to_gain(gains[i])
             ''' 
             Single volume controls
             '''
@@ -114,7 +114,7 @@ class HardwareSpec(object):
                         raise Exception("Address for {} not found in parameter definition".format(n.name))
 
                 gain=n.get_dbgain()
-                res[str(addr)]=filtermath.db_to_gain(gain)
+                res[str(addr)]= filtermath.db_to_gain(gain)
 
         return res;
     

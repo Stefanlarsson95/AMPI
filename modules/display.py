@@ -15,7 +15,7 @@ def show_logo(filename, device):
     device.display(logoImage)
 
 def load_font(filename, font_size):
-    font_path = os.path.dirname(os.path.realpath(__file__)) + '/../fonts/'
+    font_path = os.path.dirname(os.path.realpath(__file__)) + '/../misc/fonts/'
     try:
         font = ImageFont.truetype(font_path + filename, font_size)
     except IOError:

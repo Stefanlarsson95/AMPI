@@ -6,7 +6,7 @@ Created on 09.11.2013
 
 from array import array
 import math
-from filtermath import db_sum, magnitude_to_db
+from filtermath import magnitude_to_db
 import biquad
 
 
@@ -241,27 +241,27 @@ class BiQuad(Filter):
         
     def recalc_coefficients(self):
         if self.filtertype == BIQUAD_LOWPASS:
-            self.set_coefficients(biquad.low_pass(self.f,self.q, self.fs))
+            self.set_coefficients(biquad.low_pass(self.f, self.q, self.fs))
         elif self.filtertype == BIQUAD_HIGHPASS:
-            self.set_coefficients(biquad.high_pass(self.f,self.q, self.fs))
+            self.set_coefficients(biquad.high_pass(self.f, self.q, self.fs))
         elif self.filtertype == BIQUAD_BANDPASS_PEAK_Q:
-            self.set_coefficients(biquad.band_pass_peak_q(self.f,self.q, self.fs))
+            self.set_coefficients(biquad.band_pass_peak_q(self.f, self.q, self.fs))
         elif self.filtertype == BIQUAD_BANDPASS:
-            self.set_coefficients(biquad.band_pass(self.f,self.q, self.fs))
+            self.set_coefficients(biquad.band_pass(self.f, self.q, self.fs))
         elif self.filtertype == BIQUAD_NOTCH:
-            self.set_coefficients(biquad.notch(self.f,self.q, self.fs))
+            self.set_coefficients(biquad.notch(self.f, self.q, self.fs))
         elif self.filtertype == BIQUAD_ALLPASS:
-            self.set_coefficients(biquad.all_pass(self.f,self.q, self.fs))
+            self.set_coefficients(biquad.all_pass(self.f, self.q, self.fs))
         elif self.filtertype == BIQUAD_PEAKING_EQ:
-            self.set_coefficients(biquad.peaking_eq(self.f,self.q, self.dbgain, self.fs))
+            self.set_coefficients(biquad.peaking_eq(self.f, self.q, self.dbgain, self.fs))
         elif self.filtertype == BIQUAD_LOW_SHELF:
-            self.set_coefficients(biquad.low_shelf(self.f,self.q, self.dbgain, self.fs))
+            self.set_coefficients(biquad.low_shelf(self.f, self.q, self.dbgain, self.fs))
         elif self.filtertype == BIQUAD_HIGH_SHELF:
-            self.set_coefficients(biquad.low_shelf(self.f,self.q, self.dbgain, self.fs))
+            self.set_coefficients(biquad.low_shelf(self.f, self.q, self.dbgain, self.fs))
         elif self.filtertype == BIQUAD_LOWPASS_FIRSTORDER:
-            self.set_coefficients(biquad.low_pass_firstorder(self.f,self.q, self.fs))
+            self.set_coefficients(biquad.low_pass_firstorder(self.f, self.q, self.fs))
         elif self.filtertype == BIQUAD_HIGHPASS_FIRSTORDER:
-            self.set_coefficients(biquad.high_pass_firstorder(self.f,self.q, self.fs))
+            self.set_coefficients(biquad.high_pass_firstorder(self.f, self.q, self.fs))
 
         
         if self.first_order:
@@ -317,17 +317,17 @@ def main():
     i1 = Input()
     bq1 = BiQuad()
     bq1.set_input(i1)    
-    [a1,a2,b0,b1,b2]=biquad.low_pass(2000,0.7,48000)
+    [a1,a2,b0,b1,b2]= biquad.low_pass(2000, 0.7, 48000)
     bq1.set_coefficients([a1,a2,b0,b1,b2])
     
     bq2 = BiQuad()
     bq2.set_input(bq1)    
-    [a1,a2,b0,b1,b2]=biquad.high_pass(500,0.7,48000)
+    [a1,a2,b0,b1,b2]= biquad.high_pass(500, 0.7, 48000)
     bq2.set_coefficients([a1,a2,b0,b1,b2])
 
     bq3 = BiQuad()
     bq3.set_input(bq2)    
-    [a1,a2,b0,b1,b2]=biquad.peaking_eq(5000,0.7,20,48000)
+    [a1,a2,b0,b1,b2]= biquad.peaking_eq(5000, 0.7, 20, 48000)
     bq3.set_coefficients([a1,a2,b0,b1,b2])
 
     for v in bq2.get_response():
