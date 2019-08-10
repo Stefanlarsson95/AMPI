@@ -3,9 +3,10 @@ import time
 from multiprocessing import Process as mp #import Process,Value,Array ,Manager,Lock;
 from threading import Thread
 from modules import OLED
-from modules import logger, volume as vol
+from modules.logger import *
+from modules import volume as vol
 import math
-log = logger.Log(logger.LOGLEVEL.INFO)
+log = Log(LOGLEVEL.INFO)
 tInit = time.time()
 
 

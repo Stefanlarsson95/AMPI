@@ -1,7 +1,10 @@
+
 '''
-Custom terminal logger
-'''''
+Multicollor logger by Stefan Larsson
+'''
+
 import datetime
+
 
 class LOGLEVEL:
     def __init__(self):
@@ -15,31 +18,38 @@ class LOGLEVEL:
 
 class Log:
     def __init__(self, level=LOGLEVEL.WARN):
-        self.lvl = level
+        self._lvl = level
 
     def fatal(self, text):  # Red
-        if self.lvl == LOGLEVEL.FATAL:
+        if self._lvl == LOGLEVEL.FATAL:
             print("{}--:\033[91m FATAL\033[0m :--- {}".format(datetime.datetime.now().strftime("t:%S.%f"), text))
 
     def err(self, text, err = ''):    # Red
-        if self.lvl <= LOGLEVEL.ERROR:
+        if self._lvl <= LOGLEVEL.ERROR:
             print("{}--:\033[91m DERROR\033[0m :--- {}: {}".format(datetime.datetime.now().strftime("t:%S.%f"), text, err))
 
     def warn(self, text):   # Magenta
-        if self.lvl <= LOGLEVEL.WARN:
+        if self._lvl <= LOGLEVEL.WARN:
             print("{}--:\033[95m Warning\033[0m :--- {}".format(datetime.datetime.now().strftime("t:%S.%f"), text))
 
     def info(self, text):   # Green
-        if self.lvl <= LOGLEVEL.INFO:
+        if self._lvl <= LOGLEVEL.INFO:
             print("{}--:\033[92m Info\033[0m :--- {}".format(datetime.datetime.now().strftime("t:%S.%f"), text))
 
     def debug(self, text):  # Yellow
-        if self.lvl <= LOGLEVEL.DEBUG:
+        if self._lvl <= LOGLEVEL.DEBUG:
             print("{}--:\033[93m Debug\033[0m :--- {}".format(datetime.datetime.now().strftime("t:%S.%f"), text))
 
     def blue(self, text):    # Blue
-        if self.lvl <= LOGLEVEL.DEBUG:
+        if self._lvl <= LOGLEVEL.DEBUG:
             print("{}--:\033[94m Debug\033[0m :--- {}".format(datetime.datetime.now().strftime("t:%S.%f"), text))
 
-global Logger
-Logger = Log(level=LOGLEVEL.INFO)
+    def set_level(self, level):
+        if level in range(-1, 3):
+            self._lvl = level
+        else:
+            self.warn("Unable to set Log level: " + str(level))
+
+    def get_level(self):
+        return self._lvl
+

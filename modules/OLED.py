@@ -6,15 +6,14 @@ import RPi.GPIO as GPIO
 from time import time, sleep
 from threading import Thread
 from socketIO_client import SocketIO
-# Imports for OLED display
 from luma.core.interface.serial import spi
 from luma.oled.device import ssd1322
 from modules.rotaryencoder import RotaryEncoder
+from modules.pushbutton import PushButton
 from modules.display import *
-from modules import logger
+from modules.logger import *
 
-log = logger.Log(logger.LOGLEVEL.INFO)
-
+log = Log(LOGLEVEL.INFO)
 
 GPIO.setmode(GPIO.BCM)
 
@@ -41,7 +40,7 @@ PIXEL_SHIFT_TIME = 120  # time between picture position shifts in sec.
 interface = spi(device=0, port=0)
 oled = ssd1322(interface)
 
-
+# Todo create VolumioHandler and convert non screen variables to Volumio variable
 
 oled.WIDTH = 256
 oled.HEIGHT = 64
@@ -59,6 +58,7 @@ oled.playlistoptions = []
 oled.queue = []
 oled.libraryFull = []
 oled.libraryNames = []
+oled.volume = 0
 
 source = None
 ir_command = []
@@ -592,15 +592,15 @@ def check_ir(data):
 
 
 '''Startup'''
-# LeftKnob_Push = PushButton(3, max_time=3)
-# LeftKnob_Push.setCallback(LeftKnob_PushEvent)
-# LeftKnob_Rotation = RotaryEncoder(5, 6, pulses_per_cycle=4)cd
-# LeftKnob_Rotation.setCallback(LeftKnob_RotaryEvent)
+LeftKnob_Push = PushButton(3, max_time=3)
+LeftKnob_Push.setCallback(LeftKnob_PushEvent)
+LeftKnob_Rotation = RotaryEncoder(5, 6, pulses_per_cycle=4)
+#LeftKnob_Rotation.setCallback(LeftKnob_RotaryEvent)
 
-# RightKnob_Push = PushButton(0, max_time=1)
-# RightKnob_Push.setCallback(RightKnob_PushEvent)
-# RightKnob_Rotation = RotaryEncoder(22, 23, pulses_per_cycle=4)
-# RightKnob_Rotation.setCallback(RightKnob_RotaryEvent)
+RightKnob_Push = PushButton(0, max_time=1)
+RightKnob_Push.setCallback(RightKnob_PushEvent)
+RightKnob_Rotation = RotaryEncoder(22, 23, pulses_per_cycle=4)
+RightKnob_Rotation.setCallback(RightKnob_RotaryEvent)
 
 show_logo("volumio_logo.ppm", oled)
 sleep(2)
@@ -623,6 +623,7 @@ volumioIO.on('pushState', onPushState)
 volumioIO.on('pushListPlaylist', onPushListPlaylist)
 volumioIO.on('pushQueue', onPushQueue)
 volumioIO.on('pushBrowseSources', onPushBrowseSources)
+# Todo test below
 # volumioIO.on('pushBrowseLibrary', onLibraryBrowse)
 
 # get list of Playlists and initial state
@@ -638,9 +639,6 @@ except IOError:
     pass
 else:
     oled.playPosition = config['track']
-
-# if oled.playState != 'play':
-# volumioIO.emit('play', {'value':oled.playPosition})
 
 
 def main_process():
@@ -660,6 +658,7 @@ def main_process():
             volumioIO.emit('play', {'value': oled.playPosition})
 
 
-
 if __name__ == '__main__':
     main_process()
+    defer()
+
