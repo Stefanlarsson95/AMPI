@@ -15,7 +15,7 @@ Run command:
 ````
 
 #### Check voltage
-Power status. trottled: x50005 =  bad 0x50000 = good
+Power status: 0x50005 =  bad, 0x50000 = good
 ````bash
 sudo vcgencmd get_throttled	
 ````
@@ -31,7 +31,7 @@ sudo vcgencmd measure_temp
 
 ````bash
 cd /sys/bus/w1/devices
-cd 28-02146367e1ff 
+cd 28-02146367e1ff .
 cat w1_slave
  ````
 
