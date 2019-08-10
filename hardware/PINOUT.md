@@ -1,7 +1,7 @@
 # AMPI I/O
 ### RPI I/O
 
-![Daughterboard I/O](https://github.com/Stefanlarsson95/AMPI/blob/master/hardware/RasPiB-GPIO.png)
+![Daughterboard I/O](RasPiB-GPIO.png)
 
 Pin:  Usage | Pin:  Usage
 ------------- | ------------- 
@@ -28,7 +28,7 @@ Pin:  Usage | Pin:  Usage
 
 ### Daughterboard I/O
 
-![Daughterboard I/O](https://github.com/Stefanlarsson95/AMPI/blob/master/hardware/IDC_HEADER_10-1.png)
+![Daughterboard I/O](IDC_HEADER_10-1.png)
 
 Pinout  | 
 ------------- | 

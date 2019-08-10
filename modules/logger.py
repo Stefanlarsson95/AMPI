@@ -21,9 +21,9 @@ class Log:
         if self.lvl == LOGLEVEL.FATAL:
             print("{}--:\033[91m FATAL\033[0m :--- {}".format(datetime.datetime.now().strftime("t:%S.%f"), text))
 
-    def err(self, text):    # Red
+    def err(self, text, err = ''):    # Red
         if self.lvl <= LOGLEVEL.ERROR:
-            print("{}--:\033[91m DERROR\033[0m :--- {}".format(datetime.datetime.now().strftime("t:%S.%f"), text))
+            print("{}--:\033[91m DERROR\033[0m :--- {}: {}".format(datetime.datetime.now().strftime("t:%S.%f"), text, err))
 
     def warn(self, text):   # Magenta
         if self.lvl <= LOGLEVEL.WARN:
