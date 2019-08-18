@@ -4,7 +4,7 @@ Description=Ampi Volumio with oled UI
 [Service]
 Type=simple
 WorkingDirectory=/home/volumio
-ExecStart=/usr/bin/python -u /home/volumio/AMPI/ampi.py
+ExecStart=/usr/bin/python -u /home/volumio/AMPI/AMPI.py
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=ampipy
