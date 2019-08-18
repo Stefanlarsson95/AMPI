@@ -1,13 +1,11 @@
-"""
-TODO
-reduce from Class
-imp Queue to return HW vol
-"""
+
 
 from hardware import adau1701 as DSP
 from modules import logger
 import RPi.GPIO as GPIO
 import time
+
+
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -19,6 +17,7 @@ GPIO.output([23, 15, 16], 0)
 
 
 #   self._update_hw_interval = 1
+emit_volume = True
 _update_hw_vol_freq = 1
 _t_scan = time.time()
 hw_volume = 0
@@ -49,14 +48,14 @@ def hw_vol_stop():
 
 
 def get_hw_vol():
-    global _t_scan, hw_volume, sw_volume, vol_err
+    global _t_scan, hw_volume, sw_volume, vol_err, emit_volume
     _t_scan = time.time()
     vol = int(float(DSP.read_back(_VOL_READBACK_HIGH, _VOL_READBACK_LOW))*101)
     if vol != hw_volume:
         hw_volume = vol
         log.info("HW Volume: {}%".format(hw_volume))
         vol_err = abs(sw_volume - hw_volume)
-        log.debug("SW/HW Volume diff: {}".format(vol_err))
+        emit_volume = True
     return hw_volume
 
 

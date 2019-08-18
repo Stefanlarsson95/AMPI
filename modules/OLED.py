@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from __future__ import unicode_literals
-import datetime, json
+import json
 import RPi.GPIO as GPIO
 from time import time, sleep
 from threading import Thread

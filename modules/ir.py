@@ -4,11 +4,10 @@ import lirc
 import time
 
 sockid = lirc.init("ampi")
-
+print 'ir test code'
 while True:
-    #print "waitning for keypress"
     time.sleep(0.1)
     code = lirc.nextcode()
-    if code != []:
-        print code[0]
+    for c in code:
+        print c
 lirc.deinit()
