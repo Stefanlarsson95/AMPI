@@ -1,8 +1,8 @@
 /*
- * File:           C:\Users\Stefan\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_1_REG.h
+ * File:           C:\Users\Stefan\PycharmProjects\AMPI\CASE_DSP\CASE_DSP_IC_1_REG.h
  *
- * Created:        Tuesday, September 10, 2019 8:50:42 PM
- * Description:    AMPI_1:IC 1 control register definitions.
+ * Created:        Sunday, September 15, 2019 7:39:51 PM
+ * Description:    CASE_DSP:IC 1 control register definitions.
  *
  * This software is distributed in the hope that it will be useful,
  * but is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -16,8 +16,8 @@
  *
  * Copyright ©2019 Analog Devices, Inc. All rights reserved.
  */
-#ifndef __AMPI_1_IC_1_REG_H__
-#define __AMPI_1_IC_1_REG_H__
+#ifndef __CASE_DSP_IC_1_REG_H__
+#define __CASE_DSP_IC_1_REG_H__
 
 
 /* InterfaceRegister0  - Registers (IC 1) */
@@ -98,7 +98,7 @@
 /* SerialOutRegister1  - Registers (IC 1) */
 #define REG_SERIALOUTREGISTER1_IC_1_ADDR          0x81E
 #define REG_SERIALOUTREGISTER1_IC_1_BYTE          2
-#define REG_SERIALOUTREGISTER1_IC_1_VALUE         0x800
+#define REG_SERIALOUTREGISTER1_IC_1_VALUE         0x802
 
 /* SerialInputRegister  - Registers (IC 1) */
 #define REG_SERIALINPUTREGISTER_IC_1_ADDR         0x81F
@@ -291,7 +291,7 @@
 #define R14_RAM_MODULO_IC_1_SHIFT                 0
 
 /* SerialOutRegister1 (IC 1) */
-#define R15_WORDLENGTH_IC_1                       0x0    /* 00b	[1:0] */
+#define R15_WORDLENGTH_IC_1                       0x2    /* 10b	[1:0] */
 #define R15_MSB_POS_IC_1                          0x0    /* 000b	[4:2] */
 #define R15_TDM_IC_1                              0x0    /* 0b	[5] */
 #define R15_FRAMESYNC_TYPE_IC_1                   0x0    /* 0b	[6] */

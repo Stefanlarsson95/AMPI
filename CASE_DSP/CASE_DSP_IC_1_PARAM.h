@@ -1,8 +1,8 @@
 /*
- * File:           C:\Users\Stefan\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_1_PARAM.h
+ * File:           C:\Users\Stefan\PycharmProjects\AMPI\CASE_DSP\CASE_DSP_IC_1_PARAM.h
  *
- * Created:        Tuesday, September 10, 2019 8:50:42 PM
- * Description:    AMPI_1:IC 1 parameter RAM definitions.
+ * Created:        Sunday, September 15, 2019 7:39:51 PM
+ * Description:    CASE_DSP:IC 1 parameter RAM definitions.
  *
  * This software is distributed in the hope that it will be useful,
  * but is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -16,8 +16,8 @@
  *
  * Copyright ©2019 Analog Devices, Inc. All rights reserved.
  */
-#ifndef __AMPI_1_IC_1_PARAM_H__
-#define __AMPI_1_IC_1_PARAM_H__
+#ifndef __CASE_DSP_IC_1_PARAM_H__
+#define __CASE_DSP_IC_1_PARAM_H__
 
 
 /* Module SorceEquGain - Gain*/
@@ -200,34 +200,26 @@
 #define VALUE_LOUDNESSLH1_TARGET                       SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.0794328234724281)
 #define TYPE_LOUDNESSLH1_TARGET                        SIGMASTUDIOTYPE_FIXPOINT
 
-/* Module SW vol 1 - Single slew ext vol*/
-#define COUNT_SWVOL1                                   1
-#define DEVICE_SWVOL1                                  "IC1"
-#define ADDR_SWVOL1_STEP                               26
-#define FIXPT_SWVOL1_STEP                              0x00000800
-#define VALUE_SWVOL1_STEP                              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.000244140625)
-#define TYPE_SWVOL1_STEP                               SIGMASTUDIOTYPE_FIXPOINT
-
 /* Module Gen Filter1_2 - General (2nd order)*/
 #define COUNT_GENFILTER1_2                             5
 #define DEVICE_GENFILTER1_2                            "IC1"
-#define ADDR_GENFILTER1_2_ST0_B0                       27
+#define ADDR_GENFILTER1_2_ST0_B0                       26
 #define FIXPT_GENFILTER1_2_ST0_B0                      0x0001144A
 #define VALUE_GENFILTER1_2_ST0_B0                      SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.00843169457000996)
 #define TYPE_GENFILTER1_2_ST0_B0                       SIGMASTUDIOTYPE_FIXPOINT
-#define ADDR_GENFILTER1_2_ST0_B1                       28
+#define ADDR_GENFILTER1_2_ST0_B1                       27
 #define FIXPT_GENFILTER1_2_ST0_B1                      0x00022894
 #define VALUE_GENFILTER1_2_ST0_B1                      SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.0168633891400199)
 #define TYPE_GENFILTER1_2_ST0_B1                       SIGMASTUDIOTYPE_FIXPOINT
-#define ADDR_GENFILTER1_2_ST0_B2                       29
+#define ADDR_GENFILTER1_2_ST0_B2                       28
 #define FIXPT_GENFILTER1_2_ST0_B2                      0x0001144A
 #define VALUE_GENFILTER1_2_ST0_B2                      SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.00843169457000996)
 #define TYPE_GENFILTER1_2_ST0_B2                       SIGMASTUDIOTYPE_FIXPOINT
-#define ADDR_GENFILTER1_2_ST0_A1                       30
+#define ADDR_GENFILTER1_2_ST0_A1                       29
 #define FIXPT_GENFILTER1_2_ST0_A1                      0x00F9EF0F
 #define VALUE_GENFILTER1_2_ST0_A1                      SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.95260804759685)
 #define TYPE_GENFILTER1_2_ST0_A1                       SIGMASTUDIOTYPE_FIXPOINT
-#define ADDR_GENFILTER1_2_ST0_A2                       31
+#define ADDR_GENFILTER1_2_ST0_A2                       30
 #define FIXPT_GENFILTER1_2_ST0_A2                      0xFF854C6A
 #define VALUE_GENFILTER1_2_ST0_A2                      SIGMASTUDIOTYPE_FIXPOINT_CONVERT(-0.958605611135083)
 #define TYPE_GENFILTER1_2_ST0_A2                       SIGMASTUDIOTYPE_FIXPOINT
@@ -235,55 +227,55 @@
 /* Module Multiple 1 - Multiple Volume Control*/
 #define COUNT_MULTIPLE1                                3
 #define DEVICE_MULTIPLE1                               "IC1"
-#define ADDR_MULTIPLE1                                 32
+#define ADDR_MULTIPLE1                                 31
 #define FIXPT_MULTIPLE1                                0x0050C335
 #define VALUE_MULTIPLE1                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.630957344480193)
 #define TYPE_MULTIPLE1                                 SIGMASTUDIOTYPE_FIXPOINT
-#define ADDR_MULTIPLE1_1                               33
+#define ADDR_MULTIPLE1_1                               32
 #define FIXPT_MULTIPLE1_1                              0x0050C335
 #define VALUE_MULTIPLE1_1                              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.630957344480193)
 #define TYPE_MULTIPLE1_1                               SIGMASTUDIOTYPE_FIXPOINT
-#define ADDR_MULTIPLE1_2                               34
-#define FIXPT_MULTIPLE1_2                              0x00101D3F
-#define VALUE_MULTIPLE1_2                              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.125892541179417)
+#define ADDR_MULTIPLE1_2                               33
+#define FIXPT_MULTIPLE1_2                              0x00A12477
+#define VALUE_MULTIPLE1_2                              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.25892541179417)
 #define TYPE_MULTIPLE1_2                               SIGMASTUDIOTYPE_FIXPOINT
 
 /* Module Surround1 - Surround Sound Volume Control*/
 #define COUNT_SURROUND1                                9
 #define DEVICE_SURROUND1                               "IC1"
-#define ADDR_SURROUND1                                 35
+#define ADDR_SURROUND1                                 34
+#define FIXPT_SURROUND1                                0x00C858E2
+#define VALUE_SURROUND1                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.56521253527117)
+#define TYPE_SURROUND1                                 SIGMASTUDIOTYPE_FIXPOINT
+#define ADDR_SURROUND1                                 34
+#define FIXPT_SURROUND1                                0x00C858E2
+#define VALUE_SURROUND1                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.56521253527117)
+#define TYPE_SURROUND1                                 SIGMASTUDIOTYPE_FIXPOINT
+#define ADDR_SURROUND1                                 34
 #define FIXPT_SURROUND1                                0x00C858E2
 #define VALUE_SURROUND1                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.56521253527117)
 #define TYPE_SURROUND1                                 SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_SURROUND1                                 35
 #define FIXPT_SURROUND1                                0x00C858E2
-#define VALUE_SURROUND1                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.56521253527117)
+#define VALUE_SURROUND1                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.56521253519425)
 #define TYPE_SURROUND1                                 SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_SURROUND1                                 35
 #define FIXPT_SURROUND1                                0x00C858E2
-#define VALUE_SURROUND1                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.56521253527117)
+#define VALUE_SURROUND1                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.56521253519425)
 #define TYPE_SURROUND1                                 SIGMASTUDIOTYPE_FIXPOINT
-#define ADDR_SURROUND1                                 36
+#define ADDR_SURROUND1                                 35
 #define FIXPT_SURROUND1                                0x00C858E2
 #define VALUE_SURROUND1                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.56521253519425)
 #define TYPE_SURROUND1                                 SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_SURROUND1                                 36
 #define FIXPT_SURROUND1                                0x00C858E2
-#define VALUE_SURROUND1                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.56521253519425)
+#define VALUE_SURROUND1                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.56521253527117)
 #define TYPE_SURROUND1                                 SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_SURROUND1                                 36
 #define FIXPT_SURROUND1                                0x00C858E2
-#define VALUE_SURROUND1                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.56521253519425)
-#define TYPE_SURROUND1                                 SIGMASTUDIOTYPE_FIXPOINT
-#define ADDR_SURROUND1                                 37
-#define FIXPT_SURROUND1                                0x00C858E2
 #define VALUE_SURROUND1                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.56521253527117)
 #define TYPE_SURROUND1                                 SIGMASTUDIOTYPE_FIXPOINT
-#define ADDR_SURROUND1                                 37
-#define FIXPT_SURROUND1                                0x00C858E2
-#define VALUE_SURROUND1                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.56521253527117)
-#define TYPE_SURROUND1                                 SIGMASTUDIOTYPE_FIXPOINT
-#define ADDR_SURROUND1                                 37
+#define ADDR_SURROUND1                                 36
 #define FIXPT_SURROUND1                                0x00C858E2
 #define VALUE_SURROUND1                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.56521253527117)
 #define TYPE_SURROUND1                                 SIGMASTUDIOTYPE_FIXPOINT
@@ -291,14 +283,14 @@
 /* Module DCB1 - DC Blocking*/
 #define COUNT_DCB1                                     2
 #define DEVICE_DCB1                                    "IC1"
+#define ADDR_DCB1_1_POLE                               37
+#define FIXPT_DCB1_1_POLE                              0x007FFCB9
+#define VALUE_DCB1_1_POLE                              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.9999)
+#define TYPE_DCB1_1_POLE                               SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_DCB1_POLE                                 38
 #define FIXPT_DCB1_POLE                                0x007FFCB9
 #define VALUE_DCB1_POLE                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.9999)
 #define TYPE_DCB1_POLE                                 SIGMASTUDIOTYPE_FIXPOINT
-#define ADDR_DCB1_1_POLE                               39
-#define FIXPT_DCB1_1_POLE                              0x007FFCB9
-#define VALUE_DCB1_1_POLE                              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.9999)
-#define TYPE_DCB1_1_POLE                               SIGMASTUDIOTYPE_FIXPOINT
 
 /* Module ReadBack1 - DSP Readback*/
 #define COUNT_READBACK1                                2
@@ -315,12 +307,23 @@
 #define COUNT_READBACK_L                               2
 #define DEVICE_READBACK_L                              "IC1"
 #define ADDR_READBACK_L_VAL0                           2074
-#define VALUES_READBACK_L_VAL0                         SIGMASTUDIOTYPE_SPECIAL(0x0406)
+#define VALUES_READBACK_L_VAL0                         SIGMASTUDIOTYPE_SPECIAL(0x03D2)
 #define TYPE_READBACK_L_VAL0                           SIGMASTUDIOTYPE_SPECIAL
 #define ADDR_READBACK_READBACK_L_VAL0                  0
 #define ADDR_READBACK_L_VAL1                           2074
 #define VALUE_READBACK_L_VAL1                          SIGMASTUDIOTYPE_5_19_CONVERT(0)
 #define TYPE_READBACK_L_VAL1                           SIGMASTUDIOTYPE_5_19
+
+/* Module ReadBack_R - DSP Readback*/
+#define COUNT_READBACK_R                               2
+#define DEVICE_READBACK_R                              "IC1"
+#define ADDR_READBACK_R_VAL0                           2074
+#define VALUES_READBACK_R_VAL0                         SIGMASTUDIOTYPE_SPECIAL(0x03C6)
+#define TYPE_READBACK_R_VAL0                           SIGMASTUDIOTYPE_SPECIAL
+#define ADDR_READBACK_READBACK_R_VAL0                  0
+#define ADDR_READBACK_R_VAL1                           2074
+#define VALUE_READBACK_R_VAL1                          SIGMASTUDIOTYPE_5_19_CONVERT(0)
+#define TYPE_READBACK_R_VAL1                           SIGMASTUDIOTYPE_5_19
 
 /* Module ReadBack_R_2 - DSP Readback*/
 #define COUNT_READBACK_R_2                             2
@@ -332,17 +335,6 @@
 #define ADDR_READBACK_R_2_VAL1                         2074
 #define VALUE_READBACK_R_2_VAL1                        SIGMASTUDIOTYPE_5_19_CONVERT(0)
 #define TYPE_READBACK_R_2_VAL1                         SIGMASTUDIOTYPE_5_19
-
-/* Module ReadBack_R - DSP Readback*/
-#define COUNT_READBACK_R                               2
-#define DEVICE_READBACK_R                              "IC1"
-#define ADDR_READBACK_R_VAL0                           2074
-#define VALUES_READBACK_R_VAL0                         SIGMASTUDIOTYPE_SPECIAL(0x03FA)
-#define TYPE_READBACK_R_VAL0                           SIGMASTUDIOTYPE_SPECIAL
-#define ADDR_READBACK_READBACK_R_VAL0                  0
-#define ADDR_READBACK_R_VAL1                           2074
-#define VALUE_READBACK_R_VAL1                          SIGMASTUDIOTYPE_5_19_CONVERT(0)
-#define TYPE_READBACK_R_VAL1                           SIGMASTUDIOTYPE_5_19
 
 /* Module ReadBack_L_2 - DSP Readback*/
 #define COUNT_READBACK_L_2                             2

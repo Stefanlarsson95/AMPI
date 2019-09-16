@@ -1,8 +1,8 @@
 /*
  * File:           defines.h
  *
- * Created:        Tuesday, September 10, 2019 8:50:42 PM
- * Description:    AMPI_1 IC default download data definitions.
+ * Created:        Sunday, September 15, 2019 7:39:51 PM
+ * Description:    CASE_DSP IC default download data definitions.
  *
  * This software is distributed in the hope that it will be useful,
  * but is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR

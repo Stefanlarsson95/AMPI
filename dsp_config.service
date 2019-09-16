@@ -1,0 +1,15 @@
+[Unit]
+Description=ADAU1701 register config
+ 
+[Service]
+Type=simple
+WorkingDirectory=/home/volumio
+ExecStart=sh /home/volumio/AMPI/push_config.sh
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=ADAU1701_conf
+User=volumio
+Group=volumio
+ 
+[Install]
+WantedBy=multi-user.target
