@@ -3,10 +3,15 @@
 # Todo merge to python3
 
 from __future__ import unicode_literals
-import json, lirc, sys
+try:
+    import lirc
+
+except:
+    pass
+import json, sys
+from socketIO_client import SocketIO
 from time import time, sleep
 from threading import Thread
-from socketIO_client import SocketIO
 from luma.core.interface.serial import spi
 from luma.oled.device import ssd1322
 from modules.rotaryencoder import RotaryEncoder
@@ -18,8 +23,10 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 
 log = Log(LOGLEVEL.INFO)
-lirc.init("ampi", blocking=False)
-
+try :
+    lirc.init("ampi", blocking=False)
+except:
+    pass
 
 
 volumio_host = 'localhost'

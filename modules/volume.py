@@ -16,9 +16,8 @@ GPIO.setup([23, 15, 16], GPIO.OUT)
 GPIO.output([23, 15, 16], 0)
 
 
-#   self._update_hw_interval = 1
 emit_volume = True
-_update_hw_vol_freq = 1
+_update_hw_vol_freq = 10
 _t_scan = time.time()
 hw_volume = 0
 sw_volume = 0

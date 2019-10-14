@@ -39,6 +39,11 @@ cat w1_slave
 
 ### installation steps
 ```
+sudo apt-get update
+sudo apt-get install -y python-dev python-pip libfreetype6-dev libjpeg-dev build-essential python-rpi.gpio
+sudo pip install --upgrade setuptools pip wheel
+sudo pip install --upgrade socketIO-client-2 luma.oled
+git clone https://github.com/Stefanlarsson95/AMPI
 chmod +x ~/AMPI/ampi.py
 sudo cp ~/AMPI/ampi.service /lib/systemd/system/
 sudo cp ~/AMPI/dsp_config.service /lib/systemd/system/
