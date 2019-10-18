@@ -5,7 +5,6 @@
 from __future__ import unicode_literals
 try:
     import lirc
-
 except:
     pass
 import json, sys

@@ -6,7 +6,13 @@ import adau1701
 import sigmaimporter
 import sys
 import getopt
+import RPi.GPIO as GPIO
 import time
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(14, GPIO.OUT)
+GPIO.output(14, 1)
 
 sys.dont_write_bytecode = True
 
@@ -16,7 +22,10 @@ DSP = 2
 
 
 def write_device(data, destination=DSP, verbose=0):
+
     if destination == EEPROM:
+        GPIO.output(14, 0)  # Enable  write to EEPROM by disabling WP.
+        time.sleep(0.1)
         addr = 0
 
         code = sigmaimporter.txbuffer_data_to_eeprom(data);
@@ -28,7 +37,9 @@ def write_device(data, destination=DSP, verbose=0):
                 print block
             eeprom.eeprom_write_block(addr, block)
             code = code[blocksize:]
-            addr += blocksize;
+            addr += blocksize
+        GPIO.output(14, 0)
+
     elif destination == DSP:
         for block in data:
             addr = block["address"]

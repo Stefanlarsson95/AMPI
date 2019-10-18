@@ -2,6 +2,7 @@
 
 from hardware import adau1701 as DSP
 from modules import logger
+import AMPI
 import RPi.GPIO as GPIO
 import time
 
@@ -28,7 +29,7 @@ _VOL_ERR_HYSTERES = 2
 
 def update_volume():
     while True:
-        if time.time() - _t_scan >= 1/_update_hw_vol_freq:
+        if time.time() - _t_scan >= 1/_update_hw_vol_freq and AMPI.oled.playState == 'play':
             get_hw_vol()
 
 
