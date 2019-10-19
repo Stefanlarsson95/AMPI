@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\Stefan\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_1_PARAM.h
  *
- * Created:        Tuesday, October 15, 2019 6:49:10 PM
+ * Created:        Saturday, October 19, 2019 11:38:05 PM
  * Description:    AMPI_1:IC 1 parameter RAM definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -272,8 +272,8 @@
 #define VALUE_MULTIPLE1_1                              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.630957344480193)
 #define TYPE_MULTIPLE1_1                               SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_MULTIPLE1                                 39
-#define FIXPT_MULTIPLE1                                0x0050C335
-#define VALUE_MULTIPLE1                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.630957344480193)
+#define FIXPT_MULTIPLE1                                0x0065AC8C
+#define VALUE_MULTIPLE1                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.794328234724281)
 #define TYPE_MULTIPLE1                                 SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_MULTIPLE1_2                               40
 #define FIXPT_MULTIPLE1_2                              0x00A12477

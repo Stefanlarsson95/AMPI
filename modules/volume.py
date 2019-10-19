@@ -1,8 +1,9 @@
-
+'''
+Todo I2C guard to only read if ADAU1701 is confirmed confgured.
+'''
 
 from hardware import adau1701 as DSP
 from modules import logger
-import AMPI
 import RPi.GPIO as GPIO
 import time
 
@@ -13,12 +14,12 @@ GPIO.setwarnings(False)
 _VOL_READBACK_HIGH = 0x00
 _VOL_READBACK_LOW = 0xA6
 log = logger.Log()
-GPIO.setup([23, 15, 16], GPIO.OUT)
-GPIO.output([23, 15, 16], 0)
+#GPIO.setup([23, 15, 16], GPIO.OUT)
+#GPIO.output([23, 15, 16], 0)
 
 
 emit_volume = True
-_update_hw_vol_freq = 10
+_update_hw_vol_freq = 5
 _t_scan = time.time()
 hw_volume = 0
 sw_volume = 0
@@ -27,10 +28,12 @@ vol_err = 0
 _VOL_ERR_HYSTERES = 2
 
 
-def update_volume():
-    while True:
-        if time.time() - _t_scan >= 1/_update_hw_vol_freq and AMPI.oled.playState == 'play':
-            get_hw_vol()
+def update_volume(f=_update_hw_vol_freq):
+    if time.time() - _t_scan >= 1/f:
+        get_hw_vol()
+        if emit_volume:
+            return True
+    return False
 
 
 def hw_vol_up():

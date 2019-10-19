@@ -1,8 +1,8 @@
 /*
- * File:           defines.h
+ * File:           C:\Users\Stefan\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_2.h
  *
  * Created:        Saturday, October 19, 2019 11:38:05 PM
- * Description:    AMPI_1 IC default download data definitions.
+ * Description:    AMPI_1:IC 2 program data.
  *
  * This software is distributed in the hope that it will be useful,
  * but is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -16,14 +16,23 @@
  *
  * Copyright ©2019 Analog Devices, Inc. All rights reserved.
  */
-#ifndef __DEFINES_H__
-#define __DEFINES_H__
+#ifndef __AMPI_1_IC_2_H__
+#define __AMPI_1_IC_2_H__
 
-#define BufferSize_IC_1     	9254
-#define NumTransactions_IC_1	5
+#include "SigmaStudioFW.h"
+#include "AMPI_1_IC_2_REG.h"
 
-#define BufferSize_IC_2     	0
-#define NumTransactions_IC_2	0
+#define DEVICE_ARCHITECTURE_IC_2                  "E2Prom"
+#define DEVICE_ADDR_IC_2                          0xA0
 
+
+
+/*
+ * Default Download
+ */
+#define DEFAULT_DOWNLOAD_SIZE_IC_2 0
+
+void default_download_IC_2() {
+}
 
 #endif

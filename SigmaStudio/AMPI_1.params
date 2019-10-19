@@ -205,9 +205,9 @@ Parameter Data :
 Cell Name         = Multiple 1
 Parameter Name    = Gain1940AlgNS3
 Parameter Address = 39
-Parameter Value   = 0.630957365036011
+Parameter Value   = 0.794328212738037
 Parameter Data :
-0x00, 0x50, 0xC3, 0x36, 
+0x00, 0x65, 0xAC, 0x8C, 
 
 
 
@@ -702,7 +702,7 @@ See also AMPI_1.hex file
 0x00 , 	0xFE , 	0xE2 , 	0xE9 , 	
 0x0F , 	0x81 , 	0x15 , 	0x0A , 	
 0x00 , 	0x50 , 	0xC3 , 	0x36 , 	
-0x00 , 	0x50 , 	0xC3 , 	0x36 , 	
+0x00 , 	0x65 , 	0xAC , 	0x8C , 	
 0x00 , 	0xA1 , 	0x24 , 	0x78 , 	
 0x00 , 	0xC8 , 	0x58 , 	0xE2 , 	
 0x00 , 	0xC8 , 	0x58 , 	0xE2 , 	
@@ -1728,7 +1728,7 @@ Parameter data for: IC 1 (Binary format starting at parameter address 0)
 00000000	11111110	11100010	11101001	
 00001111	10000001	00010101	00001010	
 00000000	01010000	11000011	00110110	
-00000000	01010000	11000011	00110110	
+00000000	01100101	10101100	10001100	
 00000000	10100001	00100100	01111000	
 00000000	11001000	01011000	11100010	
 00000000	11001000	01011000	11100010	

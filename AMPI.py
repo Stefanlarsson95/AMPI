@@ -444,10 +444,12 @@ class MenuScreen:
             self.menuText[0].DrawOn(image, (15, self.menuYPos))
 
 
-'''
+
 def LeftKnob_RotaryEvent(dir):
     global emit_volume
-    if not oled.volumeControlDisabled and oled.state != STATE_PLAYLIST_MENU:
+    print(dir)
+
+    if False and not oled.volumeControlDisabled and oled.state != STATE_PLAYLIST_MENU:
         if dir == RotaryEncoder.LEFT:
             oled.volume -= VOLUME_DT
             oled.volume = max(oled.volume, 0)
@@ -460,7 +462,7 @@ def LeftKnob_RotaryEvent(dir):
         else:
             oled.modal.DisplayVolume(oled.volume)
         emit_volume = True
-'''
+
 
 
 def LeftKnob_PushEvent(hold_time):
@@ -476,7 +478,7 @@ def LeftKnob_PushEvent(hold_time):
             SetState(STATE_PLAYER)
         if oled.state == STATE_LIBRARY_MENU:
             LibraryReturn()
-    else:
+    elif False:
         log.blue('LeftKnob_PushEvent LONG -> trying to shutdown')
         UPDATE_INTERVAL = 10  # stop updating screen
         sleep(0.1)
@@ -487,9 +489,9 @@ def LeftKnob_PushEvent(hold_time):
         except IOError as e:
             log.err ('Cannot save config file to current working directory', str(e))
         sleep(1.5)
-        oled.cleanup()  # put display into low power mode
-        volumioIO.emit('shutdown')
-        sleep(60)
+        #oled.cleanup()  # put display into low power mode
+        #volumioIO.emit('shutdown')
+        #sleep(60)
 
 
 def RightKnob_RotaryEvent(dir):
@@ -510,7 +512,7 @@ def RightKnob_RotaryEvent(dir):
         elif dir == RotaryEncoder.RIGHT:
             oled.modal.NextOption()
         oled.playPosition = oled.modal.SelectedOption()
-        emit_track = True
+        #emit_track = True
 
 
 def RightKnob_PushEvent(hold_time):
@@ -602,19 +604,18 @@ def ir_event():
 """
 Startup initializer
 """
-# LeftKnob_Push = PushButton(3, max_time=3)
-# LeftKnob_Push.setCallback(LeftKnob_PushEvent)
-# LeftKnob_Rotation = RotaryEncoder(5, 6, pulses_per_cycle=4)
-# LeftKnob_Rotation.setCallback(LeftKnob_RotaryEvent)
+#LeftKnob_Push = PushButton(5, max_time=3)
+#LeftKnob_Push.setCallback(LeftKnob_PushEvent)
+#LeftKnob_Rotation = RotaryEncoder(6, 26, pulses_per_cycle=4)
+#LeftKnob_Rotation.setCallback(LeftKnob_RotaryEvent)
 
-#RightKnob_Push = PushButton(0, max_time=1)
-#RightKnob_Push.setCallback(RightKnob_PushEvent)
-#RightKnob_Rotation = RotaryEncoder(22, 23, pulses_per_cycle=4)
-#RightKnob_Rotation.setCallback(RightKnob_RotaryEvent)
+RightKnob_Push = PushButton(5, max_time=1)
+RightKnob_Push.setCallback(RightKnob_PushEvent)
+RightKnob_Rotation = RotaryEncoder(6, 26, pulses_per_cycle=4)
+RightKnob_Rotation.setCallback(RightKnob_RotaryEvent)
 
 show_logo("volumio_logo.ppm", oled)
-#sleep(2)
-SetState(STATE_PLAYER)
+sleep(2)
 screen_update_thread = Thread(target=display_update_service, name="Screen updater")
 screen_update_thread.daemon = True
 
@@ -650,9 +651,9 @@ ir_event_thread = Thread(target=ir_event, name='Ir Handler')
 
 # Start threads
 receive_thread.start()
-volume_handler_thread.start()
+#volume_handler_thread.start()
 screen_update_thread.start()
-ir_event_thread.start()
+#ir_event_thread.start()
 
 
 def main():
@@ -665,12 +666,12 @@ def main():
             volumioIO.emit('volume', oled.volume)
             SetState(STATE_VOLUME)
             oled.stateTimeout = 0.01
-        elif volume.emit_volume:
+        elif oled.playState in {'play', 'pause'} and volume.update_volume() or volume.update_volume(0.5):    #volume.emit_volume:
             volume.emit_volume = False
             oled.volume = volume.hw_volume
             volumioIO.emit('volume', oled.volume)
             SetState(STATE_VOLUME)
-            oled.stateTimeout = 0.01
+            oled.stateTimeout = 1
 
         if emit_track and oled.stateTimeout < 4.5:
             emit_track = False
@@ -690,6 +691,8 @@ def defer():
         ir_event_thread.join(1)
         lirc.deinit()
         oled.cleanup()
+        log.info("System exit ok")
+
     except Exception as err:
         log.err("Defer Error: " + str(err))
 

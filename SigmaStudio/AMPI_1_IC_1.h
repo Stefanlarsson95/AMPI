@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\Stefan\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_1.h
  *
- * Created:        Tuesday, October 15, 2019 6:49:10 PM
+ * Created:        Saturday, October 19, 2019 11:38:05 PM
  * Description:    AMPI_1:IC 1 program data.
  *
  * This software is distributed in the hope that it will be useful,
@@ -23,7 +23,7 @@
 #include "AMPI_1_IC_1_REG.h"
 
 #define DEVICE_ARCHITECTURE_IC_1                  "ADAU1701"
-#define DEVICE_ADDR_IC_1                          0x1
+#define DEVICE_ADDR_IC_1                          0x68
 
 /* DSP Program Data */
 #define PROGRAM_SIZE_IC_1 5120
@@ -1098,7 +1098,7 @@ ADI_REG_TYPE Param_Data_IC_1[PARAM_SIZE_IC_1] = {
 0x00, 0xFE, 0xE2, 0xE9, 
 0x0F, 0x81, 0x15, 0x0A, 
 0x00, 0x50, 0xC3, 0x36, 
-0x00, 0x50, 0xC3, 0x36, 
+0x00, 0x65, 0xAC, 0x8C, 
 0x00, 0xA1, 0x24, 0x78, 
 0x00, 0xC8, 0x58, 0xE2, 
 0x00, 0xC8, 0x58, 0xE2, 

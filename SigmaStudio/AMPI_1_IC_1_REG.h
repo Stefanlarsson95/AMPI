@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\Stefan\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_1_REG.h
  *
- * Created:        Tuesday, October 15, 2019 6:49:10 PM
+ * Created:        Saturday, October 19, 2019 11:38:05 PM
  * Description:    AMPI_1:IC 1 control register definitions.
  *
  * This software is distributed in the hope that it will be useful,

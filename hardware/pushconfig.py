@@ -24,6 +24,10 @@ DSP = 2
 def write_device(data, destination=DSP, verbose=0):
 
     if destination == EEPROM:
+        if verbose:
+            print('Writing to EEPROM, WP disabled')
+            time.sleep(1)
+        GPIO.setup(14, GPIO.OUT)
         GPIO.output(14, 0)  # Enable  write to EEPROM by disabling WP.
         time.sleep(0.1)
         addr = 0
@@ -38,7 +42,11 @@ def write_device(data, destination=DSP, verbose=0):
             eeprom.eeprom_write_block(addr, block)
             code = code[blocksize:]
             addr += blocksize
-        GPIO.output(14, 0)
+            time.sleep(0.01)
+        GPIO.output(14, 1)
+        GPIO.setup(14, GPIO.IN)
+        if verbose:
+            print('Write to EEPROM done, WP restored')
 
     elif destination == DSP:
         for block in data:
