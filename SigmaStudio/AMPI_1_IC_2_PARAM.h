@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\Stefan\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_2_PARAM.h
  *
- * Created:        Saturday, October 19, 2019 11:38:05 PM
+ * Created:        Sunday, October 20, 2019 8:35:03 PM
  * Description:    AMPI_1:IC 2 parameter RAM definitions.
  *
  * This software is distributed in the hope that it will be useful,

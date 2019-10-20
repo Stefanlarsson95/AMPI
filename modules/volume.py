@@ -12,7 +12,7 @@ import time
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 _VOL_READBACK_HIGH = 0x00
-_VOL_READBACK_LOW = 0xA6
+_VOL_READBACK_LOW = 0xB2
 log = logger.Log()
 #GPIO.setup([23, 15, 16], GPIO.OUT)
 #GPIO.output([23, 15, 16], 0)
