@@ -19,16 +19,18 @@ log = logger.Log()
 
 
 emit_volume = True
-_update_hw_vol_freq = 5
+_update_hw_vol_freq = 3
 _t_scan = time.time()
 hw_volume = 0
 sw_volume = 0
 balance = 0
 vol_err = 0
 _VOL_ERR_HYSTERES = 2
+rising_vol = True  # Defines the direction of volume knob rotation
 
-
-def update_volume(f=_update_hw_vol_freq):
+def update_volume(f=None):
+    if not f:
+        f = _update_hw_vol_freq
     if time.time() - _t_scan >= 1/f:
         get_hw_vol()
         if emit_volume:
@@ -51,14 +53,21 @@ def hw_vol_stop():
 
 
 def get_hw_vol():
-    global _t_scan, hw_volume, sw_volume, vol_err, emit_volume
+    global _t_scan, _update_hw_vol_freq, hw_volume, sw_volume, vol_err, emit_volume, rising_vol
     _t_scan = time.time()
     vol = int(float(DSP.read_back(_VOL_READBACK_HIGH, _VOL_READBACK_LOW))*101)
-    if vol != hw_volume:
+
+    # Higher sensitively in turning direction and lower in opposite direction.
+    if rising_vol and (vol > hw_volume or (vol + 1) < hw_volume) or\
+            (vol < hw_volume or (vol - 1) > hw_volume):
+        _update_hw_vol_freq = 10
+        rising_vol = hw_volume < vol
         hw_volume = vol
         log.info("HW Volume: {}%".format(hw_volume))
         vol_err = abs(sw_volume - hw_volume)
         emit_volume = True
+    else:
+        _update_hw_vol_freq = 1.9
     return hw_volume
 
 

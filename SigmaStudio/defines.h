@@ -1,7 +1,7 @@
 /*
  * File:           defines.h
  *
- * Created:        Sunday, October 20, 2019 8:35:03 PM
+ * Created:        Saturday, November 9, 2019 9:27:19 PM
  * Description:    AMPI_1 IC default download data definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -21,9 +21,6 @@
 
 #define BufferSize_IC_1     	9254
 #define NumTransactions_IC_1	5
-
-#define BufferSize_IC_2     	0
-#define NumTransactions_IC_2	0
 
 
 #endif
