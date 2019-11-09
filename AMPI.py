@@ -72,7 +72,7 @@ oled.volume = 0
 
 source = None
 
-emit_volume = True
+emit_volume = False
 emit_track = False
 
 image = Image.new('RGB', (oled.WIDTH + 4, oled.HEIGHT + 4))  # enlarged for pixelshift
@@ -302,10 +302,11 @@ class NowPlayingScreen():
             self.tStart = time() - float(self.ptime) / 1000
 
     def SetClock(self):
-        l_date = datetime.datetime.now().strftime("%D")
+        #l_date = datetime.datetime.now().strftime("%D")
         l_time = datetime.datetime.now().strftime("%H:%M")
-        self.playingText1 = StaticText(self.height + 5, self.width, l_date, font2, True)
-        self.playingText2 = StaticText(self.height, self.width, l_time, font3, True)
+        #self.playingText1 = StaticText(self.height + 5, self.width, l_date, font2, True)
+        self.playingText1 = StaticText(self.height + 5, self.width, l_time, font3, True)
+        log.blue('printing time')
 
     def DrawOn(self, image):
         if self.playingIcon != self.icon['stop']:
@@ -659,14 +660,14 @@ screen_update_thread.start()
 def main():
     global emit_volume, emit_track
     while True:
-        if emit_volume:
+        if emit_volume: #  FIXME Emits volume when still in other display state causing error.
             emit_volume = False
             volume.sw_volume = oled.volume
             log.info("SW volume: " + str(oled.volume))
             volumioIO.emit('volume', oled.volume)
             SetState(STATE_VOLUME)
             oled.stateTimeout = 0.01
-        elif oled.playState in {'play', 'pause'} and volume.update_volume() or volume.update_volume(0.5):    #volume.emit_volume:
+        elif oled.playState in {'play', 'pause'} and volume.update_volume():    #volume.emit_volume:
             volume.emit_volume = False
             oled.volume = volume.hw_volume
             volumioIO.emit('volume', oled.volume)
