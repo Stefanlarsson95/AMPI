@@ -63,6 +63,7 @@ oled.activeArtist = 'VOLUMIO'
 oled.playState = 'unknown'
 oled.playPosition = 0
 oled.ptime = 0
+oled.pstart = 0
 oled.duration = 0
 oled.modal = None
 oled.playlistoptions = []
@@ -83,6 +84,7 @@ oled.clear()
 font = load_font('Roboto-Regular.ttf', 28)
 font2 = load_font('PixelOperator.ttf', 15)
 font3 = load_font('Roboto-Regular.ttf', 46)
+font_stencil = load_font('stencil.ttf', 82)
 hugefontaw = load_font('fa-solid-900.ttf', oled.HEIGHT - 18)
 
 
@@ -141,7 +143,7 @@ def SetState(status):
     if oled.state == STATE_PLAYER:
         oled.modal = NowPlayingScreen(oled.HEIGHT, oled.WIDTH, oled.activeArtist, oled.activeSong, font, font2, font3,
                                       hugefontaw, oled.ptime, oled.duration)
-        oled.modal.SetPlayingIcon(oled.playState, 0)
+        oled.modal.SetPlayingIcon(oled.playState, 10)
     elif oled.state == STATE_VOLUME:
         oled.modal = VolumeScreen(oled.HEIGHT, oled.WIDTH, oled.volume, font, font2)
     elif oled.state == STATE_PLAYLIST_MENU:
@@ -155,6 +157,7 @@ def SetState(status):
                                 label='------ Music Library ------')
     elif oled.state == STATE_CLOCK:
         oled.modal = ClockScreen(oled.HEIGHT, oled.WIDTH, font, font2, hugefontaw)
+        oled.modal.SetPlayingIcon(oled.playState, 1)
 
 def LoadPlaylist(playlistname):
     log.info("loading playlist: " + playlistname.encode('ascii', 'ignore'))
@@ -194,7 +197,7 @@ def onPushState(data):
 
     if 'seek' in data:
         oled.ptime = data['seek']
-        NowPlayingScreen.ptime = oled.ptime
+        oled.pstart = time() - oled.ptime/1000
 
     if 'duration' in data:
         oled.duration = data['duration']
@@ -212,16 +215,16 @@ def onPushState(data):
         log.info("New Song: " + "\033[94m" + newSong.encode('ascii', 'ignore') + "\033[0m")
         oled.activeSong = newSong
         oled.activeArtist = newArtist
-        if oled.state == STATE_PLAYER and newStatus != 'stop':
+        if hasattr(oled.modal, 'UpdatePlayingInfo') and newStatus != 'stop':
             oled.modal.UpdatePlayingInfo(newArtist, newSong)
 
     if newStatus != oled.playState:
         oled.playState = newStatus
         if oled.state == STATE_PLAYER:
             if oled.playState == 'play':
-                iconTime = 15
+                iconTime = 25
             else:
-                iconTime = 30
+                iconTime = 80
             try:
                 oled.modal.SetPlayingIcon(oled.playState, iconTime)
             except:
@@ -282,8 +285,18 @@ def onPushListPlaylist(data):
         oled.playlistoptions = data
 
 
+class TextScreen:
+    def __init__(self, height, width, text, font):
+        self.height = height
+        self.width = width
+        self.playingText = StaticText(self.height, self.width, text, font, center=True)
+        self.textPos = (3, 6)
+
+    def DrawOn(self, image):
+        self.playingText.DrawOn(image, self.textPos)
+
 class NowPlayingScreen:
-    def __init__(self, height, width, row1, row2, font, font2, font3, fontaw, ptime, duraton):
+    def __init__(self, height, width, row1, row2, font, font2, font3, fontaw, ptime, duration):
         self.height = height
         self.width = width
         self.font = font
@@ -302,9 +315,8 @@ class NowPlayingScreen:
         self.seekBar = Bar(self.height, self.width, self.barHeight, self.barWidth)
         self.barPos = (30, 61)
         self.alfaimage = Image.new('RGBA', image.size, (0, 0, 0, 0))
-        self.duration = 0
+        self.duration = duration
         self.seekBar.SetFilledPercentage(50)
-        self.tStart = time()
         self.ptime = 0
         self.played = 0
 
@@ -318,27 +330,17 @@ class NowPlayingScreen:
         if oled.state != 'play':
             self.tStart = time() - float(self.ptime) / 1000
 
-    def SetClock(self):
-        # TODO remove date display and centering time.
-        l_date = datetime.datetime.now().strftime("%D")
-        l_time = datetime.datetime.now().strftime("%H:%M")
-        self.playingText1 = StaticText(self.height + 5, self.width, l_date, font2, True)
-        self.playingText2 = StaticText(self.height, self.width, l_time, font3, True)
-
     def DrawOn(self, image):
         if oled.playState == 'play':
-            self.ptime = (time() - self.tStart) * 1000
-            try:
-                self.played = float(self.ptime / self.duration) / 10
-            except:
-                self.played = 0
-            if self.duration > 0:  # Only Draw if duration data is recieved.
+            t_now = float(time())
+            self.ptime = (t_now - oled.pstart)
+            if self.duration:   # Only Draw if duration data is received.
+                self.played = float(self.ptime / self.duration)*100
                 self.seekBar.SetFilledPercentage(self.played)
                 self.seekBar.DrawOn(image, self.barPos)
 
             self.playingText1.DrawOn(image, self.text1Pos)
             self.playingText2.DrawOn(image, self.text2Pos)
-
 
         if self.iconcountdown > 0:
             compositeimage = Image.composite(self.alfaimage, image.convert('RGBA'), self.alfaimage)
@@ -403,6 +405,17 @@ class ClockScreen:
             compositeimage = Image.composite(self.alfaimage, image.convert('RGBA'), self.alfaimage)
             image.paste(compositeimage.convert('RGB'), (0, 0))
             self.iconcountdown -= 1
+
+    def SetPlayingIcon(self, state, time=0):
+        if state in self.icon:
+            self.playingIcon = self.icon[state]
+        self.alfaimage.paste((0, 0, 0, 0), [0, 0, image.size[0], image.size[1]])
+        drawalfa = ImageDraw.Draw(self.alfaimage)
+        iconwidth, iconheight = drawalfa.textsize(self.playingIcon, font=self.fontaw)
+        left = (self.width - iconwidth) / 2
+        drawalfa.text((left, 14), self.playingIcon, font=self.fontaw, fill=(255, 255, 255, 155))
+        self.iconcountdown = time
+
 
 
 class VolumeScreen:
@@ -665,7 +678,9 @@ RightKnob_Rotation.setCallback(RightKnob_RotaryEvent)
 
 show_logo("volumio_logo.ppm", oled)
 sleep(2)
-SetState(STATE_PLAYER)
+oled.modal = TextScreen(oled.HEIGHT - 10, oled.WIDTH, 'AMPI', font_stencil)
+oled.stateTimeout = 2
+
 screen_update_thread = Thread(target=display_update_service, name="Screen updater")
 screen_update_thread.daemon = True
 
@@ -712,18 +727,18 @@ def main():
         if oled.standby:
             sleep(0.5)
         else:
-            if emit_volume:  # FIXME Emits volume when still in other display state causing error.
+            if emit_volume:
                 emit_volume = False
                 volume.sw_volume = oled.volume
                 log.info("SW volume: " + str(oled.volume))
                 volumioIO.emit('volume', oled.volume)
                 SetState(STATE_VOLUME)
                 oled.stateTimeout = 0.01
-            elif not oled.standby and volume.update_volume():
+            elif oled.state == STATE_PLAYER and volume.update_volume():
                 volume.emit_volume = False
                 oled.volume = volume.hw_volume
                 volumioIO.emit('volume', oled.volume)
-                SetState(STATE_VOLUME)
+                SetState(STATE_VOLUME)  # Todo Fix hw hysteres
                 oled.stateTimeout = 1
 
             if emit_track and oled.stateTimeout < 4.5:

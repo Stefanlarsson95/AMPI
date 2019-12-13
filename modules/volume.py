@@ -19,13 +19,13 @@ log = logger.Log()
 
 
 emit_volume = True
-_update_hw_vol_freq = 3
+_update_hw_vol_freq = 1
 _t_scan = time.time()
 hw_volume = 0
 sw_volume = 0
 balance = 0
 vol_err = 0
-_VOL_ERR_HYSTERES = 2
+_VOL_ERR_HYSTERES = 3
 rising_vol = True  # Defines the direction of volume knob rotation
 
 
