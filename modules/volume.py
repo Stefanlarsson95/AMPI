@@ -28,6 +28,7 @@ vol_err = 0
 _VOL_ERR_HYSTERES = 2
 rising_vol = True  # Defines the direction of volume knob rotation
 
+
 def update_volume(f=None):
     if not f:
         f = _update_hw_vol_freq

@@ -44,6 +44,7 @@ STATE_LIBRARY_MENU = 5
 STATE_CLOCK = 6
 
 UPDATE_INTERVAL = 0.034
+STANDBY_UPDATE_INTERVAL = 1
 PIXEL_SHIFT_TIME = 120  # time between picture position shifts in sec.
 
 interface = spi(device=0, port=0)
@@ -63,12 +64,13 @@ oled.playState = 'unknown'
 oled.playPosition = 0
 oled.ptime = 0
 oled.duration = 0
-oled.modal = False
+oled.modal = None
 oled.playlistoptions = []
 oled.queue = []
 oled.libraryFull = []
 oled.libraryNames = []
 oled.volume = 0
+oled.standby = False
 
 source = None
 
@@ -85,8 +87,8 @@ hugefontaw = load_font('fa-solid-900.ttf', oled.HEIGHT - 18)
 
 
 def display_update_service():
-    global GPIO
     pixshift = [2, 2]
+    update_interval = UPDATE_INTERVAL
     lastshift = prevTime = time()
     while UPDATE_INTERVAL > 0:
         dt = time() - prevTime
@@ -109,6 +111,17 @@ def display_update_service():
             oled.timeOutRunning = False
             oled.stateTimeout = 0
             SetState(STATE_PLAYER)
+
+        elif not oled.standby and oled.playState == 'stop':  # Enter standby
+            oled.standby = True
+            SetState(STATE_CLOCK)
+            update_interval = STANDBY_UPDATE_INTERVAL
+
+        elif oled.standby and oled.playState != 'stop':  # Exit standby
+            oled.standby = False
+            SetState(STATE_PLAYER)
+            update_interval = UPDATE_INTERVAL
+
         image.paste("black", [0, 0, image.size[0], image.size[1]])
         try:
             oled.modal.DrawOn(image)
@@ -119,7 +132,7 @@ def display_update_service():
             oled.display(cimg)
         except RuntimeError as e:
             log.err("RuntimeError: ", str(e))
-        sleep(UPDATE_INTERVAL)
+        sleep(update_interval)
 
 
 def SetState(status):
@@ -140,7 +153,8 @@ def SetState(status):
     elif oled.state == STATE_LIBRARY_MENU:
         oled.modal = MenuScreen(oled.HEIGHT, oled.WIDTH, font2, oled.libraryNames, rows=3,
                                 label='------ Music Library ------')
-
+    elif oled.state == STATE_CLOCK:
+        oled.modal = ClockScreen(oled.HEIGHT, oled.WIDTH, font, font2, hugefontaw)
 
 def LoadPlaylist(playlistname):
     log.info("loading playlist: " + playlistname.encode('ascii', 'ignore'))
@@ -205,10 +219,13 @@ def onPushState(data):
         oled.playState = newStatus
         if oled.state == STATE_PLAYER:
             if oled.playState == 'play':
-                iconTime = 35
+                iconTime = 15
             else:
-                iconTime = 80
-            oled.modal.SetPlayingIcon(oled.playState, iconTime)
+                iconTime = 30
+            try:
+                oled.modal.SetPlayingIcon(oled.playState, iconTime)
+            except:
+                pass
 
 
 def onPushQueue(data):
@@ -265,7 +282,7 @@ def onPushListPlaylist(data):
         oled.playlistoptions = data
 
 
-class NowPlayingScreen():
+class NowPlayingScreen:
     def __init__(self, height, width, row1, row2, font, font2, font3, fontaw, ptime, duraton):
         self.height = height
         self.width = width
@@ -302,33 +319,32 @@ class NowPlayingScreen():
             self.tStart = time() - float(self.ptime) / 1000
 
     def SetClock(self):
-        #l_date = datetime.datetime.now().strftime("%D")
+        # TODO remove date display and centering time.
+        l_date = datetime.datetime.now().strftime("%D")
         l_time = datetime.datetime.now().strftime("%H:%M")
-        #self.playingText1 = StaticText(self.height + 5, self.width, l_date, font2, True)
-        self.playingText1 = StaticText(self.height + 5, self.width, l_time, font3, True)
-        log.blue('printing time')
+        self.playingText1 = StaticText(self.height + 5, self.width, l_date, font2, True)
+        self.playingText2 = StaticText(self.height, self.width, l_time, font3, True)
 
     def DrawOn(self, image):
-        if self.playingIcon != self.icon['stop']:
+        if oled.playState == 'play':
             self.ptime = (time() - self.tStart) * 1000
             try:
                 self.played = float(self.ptime / self.duration) / 10
             except:
                 self.played = 0
-            if self.duration > 0:
+            if self.duration > 0:  # Only Draw if duration data is recieved.
                 self.seekBar.SetFilledPercentage(self.played)
                 self.seekBar.DrawOn(image, self.barPos)
-        else:
-            self.SetClock()
 
-        self.playingText1.DrawOn(image, self.text1Pos)
-        self.playingText2.DrawOn(image, self.text2Pos)
+            self.playingText1.DrawOn(image, self.text1Pos)
+            self.playingText2.DrawOn(image, self.text2Pos)
+
 
         if self.iconcountdown > 0:
             compositeimage = Image.composite(self.alfaimage, image.convert('RGBA'), self.alfaimage)
             image.paste(compositeimage.convert('RGB'), (0, 0))
             self.iconcountdown -= 1
-        if oled.volume in range(1, 50, 1):
+        if oled.volume in range(1, 50):
             self.volumeIcon = ['normVol']
         elif oled.volume > 50:
             self.volumeIcon = ['highVol']
@@ -352,6 +368,41 @@ class NowPlayingScreen():
     def PrevOption(self):
         log.info("Play previous")
         volumioIO.emit('prev')
+
+
+class ClockScreen:
+    def __init__(self, height, width, font, font2, fontaw):
+        self.height = height
+        self.width = width
+        self.font = font
+        self.fontaw = fontaw
+        self.playingText1 = StaticText(self.height, self.width, 'row1', font2, center=True)
+        self.playingText2 = ScrollText(self.height, self.width, 'row2', font)
+        self.icon = {'play': '\uf04b', 'pause': '\uf04c', 'stop': '\uf04d', 'mute': '\uf026', 'normalVol': '\uf027',
+                     'highVol': '\uf028'}
+        self.iconcountdown = 0
+        self.text1Pos = (3, 6)
+        self.text2Pos = (3, 21)  # 37
+
+        self.alfaimage = Image.new('RGBA', image.size, (0, 0, 0, 0))
+
+    def SetClock(self):
+        # TODO remove date display and centering time.
+        l_date = datetime.datetime.now().strftime("%D")
+        l_time = datetime.datetime.now().strftime("%H:%M")
+        self.playingText1 = StaticText(self.height + 5, self.width, l_date, font2, True)
+        self.playingText2 = StaticText(self.height, self.width, l_time, font3, True)
+
+    def DrawOn(self, image):
+
+        self.SetClock()
+        self.playingText1.DrawOn(image, self.text1Pos)
+        self.playingText2.DrawOn(image, self.text2Pos)
+
+        if self.iconcountdown > 0:
+            compositeimage = Image.composite(self.alfaimage, image.convert('RGBA'), self.alfaimage)
+            image.paste(compositeimage.convert('RGB'), (0, 0))
+            self.iconcountdown -= 1
 
 
 class VolumeScreen:
@@ -538,9 +589,6 @@ def RightKnob_PushEvent(hold_time):
         volumioIO.emit('browseLibrary', {'uri': 'music-library'})
 
 
-
-
-
 def ir_event():
     global emit_track
     while lirc.initialised:
@@ -617,6 +665,7 @@ RightKnob_Rotation.setCallback(RightKnob_RotaryEvent)
 
 show_logo("volumio_logo.ppm", oled)
 sleep(2)
+SetState(STATE_PLAYER)
 screen_update_thread = Thread(target=display_update_service, name="Screen updater")
 screen_update_thread.daemon = True
 
@@ -652,47 +701,60 @@ ir_event_thread = Thread(target=ir_event, name='Ir Handler')
 
 # Start threads
 receive_thread.start()
-#volume_handler_thread.start()
+# volume_handler_thread.start()  # Todo may be legacy
 screen_update_thread.start()
-#ir_event_thread.start()
+# ir_event_thread.start()
 
 
 def main():
     global emit_volume, emit_track
     while True:
-        if emit_volume: #  FIXME Emits volume when still in other display state causing error.
-            emit_volume = False
-            volume.sw_volume = oled.volume
-            log.info("SW volume: " + str(oled.volume))
-            volumioIO.emit('volume', oled.volume)
-            SetState(STATE_VOLUME)
-            oled.stateTimeout = 0.01
-        elif oled.playState in {'play', 'pause'} and volume.update_volume():    #volume.emit_volume:
-            volume.emit_volume = False
-            oled.volume = volume.hw_volume
-            volumioIO.emit('volume', oled.volume)
-            SetState(STATE_VOLUME)
-            oled.stateTimeout = 1
+        if oled.standby:
+            sleep(0.5)
+        else:
+            if emit_volume:  # FIXME Emits volume when still in other display state causing error.
+                emit_volume = False
+                volume.sw_volume = oled.volume
+                log.info("SW volume: " + str(oled.volume))
+                volumioIO.emit('volume', oled.volume)
+                SetState(STATE_VOLUME)
+                oled.stateTimeout = 0.01
+            elif not oled.standby and volume.update_volume():
+                volume.emit_volume = False
+                oled.volume = volume.hw_volume
+                volumioIO.emit('volume', oled.volume)
+                SetState(STATE_VOLUME)
+                oled.stateTimeout = 1
 
-        if emit_track and oled.stateTimeout < 4.5:
-            emit_track = False
-            try:
-                log.info('Track selected: ' + str(oled.playPosition + 1) + '/' + str(len(oled.queue)) + ' ' + oled.queue[
-                    oled.playPosition].encode('ascii', 'ignore'))
-            except IndexError:
-                pass
-            volumioIO.emit('play', {'value': oled.playPosition})
+            if emit_track and oled.stateTimeout < 4.5:
+                emit_track = False
+                try:
+                    log.info('Track selected: ' + str(oled.playPosition + 1) + '/' + str(len(oled.queue)) + ' ' + oled.queue[
+                        oled.playPosition].encode('ascii', 'ignore'))
+                except IndexError:
+                    pass
+                volumioIO.emit('play', {'value': oled.playPosition})
+
+            sleep(UPDATE_INTERVAL)
+
+
+
 
 
 def defer():
     try:
         receive_thread.join(1)
-        volume_handler_thread.join(1)
+        #volume_handler_thread.join(1)
         screen_update_thread.join(1)
-        ir_event_thread.join(1)
-        lirc.deinit()
+        try:
+            lirc.deinit()
+            ir_event_thread.join(1)
+        except:
+            pass
+        GPIO.cleanup()
         oled.cleanup()
         log.info("System exit ok")
+
 
     except Exception as err:
         log.err("Defer Error: " + str(err))
@@ -701,5 +763,5 @@ if __name__ == '__main__':
     try:
         main()
     except(KeyboardInterrupt, SystemExit):
-        defer()
+            defer()
 
