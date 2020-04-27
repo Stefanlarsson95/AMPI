@@ -1,6 +1,13 @@
 #!/usr/bin/python
 
-# Todo merge to python3
+#
+# Todo:
+#  merge to python3
+#  Imp source volume based on average temp for time period of week. ie:
+#       if Friday 18pm vol 75%
+#       if monday 20pm vol 45%
+#
+
 
 from __future__ import unicode_literals
 try:
@@ -22,7 +29,7 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 
 log = Log(LOGLEVEL.INFO)
-try :
+try:
     lirc.init("ampi", blocking=False)
 except:
     pass
@@ -139,6 +146,12 @@ def display_update_service():
 
 def SetState(status):
     oled.state = status
+    if status == STATE_CLOCK:
+        oled.contrast(100)
+        sleep(0.1)
+    else:
+        oled.contrast(255)
+        sleep(0.1)
 
     if oled.state == STATE_PLAYER:
         oled.modal = NowPlayingScreen(oled.HEIGHT, oled.WIDTH, oled.activeArtist, oled.activeSong, font, font2, font3,
@@ -294,6 +307,7 @@ class TextScreen:
 
     def DrawOn(self, image):
         self.playingText.DrawOn(image, self.textPos)
+
 
 class NowPlayingScreen:
     def __init__(self, height, width, row1, row2, font, font2, font3, fontaw, ptime, duration):
@@ -752,10 +766,6 @@ def main():
 
             sleep(UPDATE_INTERVAL)
 
-
-
-
-
 def defer():
     try:
         receive_thread.join(1)
@@ -766,10 +776,10 @@ def defer():
             ir_event_thread.join(1)
         except:
             pass
-        GPIO.cleanup()
+        #GPIO.cleanup()
         oled.cleanup()
+        print('\n')
         log.info("System exit ok")
-
 
     except Exception as err:
         log.err("Defer Error: " + str(err))
@@ -780,3 +790,9 @@ if __name__ == '__main__':
     except(KeyboardInterrupt, SystemExit):
             defer()
 
+# Todo
+#  Fix auto pushconfig() if no code is on DPS
+#  Logging to file
+#  test:
+#       import sys
+#       signal.signal(signal.SIGTERM, lambda num, frame: sys.exit(0))
