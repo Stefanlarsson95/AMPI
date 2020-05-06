@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 #
 # Todo:
@@ -10,11 +10,13 @@
 
 
 from __future__ import unicode_literals
+
 try:
     import lirc
 except:
     pass
-import json, sys
+import json
+import sys
 from socketIO_client import SocketIO
 from time import time, sleep
 from threading import Thread
@@ -26,6 +28,7 @@ from modules import volume
 from modules.display import *
 from modules.logger import *
 import RPi.GPIO as GPIO
+
 GPIO.setmode(GPIO.BCM)
 
 log = Log(LOGLEVEL.INFO)
@@ -33,7 +36,6 @@ try:
     lirc.init("ampi", blocking=False)
 except:
     pass
-
 
 volumio_host = 'localhost'
 volumio_port = 3000
@@ -172,6 +174,7 @@ def SetState(status):
         oled.modal = ClockScreen(oled.HEIGHT, oled.WIDTH, font, font2, hugefontaw)
         oled.modal.SetPlayingIcon(oled.playState, 1)
 
+
 def LoadPlaylist(playlistname):
     log.info("loading playlist: " + playlistname.encode('ascii', 'ignore'))
     oled.playPosition = 0
@@ -210,7 +213,7 @@ def onPushState(data):
 
     if 'seek' in data:
         oled.ptime = data['seek']
-        oled.pstart = time() - oled.ptime/1000
+        oled.pstart = time() - oled.ptime / 1000
 
     if 'duration' in data:
         oled.duration = data['duration']
@@ -348,8 +351,8 @@ class NowPlayingScreen:
         if oled.playState == 'play':
             t_now = float(time())
             self.ptime = (t_now - oled.pstart)
-            if self.duration:   # Only Draw if duration data is received.
-                self.played = float(self.ptime / self.duration)*100
+            if self.duration:  # Only Draw if duration data is received.
+                self.played = float(self.ptime / self.duration) * 100
                 self.seekBar.SetFilledPercentage(self.played)
                 self.seekBar.DrawOn(image, self.barPos)
 
@@ -429,7 +432,6 @@ class ClockScreen:
         left = (self.width - iconwidth) / 2
         drawalfa.text((left, 14), self.playingIcon, font=self.fontaw, fill=(255, 255, 255, 155))
         self.iconcountdown = time
-
 
 
 class VolumeScreen:
@@ -523,7 +525,6 @@ class MenuScreen:
             self.menuText[0].DrawOn(image, (15, self.menuYPos))
 
 
-
 def LeftKnob_RotaryEvent(dir):
     global emit_volume
     print(dir)
@@ -541,7 +542,6 @@ def LeftKnob_RotaryEvent(dir):
         else:
             oled.modal.DisplayVolume(oled.volume)
         emit_volume = True
-
 
 
 def LeftKnob_PushEvent(hold_time):
@@ -566,11 +566,11 @@ def LeftKnob_PushEvent(hold_time):
             with open('oledconfig.json', 'w') as f:  # save current track number
                 json.dump({"track": oled.playPosition}, f)
         except IOError as e:
-            log.err ('Cannot save config file to current working directory', str(e))
+            log.err('Cannot save config file to current working directory', str(e))
         sleep(1.5)
-        #oled.cleanup()  # put display into low power mode
-        #volumioIO.emit('shutdown')
-        #sleep(60)
+        # oled.cleanup()  # put display into low power mode
+        # volumioIO.emit('shutdown')
+        # sleep(60)
 
 
 def RightKnob_RotaryEvent(dir):
@@ -591,7 +591,7 @@ def RightKnob_RotaryEvent(dir):
         elif dir == RotaryEncoder.RIGHT:
             oled.modal.NextOption()
         oled.playPosition = oled.modal.SelectedOption()
-        #emit_track = True
+        # emit_track = True
 
 
 def RightKnob_PushEvent(hold_time):
@@ -680,10 +680,10 @@ def ir_event():
 """
 Startup initializer
 """
-#LeftKnob_Push = PushButton(5, max_time=3)
-#LeftKnob_Push.setCallback(LeftKnob_PushEvent)
-#LeftKnob_Rotation = RotaryEncoder(6, 26, pulses_per_cycle=4)
-#LeftKnob_Rotation.setCallback(LeftKnob_RotaryEvent)
+# LeftKnob_Push = PushButton(5, max_time=3)
+# LeftKnob_Push.setCallback(LeftKnob_PushEvent)
+# LeftKnob_Rotation = RotaryEncoder(6, 26, pulses_per_cycle=4)
+# LeftKnob_Rotation.setCallback(LeftKnob_RotaryEvent)
 
 RightKnob_Push = PushButton(5, max_time=1)
 RightKnob_Push.setCallback(RightKnob_PushEvent)
@@ -698,8 +698,10 @@ oled.stateTimeout = 2
 screen_update_thread = Thread(target=display_update_service, name="Screen updater")
 screen_update_thread.daemon = True
 
+
 def _receive_thread():
     volumioIO.wait()
+
 
 receive_thread = Thread(target=_receive_thread, name="Receiver")
 receive_thread.daemon = True
@@ -715,7 +717,7 @@ volumioIO.on('pushBrowseSources', onPushBrowseSources)
 volumioIO.emit('listPlaylist')
 volumioIO.emit('getState')
 volumioIO.emit('getQueue')
-#volumioIO.emit('getBrowseSources')
+# volumioIO.emit('getBrowseSources')
 sleep(0.1)
 try:
     with open('oledconfig.json', 'r') as f:  # load last playing track number
@@ -732,6 +734,8 @@ ir_event_thread = Thread(target=ir_event, name='Ir Handler')
 receive_thread.start()
 # volume_handler_thread.start()  # Todo may be legacy
 screen_update_thread.start()
+
+
 # ir_event_thread.start()
 
 
@@ -758,25 +762,27 @@ def main():
             if emit_track and oled.stateTimeout < 4.5:
                 emit_track = False
                 try:
-                    log.info('Track selected: ' + str(oled.playPosition + 1) + '/' + str(len(oled.queue)) + ' ' + oled.queue[
-                        oled.playPosition].encode('ascii', 'ignore'))
+                    log.info(
+                        'Track selected: ' + str(oled.playPosition + 1) + '/' + str(len(oled.queue)) + ' ' + oled.queue[
+                            oled.playPosition].encode('ascii', 'ignore'))
                 except IndexError:
                     pass
                 volumioIO.emit('play', {'value': oled.playPosition})
 
             sleep(UPDATE_INTERVAL)
 
+
 def defer():
     try:
         receive_thread.join(1)
-        #volume_handler_thread.join(1)
+        # volume_handler_thread.join(1)
         screen_update_thread.join(1)
         try:
             lirc.deinit()
             ir_event_thread.join(1)
         except:
             pass
-        #GPIO.cleanup()
+        # GPIO.cleanup()
         oled.cleanup()
         print('\n')
         log.info("System exit ok")
@@ -784,11 +790,12 @@ def defer():
     except Exception as err:
         log.err("Defer Error: " + str(err))
 
+
 if __name__ == '__main__':
     try:
         main()
     except(KeyboardInterrupt, SystemExit):
-            defer()
+        defer()
 
 # Todo
 #  Fix auto pushconfig() if no code is on DPS
