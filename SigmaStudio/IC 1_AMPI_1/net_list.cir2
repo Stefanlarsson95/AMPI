@@ -1,32 +1,28 @@
-0 ICSigma100In1 O_C314_A0_P1_out Link14 O_C314_A0_P2_out Link15 O_C314_A0_P3_out Link2 O_C314_A0_P4_out Link3 O_C314_A0_P5_out Link7 O_C314_A0_P6_out Link4
-1 RegReadAlgADCIn1 O_C10_A0_P1_out Link27
+0 ICSigma100In1 O_C314_A0_P1_out Link12 O_C314_A0_P2_out Link13 O_C314_A0_P3_out Link2 O_C314_A0_P4_out Link3 O_C314_A0_P5_out Link7 O_C314_A0_P6_out Link4
+1 RegReadAlgADCIn1 O_C10_A0_P1_out Link32
 2 RegReadAlgADCIn2 O_C125_A0_P1_out Link22
-3 RegReadAlgADCIn3 O_C127_A0_P1_out Link23
-4 RegReadAlgADCIn4 O_C136_A0_P1_out Link24
-5 Gain1940AlgNS1 I_C138_A0_P1_in Link14 O_C138_A0_P2_out Link28
-6 Gain1940AlgNS2 I_C138_A1_P1_in Link15 O_C138_A1_P2_out Link29
-7 ReadBackAlg5 I_C39_A0_P1_in Link22
-8 ReadBackAlg4 I_C0_A0_P1_in Link23
-9 ReadBackAlg6 I_C129_A0_P1_in Link24
-10 ReadBackAlg3 I_C52_A0_P1_in Link27
-11 StMuxSwSlew2 I_C62_A0_P3_in Link28 I_C62_A0_P4_in Link29 I_C62_A0_P5_in Link2 I_C62_A0_P6_in Link3 O_C62_A0_P1_out Link16 O_C62_A0_P2_out Link17
-12 StMuxSwSlew1 I_C108_A0_P3_in Link28 I_C108_A0_P4_in Link29 I_C108_A0_P5_in Link7 I_C108_A0_P6_in Link4 O_C108_A0_P1_out Link0 O_C108_A0_P2_out Link1
-13 ICSigma100Out5 I_C31_A0_P1_in Link0
-14 ICSigma100Out6 I_C33_A0_P1_in Link1
-15 PEQ1Chan1 I_C354_A0_P1_in Link16 I_C354_A0_P3_in Link17 O_C354_A0_P2_out Link12 O_C354_A0_P4_out Link13
-16 LoudnessLH1001 I_C44_A0_P1_in Link12 I_C44_A0_P2_in Link13 O_C44_A0_P3_out Link26 O_C44_A0_P4_out Link25
-17 ExtSWGainDB1 I_C4_A0_P1_in Link27 I_C4_A0_P2_in Link26 I_C4_A0_P4_in Link25 O_C4_A0_P3_out Link31 O_C4_A0_P5_out Link32
-18 ReadBackAlg1 I_C11_A0_P1_in Link25
-19 ReadBackAlg2 I_C14_A0_P1_in Link26
-20 EQ1940Dual1 I_C141_A0_P1_in Link31 I_C141_A0_P2_in Link32 O_C141_A0_P3_out Link6 O_C141_A0_P4_out Link5
-21 Gain1940AlgNS3 I_C162_A0_P1_in Link31 O_C162_A0_P2_out Link21
-22 Gain1940AlgNS4 I_C162_A1_P1_in Link32 O_C162_A1_P2_out Link20
-23 AdderAlg1 I_C87_A0_P2_in Link6 I_C87_A0_P3_in Link5 O_C87_A0_P1_out Link18
-24 Gain1940AlgNS5 I_C162_A2_P1_in Link18 O_C162_A2_P2_out Link19
-25 SurroundAlg19401 I_C50_A0_P1_in Link21 I_C50_A0_P3_in Link20 I_C50_A0_P5_in Link19 O_C50_A0_P2_out Link8 O_C50_A0_P4_out Link11 O_C50_A0_P6_out Link30
-26 DCBlockAlgDoublePrec1 I_C370_A0_P1_in Link8 O_C370_A0_P2_out Link9
-27 DCBlockAlgDoublePrec2 I_C370_A1_P1_in Link11 O_C370_A1_P2_out Link10
-28 ICSigma100Out3 I_C188_A0_P1_in Link30
-29 ICSigma100Out4 I_C190_A0_P1_in Link30
-30 ICSigma100Out1 I_C184_A0_P1_in Link9
-31 ICSigma100Out2 I_C186_A0_P1_in Link10
+3 Gain1940AlgNS1 I_C138_A0_P1_in Link12 O_C138_A0_P2_out Link27
+4 Gain1940AlgNS2 I_C138_A1_P1_in Link13 O_C138_A1_P2_out Link28
+5 ReadBackAlg3 I_C174_A0_P1_in Link32
+6 StMuxSwSlew2 I_C62_A0_P3_in Link27 I_C62_A0_P4_in Link28 I_C62_A0_P5_in Link2 I_C62_A0_P6_in Link3 O_C62_A0_P1_out Link19 O_C62_A0_P2_out Link14
+7 StMuxSwSlew1 I_C108_A0_P3_in Link27 I_C108_A0_P4_in Link28 I_C108_A0_P5_in Link7 I_C108_A0_P6_in Link4 O_C108_A0_P1_out Link0 O_C108_A0_P2_out Link1
+8 ICSigma100Out5 I_C31_A0_P1_in Link0
+9 ICSigma100Out6 I_C33_A0_P1_in Link1
+10 PEQ1Chan1 I_C354_A0_P1_in Link19 I_C354_A0_P3_in Link14 O_C354_A0_P2_out Link24 O_C354_A0_P4_out Link23
+11 LoudnessLHExtAlg1 I_C179_A0_P1_in Link22 I_C179_A0_P2_in Link24 I_C179_A0_P4_in Link23 O_C179_A0_P3_out Link26 O_C179_A0_P5_out Link25
+12 ExtSWGainDB1 I_C4_A0_P1_in Link32 I_C4_A0_P2_in Link26 I_C4_A0_P4_in Link25 O_C4_A0_P3_out Link30 O_C4_A0_P5_out Link31
+13 ReadBackAlg1 I_C11_A0_P1_in Link25
+14 ReadBackAlg2 I_C14_A0_P1_in Link26
+15 EQ1940Dual1 I_C141_A0_P1_in Link30 I_C141_A0_P2_in Link31 O_C141_A0_P3_out Link6 O_C141_A0_P4_out Link5
+16 EQ1940Dual2 I_C154_A0_P1_in Link30 I_C154_A0_P2_in Link31 O_C154_A0_P3_out Link21 O_C154_A0_P4_out Link20
+17 AdderAlg1 I_C87_A0_P2_in Link6 I_C87_A0_P3_in Link5 O_C87_A0_P1_out Link15
+18 Gain1940AlgNS4 I_C162_A1_P1_in Link20 O_C162_A1_P2_out Link17
+19 Gain1940AlgNS3 I_C162_A0_P1_in Link21 O_C162_A0_P2_out Link18
+20 Gain1940AlgNS5 I_C162_A2_P1_in Link15 O_C162_A2_P2_out Link16
+21 SurroundAlg19401 I_C50_A0_P1_in Link18 I_C50_A0_P3_in Link17 I_C50_A0_P5_in Link16 O_C50_A0_P2_out Link8 O_C50_A0_P4_out Link11 O_C50_A0_P6_out Link29
+22 DCBlockAlgDoublePrec1 I_C370_A0_P1_in Link8 O_C370_A0_P2_out Link9
+23 DCBlockAlgDoublePrec2 I_C370_A1_P1_in Link11 O_C370_A1_P2_out Link10
+24 ICSigma100Out3 I_C188_A0_P1_in Link29
+25 ICSigma100Out4 I_C190_A0_P1_in Link29
+26 ICSigma100Out1 I_C184_A0_P1_in Link9
+27 ICSigma100Out2 I_C186_A0_P1_in Link10

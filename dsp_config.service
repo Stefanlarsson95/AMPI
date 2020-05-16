@@ -1,13 +1,13 @@
 [Unit]
-Description=Ampi Volumio with oled UI
+Description=ADAU1701 register config
  
 [Service]
 Type=simple
 WorkingDirectory=/home/volumio
-ExecStart=/usr/bin/python3 -u /home/volumio/AMPI/AMPI.py
+ExecStart=sh /home/volumio/AMPI/push_config.sh
 StandardOutput=syslog
 StandardError=syslog
-SyslogIdentifier=ampipy
+SyslogIdentifier=ADAU1701_conf
 User=volumio
 Group=volumio
  

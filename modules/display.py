@@ -6,16 +6,16 @@ from PIL import ImageFont
 
 def show_logo(filename, device):
     logoImage = Image.new('RGB', (device.width, device.height))
-    img_path = os.path.dirname(os.path.realpath(__file__)) + '/../img/'
+    img_path = os.path.dirname(os.path.realpath(__file__)) + '/../misc/img/'
     try:
         logoImage = Image.open(img_path + filename) #.resize((device.width, device.height), Image.ANTIALIAS)
     except IOError:
-        print "Cannot open file %s" % filename
+        print("Cannot open file %s" % filename)
         pass
     device.display(logoImage)
 
 def load_font(filename, font_size):
-    font_path = os.path.dirname(os.path.realpath(__file__)) + '/../fonts/'
+    font_path = os.path.dirname(os.path.realpath(__file__)) + '/../misc/fonts/'
     try:
         font = ImageFont.truetype(font_path + filename, font_size)
     except IOError:

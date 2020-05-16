@@ -1,7 +1,7 @@
 /*
- * File:           C:\Users\Stefan\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_1_REG.h
+ * File:           C:\Users\StefanX1\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_1_REG.h
  *
- * Created:        Tuesday, June 11, 2019 11:18:03 PM
+ * Created:        Saturday, November 9, 2019 9:27:19 PM
  * Description:    AMPI_1:IC 1 control register definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -118,7 +118,7 @@
 /* AnalogPowerDownRegister  - Registers (IC 1) */
 #define REG_ANALOGPOWERDOWNREGISTER_IC_1_ADDR     0x822
 #define REG_ANALOGPOWERDOWNREGISTER_IC_1_BYTE     2
-#define REG_ANALOGPOWERDOWNREGISTER_IC_1_VALUE    0x300
+#define REG_ANALOGPOWERDOWNREGISTER_IC_1_VALUE    0x0
 
 /* TestRegister  - Registers (IC 1) */
 #define REG_TESTREGISTER_IC_1_ADDR                0x823
@@ -415,7 +415,7 @@
 #define R19_REF_CORE_POWERDOWN_IC_1               0x0    /* 0b	[5] */
 #define R19_REF_BUF_POWERDOWN_IC_1                0x0    /* 0b	[6] */
 #define R19_ADCS_POWERDOWN_IC_1                   0x0    /* 0b	[7] */
-#define R19_AUX_ADC_FILTER_IC_1                   0x3    /* 011b	[10:8] */
+#define R19_AUX_ADC_FILTER_IC_1                   0x0    /* 000b	[10:8] */
 #define R19_DAC3_POWERDOWN_IC_1_MASK              0x1
 #define R19_DAC3_POWERDOWN_IC_1_SHIFT             0
 #define R19_DAC2_POWERDOWN_IC_1_MASK              0x2

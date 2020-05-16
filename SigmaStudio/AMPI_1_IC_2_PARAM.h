@@ -1,8 +1,8 @@
 /*
- * File:           defines.h
+ * File:           C:\Users\StefanX1\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_2_PARAM.h
  *
- * Created:        Saturday, November 9, 2019 9:27:19 PM
- * Description:    AMPI_1 IC default download data definitions.
+ * Created:        Saturday, November 9, 2019 9:13:51 PM
+ * Description:    AMPI_1:IC 2 parameter RAM definitions.
  *
  * This software is distributed in the hope that it will be useful,
  * but is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -16,11 +16,8 @@
  *
  * Copyright ©2019 Analog Devices, Inc. All rights reserved.
  */
-#ifndef __DEFINES_H__
-#define __DEFINES_H__
-
-#define BufferSize_IC_1     	9254
-#define NumTransactions_IC_1	5
+#ifndef __AMPI_1_IC_2_PARAM_H__
+#define __AMPI_1_IC_2_PARAM_H__
 
 
 #endif

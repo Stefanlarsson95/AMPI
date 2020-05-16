@@ -1,7 +1,7 @@
 # AMPI I/O
 ### RPI I/O
 
-![Daughterboard I/O](https://github.com/Stefanlarsson95/AMPI/blob/master/hardware/RasPiB-GPIO.png)
+![Daughterboard I/O](RasPiB-GPIO.png)
 
 Pin:  Usage | Pin:  Usage
 ------------- | ------------- 
@@ -12,7 +12,7 @@ Pin:  Usage | Pin:  Usage
 9: GND|10(15): Motor A |
 11(17):IR |12:|
 13(27):Amp !ON|14:|
-15:Fan B RPM|16(23): 12V Enable|
+15:Fan B RPM |16(23): 12V Enable|
 17: 3.3V VolPot|18:|
 19:SPI_MOSI|20:GND|
 21:Na|22(25):|
@@ -28,7 +28,7 @@ Pin:  Usage | Pin:  Usage
 
 ### Daughterboard I/O
 
-![Daughterboard I/O](https://github.com/Stefanlarsson95/AMPI/blob/master/hardware/IDC_HEADER_10-1.png)
+![Daughterboard I/O](IDC_HEADER_10-1.png)
 
 Pinout  | 
 ------------- | 
