@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\StefanX1\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_1_REG.h
  *
- * Created:        Saturday, November 9, 2019 9:27:19 PM
+ * Created:        Monday, July 27, 2020 8:52:03 PM
  * Description:    AMPI_1:IC 1 control register definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -14,7 +14,7 @@
  * are intended for resale to audio product end users. This software
  * may not be distributed whole or in any part to third parties.
  *
- * Copyright ©2019 Analog Devices, Inc. All rights reserved.
+ * Copyright ©2020 Analog Devices, Inc. All rights reserved.
  */
 #ifndef __AMPI_1_IC_1_REG_H__
 #define __AMPI_1_IC_1_REG_H__
@@ -68,12 +68,12 @@
 /* Adc0  - Registers (IC 1) */
 #define REG_ADC0_IC_1_ADDR                        0x809
 #define REG_ADC0_IC_1_BYTE                        1
-#define REG_ADC0_IC_1_VALUE                       0x0
+#define REG_ADC0_IC_1_VALUE                       0x16
 
 /* Adc1  - Registers (IC 1) */
 #define REG_ADC1_IC_1_ADDR                        0x80A
 #define REG_ADC1_IC_1_BYTE                        1
-#define REG_ADC1_IC_1_VALUE                       0x0
+#define REG_ADC1_IC_1_VALUE                       0x47
 
 /* Adc2  - Registers (IC 1) */
 #define REG_ADC2_IC_1_ADDR                        0x80B
@@ -93,12 +93,12 @@
 /* RAMRegister  - Registers (IC 1) */
 #define REG_RAMREGISTER_IC_1_ADDR                 0x81D
 #define REG_RAMREGISTER_IC_1_BYTE                 1
-#define REG_RAMREGISTER_IC_1_VALUE                0x8
+#define REG_RAMREGISTER_IC_1_VALUE                0xC
 
 /* SerialOutRegister1  - Registers (IC 1) */
 #define REG_SERIALOUTREGISTER1_IC_1_ADDR          0x81E
 #define REG_SERIALOUTREGISTER1_IC_1_BYTE          2
-#define REG_SERIALOUTREGISTER1_IC_1_VALUE         0x800
+#define REG_SERIALOUTREGISTER1_IC_1_VALUE         0x2800
 
 /* SerialInputRegister  - Registers (IC 1) */
 #define REG_SERIALINPUTREGISTER_IC_1_ADDR         0x81F
@@ -231,12 +231,12 @@
 #define R8_PIN11_IC_1_SHIFT                       11
 
 /* Adc0 (IC 1) */
-#define R9_ADC0_IC_1                              0x00   /* 00000000b	[7:0] */
+#define R9_ADC0_IC_1                              0x16   /* 00010110b	[7:0] */
 #define R9_ADC0_IC_1_MASK                         0xFF
 #define R9_ADC0_IC_1_SHIFT                        0
 
 /* Adc1 (IC 1) */
-#define R10_ADC1_IC_1                             0x00   /* 00000000b	[7:0] */
+#define R10_ADC1_IC_1                             0x47   /* 01000111b	[7:0] */
 #define R10_ADC1_IC_1_MASK                        0xFF
 #define R10_ADC1_IC_1_SHIFT                       0
 
@@ -286,7 +286,7 @@
 #define R13_EXTMEM_SPEED_IC_1_SHIFT               12
 
 /* RAMRegister (IC 1) */
-#define R14_RAM_MODULO_IC_1                       0x8    /* 1000b	[3:0] */
+#define R14_RAM_MODULO_IC_1                       0xC    /* 1100b	[3:0] */
 #define R14_RAM_MODULO_IC_1_MASK                  0xF
 #define R14_RAM_MODULO_IC_1_SHIFT                 0
 
@@ -299,7 +299,7 @@
 #define R15_BCLK_FREQ_IC_1                        0x0    /* 00b	[10:9] */
 #define R15_MASTER_SLAVE_IC_1                     0x1    /* 1b	[11] */
 #define R15_BCLK_POLARITY_IC_1                    0x0    /* 0b	[12] */
-#define R15_LRCLK_POLARITY_IC_1                   0x0    /* 0b	[13] */
+#define R15_LRCLK_POLARITY_IC_1                   0x1    /* 1b	[13] */
 #define R15_WORDLENGTH_IC_1_MASK                  0x3
 #define R15_WORDLENGTH_IC_1_SHIFT                 0
 #define R15_MSB_POS_IC_1_MASK                     0x1C

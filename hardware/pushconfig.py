@@ -1,7 +1,6 @@
-#!/usr/bin/python -B
+#!/usr/bin/python3 -B
 #
 import eeprom
-# import dsp_i2c
 import adau1701
 import sigmaimporter
 import sys
@@ -38,7 +37,7 @@ def write_device(data, destination=DSP, verbose=0):
         while len(code) > 0:
             block = code[0:blocksize - 1]
             if (verbose):
-                print block
+                print(block)
             eeprom.eeprom_write_block(addr, block)
             code = code[blocksize:]
             addr += blocksize
@@ -52,17 +51,17 @@ def write_device(data, destination=DSP, verbose=0):
         for block in data:
             addr = block["address"]
             data = block["data"]
-            print "Writing {0} at {1:04X} ({1}), {2} byte".format(block["name"], addr, len(data))
+            print("Writing {0} at {1:04X} ({1}), {2} byte".format(block["name"], addr, len(data)))
             # dsp_i2c.dsp_write_block(addr,data,verbose)
             adau1701.dsp_write_block(addr, data, verbose)
 
 
 def usage(myname):
-    print "Usage: "
-    print " {} [-e] [-v] [-t type]".format(myname)
-    print "   -e: write to EEPROM instead of writing to the DSP itself"
-    print "   -t: type: type of the DSP chip (only ADAU1701 supported today)"
-    print "   -v: verbose"
+    print("Usage: ")
+    print(" {} [-e] [-v] [-t type]".format(myname))
+    print("   -e: write to EEPROM instead of writing to the DSP itself\n" \
+     "   -t: type: type of the DSP chip (only ADAU1701 supported today)\n" \
+     "   -v: verbose")
 
 
 def main(argv):
@@ -91,7 +90,7 @@ def main(argv):
 
     data = sigmaimporter.read_txbuffer(file)
     if (len(data) == 0):
-        print "Could not parse the {}".format(file)
+        print("Could not parse the {}".format(file))
         exit(1)
 
     write_device(data, destination, verbose)

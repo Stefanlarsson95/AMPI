@@ -228,7 +228,7 @@ def onPushState(data):
         oled.volumeControlDisabled = data['disableVolumeControl']
 
     if (newSong != oled.activeSong):  # new song
-        log.info("New Song: " + "\033[94m" + newSong.encode('ascii', 'ignore') + "\033[0m")
+        #log.info("New Song: " + "\033[94m" + newSong.encode('ascii', 'ignore') + "\033[0m") todo fix error
         oled.activeSong = newSong
         oled.activeArtist = newArtist
         if hasattr(oled.modal, 'UpdatePlayingInfo') and newStatus != 'stop':
@@ -732,7 +732,7 @@ ir_event_thread = Thread(target=ir_event, name='Ir Handler')
 
 # Start threads
 receive_thread.start()
-# volume_handler_thread.start()  # Todo may be legacy
+# volume_handler_thread.start()  # Fixme may be legacy
 screen_update_thread.start()
 
 

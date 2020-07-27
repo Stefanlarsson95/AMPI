@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 #import RPIO as GPIO
-from pwm import PWM
+from modules.pwm import PWM
+#from pwm import PWM
 #from modules import logger
 import time
 

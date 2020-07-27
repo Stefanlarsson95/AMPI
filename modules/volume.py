@@ -11,8 +11,10 @@ import time
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-_VOL_READBACK_HIGH = 0x00
-_VOL_READBACK_LOW = 0xB2
+#_ADD_VOL_READBACK_HIGH = 0x00
+#_ADD_VOL_READBACK_LOW = 0xB2
+_ADD_VOL_READBACK_HIGH = 0x02
+_ADD_VOL_READBACK_LOW = 0xE2
 log = logger.Log()
 #GPIO.setup([23, 15, 16], GPIO.OUT)
 #GPIO.output([23, 15, 16], 0)
@@ -20,7 +22,7 @@ log = logger.Log()
 
 emit_volume = True
 _update_hw_vol_freq = 1
-_t_scan = time.time()
+_t_scan = time.perf_counter()
 hw_volume = 0
 sw_volume = 0
 balance = 0
@@ -32,7 +34,7 @@ rising_vol = True  # Defines the direction of volume knob rotation
 def update_volume(f=None):
     if not f:
         f = _update_hw_vol_freq
-    if time.time() - _t_scan >= 1/f:
+    if time.perf_counter() - _t_scan >= 1/f:
         get_hw_vol()
         if emit_volume:
             return True
@@ -55,8 +57,8 @@ def hw_vol_stop():
 
 def get_hw_vol():
     global _t_scan, _update_hw_vol_freq, hw_volume, sw_volume, vol_err, emit_volume, rising_vol
-    _t_scan = time.time()
-    vol = int(float(DSP.read_back(_VOL_READBACK_HIGH, _VOL_READBACK_LOW))*101)
+    _t_scan = time.perf_counter()
+    vol = int(float(DSP.read_back(_ADD_VOL_READBACK_HIGH, _ADD_VOL_READBACK_LOW)) * 100)
 
     # Higher sensitively in turning direction and lower in opposite direction.
     if rising_vol and (vol > hw_volume or (vol + 1) < hw_volume) or\
@@ -106,3 +108,10 @@ def set_hw_vol(vol=-1):
         time.sleep(0.005*vol_err)
     hw_vol_stop()
     return False
+
+
+if __name__ == '__main__':
+    while True:
+        vol = int(float(DSP.read_back(_ADD_VOL_READBACK_HIGH, _ADD_VOL_READBACK_LOW)) * 100)
+        print(vol)
+        time.sleep(0.1)

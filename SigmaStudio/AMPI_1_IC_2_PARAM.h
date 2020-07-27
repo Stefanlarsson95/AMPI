@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\StefanX1\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_2_PARAM.h
  *
- * Created:        Saturday, November 9, 2019 9:13:51 PM
+ * Created:        Monday, July 27, 2020 8:52:03 PM
  * Description:    AMPI_1:IC 2 parameter RAM definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -14,7 +14,7 @@
  * are intended for resale to audio product end users. This software
  * may not be distributed whole or in any part to third parties.
  *
- * Copyright ©2019 Analog Devices, Inc. All rights reserved.
+ * Copyright ©2020 Analog Devices, Inc. All rights reserved.
  */
 #ifndef __AMPI_1_IC_2_PARAM_H__
 #define __AMPI_1_IC_2_PARAM_H__

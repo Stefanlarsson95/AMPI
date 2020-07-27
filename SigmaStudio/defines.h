@@ -1,7 +1,7 @@
 /*
  * File:           defines.h
  *
- * Created:        Saturday, November 9, 2019 9:27:19 PM
+ * Created:        Monday, July 27, 2020 8:52:03 PM
  * Description:    AMPI_1 IC default download data definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -14,13 +14,16 @@
  * are intended for resale to audio product end users. This software
  * may not be distributed whole or in any part to third parties.
  *
- * Copyright ©2019 Analog Devices, Inc. All rights reserved.
+ * Copyright ©2020 Analog Devices, Inc. All rights reserved.
  */
 #ifndef __DEFINES_H__
 #define __DEFINES_H__
 
 #define BufferSize_IC_1     	9254
 #define NumTransactions_IC_1	5
+
+#define BufferSize_IC_2     	0
+#define NumTransactions_IC_2	0
 
 
 #endif
