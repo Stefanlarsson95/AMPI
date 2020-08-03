@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\StefanX1\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_1_REG.h
  *
- * Created:        Monday, July 27, 2020 8:52:03 PM
+ * Created:        Sunday, August 2, 2020 12:23:28 PM
  * Description:    AMPI_1:IC 1 control register definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -68,17 +68,17 @@
 /* Adc0  - Registers (IC 1) */
 #define REG_ADC0_IC_1_ADDR                        0x809
 #define REG_ADC0_IC_1_BYTE                        1
-#define REG_ADC0_IC_1_VALUE                       0x16
+#define REG_ADC0_IC_1_VALUE                       0x1D
 
 /* Adc1  - Registers (IC 1) */
 #define REG_ADC1_IC_1_ADDR                        0x80A
 #define REG_ADC1_IC_1_BYTE                        1
-#define REG_ADC1_IC_1_VALUE                       0x47
+#define REG_ADC1_IC_1_VALUE                       0x7F
 
 /* Adc2  - Registers (IC 1) */
 #define REG_ADC2_IC_1_ADDR                        0x80B
 #define REG_ADC2_IC_1_BYTE                        1
-#define REG_ADC2_IC_1_VALUE                       0x0
+#define REG_ADC2_IC_1_VALUE                       0x7F
 
 /* Adc3  - Registers (IC 1) */
 #define REG_ADC3_IC_1_ADDR                        0x80C
@@ -231,17 +231,17 @@
 #define R8_PIN11_IC_1_SHIFT                       11
 
 /* Adc0 (IC 1) */
-#define R9_ADC0_IC_1                              0x16   /* 00010110b	[7:0] */
+#define R9_ADC0_IC_1                              0x1D   /* 00011101b	[7:0] */
 #define R9_ADC0_IC_1_MASK                         0xFF
 #define R9_ADC0_IC_1_SHIFT                        0
 
 /* Adc1 (IC 1) */
-#define R10_ADC1_IC_1                             0x47   /* 01000111b	[7:0] */
+#define R10_ADC1_IC_1                             0x7F   /* 01111111b	[7:0] */
 #define R10_ADC1_IC_1_MASK                        0xFF
 #define R10_ADC1_IC_1_SHIFT                       0
 
 /* Adc2 (IC 1) */
-#define R11_ADC2_IC_1                             0x00   /* 00000000b	[7:0] */
+#define R11_ADC2_IC_1                             0x7F   /* 01111111b	[7:0] */
 #define R11_ADC2_IC_1_MASK                        0xFF
 #define R11_ADC2_IC_1_SHIFT                       0
 

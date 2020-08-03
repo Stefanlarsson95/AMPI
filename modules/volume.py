@@ -11,10 +11,8 @@ import time
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-#_ADD_VOL_READBACK_HIGH = 0x00
-#_ADD_VOL_READBACK_LOW = 0xB2
-_ADD_VOL_READBACK_HIGH = 0x02
-_ADD_VOL_READBACK_LOW = 0xE2
+_ADD_VOL_READBACK_HIGH = 0x01
+_ADD_VOL_READBACK_LOW = 0x3A
 log = logger.Log()
 #GPIO.setup([23, 15, 16], GPIO.OUT)
 #GPIO.output([23, 15, 16], 0)
@@ -71,6 +69,7 @@ def get_hw_vol():
         emit_volume = True
     else:
         _update_hw_vol_freq = 1.9
+        emit_volume = False
     return hw_volume
 
 

@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\StefanX1\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_2.h
  *
- * Created:        Monday, July 27, 2020 8:52:03 PM
+ * Created:        Sunday, August 2, 2020 12:23:28 PM
  * Description:    AMPI_1:IC 2 program data.
  *
  * This software is distributed in the hope that it will be useful,
