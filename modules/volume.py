@@ -4,15 +4,15 @@ Todo I2C guard to only read if ADAU1701 is confirmed confgured.
 
 from hardware import adau1701 as DSP
 from modules import logger
-import RPi.GPIO as GPIO
 import time
+from cfg import *
 
 
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-_ADD_VOL_READBACK_HIGH = 0x01
-_ADD_VOL_READBACK_LOW = 0x3A
+_ADD_VOL_READBACK_HIGH = VOLUME_READ_REG >> 8
+_ADD_VOL_READBACK_LOW = VOLUME_READ_REG & 0x00ff
 log = logger.Log()
 #GPIO.setup([23, 15, 16], GPIO.OUT)
 #GPIO.output([23, 15, 16], 0)
@@ -111,6 +111,6 @@ def set_hw_vol(vol=-1):
 
 if __name__ == '__main__':
     while True:
-        vol = int(float(DSP.read_back(_ADD_VOL_READBACK_HIGH, _ADD_VOL_READBACK_LOW)) * 100)
+        vol = round(float(DSP.read_back(_ADD_VOL_READBACK_HIGH, _ADD_VOL_READBACK_LOW) * 100), 2)
         print(vol)
         time.sleep(0.1)

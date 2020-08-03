@@ -1,6 +1,17 @@
 import RPi.GPIO as GPIO
+import modules.dsp_register as dsp_reg
+import pathlib
 
-# GPIO setup
+"""
+General
+"""
+
+_root_path = str(pathlib.Path().absolute())
+
+"""
+GPIO setup
+"""
+
 GPIO.setmode(GPIO.BCM)
 #GPIO.setwarnings(False)
 
@@ -29,3 +40,16 @@ GPIO.setup([SPDIF_LOCK_PIN], GPIO.IN)                    # Setup inputs
 GPIO.output([VOL_UP_PIN,
              VOL_DN_PIN,
              PWR_EN_12V_PIN], 0)                    # Ensure volume pot is not moved
+
+"""
+Sigma studio register config
+"""
+
+_dsp_reg_adr = dsp_reg.get_reg(xml_path=(_root_path + '/SigmaStudio/AMPI_1.xml'))
+
+VOLUME_READ_REG = _dsp_reg_adr.get('master_volume.vol_redback')
+AUX_DETECT_REG = _dsp_reg_adr.get('source_select.aux_detect')
+RPI_DETECT_REG = _dsp_reg_adr.get('source_select.rpi_detect')
+SPDIF_DETECT_REG = _dsp_reg_adr.get('source_select.spdif_detect')
+
+print(_dsp_reg_adr)
