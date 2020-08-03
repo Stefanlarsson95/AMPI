@@ -9,7 +9,7 @@ Reboot.
 
 
 import RPi.GPIO as GPIO
-from config import *
+from cfg import *
 #import RPIO as GPIO
 import pigpio
 from modules.pwm import PWM

@@ -16,7 +16,9 @@ try:
 except:
     pass
 import json
-from config import *
+from cfg import *
+GPIO.setmode(GPIO.BCM)
+
 from socketIO_client import SocketIO
 from time import time, sleep
 from threading import Thread
@@ -29,10 +31,6 @@ from modules import volume
 from modules.display import *
 from modules.logger import *
 from modules.Input_selector import InputSelector
-import RPi.GPIO as GPIO
-
-GPIO.setup(7, GPIO.IN)
-
 
 log = Log(LOGLEVEL.INFO)
 try:
@@ -680,6 +678,7 @@ def ir_event():
             if oled.state not in [STATE_LIBRARY_MENU, STATE_PLAYLIST_MENU, STATE_SHOW_INFO] and data[0] == 'DOWN':
                 oled.volume -= 5
 
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(27, GPIO.OUT)
 GPIO.output(27, 1)  # enable amplifier for startup melody
@@ -698,7 +697,7 @@ RightKnob_Rotation = RotaryEncoder(6, 26, pulses_per_cycle=4)
 RightKnob_Rotation.setCallback(RightKnob_RotaryEvent)
 show_logo("volumio_logo.ppm", oled)
 sleep(0.5)
-run(["aplay --device plughw:CARD=1 ./startup.wav"], shell=True)
+#run(["aplay --device plughw:CARD=1 ./startup.wav"], shell=True)
 sleep(1.5)
 
 oled.modal = TextScreen(oled.HEIGHT - 10, oled.WIDTH, 'AMPI', font_stencil)
@@ -746,7 +745,7 @@ receive_thread.start()
 screen_update_thread.start()
 
 GPIO.setmode(GPIO.BCM)
-input_selector = InputSelector(amp_pin=27, spdif_pin=7).start()  # fixme ref to conf file
+input_selector = InputSelector().start()  # fixme ref to conf file
 # ir_event_thread.start()
 
 
@@ -787,14 +786,12 @@ def defer():
     try:
         oled.cleanup()
         receive_thread.join(1)
-        # volume_handler_thread.join(1)
         screen_update_thread.join(1)
         try:
             lirc.deinit()
             ir_event_thread.join(1)
         except:
             pass
-        # GPIO.cleanup()
         print('\n')
         log.info("System exit ok")
 

@@ -1,18 +1,16 @@
 
+from cfg import *
 from hardware import adau1701 as DSP
-from config import *
 import time
 from threading import Thread
-import RPi.GPIO as GPIO
 
-GPIO.setmode(GPIO.BCM)
 
 AUX_DETECT_REG = (0x02, 0x36)
 RPI_DETECT_REG = (0x02, 0x2A)
 SPDIF_DETECT_REG = (0x02, 0x1E)
 
 class InputSelector():
-    def __init__(self, amp_pin, spdif_pin, init_source='auto', signal_timeout=2):
+    def __init__(self, init_source='auto', signal_timeout=2):
         self.source = init_source
         self.signal_timeout = signal_timeout
         self._any_signal = False
@@ -24,8 +22,8 @@ class InputSelector():
         self.aux_detected = 0
         self.rpi_detected = 0
         self.spdif_detected = 0
-        self._amp_pin = amp_pin
-        self._spdif_pin = spdif_pin
+        self._amp_pin = AMPLIFIER_ENABLE_PIN
+        self._spdif_pin = SPDIF_LOCK_PIN
         self.amp_always_on = False
         self.amp_en = self.amp_always_on
 
@@ -36,10 +34,9 @@ class InputSelector():
         return self
 
     def run(self):
-        t_active = 0
+        GPIO.setmode(GPIO.BCM)
         GPIO.setup(self._amp_pin, GPIO.OUT)
         GPIO.setup(23, GPIO.OUT)
-        GPIO.setmode(GPIO.BCM)
 
         while True:
             spdif_lock = not GPIO.input(self._spdif_pin)
