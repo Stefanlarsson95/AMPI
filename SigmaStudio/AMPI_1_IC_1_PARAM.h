@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\StefanX1\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_1_PARAM.h
  *
- * Created:        Tuesday, August 4, 2020 7:15:54 PM
+ * Created:        Tuesday, August 4, 2020 7:51:10 PM
  * Description:    AMPI_1:IC 1 parameter RAM definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -112,26 +112,10 @@
 #define VALUE_SPDIF_DETECT_THRESHOLD                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.001)
 #define TYPE_SPDIF_DETECT_THRESHOLD                    SIGMASTUDIOTYPE_FIXPOINT
 
-/* Module aux_detect - Signal Detection*/
-#define COUNT_AUX_DETECT                               3
-#define DEVICE_AUX_DETECT                              "IC1"
-#define ADDR_AUX_DETECT_TIME_CONSTANT                  14
-#define FIXPT_AUX_DETECT_TIME_CONSTANT                 0x007FFF5E
-#define VALUE_AUX_DETECT_TIME_CONSTANT                 SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.999980746140412)
-#define TYPE_AUX_DETECT_TIME_CONSTANT                  SIGMASTUDIOTYPE_FIXPOINT
-#define ADDR_AUX_DETECT_COUNTERDOWN                    15
-#define FIXPT_AUX_DETECT_COUNTERDOWN                   0x00000346
-#define VALUE_AUX_DETECT_COUNTERDOWN                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.0001)
-#define TYPE_AUX_DETECT_COUNTERDOWN                    SIGMASTUDIOTYPE_FIXPOINT
-#define ADDR_AUX_DETECT_THRESHOLD                      16
-#define FIXPT_AUX_DETECT_THRESHOLD                     0x00287A26
-#define VALUE_AUX_DETECT_THRESHOLD                     SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.316227766016838)
-#define TYPE_AUX_DETECT_THRESHOLD                      SIGMASTUDIOTYPE_FIXPOINT
-
 /* Module ZeroComp1_3 - Zero Comparator*/
 #define COUNT_ZEROCOMP1_3                              1
 #define DEVICE_ZEROCOMP1_3                             "IC1"
-#define ADDR_ZEROCOMP1_3_OUTPUT1                       17
+#define ADDR_ZEROCOMP1_3_OUTPUT1                       14
 #define FIXPT_ZEROCOMP1_3_OUTPUT1                      0x00800000
 #define VALUE_ZEROCOMP1_3_OUTPUT1                      SIGMASTUDIOTYPE_INTEGER_CONVERT(8388608)
 #define TYPE_ZEROCOMP1_3_OUTPUT1                       SIGMASTUDIOTYPE_INTEGER
@@ -139,10 +123,26 @@
 /* Module ZeroComp1_2 - Zero Comparator*/
 #define COUNT_ZEROCOMP1_2                              1
 #define DEVICE_ZEROCOMP1_2                             "IC1"
-#define ADDR_ZEROCOMP1_2_OUTPUT1                       18
+#define ADDR_ZEROCOMP1_2_OUTPUT1                       15
 #define FIXPT_ZEROCOMP1_2_OUTPUT1                      0x00800000
 #define VALUE_ZEROCOMP1_2_OUTPUT1                      SIGMASTUDIOTYPE_INTEGER_CONVERT(8388608)
 #define TYPE_ZEROCOMP1_2_OUTPUT1                       SIGMASTUDIOTYPE_INTEGER
+
+/* Module aux_detect - Signal Detection*/
+#define COUNT_AUX_DETECT                               3
+#define DEVICE_AUX_DETECT                              "IC1"
+#define ADDR_AUX_DETECT_TIME_CONSTANT                  16
+#define FIXPT_AUX_DETECT_TIME_CONSTANT                 0x007FFF5E
+#define VALUE_AUX_DETECT_TIME_CONSTANT                 SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.999980746140412)
+#define TYPE_AUX_DETECT_TIME_CONSTANT                  SIGMASTUDIOTYPE_FIXPOINT
+#define ADDR_AUX_DETECT_COUNTERDOWN                    17
+#define FIXPT_AUX_DETECT_COUNTERDOWN                   0x00000346
+#define VALUE_AUX_DETECT_COUNTERDOWN                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.0001)
+#define TYPE_AUX_DETECT_COUNTERDOWN                    SIGMASTUDIOTYPE_FIXPOINT
+#define ADDR_AUX_DETECT_THRESHOLD                      18
+#define FIXPT_AUX_DETECT_THRESHOLD                     0x000CCCCC
+#define VALUE_AUX_DETECT_THRESHOLD                     SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.1)
+#define TYPE_AUX_DETECT_THRESHOLD                      SIGMASTUDIOTYPE_FIXPOINT
 
 /* Module ZeroComp1 - Zero Comparator*/
 #define COUNT_ZEROCOMP1                                1
@@ -965,7 +965,7 @@
 #define COUNT_READBACK_R                               2
 #define DEVICE_READBACK_R                              "IC1"
 #define ADDR_READBACK_R_VAL0                           2074
-#define VALUES_READBACK_R_VAL0                         SIGMASTUDIOTYPE_SPECIAL(0x0B72)
+#define VALUES_READBACK_R_VAL0                         SIGMASTUDIOTYPE_SPECIAL(0x0B5E)
 #define TYPE_READBACK_R_VAL0                           SIGMASTUDIOTYPE_SPECIAL
 #define ADDR_READBACK_READBACK_R_VAL0                  0
 #define ADDR_READBACK_R_VAL1                           2074
@@ -987,7 +987,7 @@
 #define COUNT_READBACK_L                               2
 #define DEVICE_READBACK_L                              "IC1"
 #define ADDR_READBACK_L_VAL0                           2074
-#define VALUES_READBACK_L_VAL0                         SIGMASTUDIOTYPE_SPECIAL(0x0B7E)
+#define VALUES_READBACK_L_VAL0                         SIGMASTUDIOTYPE_SPECIAL(0x0B6A)
 #define TYPE_READBACK_L_VAL0                           SIGMASTUDIOTYPE_SPECIAL
 #define ADDR_READBACK_READBACK_L_VAL0                  0
 #define ADDR_READBACK_L_VAL1                           2074
@@ -1009,7 +1009,7 @@
 #define COUNT_VOL_REDBACK_2                            2
 #define DEVICE_VOL_REDBACK_2                           "IC1"
 #define ADDR_VOL_REDBACK_2_VAL0                        2074
-#define VALUES_VOL_REDBACK_2_VAL0                      SIGMASTUDIOTYPE_SPECIAL(0x05CE)
+#define VALUES_VOL_REDBACK_2_VAL0                      SIGMASTUDIOTYPE_SPECIAL(0x02DA)
 #define TYPE_VOL_REDBACK_2_VAL0                        SIGMASTUDIOTYPE_SPECIAL
 #define ADDR_READBACK_VOL_REDBACK_2_VAL0               0
 #define ADDR_VOL_REDBACK_2_VAL1                        2074

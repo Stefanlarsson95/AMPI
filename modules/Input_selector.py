@@ -10,7 +10,7 @@ _RPI_DETECT_REG = divmod(RPI_DETECT_REG, 0x100)
 _SPDIF_DETECT_REG = divmod(SPDIF_DETECT_REG, 0x100)
 
 class InputSelector():
-    def __init__(self, init_source='auto', signal_timeout=2):
+    def __init__(self, init_source='auto', signal_timeout=30):
         self.source = init_source
         self.signal_timeout = signal_timeout
         self._any_signal = False
