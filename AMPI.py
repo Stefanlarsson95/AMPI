@@ -17,14 +17,11 @@ except:
     pass
 import json
 from cfg import *
-GPIO.setmode(GPIO.BCM)
-
+import sys, atexit, signal
 from socketIO_client import SocketIO
 from time import time, sleep
 from threading import Thread
 from subprocess import run
-from luma.core.interface.serial import spi
-from luma.oled.device import ssd1322
 from modules.rotaryencoder import RotaryEncoder
 from modules.pushbutton import PushButton
 from modules import volume
@@ -32,57 +29,18 @@ from modules.display import *
 from modules.logger import *
 from modules.Input_selector import InputSelector
 
+#atexit.register(defer)  # Your custom code # fixme
+#signal.signal(signal.SIGTERM, lambda n, f: sys.exit(0))
+
 log = Log(LOGLEVEL.INFO)
 try:
     lirc.init("ampi", blocking=False)
 except:
     pass
 
-volumio_host = 'localhost'
-volumio_port = 3000
-VOLUME_DT = 5  # volume adjustment step
-
 volumioIO = SocketIO(volumio_host, volumio_port)
 
-STATE_NONE = -1
-STATE_PLAYER = 0
-STATE_PLAYLIST_MENU = 1
-STATE_QUEUE_MENU = 2
-STATE_VOLUME = 3
-STATE_SHOW_INFO = 4
-STATE_LIBRARY_MENU = 5
-STATE_CLOCK = 6
-
-UPDATE_INTERVAL = 0.034
-STANDBY_UPDATE_INTERVAL = 1
-PIXEL_SHIFT_TIME = 120  # time between picture position shifts in sec.
-
-interface = spi(device=0, port=0)
-oled = ssd1322(interface)
-
 # Todo create VolumioHandler and convert non screen variables to Volumio variable
-
-
-oled.WIDTH = 256
-oled.HEIGHT = 64
-oled.state = STATE_NONE
-oled.stateTimeout = 0
-oled.timeOutRunning = True
-oled.activeSong = 'AMPI'
-oled.activeArtist = 'VOLUMIO'
-oled.playState = 'unknown'
-oled.playPosition = 0
-oled.ptime = 0
-oled.pstart = 0
-oled.duration = 0
-oled.modal = None
-oled.playlistoptions = []
-oled.queue = []
-oled.libraryFull = []
-oled.libraryNames = []
-oled.volume = 0
-oled.volumeControlDisabled = False
-oled.standby = False
 
 source = None
 
@@ -783,15 +741,21 @@ def main():
 
 
 def defer():
+    global UPDATE_INTERVAL
     try:
+        show_logo("shutdown.ppm", oled)
+        UPDATE_INTERVAL = 10
+        sleep(2)
         oled.cleanup()
-        receive_thread.join(1)
-        screen_update_thread.join(1)
+        input_selector.stop()
+        #receive_thread.join()
+        #screen_update_thread.join()
         try:
             lirc.deinit()
-            ir_event_thread.join(1)
+            #ir_event_thread.join(1)
         except:
             pass
+
         print('\n')
         log.info("System exit ok")
 

@@ -18,7 +18,7 @@ def get_reg(xml_path=FILE_PATH):
             _name = cell.text
             if '\n' not in _name:
                 name = _name
-                time.sleep(0.01)
+                time.sleep(0.05)
             for alg in cell:
                 if alg.tag != 'ModuleParameter':
                     continue

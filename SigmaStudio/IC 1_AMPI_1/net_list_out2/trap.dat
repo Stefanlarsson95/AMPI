@@ -4,5 +4,5 @@ Instance  31 Signal rpi_signal_detect_ReadBackAlg8 trap value 138 register MAC_o
 Instance  32 Signal aux_signal_detect_ReadBackAlg7 trap value 141 register MAC_out
 Instance  35 Signal vol_redback_true_ReadBackAlg3 trap value 162 register MAC_out
 Instance  44 Signal vol_redback_2_ReadBackAlg4 trap value 371 register MAC_out
-Instance  49 Signal ReadBack_R_ReadBackAlg1 trap value 666 register MAC_out
-Instance  50 Signal ReadBack_L_ReadBackAlg2 trap value 669 register MAC_out
+Instance  50 Signal ReadBack_R_ReadBackAlg1 trap value 732 register MAC_out
+Instance  51 Signal ReadBack_L_ReadBackAlg2 trap value 735 register MAC_out

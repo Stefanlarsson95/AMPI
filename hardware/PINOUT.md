@@ -8,7 +8,7 @@ Pin:  Usage | Pin:  Usage
 1: 3.3V|2: 5VDC|
 3: SDA|4: 5VDC Power in|
 5: SCL|6: GND|
-7: Amp Temp|8: N/A|
+7: Amp Temp|8: DSP rest (NC!)|
 9: GND|10(15): Motor A |
 11(17):IR |12: reserved_pwm0|
 13(27):Amp_En |14: GND|

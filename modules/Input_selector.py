@@ -4,10 +4,10 @@ from hardware import adau1701 as DSP
 import time
 from threading import Thread
 
-
-AUX_DETECT_REG = (0x02, 0x36)
-RPI_DETECT_REG = (0x02, 0x2A)
-SPDIF_DETECT_REG = (0x02, 0x1E)
+# Split register in high and low byte
+_AUX_DETECT_REG = divmod(AUX_DETECT_REG, 0x100)
+_RPI_DETECT_REG = divmod(RPI_DETECT_REG, 0x100)
+_SPDIF_DETECT_REG = divmod(SPDIF_DETECT_REG, 0x100)
 
 class InputSelector():
     def __init__(self, init_source='auto', signal_timeout=2):
@@ -26,10 +26,12 @@ class InputSelector():
         self._spdif_pin = SPDIF_LOCK_PIN
         self.amp_always_on = False
         self.amp_en = self.amp_always_on
+        self._is_running = False
 
     def start(self):
         t = Thread(target=self.run)
         t.daemon = True
+        self._is_running = True
         t.start()
         return self
 
@@ -38,14 +40,14 @@ class InputSelector():
         GPIO.setup(self._amp_pin, GPIO.OUT)
         GPIO.setup(23, GPIO.OUT)
 
-        while True:
+        while self._is_running:
             spdif_lock = not GPIO.input(self._spdif_pin)
 
             GPIO.output(23, spdif_lock)  # activate 12v if spdif lock. fixme temporary
 
-            _aux = DSP.read_back(AUX_DETECT_REG[0], AUX_DETECT_REG[1])
-            _rpi = DSP.read_back(RPI_DETECT_REG[0], RPI_DETECT_REG[1])
-            _spdif = DSP.read_back(SPDIF_DETECT_REG[0], SPDIF_DETECT_REG[1]) and spdif_lock
+            _aux = DSP.read_back(_AUX_DETECT_REG[0], _AUX_DETECT_REG[1])
+            _rpi = DSP.read_back(_RPI_DETECT_REG[0], _RPI_DETECT_REG[1])
+            _spdif = DSP.read_back(_SPDIF_DETECT_REG[0], _SPDIF_DETECT_REG[1]) and spdif_lock
             if _aux or _rpi or _spdif:
                 if not self._any_signal:
                     self._any_signal = True
@@ -67,10 +69,13 @@ class InputSelector():
 
             time.sleep(0.1)
 
+    def stop(self):
+        self._is_running = False
+
 
 if __name__ == '__main__':
 
-    input_select = InputSelector(AMPLIFIER_ENABLE_PIN, SPDIF_LOCK_PIN).start()
+    input_select = InputSelector().start()
     try:
         while True:
             aux = input_select.aux_detected

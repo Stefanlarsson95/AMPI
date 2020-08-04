@@ -1,7 +1,7 @@
 /*
  * File:           defines.h
  *
- * Created:        Monday, August 3, 2020 10:11:04 PM
+ * Created:        Tuesday, August 4, 2020 7:15:54 PM
  * Description:    AMPI_1 IC default download data definitions.
  *
  * This software is distributed in the hope that it will be useful,
