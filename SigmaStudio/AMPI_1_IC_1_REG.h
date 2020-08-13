@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\StefanX1\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_1_REG.h
  *
- * Created:        Tuesday, August 4, 2020 7:51:10 PM
+ * Created:        Thursday, August 13, 2020 9:21:35 PM
  * Description:    AMPI_1:IC 1 control register definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -63,27 +63,27 @@
 /* GpioAllRegister  - Registers (IC 1) */
 #define REG_GPIOALLREGISTER_IC_1_ADDR             0x808
 #define REG_GPIOALLREGISTER_IC_1_BYTE             2
-#define REG_GPIOALLREGISTER_IC_1_VALUE            0x0
+#define REG_GPIOALLREGISTER_IC_1_VALUE            0x40
 
 /* Adc0  - Registers (IC 1) */
 #define REG_ADC0_IC_1_ADDR                        0x809
 #define REG_ADC0_IC_1_BYTE                        1
-#define REG_ADC0_IC_1_VALUE                       0x1D
+#define REG_ADC0_IC_1_VALUE                       0x6C
 
 /* Adc1  - Registers (IC 1) */
 #define REG_ADC1_IC_1_ADDR                        0x80A
 #define REG_ADC1_IC_1_BYTE                        1
-#define REG_ADC1_IC_1_VALUE                       0x7F
+#define REG_ADC1_IC_1_VALUE                       0x1E
 
 /* Adc2  - Registers (IC 1) */
 #define REG_ADC2_IC_1_ADDR                        0x80B
 #define REG_ADC2_IC_1_BYTE                        1
-#define REG_ADC2_IC_1_VALUE                       0x7F
+#define REG_ADC2_IC_1_VALUE                       0x1
 
 /* Adc3  - Registers (IC 1) */
 #define REG_ADC3_IC_1_ADDR                        0x80C
 #define REG_ADC3_IC_1_BYTE                        1
-#define REG_ADC3_IC_1_VALUE                       0x0
+#define REG_ADC3_IC_1_VALUE                       0x53
 
 /* CoreRegister  - Registers (IC 1) */
 #define REG_COREREGISTER_IC_1_ADDR                0x81C
@@ -113,7 +113,7 @@
 /* MpCfg1  - Registers (IC 1) */
 #define REG_MPCFG1_IC_1_ADDR                      0x821
 #define REG_MPCFG1_IC_1_BYTE                      3
-#define REG_MPCFG1_IC_1_VALUE                     0x44FF74
+#define REG_MPCFG1_IC_1_VALUE                     0x44FF30
 
 /* AnalogPowerDownRegister  - Registers (IC 1) */
 #define REG_ANALOGPOWERDOWNREGISTER_IC_1_ADDR     0x822
@@ -199,7 +199,7 @@
 #define R8_PIN3_IC_1                              0x0    /* 0b	[3] */
 #define R8_PIN4_IC_1                              0x0    /* 0b	[4] */
 #define R8_PIN5_IC_1                              0x0    /* 0b	[5] */
-#define R8_PIN6_IC_1                              0x0    /* 0b	[6] */
+#define R8_PIN6_IC_1                              0x1    /* 1b	[6] */
 #define R8_PIN7_IC_1                              0x0    /* 0b	[7] */
 #define R8_PIN8_IC_1                              0x0    /* 0b	[8] */
 #define R8_PIN9_IC_1                              0x0    /* 0b	[9] */
@@ -231,22 +231,22 @@
 #define R8_PIN11_IC_1_SHIFT                       11
 
 /* Adc0 (IC 1) */
-#define R9_ADC0_IC_1                              0x1D   /* 00011101b	[7:0] */
+#define R9_ADC0_IC_1                              0x6C   /* 01101100b	[7:0] */
 #define R9_ADC0_IC_1_MASK                         0xFF
 #define R9_ADC0_IC_1_SHIFT                        0
 
 /* Adc1 (IC 1) */
-#define R10_ADC1_IC_1                             0x7F   /* 01111111b	[7:0] */
+#define R10_ADC1_IC_1                             0x1E   /* 00011110b	[7:0] */
 #define R10_ADC1_IC_1_MASK                        0xFF
 #define R10_ADC1_IC_1_SHIFT                       0
 
 /* Adc2 (IC 1) */
-#define R11_ADC2_IC_1                             0x7F   /* 01111111b	[7:0] */
+#define R11_ADC2_IC_1                             0x01   /* 00000001b	[7:0] */
 #define R11_ADC2_IC_1_MASK                        0xFF
 #define R11_ADC2_IC_1_SHIFT                       0
 
 /* Adc3 (IC 1) */
-#define R12_ADC3_IC_1                             0x00   /* 00000000b	[7:0] */
+#define R12_ADC3_IC_1                             0x53   /* 01010011b	[7:0] */
 #define R12_ADC3_IC_1_MASK                        0xFF
 #define R12_ADC3_IC_1_SHIFT                       0
 
@@ -369,9 +369,9 @@
 #define R17_MFINVERT5_IC_1_SHIFT                  23
 
 /* MpCfg1 (IC 1) */
-#define R18_MFSELECT6_IC_1                        0x4    /* 100b	[2:0] */
+#define R18_MFSELECT6_IC_1                        0x0    /* 000b	[2:0] */
 #define R18_MFINVERT6_IC_1                        0x0    /* 0b	[3] */
-#define R18_MFSELECT7_IC_1                        0x7    /* 111b	[6:4] */
+#define R18_MFSELECT7_IC_1                        0x3    /* 011b	[6:4] */
 #define R18_MFINVERT7_IC_1                        0x0    /* 0b	[7] */
 #define R18_MFSELECT8_IC_1                        0x7    /* 111b	[10:8] */
 #define R18_MFINVERT8_IC_1                        0x1    /* 1b	[11] */

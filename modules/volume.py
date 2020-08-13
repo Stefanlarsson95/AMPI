@@ -55,7 +55,7 @@ def get_hw_vol():
     # Higher sensitively in turning direction and lower in opposite direction.
     if rising_vol and (vol > hw_volume or (vol + 1) < hw_volume) or\
             (vol < hw_volume or (vol - 1) > hw_volume):
-        _update_hw_vol_freq = 10
+        _update_hw_vol_freq = 100
         rising_vol = hw_volume < vol
         hw_volume = vol
         log.info("HW Volume: {}%".format(hw_volume))
