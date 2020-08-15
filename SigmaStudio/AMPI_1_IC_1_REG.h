@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\StefanX1\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_1_REG.h
  *
- * Created:        Thursday, August 13, 2020 9:21:35 PM
+ * Created:        Saturday, August 15, 2020 6:01:13 PM
  * Description:    AMPI_1:IC 1 control register definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -68,22 +68,22 @@
 /* Adc0  - Registers (IC 1) */
 #define REG_ADC0_IC_1_ADDR                        0x809
 #define REG_ADC0_IC_1_BYTE                        1
-#define REG_ADC0_IC_1_VALUE                       0x6C
+#define REG_ADC0_IC_1_VALUE                       0x44
 
 /* Adc1  - Registers (IC 1) */
 #define REG_ADC1_IC_1_ADDR                        0x80A
 #define REG_ADC1_IC_1_BYTE                        1
-#define REG_ADC1_IC_1_VALUE                       0x1E
+#define REG_ADC1_IC_1_VALUE                       0x71
 
 /* Adc2  - Registers (IC 1) */
 #define REG_ADC2_IC_1_ADDR                        0x80B
 #define REG_ADC2_IC_1_BYTE                        1
-#define REG_ADC2_IC_1_VALUE                       0x1
+#define REG_ADC2_IC_1_VALUE                       0x7F
 
 /* Adc3  - Registers (IC 1) */
 #define REG_ADC3_IC_1_ADDR                        0x80C
 #define REG_ADC3_IC_1_BYTE                        1
-#define REG_ADC3_IC_1_VALUE                       0x53
+#define REG_ADC3_IC_1_VALUE                       0x7F
 
 /* CoreRegister  - Registers (IC 1) */
 #define REG_COREREGISTER_IC_1_ADDR                0x81C
@@ -231,22 +231,22 @@
 #define R8_PIN11_IC_1_SHIFT                       11
 
 /* Adc0 (IC 1) */
-#define R9_ADC0_IC_1                              0x6C   /* 01101100b	[7:0] */
+#define R9_ADC0_IC_1                              0x44   /* 01000100b	[7:0] */
 #define R9_ADC0_IC_1_MASK                         0xFF
 #define R9_ADC0_IC_1_SHIFT                        0
 
 /* Adc1 (IC 1) */
-#define R10_ADC1_IC_1                             0x1E   /* 00011110b	[7:0] */
+#define R10_ADC1_IC_1                             0x71   /* 01110001b	[7:0] */
 #define R10_ADC1_IC_1_MASK                        0xFF
 #define R10_ADC1_IC_1_SHIFT                       0
 
 /* Adc2 (IC 1) */
-#define R11_ADC2_IC_1                             0x01   /* 00000001b	[7:0] */
+#define R11_ADC2_IC_1                             0x7F   /* 01111111b	[7:0] */
 #define R11_ADC2_IC_1_MASK                        0xFF
 #define R11_ADC2_IC_1_SHIFT                       0
 
 /* Adc3 (IC 1) */
-#define R12_ADC3_IC_1                             0x53   /* 01010011b	[7:0] */
+#define R12_ADC3_IC_1                             0x7F   /* 01111111b	[7:0] */
 #define R12_ADC3_IC_1_MASK                        0xFF
 #define R12_ADC3_IC_1_SHIFT                       0
 

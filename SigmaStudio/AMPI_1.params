@@ -432,7 +432,7 @@ Parameter Name    = ReadBackAlg1
 Parameter Address = 2074
 Readback Address = 0
 Parameter Data :
-0x0B ,	0xE6 ,	
+0x0C ,	0xEE ,	
 
 
 Cell Name         = ReadBack_R
@@ -449,7 +449,7 @@ Parameter Name    = ReadBackAlg2
 Parameter Address = 2074
 Readback Address = 0
 Parameter Data :
-0x0B ,	0xF2 ,	
+0x0C ,	0xFA ,	
 
 
 Cell Name         = ReadBack_L
@@ -463,7 +463,7 @@ Parameter Data :
 
 Cell Name         = Gen Filter1_2
 Parameter Name    = EQ1940Dual10B1
-Parameter Address = 167
+Parameter Address = 168
 Parameter Value   = 0.000345349311828613
 Parameter Data :
 0x00 ,	0x00 ,	0x0B ,	0x51 ,	
@@ -472,7 +472,7 @@ Parameter Data :
 
 Cell Name         = Gen Filter1_2
 Parameter Name    = EQ1940Dual11B1
-Parameter Address = 168
+Parameter Address = 169
 Parameter Value   = 0.000690817832946777
 Parameter Data :
 0x00 ,	0x00 ,	0x16 ,	0xA3 ,	
@@ -481,7 +481,7 @@ Parameter Data :
 
 Cell Name         = Gen Filter1_2
 Parameter Name    = EQ1940Dual12B1
-Parameter Address = 169
+Parameter Address = 170
 Parameter Value   = 0.000345349311828613
 Parameter Data :
 0x00 ,	0x00 ,	0x0B ,	0x51 ,	
@@ -490,7 +490,7 @@ Parameter Data :
 
 Cell Name         = Gen Filter1_2
 Parameter Name    = EQ1940Dual11A1
-Parameter Address = 170
+Parameter Address = 171
 Parameter Value   = 1.99129974842072
 Parameter Data :
 0x00 ,	0xFE ,	0xE2 ,	0xE9 ,	
@@ -499,7 +499,7 @@ Parameter Data :
 
 Cell Name         = Gen Filter1_2
 Parameter Name    = EQ1940Dual12A1
-Parameter Address = 171
+Parameter Address = 172
 Parameter Value   = -0.991545438766479
 Parameter Data :
 0x0F ,	0x81 ,	0x15 ,	0x0A ,	
@@ -508,7 +508,7 @@ Parameter Data :
 
 Cell Name         = Surround1
 Parameter Name    = SurroundAlg194010
-Parameter Address = 180
+Parameter Address = 182
 Parameter Value   = 1.56521248817444
 Parameter Data :
 0x00, 0xC8, 0x58, 0xE2, 
@@ -517,7 +517,7 @@ Parameter Data :
 
 Cell Name         = Surround1
 Parameter Name    = SurroundAlg194011
-Parameter Address = 181
+Parameter Address = 183
 Parameter Value   = 1.56521248817444
 Parameter Data :
 0x00, 0xC8, 0x58, 0xE2, 
@@ -526,7 +526,7 @@ Parameter Data :
 
 Cell Name         = Surround1
 Parameter Name    = SurroundAlg194012
-Parameter Address = 182
+Parameter Address = 184
 Parameter Value   = 1.56521248817444
 Parameter Data :
 0x00, 0xC8, 0x58, 0xE2, 
@@ -535,7 +535,7 @@ Parameter Data :
 
 Cell Name         = Surround1
 Parameter Name    = SurroundAlg194010
-Parameter Address = 180
+Parameter Address = 182
 Parameter Value   = 1.56521248817444
 Parameter Data :
 0x00, 0xC8, 0x58, 0xE2, 
@@ -544,7 +544,7 @@ Parameter Data :
 
 Cell Name         = Surround1
 Parameter Name    = SurroundAlg194011
-Parameter Address = 181
+Parameter Address = 183
 Parameter Value   = 1.56521248817444
 Parameter Data :
 0x00, 0xC8, 0x58, 0xE2, 
@@ -553,7 +553,7 @@ Parameter Data :
 
 Cell Name         = Surround1
 Parameter Name    = SurroundAlg194012
-Parameter Address = 182
+Parameter Address = 184
 Parameter Value   = 1.56521248817444
 Parameter Data :
 0x00, 0xC8, 0x58, 0xE2, 
@@ -562,7 +562,7 @@ Parameter Data :
 
 Cell Name         = Surround1
 Parameter Name    = SurroundAlg194010
-Parameter Address = 180
+Parameter Address = 182
 Parameter Value   = 1.56521248817444
 Parameter Data :
 0x00, 0xC8, 0x58, 0xE2, 
@@ -571,7 +571,7 @@ Parameter Data :
 
 Cell Name         = Surround1
 Parameter Name    = SurroundAlg194011
-Parameter Address = 181
+Parameter Address = 183
 Parameter Value   = 1.56521248817444
 Parameter Data :
 0x00, 0xC8, 0x58, 0xE2, 
@@ -580,7 +580,7 @@ Parameter Data :
 
 Cell Name         = Surround1
 Parameter Name    = SurroundAlg194012
-Parameter Address = 182
+Parameter Address = 184
 Parameter Value   = 1.56521248817444
 Parameter Data :
 0x00, 0xC8, 0x58, 0xE2, 
@@ -589,7 +589,7 @@ Parameter Data :
 
 Cell Name         = Multiple 1
 Parameter Name    = Gain1940AlgNS3
-Parameter Address = 178
+Parameter Address = 180
 Parameter Value   = 0.199526190757751
 Parameter Data :
 0x00, 0x19, 0x8A, 0x13, 
@@ -598,7 +598,7 @@ Parameter Data :
 
 Cell Name         = Multiple 1
 Parameter Name    = Gain1940AlgNS4
-Parameter Address = 177
+Parameter Address = 181
 Parameter Value   = 0.199526190757751
 Parameter Data :
 0x00, 0x19, 0x8A, 0x13, 
@@ -886,7 +886,7 @@ Parameter Data :
 
 Cell Name         = DCB1
 Parameter Name    = DCBlockAlgDoublePrec1pole
-Parameter Address = 183
+Parameter Address = 185
 Parameter Value   = 0.999899983406067
 Parameter Data :
 0x00, 0x7F, 0xFC, 0xB9, 
@@ -895,7 +895,7 @@ Parameter Data :
 
 Cell Name         = DCB1
 Parameter Name    = DCBlockAlgDoublePrec2pole
-Parameter Address = 184
+Parameter Address = 186
 Parameter Value   = 0.999899983406067
 Parameter Data :
 0x00, 0x7F, 0xFC, 0xB9, 
@@ -904,7 +904,7 @@ Parameter Data :
 
 Cell Name         = Gen Filter1_3
 Parameter Name    = EQ1940Dual20B1
-Parameter Address = 172
+Parameter Address = 173
 Parameter Value   = 5.59929609298706
 Parameter Data :
 0x02 ,	0xCC ,	0xB5 ,	0xBC ,	
@@ -913,7 +913,7 @@ Parameter Data :
 
 Cell Name         = Gen Filter1_3
 Parameter Name    = EQ1940Dual21B1
-Parameter Address = 173
+Parameter Address = 174
 Parameter Value   = -11.1985923051834
 Parameter Data :
 0x0A ,	0x66 ,	0x94 ,	0x87 ,	
@@ -922,7 +922,7 @@ Parameter Data :
 
 Cell Name         = Gen Filter1_3
 Parameter Name    = EQ1940Dual22B1
-Parameter Address = 174
+Parameter Address = 175
 Parameter Value   = 5.59929609298706
 Parameter Data :
 0x02 ,	0xCC ,	0xB5 ,	0xBC ,	
@@ -931,7 +931,7 @@ Parameter Data :
 
 Cell Name         = Gen Filter1_3
 Parameter Name    = EQ1940Dual21A1
-Parameter Address = 175
+Parameter Address = 176
 Parameter Value   = 1.99129974842072
 Parameter Data :
 0x00 ,	0xFE ,	0xE2 ,	0xE9 ,	
@@ -940,7 +940,7 @@ Parameter Data :
 
 Cell Name         = Gen Filter1_3
 Parameter Name    = EQ1940Dual22A1
-Parameter Address = 176
+Parameter Address = 177
 Parameter Value   = -0.991545438766479
 Parameter Data :
 0x0F ,	0x81 ,	0x15 ,	0x0A ,	
@@ -966,7 +966,7 @@ Parameter Data :
 
 Cell Name         = SW vol 1
 Parameter Name    = ExtSWGainDB1step
-Parameter Address = 166
+Parameter Address = 167
 Parameter Value   = 0.015625
 Parameter Data :
 0x00, 0x02, 0x00, 0x00, 
@@ -1010,7 +1010,7 @@ Parameter Data :
 
 Cell Name         = Loudness L&H Ext1
 Parameter Name    = LoudnessLHExtAlg1level_low
-Parameter Address = 157
+Parameter Address = 158
 Parameter Data :
 0x00, 0x9C, 0x28, 0xF6, 
 0x00, 0xF8, 0x51, 0xEC, 
@@ -1019,7 +1019,7 @@ Parameter Data :
 
 Cell Name         = Loudness L&H Ext1
 Parameter Name    = LoudnessLHExtAlg1iir_coeff_b0_hi
-Parameter Address = 159
+Parameter Address = 160
 Parameter Data :
 0x00, 0x33, 0x39, 0x32, 
 0xFF, 0xCC, 0xC6, 0xCE, 
@@ -1031,7 +1031,7 @@ Parameter Data :
 
 Cell Name         = Loudness L&H Ext1
 Parameter Name    = LoudnessLHExtAlg1step
-Parameter Address = 164
+Parameter Address = 165
 Parameter Value   = 0.015625
 Parameter Data :
 0x00, 0x02, 0x00, 0x00, 
@@ -1040,7 +1040,7 @@ Parameter Data :
 
 Cell Name         = Loudness L&H Ext1
 Parameter Name    = LoudnessLHExtAlg1step
-Parameter Address = 164
+Parameter Address = 165
 Parameter Value   = 0.015625
 Parameter Data :
 0x00, 0x02, 0x00, 0x00, 
@@ -1067,7 +1067,25 @@ Parameter Data :
 
 Cell Name         = Loudness:bypass
 Parameter Name    = StMuxSwSlew2coeffname
-Parameter Address = 165
+Parameter Address = 166
+Parameter Value   = 1
+Parameter Data :
+0x00, 0x00, 0x00, 0x01, 
+
+
+
+Cell Name         = eq_bypass
+Parameter Name    = StMuxSwSlew3coeffname
+Parameter Address = 157
+Parameter Value   = 1
+Parameter Data :
+0x00, 0x00, 0x00, 0x01, 
+
+
+
+Cell Name         = hp_bypass
+Parameter Name    = StMuxSwSlew4coeffname
+Parameter Address = 178
 Parameter Value   = 1
 Parameter Data :
 0x00, 0x00, 0x00, 0x01, 
@@ -1233,6 +1251,7 @@ See also AMPI_1.hex file
 0xFF , 	0x81 , 	0xE2 , 	0xF8 , 	
 0x00 , 	0x00 , 	0x04 , 	0x00 , 	
 0x00 , 	0x00 , 	0x20 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x01 , 	
 0x00 , 	0x9C , 	0x28 , 	0xF6 , 	
 0x00 , 	0xF8 , 	0x51 , 	0xEC , 	
 0x00 , 	0x33 , 	0x39 , 	0x32 , 	
@@ -1253,16 +1272,15 @@ See also AMPI_1.hex file
 0x02 , 	0xCC , 	0xB5 , 	0xBC , 	
 0x00 , 	0xFE , 	0xE2 , 	0xE9 , 	
 0x0F , 	0x81 , 	0x15 , 	0x0A , 	
-0x00 , 	0x19 , 	0x8A , 	0x13 , 	
-0x00 , 	0x19 , 	0x8A , 	0x13 , 	
+0x00 , 	0x00 , 	0x00 , 	0x01 , 	
 0x00 , 	0xA1 , 	0x24 , 	0x78 , 	
+0x00 , 	0x19 , 	0x8A , 	0x13 , 	
+0x00 , 	0x19 , 	0x8A , 	0x13 , 	
 0x00 , 	0xC8 , 	0x58 , 	0xE2 , 	
 0x00 , 	0xC8 , 	0x58 , 	0xE2 , 	
 0x00 , 	0xC8 , 	0x58 , 	0xE2 , 	
 0x00 , 	0x7F , 	0xFC , 	0xB9 , 	
 0x00 , 	0x7F , 	0xFC , 	0xB9 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
@@ -2259,6 +2277,7 @@ Parameter data for: IC 1 (Binary format starting at parameter address 0)
 11111111	10000001	11100010	11111000	
 00000000	00000000	00000100	00000000	
 00000000	00000000	00100000	00000000	
+00000000	00000000	00000000	00000001	
 00000000	10011100	00101000	11110110	
 00000000	11111000	01010001	11101100	
 00000000	00110011	00111001	00110010	
@@ -2279,16 +2298,15 @@ Parameter data for: IC 1 (Binary format starting at parameter address 0)
 00000010	11001100	10110101	10111100	
 00000000	11111110	11100010	11101001	
 00001111	10000001	00010101	00001010	
-00000000	00011001	10001010	00010011	
-00000000	00011001	10001010	00010011	
+00000000	00000000	00000000	00000001	
 00000000	10100001	00100100	01111000	
+00000000	00011001	10001010	00010011	
+00000000	00011001	10001010	00010011	
 00000000	11001000	01011000	11100010	
 00000000	11001000	01011000	11100010	
 00000000	11001000	01011000	11100010	
 00000000	01111111	11111100	10111001	
 00000000	01111111	11111100	10111001	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
