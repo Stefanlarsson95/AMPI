@@ -16,7 +16,7 @@ from modules.pwm import PWM
 import time
 
 #pwm = pigpio.pi()
-amp_fan = GPIO.PWM(AMPLIFIER_FAN_PIN, 100)
+amp_fan = GPIO.PWM(AMPLIFIER_FAN_PIN, 1000)
 #chassis_fan = GPIO.PWM(CHASSIS_FAN_PIN, 1000)
 
 GPIO.setmode(GPIO.BCM)
@@ -27,7 +27,7 @@ GPIO.output([15, 16], 0)
 
 def main():
     GPIO.output(23, 1)
-    amp_fan.start(98)
+    amp_fan.start(100)
     #GPIO.output(AMPLIFIER_FAN_PIN, 1)
     #chassis_fan.start(20)
     #pwm.hardware_PWM(AMPLIFIER_FAN_PIN, 5000, 250000)

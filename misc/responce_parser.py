@@ -1,13 +1,13 @@
 import numpy as np
 from os import getcwd
 
-fileName = 'TEST_RESPONSE'
+fileName = 'avg_right'
 filePath = getcwd() + '\\' + fileName + '.txt'
 
 fout = open(getcwd() + '\\' + fileName + '_MLSSA.txt', 'w')
 
 # Sigma Studio Required Spacing Placement
-fout.write('Example Header Line; this can be anything you want...\n')
+fout.write('Frequency response: ' + fileName + '\n')
 fout.write('      "Hz"  "Mag (dB)"       "deg"\n')
 
 # Load in data, skip the header.

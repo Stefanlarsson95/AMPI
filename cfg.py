@@ -16,7 +16,8 @@ GPIO setup
 GPIO.setmode(GPIO.BCM)
 #GPIO.setwarnings(False)
 
-# Input conf
+# Input
+ACTIVITY_PIN = 0
 SPDIF_LOCK_PIN = 7
 
 # Output conf
@@ -38,7 +39,8 @@ GPIO.setup([PWR_EN_12V_PIN,
             AMPLIFIER_FAN_PIN,
             AMPLIFIER_ENABLE_PIN], GPIO.OUT)  # Setup outputs
 GPIO.setwarnings(True)
-GPIO.setup([SPDIF_LOCK_PIN], GPIO.IN)                    # Setup inputs
+GPIO.setup([SPDIF_LOCK_PIN,
+            ACTIVITY_PIN], GPIO.IN)                    # Setup inputs
 GPIO.output([VOL_UP_PIN,
              VOL_DN_PIN,
              PWR_EN_12V_PIN], 0)                    # Ensure volume pot is not moved

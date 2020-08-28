@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\StefanX1\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_1_PARAM.h
  *
- * Created:        Saturday, August 15, 2020 6:01:13 PM
+ * Created:        Monday, August 24, 2020 9:51:56 PM
  * Description:    AMPI_1:IC 1 parameter RAM definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -792,8 +792,8 @@
 #define COUNT_EQ_BYPASS                                1
 #define DEVICE_EQ_BYPASS                               "IC1"
 #define ADDR_EQ_BYPASS_STEREOSWSLEW                    157
-#define FIXPT_EQ_BYPASS_STEREOSWSLEW                   0x00000001
-#define VALUE_EQ_BYPASS_STEREOSWSLEW                   SIGMASTUDIOTYPE_INTEGER_CONVERT(1)
+#define FIXPT_EQ_BYPASS_STEREOSWSLEW                   0x00000000
+#define VALUE_EQ_BYPASS_STEREOSWSLEW                   SIGMASTUDIOTYPE_INTEGER_CONVERT(0)
 #define TYPE_EQ_BYPASS_STEREOSWSLEW                    SIGMASTUDIOTYPE_INTEGER
 
 /* Module Loudness L&H Ext1 - Loudness (Low & Hi) External Ctrl*/
@@ -912,16 +912,16 @@
 #define COUNT_MULTIPLE1                                3
 #define DEVICE_MULTIPLE1                               "IC1"
 #define ADDR_MULTIPLE1_2                               179
-#define FIXPT_MULTIPLE1_2                              0x00A12477
-#define VALUE_MULTIPLE1_2                              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.25892541179417)
+#define FIXPT_MULTIPLE1_2                              0x00800000
+#define VALUE_MULTIPLE1_2                              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
 #define TYPE_MULTIPLE1_2                               SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_MULTIPLE1                                 180
-#define FIXPT_MULTIPLE1                                0x00198A13
-#define VALUE_MULTIPLE1                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.199526231496888)
+#define FIXPT_MULTIPLE1                                0x00800000
+#define VALUE_MULTIPLE1                                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
 #define TYPE_MULTIPLE1                                 SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_MULTIPLE1_1                               181
-#define FIXPT_MULTIPLE1_1                              0x00198A13
-#define VALUE_MULTIPLE1_1                              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.199526231496888)
+#define FIXPT_MULTIPLE1_1                              0x00800000
+#define VALUE_MULTIPLE1_1                              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
 #define TYPE_MULTIPLE1_1                               SIGMASTUDIOTYPE_FIXPOINT
 
 /* Module Surround1 - Surround Sound Volume Control*/

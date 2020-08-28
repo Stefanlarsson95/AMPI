@@ -702,7 +702,6 @@ receive_thread.start()
 # volume_handler_thread.start()  # Fixme may be legacy
 screen_update_thread.start()
 
-GPIO.setmode(GPIO.BCM)
 input_selector = InputSelector().start()  # fixme ref to conf file
 # ir_event_thread.start()
 

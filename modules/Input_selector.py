@@ -38,6 +38,7 @@ class InputSelector():
     def run(self):
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self._amp_pin, GPIO.OUT)
+        GPIO.setup(self._spdif_pin, GPIO.IN, GPIO.PUD_UP)
         GPIO.setup(23, GPIO.OUT)
 
         while self._is_running:
@@ -67,7 +68,7 @@ class InputSelector():
             self.rpi_detected = _rpi
             self.spdif_detected =_spdif
 
-            time.sleep(0.1)
+            time.sleep(1)
 
     def stop(self):
         self._is_running = False

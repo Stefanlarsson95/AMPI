@@ -51,9 +51,9 @@ def get_hw_vol():
     global _t_scan, _update_hw_vol_freq, hw_volume, sw_volume, vol_err, emit_volume, rising_vol
     _t_scan = time.perf_counter()
     vol = int(float(DSP.read_back(_ADD_VOL_READBACK_HIGH, _ADD_VOL_READBACK_LOW)) * 100)
-
+    _activety = GPIO.input(ACTIVITY_PIN)
     # Higher sensitively in turning direction and lower in opposite direction.
-    if rising_vol and (vol > hw_volume or (vol + 1) < hw_volume) or\
+    if _activety and rising_vol and (vol > hw_volume or (vol + 1) < hw_volume) or\
             (vol < hw_volume or (vol - 1) > hw_volume):
         _update_hw_vol_freq = 100
         rising_vol = hw_volume < vol
