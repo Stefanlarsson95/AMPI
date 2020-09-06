@@ -62,7 +62,7 @@ VOLUMIO_HOST = volumio_host = 'localhost'
 VOLUMIO_PORT = volumio_port = 3000
 VOLUME_DT = 5  # volume adjustment step
 
-UPDATE_INTERVAL = 1/30  # 30 fps
+UPDATE_INTERVAL = 1/15  #  1/fps
 STANDBY_UPDATE_INTERVAL = 1
 PIXEL_SHIFT_TIME = 120  # time between picture position shifts in sec.
 
@@ -74,7 +74,6 @@ STATE_VOLUME = 3
 STATE_SHOW_INFO = 4
 STATE_LIBRARY_MENU = 5
 STATE_CLOCK = 6
-STATE_DEFAULT = STATE_CLOCK
 
 interface = spi(device=0, port=0)
 oled = ssd1322(interface)
@@ -82,6 +81,7 @@ oled = ssd1322(interface)
 oled.WIDTH = 256
 oled.HEIGHT = 64
 oled.state = STATE_NONE
+oled.state_default = STATE_CLOCK
 oled.stateTimeout = 0
 oled.update_interval = UPDATE_INTERVAL
 oled.timeOutRunning = True

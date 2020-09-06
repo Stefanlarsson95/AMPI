@@ -50,7 +50,7 @@ def display_update_service():
         elif oled.stateTimeout <= 0 and oled.timeOutRunning:
             oled.timeOutRunning = False
             oled.stateTimeout = 0
-            SetState(STATE_DEFAULT)
+            SetState(oled.state_default)
 
         # Update Image
         image.paste("black", [0, 0, image.size[0], image.size[1]])
@@ -143,7 +143,7 @@ def onPushState(data):
     if 'duration' in data:
         oled.duration = data['duration']
 
-    if oled.state != STATE_VOLUME:  # get volume on startup and remote control
+    if oled.state != STATE_VOLUME:  # Update volume if not already changing
         try:  # it is either number or unicode text
             oled.volume = int(data['volume'])
         except (KeyError, ValueError):

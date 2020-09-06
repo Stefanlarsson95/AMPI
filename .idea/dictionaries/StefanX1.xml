@@ -4,6 +4,7 @@
       <w>ampi</w>
       <w>blocksize</w>
       <w>gpio</w>
+      <w>hysteres</w>
       <w>oled</w>
       <w>spdif</w>
       <w>volumio</w>

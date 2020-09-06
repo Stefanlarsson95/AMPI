@@ -22,10 +22,6 @@ from modules.Input_selector import InputSelector
 from modules.Shared import *
 from hardware.pushconfig import write_device as Write_DSP
 
-# atexit.register(defer) # fixme
-# signal.signal(signal.SIGTERM, lambda n, f: sys.exit(0))
-
-
 """
 Startup initializer
 """
@@ -49,17 +45,17 @@ RightKnob_Rotation.setCallback(RightKnob_RotaryEvent)
 show_logo("volumio_logo.ppm", oled)
 
 # Push configfile to DSP
-# Write_DSP(DSP_DATA, 2, verbose=False)
+#Write_DSP(DSP_DATA, 2, verbose=False)
 
 sleep(0.5)
 # run(["aplay --device plughw:CARD=1 ./startup.wav"], shell=True)
 sleep(1.5)
 
 oled.modal = TextScreen(oled.HEIGHT - 10, oled.WIDTH, 'AMPI', font_stencil)
-oled.stateTimeout = 3
+oled.stateTimeout = 2
 
 screen_update_thread = Thread(target=display_update_service, name="Screen updater")
-# screen_update_thread.daemon = True
+screen_update_thread.daemon = True
 
 # Request Volumio Data
 volumioIO.emit('listPlaylist')
@@ -82,42 +78,49 @@ input_selector = InputSelector().start()
 
 
 def main():
-    global emit_volume, emit_track, STATE_DEFAULT
+    global emit_volume, emit_track, state_default
     _playState = None
     while True:
 
         # if inactive, set in standby
-        if not oled.standby and not emit_volume and not emit_track:
-            STATE_DEFAULT = STATE_CLOCK
-            oled.stateTimeout = 0
+        if not oled.standby and oled.playState in ['stop', 'pause']:
+            oled.state_default = STATE_CLOCK
+            oled.stateTimeout = 0.1
             oled.standby = True
-            oled.update_interval = 10
 
-        if oled.standby:
+        if oled.standby \
+                and not emit_volume \
+                and not emit_track \
+                and not GPIO.input(ACTIVITY_PIN) \
+                and oled.playState in ['stop', 'pause']:
+            oled.update_interval = STANDBY_UPDATE_INTERVAL
             sleep(1)
         else:
-            oled.update_interval = 1 / 30
-
+            oled.update_interval = UPDATE_INTERVAL
+            oled.standby = False
             # Handle playing state change
             if _playState != oled.playState:
                 _playState = oled.playState
                 if _playState == 'play':
-                    STATE_DEFAULT = STATE_PLAYER
+                    oled.state_default = STATE_PLAYER
+                    oled.stateTimeout = 0.1
 
             # Handle Volume event
+            # SW vol change
             if emit_volume:
-                emit_volume = False
                 volume.sw_volume = oled.volume
                 log.info("SW volume: " + str(oled.volume))
                 volumioIO.emit('volume', oled.volume)
                 SetState(STATE_VOLUME)
                 oled.stateTimeout = 0.5
-            elif oled.state == STATE_PLAYER and volume.update_volume():
-                volume.emit_volume = False
-                oled.volume = volume.hw_volume
-                volumioIO.emit('volume', oled.volume)
-                SetState(STATE_VOLUME)  # Todo Fix hw hysteres
-                oled.stateTimeout = 1
+            # HW vol change
+            elif GPIO.input(ACTIVITY_PIN):
+                volume.update_volume()
+                if volume.emit_volume:
+                    oled.volume = volume.hw_volume
+                    volumioIO.emit('volume', oled.volume)
+                    SetState(STATE_VOLUME)
+                    oled.stateTimeout = 1.5
 
             # Handle track change event
             if emit_track and oled.stateTimeout < 4.5:
@@ -130,10 +133,10 @@ def main():
                     pass
                 volumioIO.emit('play', {'value': oled.playPosition})
 
-            sleep(0.01)
+            sleep(0.025)
 
 
-def defer():
+def defer(foo=None):
     try:
         oled.update_interval = 0.01
         show_logo("shutdown.ppm", oled)
@@ -154,3 +157,6 @@ if __name__ == '__main__':
         main()
     except(KeyboardInterrupt, SystemExit):
         defer()
+
+atexit.register(defer)
+signal.signal(signal.SIGTERM, lambda n, f: sys.exit(0))
