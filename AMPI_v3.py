@@ -56,7 +56,7 @@ sleep(0.5)
 sleep(1.5)
 
 oled.modal = TextScreen(oled.HEIGHT - 10, oled.WIDTH, 'AMPI', font_stencil)
-oled.stateTimeout = 2
+oled.stateTimeout = 3
 
 screen_update_thread = Thread(target=display_update_service, name="Screen updater")
 # screen_update_thread.daemon = True
@@ -82,7 +82,7 @@ input_selector = InputSelector().start()
 
 
 def main():
-    global emit_volume, emit_track, UPDATE_INTERVAL, STATE_DEFAULT
+    global emit_volume, emit_track, STATE_DEFAULT
     _playState = None
     while True:
 
@@ -91,12 +91,12 @@ def main():
             STATE_DEFAULT = STATE_CLOCK
             oled.stateTimeout = 0
             oled.standby = True
-            UPDATE_INTERVAL = 10
+            oled.update_interval = 10
 
         if oled.standby:
             sleep(1)
         else:
-            UPDATE_INTERVAL = 1 / 30
+            oled.update_interval = 1 / 30
 
             # Handle playing state change
             if _playState != oled.playState:
@@ -111,7 +111,7 @@ def main():
                 log.info("SW volume: " + str(oled.volume))
                 volumioIO.emit('volume', oled.volume)
                 SetState(STATE_VOLUME)
-                oled.stateTimeout = 0.1
+                oled.stateTimeout = 0.5
             elif oled.state == STATE_PLAYER and volume.update_volume():
                 volume.emit_volume = False
                 oled.volume = volume.hw_volume
@@ -134,15 +134,14 @@ def main():
 
 
 def defer():
-    global UPDATE_INTERVAL
     try:
-        UPDATE_INTERVAL = 0.01
+        oled.update_interval = 0.01
         show_logo("shutdown.ppm", oled)
         oled.stateTimeout = 10
         sleep(2)
-        oled.cleanup()
         input_selector.stop()
-        UPDATE_INTERVAL = 0
+        oled.cleanup()
+        oled.update_interval = 0
         print('\n')
         log.info("System exit ok")
 

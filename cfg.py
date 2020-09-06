@@ -15,7 +15,6 @@ _path = str(pathlib.Path().absolute())
 _root_path = _path.rsplit('/', 1)[0]
 INIT_SOURCE = 'RPI'
 
-
 """
 GPIO setup
 """
@@ -84,6 +83,7 @@ oled.WIDTH = 256
 oled.HEIGHT = 64
 oled.state = STATE_NONE
 oled.stateTimeout = 0
+oled.update_interval = UPDATE_INTERVAL
 oled.timeOutRunning = True
 oled.activeSong = 'AMPI'
 oled.activeArtist = 'VOLUMIO'

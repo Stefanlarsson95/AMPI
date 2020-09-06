@@ -25,10 +25,9 @@ hugefontaw = load_font('fa-solid-900.ttf', oled.HEIGHT - 18)
 
 
 def display_update_service():
-    global UPDATE_INTERVAL
     pixshift = [2, 2]
     lastshift = prevTime = time()
-    while UPDATE_INTERVAL > 0:
+    while oled.update_interval > 0:
         dt = time() - prevTime
         prevTime = time()
         # Shift pixels to prevent burn in
@@ -65,7 +64,7 @@ def display_update_service():
         except RuntimeError as e:
             log.err("RuntimeError: ", str(e))
 
-        sleep(UPDATE_INTERVAL)
+        sleep(oled.update_interval)
 
 
 def SetState(state):
@@ -247,7 +246,7 @@ def LeftKnob_RotaryEvent(dir):
 
 
 def LeftKnob_PushEvent(hold_time):
-    global UPDATE_INTERVAL
+    #global UPDATE_INTERVAL
     if hold_time < 3:
         log.blue('LeftKnob_PushEvent SHORT')
         if oled.state == STATE_PLAYER:
