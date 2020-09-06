@@ -13,17 +13,17 @@ Pin:  Usage | Pin:  Usage
 11(17):IR |12: reserved_pwm0|
 13(27):Amp_En |14: GND|
 15:Fan B RPM |16(23): 12V EN/Able|
-17: 3.3V VolPot|18: |
+17: 3.3V VolPot|18: I2S_BCLK|
 19:SPI_MOSI|20:GND|
 21:N/A|22(25):|
 23:SPI_CLK|24:|
 25:GND|26: S/PDIF LOCK(INV)| 
 27:N/A|28(1):|
-29(5): N/A(rotA)|30: GND|
-31(6): N/A(rotB)|32(12): Fan A|
+29(5): Rot_Ent|30: GND|
+31(6): Rot_A|32(12): Fan A|
 33(13):Fan B|34: GND|
 35:I2S_LRCK|36(16): Motor B|
-37:N/A|38: I2S_DATA_IN|
+37: (26) Rot_B|38: I2S_DATA_IN|
 39:GND|40: I2S_DATA_OUT|
 
 ### Daughterboard I/O

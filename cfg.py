@@ -18,9 +18,10 @@ GPIO.setmode(GPIO.BCM)
 
 # Input
 ACTIVITY_PIN = 0
+ROT_ENTER_PIN = 5
+ROT_A_PIN = 6
 SPDIF_LOCK_PIN = 7
-ROT_A_PIN = IR_PIN = 5
-ROT_B_PIN = 6
+ROT_B_PIN = IR_PIN = 26
 
 # Output conf
 DPS_WP_PIN = 14
