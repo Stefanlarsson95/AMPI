@@ -3,7 +3,7 @@
 # Simple I2C EEPROM routines
 # works with 16-bit addressable EEPROMs (up to 64kB)
 
-from smbus import SMBus
+from smbus2 import SMBus
 
 smb=SMBus(1);
 slaveaddr=0x50;

@@ -59,6 +59,56 @@ sudo systemctl enable dsp_config.service
 dtparam=spi=on
  ```
  
+## ADAU1701 Installation
+ Based on the guide and overlay from [digital-audio-labs.jimdofree.com](https://digital-audio-labs.jimdofree.com/english/raspberry-pi/adau1701-i2s-driver/)
+ 
+ Big thanks to [MKSounds](https://github.com/MKSounds)!
+
+Step1: Get overlay and copy to overlays folder
+```bash
+ git clone https://github.com/MKSounds/ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi.git
+```
+
+Step2: Add overlay to overlay folder
+```
+sudo cp ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi/adau1701-i2s.dtbo /boot/overlays
+```
+Step3: Add ADAU1701 to Volumio soundcards
+Open soundcard JSON
+```
+sudo cp ADAU1701-I2S-Audio-Driver-for-Raspberry-Pi/adau1701-i2s.dtbo /boot/overlays
+```
+add ADAU1701 soundcard:
+```
+{"id":"adau1701-i2s","name":"ADAU1701 I2S Output","overlay":"adau1701-i2s","alsanum":"1","mixer":"Digital","modules":"","script":"","needsreboot":"yes"},
+```
+OBS: replace "Digital" with "" if Hardware volume is not used!
+
+Step4: add dummy mixer to enable Hardware Volume
+
+```shell script
+state.Output {
+	control.1 {
+		iface MIXER
+		name ADAU1701
+		value.0 99
+		value.1 99
+		comment {
+			access 'read write user'
+			type INTEGER
+			count 2
+			range '0 - 99'
+			tlv '00000001000000080000000000000032'
+			dbmin 0
+			dbmax 4950
+			dbvalue.0 4950
+			dbvalue.1 4950
+		}
+	}
+}
+```
+ 
+ 
  Finally reboot system
  
  ```bash

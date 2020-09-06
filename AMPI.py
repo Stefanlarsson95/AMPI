@@ -16,20 +16,21 @@ try:
 except:
     pass
 import json
-import sys
+from cfg import *
+import sys, atexit, signal
 from socketIO_client import SocketIO
 from time import time, sleep
 from threading import Thread
-from luma.core.interface.serial import spi
-from luma.oled.device import ssd1322
+from subprocess import run
 from modules.rotaryencoder import RotaryEncoder
 from modules.pushbutton import PushButton
 from modules import volume
 from modules.display import *
 from modules.logger import *
-import RPi.GPIO as GPIO
+from modules.Input_selector import InputSelector
 
-GPIO.setmode(GPIO.BCM)
+#atexit.register(defer)  # Your custom code # fixme
+#signal.signal(signal.SIGTERM, lambda n, f: sys.exit(0))
 
 log = Log(LOGLEVEL.INFO)
 try:
@@ -37,50 +38,9 @@ try:
 except:
     pass
 
-volumio_host = 'localhost'
-volumio_port = 3000
-VOLUME_DT = 5  # volume adjustment step
-
 volumioIO = SocketIO(volumio_host, volumio_port)
 
-STATE_NONE = -1
-STATE_PLAYER = 0
-STATE_PLAYLIST_MENU = 1
-STATE_QUEUE_MENU = 2
-STATE_VOLUME = 3
-STATE_SHOW_INFO = 4
-STATE_LIBRARY_MENU = 5
-STATE_CLOCK = 6
-
-UPDATE_INTERVAL = 0.034
-STANDBY_UPDATE_INTERVAL = 1
-PIXEL_SHIFT_TIME = 120  # time between picture position shifts in sec.
-
-interface = spi(device=0, port=0)
-oled = ssd1322(interface)
-
 # Todo create VolumioHandler and convert non screen variables to Volumio variable
-
-
-oled.WIDTH = 256
-oled.HEIGHT = 64
-oled.state = STATE_NONE
-oled.stateTimeout = 0
-oled.timeOutRunning = True
-oled.activeSong = 'AMPI'
-oled.activeArtist = 'VOLUMIO'
-oled.playState = 'unknown'
-oled.playPosition = 0
-oled.ptime = 0
-oled.pstart = 0
-oled.duration = 0
-oled.modal = None
-oled.playlistoptions = []
-oled.queue = []
-oled.libraryFull = []
-oled.libraryNames = []
-oled.volume = 0
-oled.standby = False
 
 source = None
 
@@ -146,9 +106,9 @@ def display_update_service():
         sleep(update_interval)
 
 
-def SetState(status):
-    oled.state = status
-    if status == STATE_CLOCK:
+def SetState(state):
+    oled.state = state
+    if state == STATE_CLOCK:
         oled.contrast(100)
         sleep(0.1)
     else:
@@ -228,7 +188,7 @@ def onPushState(data):
         oled.volumeControlDisabled = data['disableVolumeControl']
 
     if (newSong != oled.activeSong):  # new song
-        log.info("New Song: " + "\033[94m" + newSong.encode('ascii', 'ignore') + "\033[0m")
+        # log.info("New Song: " + "\033[94m" + newSong.encode('ascii', 'ignore') + "\033[0m") todo fix error
         oled.activeSong = newSong
         oled.activeArtist = newArtist
         if hasattr(oled.modal, 'UpdatePlayingInfo') and newStatus != 'stop':
@@ -576,14 +536,14 @@ def LeftKnob_PushEvent(hold_time):
 def RightKnob_RotaryEvent(dir):
     global emit_track
     if oled.state == STATE_PLAYLIST_MENU or oled.state == STATE_LIBRARY_MENU:
-        oled.stateTimeout = 20.0
+        oled.stateTimeout = 10.0
         if dir == RotaryEncoder.LEFT:
             oled.modal.PrevOption()
         elif dir == RotaryEncoder.RIGHT:
             oled.modal.NextOption()
 
     else:
-        oled.stateTimeout = 6.0
+        oled.stateTimeout = 3.0
         if oled.state != STATE_QUEUE_MENU:
             SetState(STATE_QUEUE_MENU)
         if dir == RotaryEncoder.LEFT:
@@ -677,6 +637,10 @@ def ir_event():
                 oled.volume -= 5
 
 
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(27, GPIO.OUT)
+GPIO.output(27, 1)  # enable amplifier for startup melody
+
 """
 Startup initializer
 """
@@ -689,9 +653,11 @@ RightKnob_Push = PushButton(5, max_time=1)
 RightKnob_Push.setCallback(RightKnob_PushEvent)
 RightKnob_Rotation = RotaryEncoder(6, 26, pulses_per_cycle=4)
 RightKnob_Rotation.setCallback(RightKnob_RotaryEvent)
-
 show_logo("volumio_logo.ppm", oled)
-sleep(2)
+sleep(0.5)
+#run(["aplay --device plughw:CARD=1 ./startup.wav"], shell=True)
+sleep(1.5)
+
 oled.modal = TextScreen(oled.HEIGHT - 10, oled.WIDTH, 'AMPI', font_stencil)
 oled.stateTimeout = 2
 
@@ -727,15 +693,16 @@ except IOError:
 else:
     oled.playPosition = config['track']
 
-volume_handler_thread = Thread(target=volume.update_volume, name="Volume Handler")
+#volume_handler_thread = Thread(target=volume.update_volume, name="Volume Handler")
 ir_event_thread = Thread(target=ir_event, name='Ir Handler')
+
 
 # Start threads
 receive_thread.start()
-# volume_handler_thread.start()  # Todo may be legacy
+# volume_handler_thread.start()  # Fixme may be legacy
 screen_update_thread.start()
 
-
+input_selector = InputSelector().start()  # fixme ref to conf file
 # ir_event_thread.start()
 
 
@@ -773,17 +740,21 @@ def main():
 
 
 def defer():
+    global UPDATE_INTERVAL
     try:
-        receive_thread.join(1)
-        # volume_handler_thread.join(1)
-        screen_update_thread.join(1)
+        show_logo("shutdown.ppm", oled)
+        UPDATE_INTERVAL = 10
+        sleep(2)
+        oled.cleanup()
+        input_selector.stop()
+        #receive_thread.join()
+        #screen_update_thread.join()
         try:
             lirc.deinit()
-            ir_event_thread.join(1)
+            #ir_event_thread.join(1)
         except:
             pass
-        # GPIO.cleanup()
-        oled.cleanup()
+
         print('\n')
         log.info("System exit ok")
 
