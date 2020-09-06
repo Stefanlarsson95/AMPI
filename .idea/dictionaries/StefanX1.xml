@@ -5,6 +5,7 @@
       <w>blocksize</w>
       <w>gpio</w>
       <w>spdif</w>
+      <w>volumio</w>
     </words>
   </dictionary>
 </component>

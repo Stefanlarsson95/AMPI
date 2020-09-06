@@ -3,6 +3,15 @@ import modules.dsp_register as dsp_reg
 import pathlib
 from luma.core.interface.serial import spi
 from luma.oled.device import ssd1322
+from modules.logger import *
+from hardware import sigmaimporter
+
+log = Log(LOGLEVEL.INFO)
+
+"""
+User Defined
+"""
+INIT_SOURCE = 'RPI'
 
 """
 General
@@ -38,6 +47,7 @@ PWR_EN_12V_PIN = 23
 GPIO.setup([PWR_EN_12V_PIN,
             VOL_DN_PIN,
             VOL_UP_PIN,
+            DPS_WP_PIN,
             CHASSIS_FAN_PIN,
             AMPLIFIER_FAN_PIN,
             AMPLIFIER_ENABLE_PIN], GPIO.OUT)  # Setup outputs
@@ -97,13 +107,17 @@ oled.standby = False
 Sigma studio register config
 """
 
-#_dsp_reg_adr = dsp_reg.get_reg(xml_path=str(_root_path + '/SigmaStudio/AMPI_1.xml'))
 _dsp_reg_adr = dsp_reg.get_reg(xml_path='/home/volumio/AMPI/SigmaStudio/AMPI_1.xml')
 
 VOLUME_READ_REG = _dsp_reg_adr.get('master_volume.vol_redback')
 AUX_DETECT_REG = _dsp_reg_adr.get('source_select.aux_signal_detect')
 RPI_DETECT_REG = _dsp_reg_adr.get('source_select.rpi_signal_detect')
 SPDIF_DETECT_REG = _dsp_reg_adr.get('source_select.spdif_signal_detect')
+
+"""
+DSP conf
+"""
+DSP_DATA = sigmaimporter.read_txbuffer('/home/volumio/AMPI/SigmaStudio/TxBuffer_IC_1.dat')
 
 
 if __name__ == '__main__':
