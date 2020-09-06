@@ -17,8 +17,8 @@ from modules.rotaryencoder import RotaryEncoder
 from modules.pushbutton import PushButton
 from modules import volume
 from modules.display import *
-from modules.logger import *
 from modules.Input_selector import InputSelector
+from modules.Shared import *
 from hardware.pushconfig import write_device as Write_DSP
 
 # atexit.register(defer) # fixme
@@ -27,10 +27,6 @@ from hardware.pushconfig import write_device as Write_DSP
 volumioIO = SocketIO(volumio_host, volumio_port)
 
 # Todo create VolumioHandler and convert non screen variables to Volumio variable
-
-# source = None
-emit_volume = False
-emit_track = False
 
 image = Image.new('RGB', (oled.WIDTH + 4, oled.HEIGHT + 4))  # enlarged for pixelshift
 oled.clear()
@@ -128,13 +124,13 @@ def LoadPlaylist(playlistname):
 
 
 def onPushState(data):
-    global source
+    global volumio_source
     newStatus = None
     if 'trackType' in data:
         s = data['trackType']
-        if s != source:
+        if s != volumio_source:
             log.info("New source: " + str(s))
-            source = s
+            volumio_source = s
 
     if 'title' in data:
         newSong = data['title']
@@ -586,7 +582,7 @@ show_logo("volumio_logo.ppm", oled)
 # Write_DSP(DSP_DATA, 2, verbose=False)
 
 sleep(0.5)
-run(["aplay --device plughw:CARD=1 ./startup.wav"], shell=True)
+# run(["aplay --device plughw:CARD=1 ./startup.wav"], shell=True)
 sleep(1.5)
 
 oled.modal = TextScreen(oled.HEIGHT - 10, oled.WIDTH, 'AMPI', font_stencil)

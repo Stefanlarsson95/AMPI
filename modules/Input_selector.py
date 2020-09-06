@@ -36,20 +36,24 @@ class InputSelector:
         return self
 
     def run(self):
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self._amp_pin, GPIO.OUT)
+        #GPIO.setmode(GPIO.BCM)
+        #GPIO.setup(self._amp_pin, GPIO.OUT)
         GPIO.setup(self._spdif_pin, GPIO.IN, GPIO.PUD_UP)
-        GPIO.setup(23, GPIO.OUT)
-        GPIO.output(23, 0)
+        #GPIO.setup(23, GPIO.OUT)
+        #GPIO.output(23, 0)
 
         while self._is_running:
             spdif_lock = not GPIO.input(self._spdif_pin)  # inverted
 
-            GPIO.output(23, spdif_lock)  # activate 12v if spdif lock. fixme temporary
-
             _aux = DSP.read_back(_AUX_DETECT_REG[0], _AUX_DETECT_REG[1])
             _rpi = DSP.read_back(_RPI_DETECT_REG[0], _RPI_DETECT_REG[1])
+
+            EN_12V = not _aux and not _rpi and spdif_lock
+            GPIO.output(23, EN_12V)  # activate 12v if spdif lock. fixme temporary
+
             _spdif = DSP.read_back(_SPDIF_DETECT_REG[0], _SPDIF_DETECT_REG[1]) and spdif_lock
+
+
             if _aux or _rpi or _spdif:
                 if not self._any_signal:
                     self._any_signal = True

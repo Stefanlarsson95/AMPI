@@ -9,15 +9,12 @@ from hardware import sigmaimporter
 log = Log(LOGLEVEL.INFO)
 
 """
-User Defined
-"""
-INIT_SOURCE = 'RPI'
-
-"""
 General
 """
 _path = str(pathlib.Path().absolute())
 _root_path = _path.rsplit('/', 1)[0]
+INIT_SOURCE = 'RPI'
+
 
 """
 GPIO setup
