@@ -46,6 +46,7 @@ GPIO.setup([SPDIF_LOCK_PIN,
             ACTIVITY_PIN], GPIO.IN)                    # Setup inputs
 GPIO.output([VOL_UP_PIN,
              VOL_DN_PIN,
+             AMPLIFIER_ENABLE_PIN,
              PWR_EN_12V_PIN], 0)                    # Ensure volume pot is not moved
 
 """

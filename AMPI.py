@@ -637,9 +637,11 @@ def ir_event():
                 oled.volume -= 5
 
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(27, GPIO.OUT)
-GPIO.output(27, 1)  # enable amplifier for startup melody
+#GPIO.setmode(GPIO.BCM)
+#GPIO.setup(AMPLIFIER_ENABLE_PIN, GPIO.OUT)
+GPIO.output(PWR_EN_12V_PIN, 0)
+GPIO.output(AMPLIFIER_ENABLE_PIN, 1)  # enable amplifier for startup melody
+
 
 """
 Startup initializer
