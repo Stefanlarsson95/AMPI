@@ -1,5 +1,4 @@
-.idea
-.idea*
+
 *.pyc
 .project
 .pydevproject
