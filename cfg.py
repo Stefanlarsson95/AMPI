@@ -19,6 +19,8 @@ GPIO.setmode(GPIO.BCM)
 # Input
 ACTIVITY_PIN = 0
 SPDIF_LOCK_PIN = 7
+ROT_A_PIN = IR_PIN = 5
+ROT_B_PIN = 6
 
 # Output conf
 DPS_WP_PIN = 14
@@ -31,7 +33,7 @@ AMPLIFIER_ENABLE_PIN = 27
 PWR_EN_12V_PIN = 23
 
 # Setup GPIO
-GPIO .setwarnings(False)
+#GPIO .setwarnings(False)
 GPIO.setup([PWR_EN_12V_PIN,
             VOL_DN_PIN,
             VOL_UP_PIN,
