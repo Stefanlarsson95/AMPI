@@ -25,12 +25,13 @@ hugefontaw = load_font('fa-solid-900.ttf', oled.HEIGHT - 18)
 
 
 def display_update_service():
+    global UPDATE_INTERVAL
     pixshift = [2, 2]
-    update_interval = UPDATE_INTERVAL
     lastshift = prevTime = time()
     while UPDATE_INTERVAL > 0:
         dt = time() - prevTime
         prevTime = time()
+        # Shift pixels to prevent burn in
         if prevTime - lastshift > PIXEL_SHIFT_TIME:  # it's time for pixel shift
             lastshift = prevTime
             if pixshift[0] == 4 and pixshift[1] < 4:
@@ -41,25 +42,18 @@ def display_update_service():
                 pixshift[1] -= 1
             else:
                 pixshift[0] -= 1
-        # auto return to home display screen (from volume display / queue list..)
+
+        # Show current screen until oled timeout then
+        # return to home display screen
         if oled.stateTimeout > 0:
             oled.timeOutRunning = True
             oled.stateTimeout -= dt
         elif oled.stateTimeout <= 0 and oled.timeOutRunning:
             oled.timeOutRunning = False
             oled.stateTimeout = 0
-            SetState(STATE_PLAYER)
+            SetState(STATE_DEFAULT)
 
-        elif not oled.standby and oled.playState == 'stop':  # Enter standby
-            oled.standby = True
-            SetState(STATE_CLOCK)
-            update_interval = STANDBY_UPDATE_INTERVAL
-
-        elif oled.standby and oled.playState != 'stop':  # Exit standby
-            oled.standby = False
-            SetState(STATE_PLAYER)
-            update_interval = UPDATE_INTERVAL
-
+        # Update Image
         image.paste("black", [0, 0, image.size[0], image.size[1]])
         try:
             oled.modal.DrawOn(image)
@@ -70,7 +64,8 @@ def display_update_service():
             oled.display(cimg)
         except RuntimeError as e:
             log.err("RuntimeError: ", str(e))
-        sleep(update_interval)
+
+        sleep(UPDATE_INTERVAL)
 
 
 def SetState(state):
