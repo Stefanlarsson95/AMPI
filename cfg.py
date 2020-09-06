@@ -59,8 +59,8 @@ GPIO.output([VOL_UP_PIN,
 """
 OlED/UI
 """
-volumio_host = 'localhost'
-volumio_port = 3000
+VOLUMIO_HOST = volumio_host = 'localhost'
+VOLUMIO_PORT = volumio_port = 3000
 VOLUME_DT = 5  # volume adjustment step
 
 UPDATE_INTERVAL = 0.034

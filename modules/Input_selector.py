@@ -53,7 +53,6 @@ class InputSelector:
 
             _spdif = DSP.read_back(_SPDIF_DETECT_REG[0], _SPDIF_DETECT_REG[1]) and spdif_lock
 
-
             if _aux or _rpi or _spdif:
                 if not self._any_signal:
                     self._any_signal = True
