@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d4f1d42-ec0e-4bd6-aa58-8157da275fb6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/StefanX1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/StefanX1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AMPI_v3.py" beforeDir="false" afterPath="$PROJECT_DIR$/AMPI_v3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cfg.py" beforeDir="false" afterPath="$PROJECT_DIR$/cfg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/Shared.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/shared.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/ampi_backend.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/ampi_backend.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/pushbutton.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/pushbutton.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/volume.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/volume.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,7 +56,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.AMPI_v3">
+  <component name="RunManager" selected="Python.volume">
     <configuration name="AMPI" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="AMPI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -100,7 +101,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Input_selector" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="FanControll" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="AMPI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -113,7 +114,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modules/Input_selector.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modules/FanControll.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -122,7 +123,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="activety_detect" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="pushconfig" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="AMPI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -130,13 +131,13 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/modules" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hardware" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modules/activety_detect.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hardware/pushconfig.py" />
+      <option name="PARAMETERS" value="/home/volumio/AMPI/SigmaStudio/TxBuffer_IC_1.dat" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -166,13 +167,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.AMPI" />
+      <item itemvalue="Python.AMPI_v3" />
+      <item itemvalue="Python.pushconfig" />
+      <item itemvalue="Python.volume" />
+      <item itemvalue="Python.FanControll" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.AMPI_v3" />
         <item itemvalue="Python.volume" />
+        <item itemvalue="Python.FanControll" />
+        <item itemvalue="Python.pushconfig" />
+        <item itemvalue="Python.AMPI_v3" />
         <item itemvalue="Python.AMPI" />
-        <item itemvalue="Python.Input_selector" />
-        <item itemvalue="Python.activety_detect" />
       </list>
     </recent_temporary>
   </component>
@@ -187,7 +195,9 @@
       <option name="presentableId" value="Default" />
       <updated>1599390435441</updated>
       <workItem from="1599390436655" duration="545000" />
-      <workItem from="1599391022168" duration="21327000" />
+      <workItem from="1599391022168" duration="45350000" />
+      <workItem from="1599571226264" duration="10000" />
+      <workItem from="1599576798536" duration="7712000" />
     </task>
     <servers />
   </component>
@@ -208,17 +218,31 @@
     </option>
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="oled.volume" language="Python" />
+        <watch expression="t_dif" language="Python" />
+        <watch expression="self._true_vol" language="Python" />
+        <watch expression="0 &lt; self._vol_error" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/AMPI$volume.coverage" NAME="volume Coverage Results" MODIFIED="1599409980925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
+    <SUITE FILE_PATH="coverage/AMPI$volume.coverage" NAME="volume Coverage Results" MODIFIED="1599584275499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/AMPI$activety_detect.coverage" NAME="activety_detect Coverage Results" MODIFIED="1599395731494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/AMPI$Input_selector.coverage" NAME="Input_selector Coverage Results" MODIFIED="1599395970103" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
+    <SUITE FILE_PATH="coverage/AMPI$FanControll.coverage" NAME="FanControll Coverage Results" MODIFIED="1599579847398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/AMPI$AMPI.coverage" NAME="AMPI Coverage Results" MODIFIED="1599399196745" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AMPI$pushconfig.coverage" NAME="pushconfig Coverage Results" MODIFIED="1599421299761" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hardware" />
     <SUITE FILE_PATH="coverage/AMPI$AMPI_v3.coverage" NAME="AMPI_v3 Coverage Results" MODIFIED="1599412541760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

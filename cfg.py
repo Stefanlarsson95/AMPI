@@ -5,6 +5,7 @@ from luma.core.interface.serial import spi
 from luma.oled.device import ssd1322
 from modules.logger import *
 from hardware import sigmaimporter
+from threading import Lock
 
 log = Log(LOGLEVEL.INFO)
 
@@ -14,6 +15,10 @@ General
 _path = str(pathlib.Path().absolute())
 _root_path = _path.rsplit('/', 1)[0]
 INIT_SOURCE = 'RPI'
+
+standby = False
+
+i2s_lock = Lock()
 
 """
 GPIO setup
@@ -30,8 +35,8 @@ ROT_B_PIN = IR_PIN = 26
 
 # Output conf
 DPS_WP_PIN = 14
-VOL_DN_PIN = 15
-VOL_UP_PIN = 16
+VOL_UP_PIN = 15
+VOL_DN_PIN = 16
 CHASSIS_FAN_PIN = 12
 AMPLIFIER_FAN_PIN = 13
 AMPLIFIER_FAN_TAC_PIN = 25
@@ -116,7 +121,7 @@ SPDIF_DETECT_REG = _dsp_reg_adr.get('source_select.spdif_signal_detect')
 DSP conf
 """
 DSP_DATA = sigmaimporter.read_txbuffer('/home/volumio/AMPI/SigmaStudio/TxBuffer_IC_1.dat')
-
+DSP_SAMPLE_FREQ_LIM = 5
 
 if __name__ == '__main__':
     print(_dsp_reg_adr)

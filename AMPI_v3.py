@@ -19,7 +19,7 @@ from modules.pushbutton import PushButton
 from modules import volume
 from modules.display import *
 from modules.Input_selector import InputSelector
-from modules.Shared import *
+from modules.shared import *
 from hardware.pushconfig import write_device as Write_DSP
 
 """
@@ -45,7 +45,7 @@ RightKnob_Rotation.setCallback(RightKnob_RotaryEvent)
 show_logo("volumio_logo.ppm", oled)
 
 # Push configfile to DSP
-#Write_DSP(DSP_DATA, 2, verbose=False)
+# Write_DSP(DSP_DATA, 2, verbose=False)
 
 sleep(0.5)
 # run(["aplay --device plughw:CARD=1 ./startup.wav"], shell=True)
@@ -106,21 +106,17 @@ def main():
                     oled.stateTimeout = 0.1
 
             # Handle Volume event
-            # SW vol change
-            if emit_volume:
+            if emit_volume:  # HW volume change
                 volume.sw_volume = oled.volume
                 log.info("SW volume: " + str(oled.volume))
                 volumioIO.emit('volume', oled.volume)
-                SetState(STATE_VOLUME)
-                oled.stateTimeout = 0.5
-            # HW vol change
-            elif GPIO.input(ACTIVITY_PIN):
-                volume.update_volume()
-                if volume.emit_volume:
-                    oled.volume = volume.hw_volume
-                    volumioIO.emit('volume', oled.volume)
+                if oled.state != STATE_VOLUME:
                     SetState(STATE_VOLUME)
-                    oled.stateTimeout = 1.5
+                else:
+                    oled.modal.DisplayVolume(oled.volume)
+                oled.stateTimeout = 0.5
+            elif oled.volume != volume.sw_volume:  # SW volume change
+                pass
 
             # Handle track change event
             if emit_track and oled.stateTimeout < 4.5:
@@ -136,7 +132,7 @@ def main():
             sleep(0.025)
 
 
-def defer(foo=None):
+def shutdown(emit_shutdown=False):
     try:
         oled.update_interval = 0.01
         show_logo("shutdown.ppm", oled)
@@ -147,16 +143,20 @@ def defer(foo=None):
         oled.update_interval = 0
         print('\n')
         log.info("System exit ok")
-
     except Exception as err:
-        log.err("Defer Error: " + str(err))
+        log.err("Shutdown Error: " + str(err))
+
+    if emit_shutdown:
+        pass
+        # volumioIO.emit('shutdown')
+        # sleep(60)
 
 
 if __name__ == '__main__':
     try:
         main()
     except(KeyboardInterrupt, SystemExit):
-        defer()
+        shutdown()
 
-atexit.register(defer)
+atexit.register(shutdown)
 signal.signal(signal.SIGTERM, lambda n, f: sys.exit(0))
