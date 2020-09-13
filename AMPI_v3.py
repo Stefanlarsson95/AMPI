@@ -7,7 +7,6 @@ Main AMPI code
 from __future__ import unicode_literals
 
 import json
-from cfg import *
 import sys, atexit, signal
 from socketIO_client import SocketIO
 from modules.ampi_backend import *
@@ -16,11 +15,11 @@ from threading import Thread
 from subprocess import run
 from modules.rotaryencoder import RotaryEncoder
 from modules.pushbutton import PushButton
-from modules import volume
+from modules.volumecontroller import *
 from modules.display import *
 from modules.Input_selector import InputSelector
-from modules.shared import *
 from hardware.pushconfig import write_device as Write_DSP
+from cfg import *
 
 """
 Startup initializer
@@ -75,6 +74,7 @@ else:
 receive_thread.start()
 screen_update_thread.start()
 input_selector = InputSelector().start()
+Volume = VolumeController().start()
 
 
 def main():
@@ -106,17 +106,14 @@ def main():
                     oled.stateTimeout = 0.1
 
             # Handle Volume event
-            if emit_volume:  # HW volume change
-                volume.sw_volume = oled.volume
-                log.info("SW volume: " + str(oled.volume))
-                volumioIO.emit('volume', oled.volume)
+            if Volume.emit_volume:
+                log.info("Volume: " + str(Volume.get_volume()))
+                volumioIO.emit('volume', Volume.get_volume())
                 if oled.state != STATE_VOLUME:
                     SetState(STATE_VOLUME)
                 else:
                     oled.modal.DisplayVolume(oled.volume)
-                oled.stateTimeout = 0.5
-            elif oled.volume != volume.sw_volume:  # SW volume change
-                pass
+                Volume.emit_volume = False
 
             # Handle track change event
             if emit_track and oled.stateTimeout < 4.5:

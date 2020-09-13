@@ -12,7 +12,7 @@ _ADD_VOL_READBACK_HIGH = VOLUME_READ_REG >> 8
 _ADD_VOL_READBACK_LOW = VOLUME_READ_REG & 0x00ff
 
 
-class Volume:
+class VolumeController:
     def __init__(self, vol=0, bal=0):
         """
         Main Volume class
@@ -23,7 +23,7 @@ class Volume:
         self.is_alive = False  # Indicate whether volume thread is running
 
         self._dps_sample_freq_lim = DSP_SAMPLE_FREQ_LIM
-        self._volume = vol  # target volume
+        self._req_vol = vol  # target volume
         self._balance = bal
         self._t_last_dsp_read = 0
         self._vol_change = False
@@ -67,7 +67,7 @@ class Volume:
 
         if self._volume_master in [source, None]:
             self._volume_master = source
-            self._volume = vol
+            self._req_vol = vol
         else:
             return False
         return True
@@ -83,7 +83,7 @@ class Volume:
         Volume getter
         :return: Get requested volume
         """
-        return self._volume
+        return self._req_vol
 
     def get_volume_source(self):
         """
@@ -104,7 +104,7 @@ class Volume:
         t_now = time.perf_counter()
         if t_now - self._t_last_dsp_read > 1 / self._dps_sample_freq_lim:
             self._t_last_dsp_read = t_now
-            with i2s_lock:  # ensure safe i2s read
+            with i2c_lock:  # ensure safe i2s read
                 self._true_vol = int(float(DSP.read_back(_ADD_VOL_READBACK_HIGH, _ADD_VOL_READBACK_LOW)) * 100)
         return self._true_vol
 
@@ -116,7 +116,7 @@ class Volume:
         :return: True if target is within margin, else False
         """
         if vol is None:
-            vol = self._volume
+            vol = self._req_vol
         if timeout is None:
             timeout = self._vol_event_timeout
         t_start = time.perf_counter()
@@ -163,21 +163,21 @@ class Volume:
             # Get hw activity status
             _hw_vol_activity = GPIO.input(ACTIVITY_PIN)
 
-            # # Handle volume change:
+            # Handle volume change:
             # Manual volume change
             if _hw_vol_activity and self._volume_master in [None, 'Manual']:
                 vol = self._get_hw_volume()
-                if vol != self._volume:  # Volume change
-                    self._volume = vol
+                if vol != self._req_vol:  # Volume change
+                    self._req_vol = vol
                     self.emit_volume = True
                 self._volume_master = (None, 'Manual')[self.emit_volume]  # Master is Manual until no longer emit volume
 
             # Software volume change
-            elif self._volume != self._true_vol:
+            elif self._req_vol != self._true_vol:
                 self.emit_volume = True
-                if not self._set_hw_volume(self._volume):
+                if not self._set_hw_volume(self._req_vol):
                     # unable to change true volume
-                    self._volume = self._true_vol
+                    self._req_vol = self._true_vol
 
             # sleep for time proportional to update frequency of for 1 sec if in standby
             t_sleep = (max(1 / self._update_freq - dt, 0.01), 1)[standby]
@@ -328,7 +328,7 @@ class Volume:
 
 if __name__ == '__main__':
     vol_request = 50
-    VOL = Volume().start()
+    VOL = VolumeController().start()
     VOL.set_volume(vol_request, timeout=10)
     while True:
         if VOL.emit_volume:

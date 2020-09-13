@@ -7,52 +7,66 @@ from threading import Thread
 _AUX_DETECT_REG = divmod(AUX_DETECT_REG, 0x100)
 _RPI_DETECT_REG = divmod(RPI_DETECT_REG, 0x100)
 _SPDIF_DETECT_REG = divmod(SPDIF_DETECT_REG, 0x100)
+_DSP_SOURCE_SELECT = divmod(DSP_SOURCE_SELECT, 0x100)
 
 
 class InputSelector:
-    def __init__(self, init_source='auto', signal_timeout=30):
+    def __init__(self, init_source=SOURCE_AUTO, signal_timeout=30):
         self.source = init_source
+        self.spdif_lock = False
         self.signal_timeout = signal_timeout
-        self._any_signal = False
-        self._t_first_signal = 0
-        self._t_last_signal = 0
-        self._t_active = 0
-        self._t_debounce = 0.1
         self.spdif_enabled = False
         self.aux_detected = 0
         self.rpi_detected = 0
         self.spdif_detected = 0
-        self._amp_pin = AMPLIFIER_ENABLE_PIN
-        self._spdif_pin = SPDIF_LOCK_PIN
         self.amp_always_on = False
         self.amp_en = self.amp_always_on
-        self._is_running = False
+        self._any_signal = False
+        self._dsp_source = 3  # self.get_dsp_source()
+        self._t_first_signal = 0
+        self._t_last_signal = 0
+        self._t_active = 0
+        self._t_debounce = 0.1
+        self._amp_pin = AMPLIFIER_ENABLE_PIN
+        self._spdif_pin = SPDIF_LOCK_PIN
+        self.is_alive = False
 
     def start(self):
         t = Thread(target=self.run)
         t.daemon = True
-        self._is_running = True
+        self.is_alive = True
         t.start()
         return self
 
     def run(self):
-        #GPIO.setmode(GPIO.BCM)
-        #GPIO.setup(self._amp_pin, GPIO.OUT)
+
+        GPIO.setmode(GPIO.BCM)
         GPIO.setup(self._spdif_pin, GPIO.IN, GPIO.PUD_UP)
-        #GPIO.setup(23, GPIO.OUT)
-        #GPIO.output(23, 0)
 
-        while self._is_running:
-            spdif_lock = not GPIO.input(self._spdif_pin)  # inverted
+        while self.is_alive:
 
-            _aux = DSP.read_back(_AUX_DETECT_REG[0], _AUX_DETECT_REG[1])
-            _rpi = DSP.read_back(_RPI_DETECT_REG[0], _RPI_DETECT_REG[1])
+            # get source status
+            self.spdif_lock = not GPIO.input(self._spdif_pin)  # inverted
+            with i2c_lock:
+                _aux = bool(DSP.read_back(_AUX_DETECT_REG[0], _AUX_DETECT_REG[1]))
+                _rpi = bool(DSP.read_back(_RPI_DETECT_REG[0], _RPI_DETECT_REG[1]))
+                _spdif = self.spdif_lock and bool(DSP.read_back(_SPDIF_DETECT_REG[0], _SPDIF_DETECT_REG[1]))
 
-            EN_12V = not _aux and not _rpi and spdif_lock
-            GPIO.output(23, EN_12V)  # activate 12v if spdif lock. fixme temporary
+            # Check for source change
+            if self._dsp_source != self.source:
+                pass
+                # self.set_dsp_source(self.source)
 
-            _spdif = DSP.read_back(_SPDIF_DETECT_REG[0], _SPDIF_DETECT_REG[1]) and spdif_lock
+            en_spdif = AMP_ALWAYS_ON
+            if self.source == SOURCE_AUTO:
+                en_spdif = not _aux and not _rpi and _spdif
+            elif self.source == SOURCE_SPDIF:
+                en_spdif = _spdif
 
+            GPIO.output(PWR_EN_12V_PIN, self.spdif_lock)  # activate 12v if spdif lock. fixme temporary
+            GPIO.output(SPDIF_ENABLE_PIN, self.spdif_lock)  # activate spdif relay if spdif lock. fixme temporary
+
+            # amp enable
             if _aux or _rpi or _spdif:
                 if not self._any_signal:
                     self._any_signal = True
@@ -63,19 +77,36 @@ class InputSelector:
                     self.amp_en = True
             else:
                 self._any_signal = False
-                t_active = 0
                 if time.perf_counter() > self._t_last_signal + self.signal_timeout and not self.amp_always_on:
                     self.amp_en = False
-
             GPIO.output(self._amp_pin, self.amp_en)
-            self.aux_detected = _aux
-            self.rpi_detected = _rpi
-            self.spdif_detected = _spdif
 
-            time.sleep(1)
+            self.aux_detected = bool(_aux)
+            self.rpi_detected = bool(_rpi)
+            self.spdif_detected = bool(_spdif)
+
+            t_sleep = (0.1, 1)[standby]
+            time.sleep(t_sleep)
 
     def stop(self):
-        self._is_running = False
+        self.is_alive = False
+
+    def set_dsp_source(self, dsp_source):
+        if dsp_source not in [SOURCE_AUTO, SOURCE_AUX, SOURCE_RPI, SOURCE_SPDIF]:
+            log.err('Unsupported source')
+            return -1
+        with i2c_lock:
+            DSP.write_param(DSP_SOURCE_SELECT, dsp_source)
+            time.sleep(0.1)
+            _source = DSP.read_back(_DSP_SOURCE_SELECT[0], _DSP_SOURCE_SELECT[0])
+            self._dsp_source = _source
+            return _source
+
+    def get_dsp_source(self):
+        with i2c_lock:
+            _source = DSP.read_back(_DSP_SOURCE_SELECT[0], _DSP_SOURCE_SELECT[0])
+        self._dsp_source = _source
+        return _source
 
 
 if __name__ == '__main__':

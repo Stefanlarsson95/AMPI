@@ -7,18 +7,33 @@ from modules.logger import *
 from hardware import sigmaimporter
 from threading import Lock
 
-log = Log(LOGLEVEL.INFO)
+# Setup
+log = Log()
+_path = str(pathlib.Path().absolute())
+_root_path = _path.rsplit('/', 1)[0]
+i2c_lock = Lock()
 
 """
 General
 """
-_path = str(pathlib.Path().absolute())
-_root_path = _path.rsplit('/', 1)[0]
-INIT_SOURCE = 'RPI'
-
+emit_volume = False
+emit_track = False
+AMP_ALWAYS_ON = False
 standby = False
+log.set_level(LOGLEVEL.INFO)
 
-i2s_lock = Lock()
+"""
+Sources
+"""
+SOURCE_AUX = 0
+SOURCE_RPI = 1
+SOURCE_SPDIF = 2
+SOURCE_AUTO = 3
+INIT_SOURCE = SOURCE_AUTO
+source = INIT_SOURCE
+RPI_ENABLED = True
+AUX_ENABLED = True
+SPDIF_ENABLED = True
 
 """
 GPIO setup
@@ -28,6 +43,7 @@ GPIO.setmode(GPIO.BCM)
 
 # Input
 ACTIVITY_PIN = 0
+SPDIF_ENABLE_PIN = 1
 ROT_ENTER_PIN = 5
 ROT_A_PIN = 6
 SPDIF_LOCK_PIN = 7
@@ -39,9 +55,9 @@ VOL_UP_PIN = 15
 VOL_DN_PIN = 16
 CHASSIS_FAN_PIN = 12
 AMPLIFIER_FAN_PIN = 13
+PWR_EN_12V_PIN = 23
 AMPLIFIER_FAN_TAC_PIN = 25
 AMPLIFIER_ENABLE_PIN = 27
-PWR_EN_12V_PIN = 23
 
 # Setup GPIO
 #GPIO .setwarnings(False)
@@ -51,7 +67,8 @@ GPIO.setup([PWR_EN_12V_PIN,
             DPS_WP_PIN,
             CHASSIS_FAN_PIN,
             AMPLIFIER_FAN_PIN,
-            AMPLIFIER_ENABLE_PIN], GPIO.OUT)  # Setup outputs
+            AMPLIFIER_ENABLE_PIN,
+            SPDIF_ENABLE_PIN], GPIO.OUT)  # Setup outputs
 GPIO.setwarnings(True)
 GPIO.setup([SPDIF_LOCK_PIN,
             ACTIVITY_PIN], GPIO.IN)                    # Setup inputs
@@ -107,7 +124,7 @@ oled.volumeControlDisabled = False
 oled.standby = False
 
 """
-Sigma studio register config
+Sigma studio registers 
 """
 
 _dsp_reg_adr = dsp_reg.get_reg(xml_path='/home/volumio/AMPI/SigmaStudio/AMPI_1.xml')
@@ -116,6 +133,8 @@ VOLUME_READ_REG = _dsp_reg_adr.get('master_volume.vol_redback')
 AUX_DETECT_REG = _dsp_reg_adr.get('source_select.aux_signal_detect')
 RPI_DETECT_REG = _dsp_reg_adr.get('source_select.rpi_signal_detect')
 SPDIF_DETECT_REG = _dsp_reg_adr.get('source_select.spdif_signal_detect')
+DSP_SOURCE_SELECT = _dsp_reg_adr.get('source_select.Input_selector')
+
 
 """
 DSP conf

@@ -24,7 +24,7 @@ from threading import Thread
 from subprocess import run
 from modules.rotaryencoder import RotaryEncoder
 from modules.pushbutton import PushButton
-from modules import volume
+from modules import volumecontroller
 from modules.display import *
 from modules.logger import *
 from modules.Input_selector import InputSelector
