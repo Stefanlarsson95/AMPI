@@ -20,20 +20,21 @@ emit_volume = False
 emit_track = False
 AMP_ALWAYS_ON = False
 standby = False
+mute = False
 log.set_level(LOGLEVEL.INFO)
 
 """
 Sources
 """
+RPI_ENABLED = True
+AUX_ENABLED = True
+SPDIF_ENABLED = False
 SOURCE_AUX = 0
 SOURCE_RPI = 1
 SOURCE_SPDIF = 2
 SOURCE_AUTO = 3
 INIT_SOURCE = SOURCE_AUTO
 source = INIT_SOURCE
-RPI_ENABLED = True
-AUX_ENABLED = True
-SPDIF_ENABLED = True
 
 """
 GPIO setup
@@ -69,6 +70,10 @@ GPIO.setup([PWR_EN_12V_PIN,
             AMPLIFIER_FAN_PIN,
             AMPLIFIER_ENABLE_PIN,
             SPDIF_ENABLE_PIN], GPIO.OUT)  # Setup outputs
+vol_up = GPIO.PWM(VOL_UP_PIN, 1000)  # Setup PWM outputs
+vol_dn = GPIO.PWM(VOL_DN_PIN, 1000)  # Setup PWM
+vol_up.start(0)
+vol_dn.start(0)
 GPIO.setwarnings(True)
 GPIO.setup([SPDIF_LOCK_PIN,
             ACTIVITY_PIN], GPIO.IN)                    # Setup inputs

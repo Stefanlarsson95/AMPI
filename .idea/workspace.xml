@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d4f1d42-ec0e-4bd6-aa58-8157da275fb6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/AMPIold.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AMPI.py" beforeDir="false" afterPath="$PROJECT_DIR$/AMPI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AMPI_v3.py" beforeDir="false" afterPath="$PROJECT_DIR$/AMPI_v3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AMPI_v3.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cfg.py" beforeDir="false" afterPath="$PROJECT_DIR$/cfg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardware/PINOUT.md" beforeDir="false" afterPath="$PROJECT_DIR$/hardware/PINOUT.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardware/adau1701.py" beforeDir="false" afterPath="$PROJECT_DIR$/hardware/adau1701.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/Input_selector.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/Input_selector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/shared.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/shared.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/volume.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/volumecontroller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/volumecontroller.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/volumecontroller.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,8 +55,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Input_selector">
-    <configuration name="AMPI_v3" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.volumecontroller">
+    <configuration name="AMPI" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="AMPI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -72,7 +69,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/AMPI_v3.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/AMPI.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -170,17 +167,17 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.AMPI_v3" />
       <item itemvalue="Python.pushconfig" />
       <item itemvalue="Python.volume" />
       <item itemvalue="Python.Input_selector" />
       <item itemvalue="Python.volumecontroller" />
+      <item itemvalue="Python.AMPI" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Input_selector" />
-        <item itemvalue="Python.AMPI_v3" />
         <item itemvalue="Python.volumecontroller" />
+        <item itemvalue="Python.AMPI" />
+        <item itemvalue="Python.Input_selector" />
         <item itemvalue="Python.pushconfig" />
         <item itemvalue="Python.volume" />
       </list>
@@ -200,7 +197,7 @@
       <workItem from="1599391022168" duration="45350000" />
       <workItem from="1599571226264" duration="10000" />
       <workItem from="1599576798536" duration="14459000" />
-      <workItem from="1599921014121" duration="12192000" />
+      <workItem from="1599921014121" duration="24841000" />
     </task>
     <servers />
   </component>
@@ -225,13 +222,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/modules/Input_selector.py</url>
-          <line>97</line>
+          <line>95</line>
           <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/modules/Input_selector.py</url>
-          <line>60</line>
-          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -242,25 +234,15 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="oled.volume" language="Python" />
-        <watch expression="t_dif" language="Python" />
-        <watch expression="self._true_vol" language="Python" />
-        <watch expression="0 &lt; self._vol_error" language="Python" />
-        <watch expression="DSP.read_back(_SPDIF_DETECT_REG[0], _SPDIF_DETECT_REG[1])" language="Python" />
-        <watch expression="bool(DSP.read_back(_SPDIF_DETECT_REG[0], _SPDIF_DETECT_REG[1])) and self.spdif_lock" language="Python" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AMPI$volume.coverage" NAME="volume Coverage Results" MODIFIED="1599584275499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/AMPI$activety_detect.coverage" NAME="activety_detect Coverage Results" MODIFIED="1599395731494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
-    <SUITE FILE_PATH="coverage/AMPI$Input_selector.coverage" NAME="Input_selector Coverage Results" MODIFIED="1600010660010" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
+    <SUITE FILE_PATH="coverage/AMPI$Input_selector.coverage" NAME="Input_selector Coverage Results" MODIFIED="1600010736811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/AMPI$FanControll.coverage" NAME="FanControll Coverage Results" MODIFIED="1599579847398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
-    <SUITE FILE_PATH="coverage/AMPI$volumecontroller.coverage" NAME="volumecontroller Coverage Results" MODIFIED="1600008914392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
-    <SUITE FILE_PATH="coverage/AMPI$AMPI.coverage" NAME="AMPI Coverage Results" MODIFIED="1599399196745" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AMPI$volumecontroller.coverage" NAME="volumecontroller Coverage Results" MODIFIED="1600023425265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/AMPI$pushconfig.coverage" NAME="pushconfig Coverage Results" MODIFIED="1600008400542" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hardware" />
-    <SUITE FILE_PATH="coverage/AMPI$AMPI_v3.coverage" NAME="AMPI_v3 Coverage Results" MODIFIED="1600010561709" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AMPI$AMPI.coverage" NAME="AMPI Coverage Results" MODIFIED="1600011831678" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AMPI$AMPI_v3.coverage" NAME="AMPI_v3 Coverage Results" MODIFIED="1600011364116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
