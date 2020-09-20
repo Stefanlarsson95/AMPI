@@ -93,7 +93,7 @@ def SetState(state):
                                 label='------ Music Library ------')
     elif oled.state == STATE_CLOCK:
         oled.modal = ClockScreen(oled.HEIGHT, oled.WIDTH, font, font2, hugefontaw)
-        oled.modal.SetPlayingIcon(oled.playState, 1)
+        oled.modal.SetPlayingIcon(oled.playState)
 
 
 def _receive_thread():

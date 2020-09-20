@@ -5,7 +5,7 @@ Main AMPI code
 """
 
 from __future__ import unicode_literals
-
+from cfg import *
 import json
 import sys, atexit, signal
 from socketIO_client import SocketIO
@@ -19,7 +19,7 @@ from modules.volumecontroller import *
 from modules.display import *
 from modules.Input_selector import InputSelector
 from hardware.pushconfig import write_device as Write_DSP
-from cfg import *
+GPIO.setmode(GPIO.BCM)
 
 """
 Startup initializer
@@ -30,12 +30,12 @@ Startup initializer
 # LeftKnob_Rotation.setCallback(LeftKnob_RotaryEvent)
 oled.clear()
 
-if not GPIO.input(SPDIF_LOCK_PIN):
+if not GPIO.input(SPDIF_LOCK_PIN) and not AMP_ALWAYS_OFF:
     GPIO.output(PWR_EN_12V_PIN, 1)
     sleep(0.1)
 else:
     GPIO.output(PWR_EN_12V_PIN, 0)
-GPIO.output(AMPLIFIER_ENABLE_PIN, 1)  # enable amplifier for startup melody
+#GPIO.output(AMPLIFIER_ENABLE_PIN, 1)  # enable amplifier for startup melody
 
 RightKnob_Push = PushButton(ROT_ENTER_PIN, max_time=1)
 RightKnob_Push.setCallback(RightKnob_PushEvent)
@@ -84,14 +84,14 @@ def main():
 
         # if inactive, set in standby
         if not oled.standby and oled.playState in ['stop', 'pause']:
+            oled.standby = True
             oled.state_default = STATE_CLOCK
             oled.stateTimeout = 0.1
-            oled.standby = True
 
         if oled.standby \
                 and not emit_volume \
                 and not emit_track \
-                and not GPIO.input(ACTIVITY_PIN) \
+                and True or not GPIO.input(ACTIVITY_PIN) \
                 and oled.playState in ['stop', 'pause']:
             oled.update_interval = STANDBY_UPDATE_INTERVAL
             sleep(1)
@@ -130,18 +130,18 @@ def main():
 
 
 def shutdown(emit_shutdown=False):
-    try:
-        oled.update_interval = 0.01
-        show_logo("shutdown.ppm", oled)
-        oled.stateTimeout = 10
-        sleep(2)
-        input_selector.stop()
-        oled.cleanup()
-        oled.update_interval = 0
-        print('\n')
-        log.info("System exit ok")
-    except Exception as err:
-        log.err("Shutdown Error: " + str(err))
+    #try:
+    oled.update_interval = -1  # Stop updating screen
+    oled.stateTimeout = 10
+    show_logo("shutdown.ppm", oled)
+    sleep(2)
+    input_selector.stop()
+    oled.cleanup()
+    oled.update_interval = 0
+    print('\n')
+    log.info("System exit ok")
+    #except Exception as err:
+    #    log.err("Shutdown Error: " + str(err))
 
     if emit_shutdown:
         pass

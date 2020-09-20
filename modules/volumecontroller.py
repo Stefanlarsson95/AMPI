@@ -2,11 +2,14 @@
 Todo I2C guard to only read if ADAU1701 is confirmed confgured.
 '''
 
-from cfg import *
 from hardware import adau1701 as DSP
 from threading import Thread
 import time
 from socketIO_client import SocketIO
+from cfg import *
+
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
 
 # fixme combine hi/lo addressing to one
 _ADD_VOL_READBACK_HIGH = VOLUME_READ_REG >> 8
@@ -178,7 +181,7 @@ class VolumeController:
             # Manual volume change
             if _hw_vol_activity and self._volume_master in [None, 'Manual']:
                 vol = self._get_hw_volume()
-                if vol != self._req_vol:  # Volume change
+                if abs(vol - self._req_vol) > 1:  # Volume change
                     self._req_vol = vol
                     self.emit_volume = True
                 self._volume_master = (None, 'Manual')[self.emit_volume]  # Master is Manual until no longer emit volume
@@ -190,6 +193,8 @@ class VolumeController:
                     # unable to change true volume
                     pass
                     # self._req_vol = self._true_vol
+            else:
+                self._volume_master = None
 
             # sleep for time proportional to update frequency of for 1 sec if in standby
             t_sleep = (max(1 / self._update_freq - dt, 0.01), 1)[standby]
@@ -234,16 +239,27 @@ class VolumeController:
 
 if __name__ == '__main__':
     GPIO.output(SPDIF_ENABLE_PIN, 1)
-    vol_request = 10
+    vol_request = 20
     VOL = VolumeController().start()
     VOL.set_volume(vol_request, source='master', timeout=10)
-    # volumioIO = SocketIO(volumio_host, volumio_port)
+    volumioIO = SocketIO(volumio_host, volumio_port)
+
+    def vol_ctrl(data):
+        vol = data.get('volume', -1)
+        if vol != -1:
+            VOL.set_volume(vol, 'Volumio', timeout=10)
+
+    def _receive_thread():
+        volumioIO.wait()
+    receive_thread = Thread(target=_receive_thread, name="Receiver").start()
+    volumioIO.on('pushState', vol_ctrl)
     try:
         while True:
             vol = int(VOL._true_vol)
             print(vol)
-            # volumioIO.emit('volume', vol)
-            VOL.emit_volume = False
+            if VOL.emit_volume:
+                volumioIO.emit('volume', vol)
+                VOL.emit_volume = False
             time.sleep(0.1)
     except KeyboardInterrupt:
         pass

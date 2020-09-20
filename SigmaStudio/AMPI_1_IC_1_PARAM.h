@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\StefanX1\PycharmProjects\AMPI\SigmaStudio\AMPI_1_IC_1_PARAM.h
  *
- * Created:        Monday, August 24, 2020 9:51:56 PM
+ * Created:        Saturday, September 19, 2020 9:45:52 AM
  * Description:    AMPI_1:IC 1 parameter RAM definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -164,8 +164,8 @@
 #define VALUE_SIGNALDETECTION1_COUNTERDOWN             SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.0001)
 #define TYPE_SIGNALDETECTION1_COUNTERDOWN              SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_SIGNALDETECTION1_THRESHOLD                22
-#define FIXPT_SIGNALDETECTION1_THRESHOLD               0x000020C4
-#define VALUE_SIGNALDETECTION1_THRESHOLD               SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.001)
+#define FIXPT_SIGNALDETECTION1_THRESHOLD               0x0000679F
+#define VALUE_SIGNALDETECTION1_THRESHOLD               SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.00316227766016838)
 #define TYPE_SIGNALDETECTION1_THRESHOLD                SIGMASTUDIOTYPE_FIXPOINT
 
 /* Module ZeroComp1 - Zero Comparator*/
@@ -792,16 +792,16 @@
 #define COUNT_EQ_BYPASS                                1
 #define DEVICE_EQ_BYPASS                               "IC1"
 #define ADDR_EQ_BYPASS_STEREOSWSLEW                    157
-#define FIXPT_EQ_BYPASS_STEREOSWSLEW                   0x00000000
-#define VALUE_EQ_BYPASS_STEREOSWSLEW                   SIGMASTUDIOTYPE_INTEGER_CONVERT(0)
+#define FIXPT_EQ_BYPASS_STEREOSWSLEW                   0x00000001
+#define VALUE_EQ_BYPASS_STEREOSWSLEW                   SIGMASTUDIOTYPE_INTEGER_CONVERT(1)
 #define TYPE_EQ_BYPASS_STEREOSWSLEW                    SIGMASTUDIOTYPE_INTEGER
 
 /* Module Loudness L&H Ext1 - Loudness (Low & Hi) External Ctrl*/
 #define COUNT_LOUDNESSLHEXT1                           9
 #define DEVICE_LOUDNESSLHEXT1                          "IC1"
 #define ADDR_LOUDNESSLHEXT1_LEVEL0                     158
-#define FIXPT_LOUDNESSLHEXT1_LEVEL0                    0x009C28F5
-#define VALUE_LOUDNESSLHEXT1_LEVEL0                    SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.22)
+#define FIXPT_LOUDNESSLHEXT1_LEVEL0                    0x00EE147A
+#define VALUE_LOUDNESSLHEXT1_LEVEL0                    SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.86)
 #define TYPE_LOUDNESSLHEXT1_LEVEL0                     SIGMASTUDIOTYPE_FIXPOINT
 #define ADDR_LOUDNESSLHEXT1_LEVEL1                     159
 #define FIXPT_LOUDNESSLHEXT1_LEVEL1                    0x00F851EB
@@ -840,8 +840,8 @@
 #define COUNT_LOUDNESSBYPASS                           1
 #define DEVICE_LOUDNESSBYPASS                          "IC1"
 #define ADDR_LOUDNESSBYPASS_STEREOSWSLEW               166
-#define FIXPT_LOUDNESSBYPASS_STEREOSWSLEW              0x00000001
-#define VALUE_LOUDNESSBYPASS_STEREOSWSLEW              SIGMASTUDIOTYPE_INTEGER_CONVERT(1)
+#define FIXPT_LOUDNESSBYPASS_STEREOSWSLEW              0x00000000
+#define VALUE_LOUDNESSBYPASS_STEREOSWSLEW              SIGMASTUDIOTYPE_INTEGER_CONVERT(0)
 #define TYPE_LOUDNESSBYPASS_STEREOSWSLEW               SIGMASTUDIOTYPE_INTEGER
 
 /* Module SW vol 1 - Single slew ext vol*/

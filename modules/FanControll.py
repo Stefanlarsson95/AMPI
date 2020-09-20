@@ -27,7 +27,8 @@ chassis_fan = GPIO.PWM(CHASSIS_FAN_PIN, 10)
 
 def main():
     GPIO.output(23, 1)
-    amp_fan.start(80)
+    GPIO.output(1, 0)
+    amp_fan.start(50)
     chassis_fan.start(80)
     #GPIO.output(CHASSIS_FAN_PIN, 1)
     #GPIO.output(AMPLIFIER_FAN_PIN, 1)

@@ -96,8 +96,8 @@
                 <Link pin="O_C368_A0_P3_out" dir="out" link="Link26" />
             </Algorithm>
             <Algorithm name="MultCtrlDelGrowAlg1" friendlyname="Del_Grow" cell="AuxADC.activety_delay ">
-                <Link pin="I_C406_A0_P1_in" dir="in" link="Link52" />
-                <Link pin="O_C406_A0_P2_out" dir="out" link="Link0" />
+                <Link pin="I_C244_A0_P1_in" dir="in" link="Link52" />
+                <Link pin="O_C244_A0_P2_out" dir="out" link="Link1" />
             </Algorithm>
             <Algorithm name="AdderAlg5" friendlyname="Signal Mix" cell="source_select.Add2_4 ">
                 <Link pin="I_C445_A0_P2_in" dir="in" link="Link56" />
@@ -120,9 +120,9 @@
                 <Link pin="O_C273_A0_P5_out" dir="out" link="Link53" />
             </Algorithm>
             <Algorithm name="SubAlg1" friendlyname="Subtract" cell="AuxADC.Sub1 ">
-                <Link pin="I_C409_A0_P2_in" dir="in" link="Link52" />
-                <Link pin="I_C409_A0_P3_in" dir="in" link="Link0" />
-                <Link pin="O_C409_A0_P1_out" dir="out" link="Link2" />
+                <Link pin="I_C248_A0_P2_in" dir="in" link="Link52" />
+                <Link pin="I_C248_A0_P3_in" dir="in" link="Link1" />
+                <Link pin="O_C248_A0_P1_out" dir="out" link="Link0" />
             </Algorithm>
             <Algorithm name="ZeroCompareAlg3" friendlyname="ZeroCompare" cell="source_select.ZeroComp1_3 ">
                 <Link pin="I_C780_A0_P1_in" dir="in" link="Link12" />
@@ -137,8 +137,8 @@
                 <Link pin="O_C428_A0_P1_out" dir="out" link="Link10" />
             </Algorithm>
             <Algorithm name="SignalDetectAlg1" friendlyname="Signal Detection Algorihm" cell="AuxADC.Signal Detection1 ">
-                <Link pin="I_C729_A0_P2_in" dir="in" link="Link2" />
-                <Link pin="O_C729_A0_P1_out" dir="out" link="Link3" />
+                <Link pin="I_C256_A0_P2_in" dir="in" link="Link0" />
+                <Link pin="O_C256_A0_P1_out" dir="out" link="Link4" />
             </Algorithm>
             <Algorithm name="ZeroCompareAlg1" friendlyname="ZeroCompare" cell="source_select.ZeroComp1 ">
                 <Link pin="I_C760_A0_P1_in" dir="in" link="Link10" />
@@ -153,8 +153,8 @@
                 <Link pin="O_C480_A0_P2_out" dir="out" link="Link23" />
             </Algorithm>
             <Algorithm name="ZeroCompareAlg4" friendlyname="ZeroCompare" cell="AuxADC.ZeroComp1_4 ">
-                <Link pin="I_C750_A0_P1_in" dir="in" link="Link3" />
-                <Link pin="O_C750_A0_P2_out" dir="out" link="Link4" />
+                <Link pin="I_C306_A0_P1_in" dir="in" link="Link4" />
+                <Link pin="O_C306_A0_P2_out" dir="out" link="Link3" />
             </Algorithm>
             <Algorithm name="MultAlg7" friendlyname="Multiplication" cell="master_volume.X2_2 ">
                 <Link pin="I_C286_A0_P1_in" dir="in" link="Link53" />
@@ -179,8 +179,8 @@
                 <Link pin="O_C351_A0_P3_out" dir="out" link="Link54" />
             </Algorithm>
             <Algorithm name="ReadBackAlg6" friendlyname="Data Capture Register Readback" cell="AuxADC.activety_readback ">
-                <Link pin="I_C451_A0_P1_in" dir="in" link="Link4" />
-                <Link pin="O_C451_A0_P2_out" dir="out" link="Link1" />
+                <Link pin="I_C303_A0_P1_in" dir="in" link="Link3" />
+                <Link pin="O_C303_A0_P2_out" dir="out" link="Link2" />
             </Algorithm>
             <Algorithm name="LogicAlgst1" friendlyname="LOGICst" cell="source_select.Logic1 ">
                 <Link pin="I_C916_A0_P1_in" dir="in" link="Link20" />
@@ -197,7 +197,7 @@
                 <Link pin="O_C839_A0_P2_out" dir="out" link="Link17" />
             </Algorithm>
             <Algorithm name="GPOAlg1" friendlyname="General Purpose Output 100" cell="AuxADC.activety_pin ">
-                <Link pin="I_C459_A0_P1_in" dir="in" link="Link1" />
+                <Link pin="I_C296_A0_P1_in" dir="in" link="Link2" />
             </Algorithm>
             <Algorithm name="MultAlg4" friendlyname="Multiplication" cell="source_select.X1_2 ">
                 <Link pin="I_C1011_A0_P1_in" dir="in" link="Link63" />

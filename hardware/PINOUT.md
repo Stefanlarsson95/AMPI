@@ -8,14 +8,14 @@ Pin:  Usage | Pin:  Usage
 1: 3.3V|2: 5VDC|
 3: SDA|4: 5VDC Power in|
 5: SCL|6: GND|
-7: Amp Temp|8: DSP rest (NC!)|
+7: Amp Temp|8: DSP reset (NC!)|
 9: GND|10(15): Motor A |
 11(17):(IR) |12: reserved_pwm0|
 13(27):Amp_En |14: GND|
 15:Fan B RPM |16(23): 12V EN|
 17: 3.3V VolPot|18: I2S_BCLK|
 19:SPI_MOSI|20:GND|
-21:N/A|22(25):|
+21:(9)N/A|22(25):|
 23:SPI_CLK|24: (8)|
 25:GND|26: S/PDIF LOCK(INV)| 
 27: (0) DSP_act|28(1): SPDIF EN|

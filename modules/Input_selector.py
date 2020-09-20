@@ -57,17 +57,17 @@ class InputSelector:
                 pass
                 # self.set_dsp_source(self.source)
 
-            en_spdif = AMP_ALWAYS_ON
+            en_spdif = AMP_ALWAYS_OFF
             if self.source == SOURCE_AUTO:
                 en_spdif = not _aux and not _rpi and _spdif
             elif self.source == SOURCE_SPDIF:
                 en_spdif = _spdif
 
             GPIO.output(PWR_EN_12V_PIN, self.spdif_lock)  # activate 12v if spdif lock. fixme temporary
-            GPIO.output(SPDIF_ENABLE_PIN, self.spdif_lock)  # activate spdif relay if spdif lock. fixme temporary
+            GPIO.output(SPDIF_ENABLE_PIN, en_spdif)  # activate spdif relay if spdif lock. fixme temporary
 
             # amp enable
-            if _aux or _rpi or _spdif:
+            if not AMP_ALWAYS_OFF and (_aux or _rpi or _spdif):
                 if not self._any_signal:
                     self._any_signal = True
                     self._t_first_signal = time.perf_counter()

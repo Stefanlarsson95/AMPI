@@ -16,12 +16,20 @@ i2c_lock = Lock()
 """
 General
 """
+AMP_ALWAYS_OFF = False
 emit_volume = False
 emit_track = False
-AMP_ALWAYS_ON = False
 standby = False
 mute = False
 log.set_level(LOGLEVEL.INFO)
+
+"""
+Temp control
+"""
+AMP_TEMP_TARGET = 70
+CPU_TEMP_TARGET = 70
+CHASSIS_FAN_MAX_RPM = 5000
+AMP_FAN_MAX_RPM = 4500
 
 """
 Sources
@@ -40,28 +48,29 @@ source = INIT_SOURCE
 GPIO setup
 """
 GPIO.setmode(GPIO.BCM)
-#GPIO.setwarnings(False)
+# GPIO.setwarnings(False)
 
 # Input
 ACTIVITY_PIN = 0
-SPDIF_ENABLE_PIN = 1
 ROT_ENTER_PIN = 5
 ROT_A_PIN = 6
 SPDIF_LOCK_PIN = 7
+AMPLIFIER_FAN_TACH_PIN = 22
+CHASSIS_FAN_TACH_PIN = 25
 ROT_B_PIN = IR_PIN = 26
 
 # Output conf
+SPDIF_ENABLE_PIN = 1
 DPS_WP_PIN = 14
 VOL_UP_PIN = 15
 VOL_DN_PIN = 16
 CHASSIS_FAN_PIN = 12
 AMPLIFIER_FAN_PIN = 13
 PWR_EN_12V_PIN = 23
-AMPLIFIER_FAN_TAC_PIN = 25
 AMPLIFIER_ENABLE_PIN = 27
 
-# Setup GPIO
-#GPIO .setwarnings(False)
+# Setup Outputs
+# GPIO .setwarnings(False)
 GPIO.setup([PWR_EN_12V_PIN,
             VOL_DN_PIN,
             VOL_UP_PIN,
@@ -72,15 +81,21 @@ GPIO.setup([PWR_EN_12V_PIN,
             SPDIF_ENABLE_PIN], GPIO.OUT)  # Setup outputs
 vol_up = GPIO.PWM(VOL_UP_PIN, 1000)  # Setup PWM outputs
 vol_dn = GPIO.PWM(VOL_DN_PIN, 1000)  # Setup PWM
+amp_fan = GPIO.PWM(AMPLIFIER_FAN_PIN, 10000)  # Setup PWM
+chassis_fan = GPIO.PWM(CHASSIS_FAN_PIN, 1000)  # Setup PWM
 vol_up.start(0)
 vol_dn.start(0)
+amp_fan.start(0)
+chassis_fan.start(0)
+# Setup Inputs
 GPIO.setwarnings(True)
 GPIO.setup([SPDIF_LOCK_PIN,
-            ACTIVITY_PIN], GPIO.IN)                    # Setup inputs
-GPIO.output([VOL_UP_PIN,
-             VOL_DN_PIN,
-             AMPLIFIER_ENABLE_PIN,
-             PWR_EN_12V_PIN], 0)                    # Ensure volume pot is not moved
+            ROT_A_PIN,
+            ROT_B_PIN,
+            ROT_ENTER_PIN], GPIO.IN)
+GPIO.setup([ACTIVITY_PIN], GPIO.IN, GPIO.PUD_DOWN)
+GPIO.setup(CHASSIS_FAN_TACH_PIN, GPIO.IN, GPIO.PUD_UP)
+GPIO.setup(AMPLIFIER_FAN_TACH_PIN, GPIO.IN, GPIO.PUD_UP)
 
 """
 OlED/UI
@@ -89,7 +104,7 @@ VOLUMIO_HOST = volumio_host = 'localhost'
 VOLUMIO_PORT = volumio_port = 3000
 VOLUME_DT = 5  # volume adjustment step
 
-UPDATE_INTERVAL = 1/15  #  1/fps
+UPDATE_INTERVAL = 1 / 15  # 1/fps
 STANDBY_UPDATE_INTERVAL = 1
 PIXEL_SHIFT_TIME = 120  # time between picture position shifts in sec.
 
@@ -139,7 +154,6 @@ AUX_DETECT_REG = _dsp_reg_adr.get('source_select.aux_signal_detect')
 RPI_DETECT_REG = _dsp_reg_adr.get('source_select.rpi_signal_detect')
 SPDIF_DETECT_REG = _dsp_reg_adr.get('source_select.spdif_signal_detect')
 DSP_SOURCE_SELECT = _dsp_reg_adr.get('source_select.Input_selector')
-
 
 """
 DSP conf
