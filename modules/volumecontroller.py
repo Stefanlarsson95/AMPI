@@ -5,10 +5,12 @@ Todo I2C guard to only read if ADAU1701 is confirmed confgured.
 from hardware import adau1701 as DSP
 from threading import Thread
 import time
+import numpy as np
 from socketIO_client import SocketIO
 from cfg import *
 
 import RPi.GPIO as GPIO
+
 GPIO.setmode(GPIO.BCM)
 
 # fixme combine hi/lo addressing to one
@@ -34,20 +36,18 @@ class VolumeController:
         self._volume_master = None  # Volume source master, Only master can change volume until target is met
         self._vol_event_timeout = 5
         self._update_freq = 10  # tread update frequency
-        self._vol_hysteres = 0  # volume error margin
         self._pwr_state = None
         self._vol_error = 0
-        self._true_vol = self._get_hw_volume()
+        self.true_vol = self._get_hw_volume()
         self._new_reading = False
+        GPIO.setmode(GPIO.BCM)
 
-    def start(self, daemon=True):
+    def start(self):
         """
         Start Volume controller Thread
-        :param daemon: Run as daemon, def True
         :return: Self
         """
-        t = Thread(target=self._vol_controller, name='volume controller thread')
-        t.daemon = daemon
+        t = Thread(target=self._vol_controller, name='volume controller thread', daemon=True)
         t.start()
         return self
 
@@ -114,8 +114,8 @@ class VolumeController:
         if self._new_reading:
             self._t_last_dsp_read = t_now
             with i2c_lock:  # ensure safe i2s read
-                self._true_vol = float(DSP.read_back(_ADD_VOL_READBACK_HIGH, _ADD_VOL_READBACK_LOW)) * 100
-        return self._true_vol
+                self.true_vol = float(DSP.read_back(_ADD_VOL_READBACK_HIGH, _ADD_VOL_READBACK_LOW)) * 100
+        return self.true_vol
 
     def _set_hw_volume(self, vol=None, timeout=None):
         """
@@ -124,57 +124,62 @@ class VolumeController:
         :param vol: Requested volume
         :return: True if target is within margin, else False
         """
-        if vol is None:
-            vol = self._req_vol
+
+        if vol:
+            self._req_vol = vol
+
         if timeout is None:
             timeout = self._vol_event_timeout
         t_start = time.perf_counter()
-
+        I_err = 0
         # while not timed out, try to set volume
         while t_start + timeout > time.perf_counter():
-            vol_now = self._get_hw_volume()
+
+            vol_req = self._req_vol
+            vol_true = self._get_hw_volume()
             if not self._new_reading:
                 continue
-            vol_err = abs(vol - vol_now)
-            if int(vol_err) <= self._vol_hysteres:  # target met
-                # Error is within margin
+            abs_err = abs(vol_req - vol_true)
+            if abs_err < 0.5:  # target within round of
                 self._hw_vol_stop()
-                vol_now = self._get_hw_volume()
-                self._vol_error = abs(vol - vol_now)
+                self._vol_error = abs_err
                 return True
 
-            # increase volume of to low or decrease if to high
-            err = vol - vol_now
-            sign = (-1, 1)[err > 0]
-            change = sign * max((abs(err) * 5, 100)[abs(err) > 20], 10)  # todo imp integral action
+            # increase volume if to low or decrease if to high, duh
+            err = vol_req - vol_true
+            # change = np.sign(err) * max((abs(err) * 5, 100)[abs(err) > 20], 10)  # todo imp integral action
+            change = np.clip(err * 10 + I_err * 5, -100, 100)
             self._hw_vol_move(change=change)
+            I_err += err
+            print(I_err)
 
-            t_sleep = max(0.01 * vol_err, 0.5)
-            time.sleep(t_sleep)
-            self._hw_vol_stop()
+            # t_sleep = max(0.01 * abs_err, 0.5)
+            # time.sleep(t_sleep)
+            # self._hw_vol_stop()
 
             # Ensure that error is decreasing
 
-            if 0 < int(self._vol_error) <= int(vol_err):
+            if 0 < self._vol_error < abs_err:
                 # Volume error not improving
-                log.err('HW-vol error not decreasing!')
                 return False
             else:
                 t_start = time.perf_counter()
-            self._vol_error = vol_err
+            self._vol_error = abs_err
         log.err('HW-vol timeout')
+        self._hw_vol_stop()
         return False
 
     def _vol_controller(self):
+        global emit_shutdown
         t_last_control = time.perf_counter()
         self.is_alive = True
-        while self.is_alive:
+        while self.is_alive and not emit_shutdown:
             # Update time variables
             _t_now = time.perf_counter()
             dt = _t_now - t_last_control
             t_last_control = _t_now
 
-            # Get hw activity status
+            # Get hw activity
             _hw_vol_activity = GPIO.input(ACTIVITY_PIN)
 
             # Handle volume change:
@@ -187,13 +192,16 @@ class VolumeController:
                 self._volume_master = (None, 'Manual')[self.emit_volume]  # Master is Manual until no longer emit volume
 
             # Software volume change
-            elif self._req_vol != int(self._true_vol):
-                self.emit_volume = True
-                if not self._set_hw_volume(self._req_vol):
+            elif abs(self._req_vol - self.true_vol) >= 0.5:
+                # self.emit_volume = True
+                if self._set_hw_volume(self._req_vol):
+                    self.emit_volume = True
+                else:
                     # unable to change true volume
-                    pass
+                    log.warn('Unable to set volume')
                     # self._req_vol = self._true_vol
-            else:
+            # Clear master when no more activity
+            elif not _hw_vol_activity:
                 self._volume_master = None
 
             # sleep for time proportional to update frequency of for 1 sec if in standby
@@ -206,18 +214,18 @@ class VolumeController:
         :param change: increase or decrease volume change
         :return: True if successful, else False
         """
-        if not change:
+        if change == 0:
             return
         dt = time.perf_counter() - self._t_last_dsp_read
         # Ensure limit is not reached
-        if change > 0 and self._true_vol < 100 or change < 0 and self._true_vol > 0:
+        if self.true_vol < 100 and change > 0 or change < 0 and self.true_vol > 0:
             if dt < 5:
                 if self._pwr_state is None:
                     self._pwr_state = GPIO.input(PWR_EN_12V_PIN)  # store pwr state
                 speed = abs(change)
-                pin_a, pin_b = ([vol_up, vol_dn], [vol_dn, vol_up])[change < 0]
-                pin_a.ChangeDutyCycle(speed)
-                pin_b.ChangeDutyCycle(0)
+                pin_pos, pin_neg = ([vol_up, vol_dn], [vol_dn, vol_up])[change < 0]
+                pin_pos.ChangeDutyCycle(speed)
+                pin_neg.ChangeDutyCycle(0)
                 GPIO.output(PWR_EN_12V_PIN, GPIO.HIGH)
                 return True
             else:
@@ -228,7 +236,6 @@ class VolumeController:
         return False
 
     def _hw_vol_stop(self):
-        # GPIO.output([VOL_UP_PIN, VOL_DN_PIN], 0)
         vol_up.ChangeDutyCycle(0)
         vol_dn.ChangeDutyCycle(0)
         if self._pwr_state is None:
@@ -238,29 +245,38 @@ class VolumeController:
 
 
 if __name__ == '__main__':
-    GPIO.output(SPDIF_ENABLE_PIN, 1)
-    vol_request = 20
+
+    vol_request = 4
+
+    GPIO.output(SPDIF_ENABLE_PIN, not GPIO.input(SPDIF_LOCK_PIN))
+    time.sleep(0.1)
+
     VOL = VolumeController().start()
     VOL.set_volume(vol_request, source='master', timeout=10)
     volumioIO = SocketIO(volumio_host, volumio_port)
 
+
     def vol_ctrl(data):
         vol = data.get('volume', -1)
+        source = data.get('service', None)
         if vol != -1:
-            VOL.set_volume(vol, 'Volumio', timeout=10)
+            VOL.set_volume(vol, source=source, timeout=10)
+
 
     def _receive_thread():
         volumioIO.wait()
-    receive_thread = Thread(target=_receive_thread, name="Receiver").start()
+
+
+    receive_thread = Thread(target=_receive_thread, name="Receiver", daemon=True).start()
     volumioIO.on('pushState', vol_ctrl)
     try:
         while True:
-            vol = int(VOL._true_vol)
-            print(vol)
+            vol = int(round(VOL.true_vol))
+            print('Volume: ' + str(vol))
             if VOL.emit_volume:
                 volumioIO.emit('volume', vol)
                 VOL.emit_volume = False
             time.sleep(0.1)
     except KeyboardInterrupt:
-        pass
+        VOL.stop()
     GPIO.cleanup()

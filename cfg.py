@@ -19,6 +19,7 @@ General
 AMP_ALWAYS_OFF = False
 emit_volume = False
 emit_track = False
+emit_shutdown = False
 standby = False
 mute = False
 log.set_level(LOGLEVEL.INFO)
@@ -48,7 +49,7 @@ source = INIT_SOURCE
 GPIO setup
 """
 GPIO.setmode(GPIO.BCM)
-# GPIO.setwarnings(False)
+GPIO.setwarnings(False)
 
 # Input
 ACTIVITY_PIN = 0
@@ -81,20 +82,19 @@ GPIO.setup([PWR_EN_12V_PIN,
             SPDIF_ENABLE_PIN], GPIO.OUT)  # Setup outputs
 vol_up = GPIO.PWM(VOL_UP_PIN, 1000)  # Setup PWM outputs
 vol_dn = GPIO.PWM(VOL_DN_PIN, 1000)  # Setup PWM
-amp_fan = GPIO.PWM(AMPLIFIER_FAN_PIN, 10000)  # Setup PWM
-chassis_fan = GPIO.PWM(CHASSIS_FAN_PIN, 1000)  # Setup PWM
+amp_fan = GPIO.PWM(AMPLIFIER_FAN_PIN, 25)  # Setup PWM
+chassis_fan = GPIO.PWM(CHASSIS_FAN_PIN, 100)  # Setup PWM
 vol_up.start(0)
 vol_dn.start(0)
 amp_fan.start(0)
 chassis_fan.start(0)
 # Setup Inputs
 GPIO.setwarnings(True)
-GPIO.setup([SPDIF_LOCK_PIN,
-            ROT_A_PIN,
+GPIO.setup([ROT_A_PIN,
             ROT_B_PIN,
             ROT_ENTER_PIN], GPIO.IN)
 GPIO.setup([ACTIVITY_PIN], GPIO.IN, GPIO.PUD_DOWN)
-GPIO.setup(CHASSIS_FAN_TACH_PIN, GPIO.IN, GPIO.PUD_UP)
+GPIO.setup([CHASSIS_FAN_TACH_PIN, SPDIF_LOCK_PIN], GPIO.IN, GPIO.PUD_UP)
 GPIO.setup(AMPLIFIER_FAN_TACH_PIN, GPIO.IN, GPIO.PUD_UP)
 
 """

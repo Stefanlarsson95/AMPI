@@ -33,17 +33,15 @@ class InputSelector:
 
     def start(self):
         t = Thread(target=self.run)
-        t.daemon = True
-        self.is_alive = True
         t.start()
         return self
 
     def run(self):
-
+        global emit_shutdown
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self._spdif_pin, GPIO.IN, GPIO.PUD_UP)
-
-        while self.is_alive:
+        self.is_alive = True
+        while self.is_alive and not emit_shutdown:
 
             # get source status
             self.spdif_lock = not GPIO.input(self._spdif_pin)  # inverted

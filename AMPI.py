@@ -18,6 +18,7 @@ from modules.pushbutton import PushButton
 from modules.volumecontroller import *
 from modules.display import *
 from modules.Input_selector import InputSelector
+import modules.temp_controller as temp_ctrl
 from hardware.pushconfig import write_device as Write_DSP
 GPIO.setmode(GPIO.BCM)
 
@@ -45,6 +46,9 @@ show_logo("volumio_logo.ppm", oled)
 
 # Push configfile to DSP
 # Write_DSP(DSP_DATA, 2, verbose=False)
+
+# Create temp controller thread
+temp_ctrl.init_temp_controller()
 
 sleep(0.5)
 # run(["aplay --device plughw:CARD=1 ./startup.wav"], shell=True)
@@ -129,8 +133,9 @@ def main():
             sleep(0.025)
 
 
-def shutdown(emit_shutdown=False):
-    #try:
+def shutdown():
+    global emit_shutdown
+    emit_shutdown = True
     oled.update_interval = -1  # Stop updating screen
     oled.stateTimeout = 10
     show_logo("shutdown.ppm", oled)
@@ -138,15 +143,9 @@ def shutdown(emit_shutdown=False):
     input_selector.stop()
     oled.cleanup()
     oled.update_interval = 0
+    GPIO.cleanup()
     print('\n')
     log.info("System exit ok")
-    #except Exception as err:
-    #    log.err("Shutdown Error: " + str(err))
-
-    if emit_shutdown:
-        pass
-        # volumioIO.emit('shutdown')
-        # sleep(60)
 
 
 if __name__ == '__main__':
