@@ -19,6 +19,7 @@ from modules.volumecontroller import *
 from modules.display import *
 from modules.Input_selector import InputSelector
 import modules.temp_controller as temp_ctrl
+from modules import temp_controller as temp_ctrl
 from hardware.pushconfig import write_device as Write_DSP
 GPIO.setmode(GPIO.BCM)
 
@@ -79,6 +80,7 @@ receive_thread.start()
 screen_update_thread.start()
 input_selector = InputSelector().start()
 Volume = VolumeController().start()
+temp_ctrl.init_temp_controller()
 
 
 def main():

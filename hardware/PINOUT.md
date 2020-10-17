@@ -15,8 +15,8 @@ Pin:  Usage | Pin:  Usage
 15:Fan B RPM |16(23): 12V EN|
 17: 3.3V VolPot|18: I2S_BCLK|
 19:SPI_MOSI|20:GND|
-21:(9)N/A|22(25):|
-23:SPI_CLK|24: (8)|
+21:(9)N/A|22(25): btn_prew|
+23:SPI_CLK|24: (8) btn_next|
 25:GND|26: S/PDIF LOCK(INV)| 
 27: (0) DSP_act|28(1): SPDIF EN|
 29(5): Rot_Ent|30: GND|

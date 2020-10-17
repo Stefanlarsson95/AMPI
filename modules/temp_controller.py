@@ -70,7 +70,7 @@ def read_cpu_temp():
 
 
 def init_temp_controller():
-    trd = Thread(target=temp_controller_thread, name='TempCtrlThread', ).start()
+    trd = Thread(target=temp_controller_thread, name='TempCtrlThread', daemon=True).start()
     return trd
 
 

@@ -27,8 +27,8 @@ log.set_level(LOGLEVEL.INFO)
 """
 Temp control
 """
-AMP_TEMP_TARGET = 70
-CPU_TEMP_TARGET = 70
+AMP_TEMP_TARGET = 60
+CPU_TEMP_TARGET = 60
 CHASSIS_FAN_MAX_RPM = 5000
 AMP_FAN_MAX_RPM = 4500
 
@@ -71,7 +71,7 @@ PWR_EN_12V_PIN = 23
 AMPLIFIER_ENABLE_PIN = 27
 
 # Setup Outputs
-# GPIO .setwarnings(False)
+GPIO .setwarnings(False)
 GPIO.setup([PWR_EN_12V_PIN,
             VOL_DN_PIN,
             VOL_UP_PIN,
