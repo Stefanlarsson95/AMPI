@@ -2,19 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d4f1d42-ec0e-4bd6-aa58-8157da275fb6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/ROS.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/ros.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/AMPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AMPI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AMPI.py" beforeDir="false" afterPath="$PROJECT_DIR$/AMPI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cfg.py" beforeDir="false" afterPath="$PROJECT_DIR$/cfg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1.dspproj" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1.dspproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hardware/PINOUT.md" beforeDir="false" afterPath="$PROJECT_DIR$/hardware/PINOUT.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/Input_selector.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/Input_selector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/temp_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/temp_controller.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -230,7 +220,13 @@
       <workItem from="1602595865043" duration="6000" />
       <workItem from="1602944659456" duration="802000" />
       <workItem from="1602947038897" duration="18000" />
-      <workItem from="1602947091665" duration="4357000" />
+      <workItem from="1602947091665" duration="7891000" />
+      <workItem from="1603094853167" duration="6000" />
+      <workItem from="1603395948936" duration="1893000" />
+      <workItem from="1603791959225" duration="60000" />
+      <workItem from="1603830000988" duration="671000" />
+      <workItem from="1603874312958" duration="80000" />
+      <workItem from="1603979610907" duration="1348000" />
     </task>
     <servers />
   </component>
