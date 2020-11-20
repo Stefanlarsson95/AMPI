@@ -34,6 +34,9 @@ _I_case_lim = 75
 amp_fan_speed = -1
 case_fan_speed = -1
 
+amp_fan_lb_threshold = 10
+case_fan_lb_threshold = 10
+
 
 def read_amp_temp():
     """
@@ -103,9 +106,9 @@ def temp_controller_thread():
 
         # get fan speed
         _amp_fan_speed = np.clip(amp_temp_err * _Kp_amp + _I_amp, 0, 100)
-        amp_fan_speed = (0, _amp_fan_speed)[_amp_fan_speed > 50]
+        amp_fan_speed = (0, _amp_fan_speed)[_amp_fan_speed > amp_fan_lb_threshold]
         _case_fan_speed = np.clip(case_temp_err * _Kp_case + _I_case, 0, 100)
-        case_fan_speed = (0, _case_fan_speed)[_case_fan_speed > 50]
+        case_fan_speed = (0, _case_fan_speed)[_case_fan_speed > case_fan_lb_threshold]
 
         amp_fan.ChangeDutyCycle(amp_fan_speed)
         chassis_fan.ChangeDutyCycle(case_fan_speed)
@@ -138,7 +141,8 @@ def temp_ctrl_test(temp, sensor='both'):
 if __name__ == '__main__':
 
     try:
-        temp_ctrl_test(temp=60)
+        GPIO.output(PWR_EN_12V_PIN, 1)
+        temp_ctrl_test(temp=20)
 
     except KeyboardInterrupt:
         GPIO.cleanup()

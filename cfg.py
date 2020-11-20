@@ -62,7 +62,7 @@ ROT_B_PIN = IR_PIN = 26
 
 # Output conf
 SPDIF_ENABLE_PIN = 1
-DPS_WP_PIN = 14
+DSP_RST_PIN = 14
 VOL_UP_PIN = 15
 VOL_DN_PIN = 16
 CHASSIS_FAN_PIN = 12
@@ -75,7 +75,6 @@ GPIO .setwarnings(False)
 GPIO.setup([PWR_EN_12V_PIN,
             VOL_DN_PIN,
             VOL_UP_PIN,
-            DPS_WP_PIN,
             CHASSIS_FAN_PIN,
             AMPLIFIER_FAN_PIN,
             AMPLIFIER_ENABLE_PIN,
@@ -92,7 +91,8 @@ chassis_fan.start(0)
 GPIO.setwarnings(True)
 GPIO.setup([ROT_A_PIN,
             ROT_B_PIN,
-            ROT_ENTER_PIN], GPIO.IN)
+            ROT_ENTER_PIN,
+            DSP_RST_PIN], GPIO.IN)
 GPIO.setup([ACTIVITY_PIN], GPIO.IN, GPIO.PUD_DOWN)
 GPIO.setup([CHASSIS_FAN_TACH_PIN, SPDIF_LOCK_PIN], GPIO.IN, GPIO.PUD_UP)
 GPIO.setup(AMPLIFIER_FAN_TACH_PIN, GPIO.IN, GPIO.PUD_UP)

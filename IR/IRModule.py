@@ -22,11 +22,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import RPi.GPIO as GPIO
-import time, threading 
+import time, threading
 
-class IRRemote:    
+IR_PIN = 26
 
-    def __init__(self, callback = None):        
+
+class IRRemote:
+
+    def __init__(self, callback=None):
 
         self.decoding = False
         self.pList = []
@@ -43,14 +46,14 @@ class IRRemote:
         of the IR remote signal and start the function to look for the
         end of the IR remote signal"""
 
-        self.pList.append(time.time()-self.timer)
-        self.timer = time.time()        
+        self.pList.append(time.time() - self.timer)
+        self.timer = time.time()
 
         if self.decoding == False:
             self.decoding = True
-            check_loop = threading.Thread(name='self.pulse_checker',target=self.pulse_checker)
-            check_loop.start()           
-            
+            check_loop = threading.Thread(name='self.pulse_checker', target=self.pulse_checker)
+            check_loop.start()
+
         return
 
     def pulse_checker(self):
@@ -59,23 +62,23 @@ class IRRemote:
         the callback function."""
 
         while True:
-                check = (time.time()-self.timer)*1000
-                if check > self.checkTime:                    
-                    #print(check)
-                    break
-                time.sleep(0.01)        
+            check = (time.time() - self.timer) * 1000
+            if check > self.checkTime:
+                # print(check)
+                break
+            time.sleep(0.01)
 
-        decode = self.decode_pulse(self.pList)           
+        decode = self.decode_pulse(self.pList)
 
         self.pList = []
         self.decoding = False
 
         if self.callback != None:
             self.callback(decode)
-        
+
         return
 
-    def decode_pulse(self,pList):
+    def decode_pulse(self, pList):
         """decode_pulse,  function to decode the high and low
         timespans captured by the pWidth function into a binary
         number"""
@@ -85,16 +88,16 @@ class IRRemote:
 
         # convert the timespans in seconds to milli-seconds
         # look for the start of the IR remote signal
-        
-        for p in range(0,len(pList)):
+
+        for p in range(0, len(pList)):
             try:
-                pList[p]=float(pList[p])*1000
+                pList[p] = float(pList[p]) * 1000
                 if self.verbose == True:
                     print(pList[p])
-                if pList[p]<11:
+                if pList[p] < 11:
                     if sIndex == -1:
                         sIndex = p
-            except:            
+            except:
                 pass
 
         # if no acceptable start is found return -1
@@ -102,31 +105,30 @@ class IRRemote:
         if sIndex == -1:
             return -1
 
-        if sIndex+1 >= len(pList):
-            return -1
-        
-        #print(sIndex, pList[sIndex], pList[sIndex+1])
-
-        if (pList[sIndex]<4 or pList[sIndex]>11):
+        if sIndex + 1 >= len(pList):
             return -1
 
-        if (pList[sIndex+1]<2 or pList[sIndex+1]>6):
+        # print(sIndex, pList[sIndex], pList[sIndex+1])
+
+        if (pList[sIndex] < 4 or pList[sIndex] > 11):
+            return -1
+
+        if (pList[sIndex + 1] < 2 or pList[sIndex + 1] > 6):
             return -1
 
         """ pulses are made up of 2 parts, a fixed length low (approx 0.5-0.6ms)
         and a variable length high.  The length of the high determines whether or
         not a 0,1 or control pulse/bit is being sent.  Highes of length approx 0.5-0.6ms
-        indicate a 0, and length of approx 1.6-1.7 ms indicate a 1"""    
-        
-           
-        for i in range(sIndex+2,len(pList),2):
-            if i+1 < len(pList):
-                if pList[i+1]< 0.9:  
+        indicate a 0, and length of approx 1.6-1.7 ms indicate a 1"""
+
+        for i in range(sIndex + 2, len(pList), 2):
+            if i + 1 < len(pList):
+                if pList[i + 1] < 0.9:
                     bitList.append(0)
-                elif pList[i+1]< 2.5:
+                elif pList[i + 1] < 2.5:
                     bitList.append(1)
-                elif (pList[i+1]> 2.5 and pList[i+1]< 45):
-                    #print('end of data found')
+                elif (pList[i + 1] > 2.5 and pList[i + 1] < 45):
+                    # print('end of data found')
                     break
                 else:
                     break
@@ -140,13 +142,13 @@ class IRRemote:
         pulse = 0
         bitShift = 0
 
-        for b in bitList:            
-            pulse = (pulse<<bitShift) + b
-            bitShift = 1        
+        for b in bitList:
+            pulse = (pulse << bitShift) + b
+            bitShift = 1
 
         return pulse
 
-    def set_callback(self, callback = None):
+    def set_callback(self, callback=None):
         """set_callback, function to allow the user to set
         or change the callback function used at any time"""
 
@@ -169,7 +171,7 @@ class IRRemote:
 
         return
 
-    def set_verbose(self, verbose = True):
+    def set_verbose(self, verbose=True):
         """set_verbose, function to turn verbose mode
         on or off. Used to print out pulse width list
         and bit list"""
@@ -182,15 +184,15 @@ class IRRemote:
 if __name__ == "__main__":
 
     def remote_callback(code):
-            print hex(code)  # unknown code
+        print(hex(code))  # unknown code
 
 
-    ir = IRRemote('DECODE')  
-            
-    #GPIO.setwarnings(False)
+    ir = IRRemote('DECODE')
+
+    # GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)  # uses numbering outside circles
-    GPIO.setup(17,GPIO.IN)   # set pin 17 to input
-    GPIO.add_event_detect(17,GPIO.BOTH,callback=ir.pWidth)
+    GPIO.setup(IR_PIN, GPIO.IN)  # set pin IR_PIN to input
+    GPIO.add_event_detect(IR_PIN, GPIO.BOTH, callback=ir.pWidth)
 
     ir.set_verbose()
     print('Starting IR remote sensing using DECODE function')
@@ -208,13 +210,4 @@ if __name__ == "__main__":
     except:
         print('Removing callback and cleaning up GPIO')
         ir.remove_callback()
-        GPIO.cleanup(17)
-
-
-    
-
-    
-                    
-      
-    
-    
+        GPIO.cleanup(IR_PIN)

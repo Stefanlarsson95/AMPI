@@ -10930,6 +10930,76 @@ DIN A3, landscape with location and doc. field</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="PLT133_T10W">
+<packages>
+<package name="XDCR_PLT133/T10W">
+<wire x1="-4.85" y1="-8.49" x2="4.85" y2="-8.49" width="0.127" layer="51"/>
+<wire x1="-4.85" y1="-8.49" x2="-4.85" y2="5.01" width="0.127" layer="51"/>
+<wire x1="4.85" y1="-8.49" x2="4.85" y2="5.01" width="0.127" layer="51"/>
+<wire x1="-4.85" y1="5.01" x2="4.85" y2="5.01" width="0.127" layer="51"/>
+<wire x1="5.1" y1="-8.74" x2="-5.1" y2="-8.74" width="0.05" layer="39"/>
+<wire x1="-5.1" y1="-8.74" x2="-5.1" y2="5.26" width="0.05" layer="39"/>
+<wire x1="-5.1" y1="5.26" x2="5.1" y2="5.26" width="0.05" layer="39"/>
+<wire x1="5.1" y1="5.26" x2="5.1" y2="-8.74" width="0.05" layer="39"/>
+<text x="-5" y="5.5" size="1.27" layer="25">&gt;NAME</text>
+<text x="-5" y="-10.5" size="1.27" layer="27">&gt;VALUE</text>
+<wire x1="-4.85" y1="-8.49" x2="4.85" y2="-8.49" width="0.127" layer="21"/>
+<wire x1="-4.85" y1="-8.49" x2="-4.85" y2="5.01" width="0.127" layer="21"/>
+<wire x1="4.85" y1="-8.49" x2="4.85" y2="5.01" width="0.127" layer="21"/>
+<wire x1="-4.85" y1="5.01" x2="4.85" y2="5.01" width="0.127" layer="21"/>
+<circle x="-5.4" y="2.62" radius="0.1" width="0.2" layer="21"/>
+<circle x="-5.4" y="2.62" radius="0.1" width="0.2" layer="51"/>
+<pad name="1" x="-2.54" y="2.62" drill="0.85" shape="square"/>
+<pad name="2" x="0" y="2.62" drill="0.85"/>
+<pad name="3" x="2.54" y="2.62" drill="0.85"/>
+<pad name="5" x="2.54" y="0" drill="1.15"/>
+<pad name="4" x="-2.54" y="0" drill="1.15"/>
+</package>
+</packages>
+<symbols>
+<symbol name="PLT133/T10W">
+<wire x1="-10.16" y1="7.62" x2="-10.16" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="-10.16" y1="-7.62" x2="10.16" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="10.16" y1="-7.62" x2="10.16" y2="7.62" width="0.254" layer="94"/>
+<wire x1="10.16" y1="7.62" x2="-10.16" y2="7.62" width="0.254" layer="94"/>
+<text x="-10.16" y="8.89" size="1.778" layer="95">&gt;NAME</text>
+<text x="-10.16" y="-10.16" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="GND" x="15.24" y="-5.08" length="middle" direction="pwr" rot="R180"/>
+<pin name="VCC" x="15.24" y="5.08" length="middle" direction="pwr" rot="R180"/>
+<pin name="VIN" x="-15.24" y="0" length="middle" direction="in"/>
+<pin name="NC" x="15.24" y="0" length="middle" direction="nc" rot="R180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="PLT133/T10W" prefix="TR">
+<description>Fiber Optic Transmitter with Driver 660nm 16Mbps 2.7V ~ 5.5V  &lt;a href="https://pricing.snapeda.com/parts/PLT133/T10W/Everlight%20Electronics/view-part?ref=eda"&gt;Check prices&lt;/a&gt;</description>
+<gates>
+<gate name="G$1" symbol="PLT133/T10W" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="XDCR_PLT133/T10W">
+<connects>
+<connect gate="G$1" pin="GND" pad="3"/>
+<connect gate="G$1" pin="NC" pad="4 5"/>
+<connect gate="G$1" pin="VCC" pad="2"/>
+<connect gate="G$1" pin="VIN" pad="1"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="AVAILABILITY" value="Warning"/>
+<attribute name="DESCRIPTION" value=" Fiber Optic Transmitter with Driver 660nm 16Mbps 2.7V ~ 5.5V "/>
+<attribute name="MF" value="Everlight Electronics"/>
+<attribute name="MP" value="PLT133/T10W"/>
+<attribute name="PACKAGE" value="DIP-5 Everlight"/>
+<attribute name="PRICE" value="None"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/PLT133/T10W/?ref=eda"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -11001,6 +11071,7 @@ DIN A3, landscape with location and doc. field</description>
 <part name="12VOUT" library="con-JST EH" deviceset="S2B-EH" device=""/>
 <part name="PROG" library="CASE-JST" library_urn="urn:adsk.eagle:library:5637561" deviceset="PH_B6B-PH" device="" package3d_urn="urn:adsk.eagle:package:5644850/1"/>
 <part name="R15" library="Resistor" library_urn="urn:adsk.eagle:library:16378527" deviceset="R" device="CHIP-0603(1608-METRIC)" package3d_urn="urn:adsk.eagle:package:16378565/2" technology="_"/>
+<part name="TR1" library="PLT133_T10W" deviceset="PLT133/T10W" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -11235,6 +11306,10 @@ DIN A3, landscape with location and doc. field</description>
 <instance part="R15" gate="G$1" x="162.56" y="22.86" smashed="yes">
 <attribute name="NAME" x="167.64" y="22.86" size="1.778" layer="95" align="center"/>
 <attribute name="VALUE" x="162.56" y="20.32" size="1.778" layer="95" align="center"/>
+</instance>
+<instance part="TR1" gate="G$1" x="228.6" y="-5.08" smashed="yes">
+<attribute name="NAME" x="218.44" y="3.81" size="1.778" layer="95"/>
+<attribute name="VALUE" x="218.44" y="-15.24" size="1.778" layer="96"/>
 </instance>
 </instances>
 <busses>
