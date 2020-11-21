@@ -24,8 +24,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import RPi.GPIO as GPIO
 import time, threading
 
-IR_PIN = 26
-
 
 class IRRemote:
 
@@ -183,13 +181,16 @@ class IRRemote:
 
 if __name__ == "__main__":
 
+    IR_PIN = 26
+
+
     def remote_callback(code):
         print(hex(code))  # unknown code
 
 
     ir = IRRemote('DECODE')
 
-    # GPIO.setwarnings(False)
+    GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)  # uses numbering outside circles
     GPIO.setup(IR_PIN, GPIO.IN)  # set pin IR_PIN to input
     GPIO.add_event_detect(IR_PIN, GPIO.BOTH, callback=ir.pWidth)
@@ -197,17 +198,16 @@ if __name__ == "__main__":
     ir.set_verbose()
     print('Starting IR remote sensing using DECODE function')
 
-    time.sleep(5)
+    time.sleep(1)
     print('Setting up callback')
     ir.set_verbose(False)
     ir.set_callback(remote_callback)
 
     try:
-
         while True:
             time.sleep(1)
 
     except:
         print('Removing callback and cleaning up GPIO')
         ir.remove_callback()
-        GPIO.cleanup(IR_PIN)
+        # GPIO.cleanup(IR_PIN)

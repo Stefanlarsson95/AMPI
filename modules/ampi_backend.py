@@ -10,7 +10,6 @@ from time import time, sleep
 from modules.display import *
 from modules.rotaryencoder import *
 from modules.pushbutton import PushButton
-from modules.shared import *
 
 image = Image.new('RGB', (oled.WIDTH + 4, oled.HEIGHT + 4))  # enlarged for pixelshift
 volumioIO = SocketIO(volumio_host, volumio_port)

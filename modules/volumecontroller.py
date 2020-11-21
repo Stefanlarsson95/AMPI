@@ -151,7 +151,6 @@ class VolumeController:
             change = np.clip(err * 10 + I_err * 5, -100, 100)
             self._hw_vol_move(change=change)
             I_err += err
-            print(I_err)
 
             # t_sleep = max(0.01 * abs_err, 0.5)
             # time.sleep(t_sleep)
@@ -182,7 +181,7 @@ class VolumeController:
             # Get hw activity
             _hw_vol_activity = GPIO.input(ACTIVITY_PIN)
 
-            # Handle volume change:
+            """ Handle volume change """
             # Manual volume change
             if _hw_vol_activity and self._volume_master in [None, 'Manual']:
                 vol = self._get_hw_volume()
@@ -204,7 +203,7 @@ class VolumeController:
             elif not _hw_vol_activity:
                 self._volume_master = None
 
-            # sleep for time proportional to update frequency of for 1 sec if in standby
+            # sleep for time proportional to update frequency or for 1 sec if in standby
             t_sleep = (max(1 / self._update_freq - dt, 0.01), 1)[standby]
             time.sleep(t_sleep)
 
