@@ -31,11 +31,11 @@ _Kp_case = 3
 _Ki_case = 10e-3
 _I_case_lim = 75
 
-amp_fan_speed = -1
-case_fan_speed = -1
+amp_fan_speed = 0
+case_fan_speed = 0
 
-amp_fan_lb_threshold = 10
-case_fan_lb_threshold = 10
+amp_fan_lb_threshold = 50
+case_fan_lb_threshold = 50
 
 
 def read_amp_temp():
@@ -100,15 +100,15 @@ def temp_controller_thread():
 
         # error integration
         _I_amp += amp_temp_err * _Ki_amp * dt
-        _I_amp = (_I_amp, _I_amp_lim)[_I_amp > _I_amp_lim]
+        _I_amp = np.clip(_I_amp, 0, _I_amp_lim)
         _I_case += case_temp_err * _Ki_case * dt
-        _I_case = (_I_case, _I_case_lim)[_I_case > _I_case_lim]
+        _I_case = np.clip(_I_case, 0, _I_case_lim)
 
         # get fan speed
         _amp_fan_speed = np.clip(amp_temp_err * _Kp_amp + _I_amp, 0, 100)
-        amp_fan_speed = (0, _amp_fan_speed)[_amp_fan_speed > amp_fan_lb_threshold]
+        amp_fan_speed = (0, _amp_fan_speed)[float(_amp_fan_speed) > amp_fan_lb_threshold]
         _case_fan_speed = np.clip(case_temp_err * _Kp_case + _I_case, 0, 100)
-        case_fan_speed = (0, _case_fan_speed)[_case_fan_speed > case_fan_lb_threshold]
+        case_fan_speed = (0, _case_fan_speed)[float(_case_fan_speed) > case_fan_lb_threshold]
 
         amp_fan.ChangeDutyCycle(amp_fan_speed)
         chassis_fan.ChangeDutyCycle(case_fan_speed)
@@ -128,22 +128,23 @@ def temp_ctrl_test(temp, sensor='both'):
     else:
         log.warn('Unsupported sensor')
 
-    ctrl_thread = init_temp_controller()
+    init_temp_controller()
     while True:
         amp_temp = read_amp_temp()
         print('CpuTemp: ' + str(read_cpu_temp()))
         print('AmpTemp: ' + str(amp_temp))
-        print('CaseFanSpeed: ' + str(round(case_fan_speed)))
-        print('AmpFanSpeed: ' + str(round(amp_fan_speed)))
+        print('CaseFanPwr: ' + str(round(case_fan_speed)))
+        print('AmpFanPwr: ' + str(round(amp_fan_speed)))
         time.sleep(1)
 
 
 if __name__ == '__main__':
-
     try:
         GPIO.output(PWR_EN_12V_PIN, 1)
-        temp_ctrl_test(temp=20)
+        temp_ctrl_test(45)
 
     except KeyboardInterrupt:
-        GPIO.cleanup()
         print('\nTemp read stopped')
+        GPIO.output(PWR_EN_12V_PIN, 0)
+        time.sleep(0.1)
+        GPIO.cleanup(PWR_EN_12V_PIN)

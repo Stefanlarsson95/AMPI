@@ -42,7 +42,7 @@ SOURCE_AUX = 0
 SOURCE_RPI = 1
 SOURCE_SPDIF = 2
 SOURCE_AUTO = 3
-INIT_SOURCE = SOURCE_AUTO
+INIT_SOURCE = None  # will read default from DSP
 source = INIT_SOURCE
 
 """
@@ -68,17 +68,18 @@ VOL_DN_PIN = 16
 CHASSIS_FAN_PIN = 12
 AMPLIFIER_FAN_PIN = 13
 PWR_EN_12V_PIN = 23
-AMPLIFIER_ENABLE_PIN = 27
+AMP_EN_PIN = 27
 
 # Setup Outputs
-GPIO .setwarnings(False)
+GPIO.setwarnings(False)
 GPIO.setup([PWR_EN_12V_PIN,
             VOL_DN_PIN,
             VOL_UP_PIN,
             CHASSIS_FAN_PIN,
             AMPLIFIER_FAN_PIN,
-            AMPLIFIER_ENABLE_PIN,
+            AMP_EN_PIN,
             SPDIF_ENABLE_PIN], GPIO.OUT)  # Setup outputs
+GPIO.output(AMP_EN_PIN, 0)
 vol_up = GPIO.PWM(VOL_UP_PIN, 1000)  # Setup PWM outputs
 vol_dn = GPIO.PWM(VOL_DN_PIN, 1000)  # Setup PWM
 amp_fan = GPIO.PWM(AMPLIFIER_FAN_PIN, 25)  # Setup PWM
@@ -88,7 +89,6 @@ vol_dn.start(0)
 amp_fan.start(0)
 chassis_fan.start(0)
 # Setup Inputs
-GPIO.setwarnings(True)
 GPIO.setup([ROT_A_PIN,
             ROT_B_PIN,
             ROT_ENTER_PIN,
@@ -96,6 +96,7 @@ GPIO.setup([ROT_A_PIN,
 GPIO.setup([ACTIVITY_PIN], GPIO.IN, GPIO.PUD_DOWN)
 GPIO.setup([CHASSIS_FAN_TACH_PIN, SPDIF_LOCK_PIN], GPIO.IN, GPIO.PUD_UP)
 GPIO.setup(AMPLIFIER_FAN_TACH_PIN, GPIO.IN, GPIO.PUD_UP)
+GPIO.setwarnings(True)
 
 """
 OlED/UI

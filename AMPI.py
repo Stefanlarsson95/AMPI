@@ -20,7 +20,7 @@ from modules.display import *
 from modules.Input_selector import InputSelector
 import modules.temp_controller as temp_ctrl
 from modules import temp_controller as temp_ctrl
-from hardware.pushconfig import write_device as Write_DSP
+#from hardware.pushconfig import write_device as Write_DSP
 GPIO.setmode(GPIO.BCM)
 
 """

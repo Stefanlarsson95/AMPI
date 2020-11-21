@@ -11,7 +11,7 @@ import time
 from cfg import *
 
 #GPIO.setup(DPS_WP_PIN, GPIO.OUT)
-GPIO.output(DPS_WP_PIN, GPIO.HIGH)
+#GPIO.output(DPS_WP_PIN, GPIO.HIGH)
 
 sys.dont_write_bytecode = True
 
@@ -25,8 +25,8 @@ def write_device(data, destination=DSP, verbose=0):
         if verbose:
             print('Writing to EEPROM, WP disabled')
             time.sleep(1)
-        GPIO.setup(DPS_WP_PIN, GPIO.OUT)
-        GPIO.output(DPS_WP_PIN, 0)  # Enable  write to EEPROM by disabling WP.
+        #GPIO.setup(DPS_WP_PIN, GPIO.OUT)
+        #GPIO.output(DPS_WP_PIN, 0)  # Enable  write to EEPROM by disabling WP.
         time.sleep(0.1)
         addr = 0
 
@@ -41,8 +41,8 @@ def write_device(data, destination=DSP, verbose=0):
             code = code[blocksize:]
             addr += blocksize
             time.sleep(0.01)
-        GPIO.output(DPS_WP_PIN, 1)
-        GPIO.setup(DPS_WP_PIN, GPIO.IN)
+        #GPIO.output(DPS_WP_PIN, 1)
+        #GPIO.setup(DPS_WP_PIN, GPIO.IN)
         if verbose:
             print('Write to EEPROM done, WP restored')
 
