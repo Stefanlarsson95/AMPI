@@ -46,7 +46,7 @@ INIT_SOURCE = None  # will read default from DSP
 source = INIT_SOURCE
 
 """
-GPIO setup 
+GPIO config
 """
 # todo move pin config to module level
 GPIO.setmode(GPIO.BCM)
@@ -59,12 +59,12 @@ ROT_A_PIN = 6
 SPDIF_LOCK_PIN = 7
 BTN_PREV = 17
 BTN_NEXT = 9
-AMPLIFIER_FAN_TACH_PIN = 22
-CHASSIS_FAN_TACH_PIN = 25
+AMPLIFIER_FAN_TACH_PIN = None
+CHASSIS_FAN_TACH_PIN = 22
 ROT_B_PIN = IR_PIN = 26
 LRCLK_PIN = 19
 
-# Output conf
+# Output
 SPDIF_ENABLE_PIN = 1
 DSP_RST_PIN = 14
 VOL_UP_PIN = 15
@@ -74,7 +74,8 @@ AMPLIFIER_FAN_PIN = 13
 PWR_EN_12V_PIN = 23
 AMP_EN_PIN = 27
 
-# Setup Outputs
+# Setup Outputs todo remove
+"""
 GPIO.setwarnings(False)
 GPIO.setup([PWR_EN_12V_PIN,
             VOL_DN_PIN,
@@ -102,6 +103,7 @@ GPIO.setup([ACTIVITY_PIN], GPIO.IN, GPIO.PUD_DOWN)
 GPIO.setup([CHASSIS_FAN_TACH_PIN, SPDIF_LOCK_PIN], GPIO.IN, GPIO.PUD_UP)
 GPIO.setup(AMPLIFIER_FAN_TACH_PIN, GPIO.IN, GPIO.PUD_UP)
 GPIO.setwarnings(True)
+"""
 
 """
 OlED/UI

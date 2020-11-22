@@ -3,6 +3,12 @@ from hardware import adau1701 as DSP
 import time
 from threading import Thread
 
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(SPDIF_LOCK_PIN, GPIO.IN, GPIO.PUD_UP)
+GPIO.setup(SPDIF_ENABLE_PIN, GPIO.OUT)
+GPIO.setup(AMP_EN_PIN, GPIO.OUT)
+GPIO.setwarnings(True)
 
 class InputSelector:
     # Split register in high and low byte
@@ -34,12 +40,10 @@ class InputSelector:
         self._t_last_signal = 0
         self._t_active = 0
         self._t_debounce = 0.1
-        self._amp_pin = AMP_EN_PIN
-        self._spdif_pin = SPDIF_LOCK_PIN
         self.is_alive = False
 
         # Set initial amplifier enable pin state1
-        GPIO.output(self._amp_pin, self.amp_en)
+        GPIO.output(AMP_EN_PIN, self.amp_en)
 
     def start(self):
         t = Thread(target=self.run)
@@ -49,15 +53,11 @@ class InputSelector:
     def run(self):
         global emit_shutdown
         _rpi = _spdif = _aux = False
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setwarnings(False)
-        GPIO.setup(self._spdif_pin, GPIO.IN, GPIO.PUD_UP)
-        GPIO.setwarnings(True)
         self.is_alive = True
         while self.is_alive and not emit_shutdown:
 
             # get state of SPDIF lock
-            spdif_lock = not GPIO.input(self._spdif_pin)  # inverted
+            spdif_lock = not GPIO.input(SPDIF_LOCK_PIN)  # inverted
 
             # Check for source change
             if self._dsp_source != self.source:
@@ -96,7 +96,7 @@ class InputSelector:
                 self._any_signal = False
                 if time.perf_counter() > self._t_last_signal + self.signal_timeout and not self.amp_always_on:
                     self.amp_en = False
-            GPIO.output(self._amp_pin, self.amp_en)
+            GPIO.output(AMP_EN_PIN, self.amp_en)
 
             self.aux_detected = bool(_aux)
             self.rpi_detected = bool(_rpi)
@@ -106,7 +106,7 @@ class InputSelector:
             time.sleep(t_sleep)
 
         self.is_alive = False
-        GPIO.output(self._amp_pin, 0)
+        GPIO.output(AMP_EN_PIN, 0)
 
     def stop(self):
         self.is_alive = False

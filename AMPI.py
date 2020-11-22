@@ -32,8 +32,6 @@ oled.clear()
 
 show_logo("volumio_logo.ppm", oled)
 
-screen_update_thread = Thread(target=display_update_service, name="Screen updater")
-screen_update_thread.daemon = True
 # Start threads
 receive_thread.start()
 screen_update_thread.start()
@@ -71,7 +69,6 @@ def main():
     global emit_volume, emit_track, state_default
     _playState = None
     while True:
-
         # if inactive, set in standby
         if not oled.standby and oled.playState in ['stop', 'pause']:
             oled.standby = True
@@ -129,10 +126,10 @@ def shutdown():
     input_selector.stop()
     oled.cleanup()
     oled.update_interval = 0
-    GPIO.output(AMP_EN_PIN, 0)
-    GPIO.output(PWR_EN_12V_PIN, 0)
-    print('\n')
-    log.info("System exit ok")
+    # deactivate 12V power and shutdown amplifier
+    GPIO.setup(AMP_EN_PIN, GPIO.OUT, GPIO.LOW)
+    GPIO.setup(PWR_EN_12V_PIN, GPIO.OUT, GPIO.LOW)
+    log.info("\nSystem exit ok")
 
 
 if __name__ == '__main__':

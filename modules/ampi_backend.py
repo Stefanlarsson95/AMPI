@@ -740,6 +740,9 @@ def btn_prev_event(hold_time):
 receive_thread = Thread(target=_receive_thread, name="Receiver")
 receive_thread.daemon = True
 
+screen_update_thread = Thread(target=display_update_service, name="Screen updater")
+screen_update_thread.daemon = True
+
 volumioIO.on('pushState', onPushState)
 volumioIO.on('pushListPlaylist', onPushListPlaylist)
 volumioIO.on('pushQueue', onPushQueue)

@@ -1,6 +1,5 @@
-'''
-Todo I2C guard to only read if ADAU1701 is confirmed confgured.
-'''
+# Todo I2C guard to only read if ADAU1701 is confirmed configured.
+
 
 from hardware import adau1701 as DSP
 from threading import Thread
@@ -12,6 +11,12 @@ from cfg import *
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
+# GPIO.setwarnings(False)
+GPIO.setup(ACTIVITY_PIN, GPIO.IN, GPIO.PUD_DOWN)
+GPIO.setup([VOL_UP_PIN, VOL_DN_PIN], GPIO.OUT)
+vol_up = GPIO.PWM(VOL_UP_PIN, 1000)  # Setup PWM
+vol_dn = GPIO.PWM(VOL_DN_PIN, 1000)  # Setup PWM
+GPIO.setwarnings(True)
 
 # fixme combine hi/lo addressing to one
 _ADD_VOL_READBACK_HIGH = VOLUME_READ_REG >> 8
@@ -207,6 +212,8 @@ class VolumeController:
             t_sleep = (max(1 / self._update_freq - dt, 0.01), 1)[standby]
             time.sleep(t_sleep)
 
+        self.stop()
+
     def _hw_vol_move(self, change):
         """
         Change hw volume position
@@ -278,4 +285,3 @@ if __name__ == '__main__':
             time.sleep(0.1)
     except KeyboardInterrupt:
         VOL.stop()
-    GPIO.cleanup()
