@@ -15,7 +15,7 @@ from threading import Thread
 from subprocess import run
 from modules.rotaryencoder import RotaryEncoder
 from modules.pushbutton import PushButton
-from modules.volumecontroller import *
+# from modules.volumecontroller import *
 from modules.display import *
 from modules.Input_selector import InputSelector
 import modules.temp_controller as temp_ctrl
@@ -32,22 +32,23 @@ oled.clear()
 
 show_logo("volumio_logo.ppm", oled)
 
-# Start threads
-receive_thread.start()
-screen_update_thread.start()
-input_selector = InputSelector().start()
-Volume = VolumeController().start()
-temp_ctrl.init_temp_controller()
-
 # Push configfile to DSP
 # Write_DSP(DSP_DATA, 2, verbose=False)
 
 sleep(0.5)
 # run(["aplay --device plughw:CARD=1 ./startup.wav"], shell=True)
 sleep(1.5)
-
 oled.modal = TextScreen(oled.HEIGHT - 10, oled.WIDTH, 'AMPI', font_stencil)
 oled.stateTimeout = 2
+
+# Start threads
+receive_thread.start()
+screen_update_thread.start()
+
+# Start Controllers
+input_selector = InputSelector().start()
+volume_controller.start()
+temp_ctrl.init_temp_controller()
 
 # Request Volumio Data
 volumioIO.emit('listPlaylist')
@@ -65,8 +66,9 @@ else:
     oled.playPosition = config['track']
 
 
+# todo redo runtime event handling using threading.Even()
 def main():
-    global emit_volume, emit_track, state_default
+    global emit_track, state_default
     _playState = None
     while True:
         # if inactive, set in standby
@@ -77,7 +79,7 @@ def main():
 
         if oled.standby \
                 and not emit_volume \
-                and not emit_track \
+                and not volume_controller.emit_volume \
                 and True or not GPIO.input(ACTIVITY_PIN) \
                 and oled.playState in ['stop', 'pause']:
             oled.update_interval = STANDBY_UPDATE_INTERVAL
@@ -93,17 +95,19 @@ def main():
                     oled.stateTimeout = 0.1
 
             # Handle Volume event
-            if Volume.emit_volume:
-                log.info("Volume: " + str(Volume.get_volume()))
-                volumioIO.emit('volume', Volume.get_volume())
+            if volume_controller.emit_volume:
+                vol = volume_controller.get_volume()
+                log.info("Volume: " + str(vol))
+                volumioIO.emit('volume', vol)
+                oled.volume = vol
                 if oled.state != STATE_VOLUME:
                     SetState(STATE_VOLUME)
                 else:
                     oled.modal.DisplayVolume(oled.volume)
-                Volume.emit_volume = False
+                volume_controller.emit_volume = False
 
             # Handle track change event
-            if emit_track and oled.stateTimeout < 4.5:
+            if emit_track and oled.stateTimeout < 4.5:  # todo change to standby check?
                 emit_track = False
                 try:
                     log.info(
@@ -119,16 +123,15 @@ def main():
 def shutdown():
     global emit_shutdown
     emit_shutdown = True
+    GPIO.setwarnings(False)
     oled.update_interval = -1  # Stop updating screen
     oled.stateTimeout = 10
     show_logo("shutdown.ppm", oled)
-    sleep(2)
     input_selector.stop()
+    GPIO.setup(AMP_EN_PIN, GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(PWR_EN_12V_PIN, GPIO.OUT, initial=GPIO.LOW)
+    sleep(2)
     oled.cleanup()
-    oled.update_interval = 0
-    # deactivate 12V power and shutdown amplifier
-    GPIO.setup(AMP_EN_PIN, GPIO.OUT, GPIO.LOW)
-    GPIO.setup(PWR_EN_12V_PIN, GPIO.OUT, GPIO.LOW)
     log.info("\nSystem exit ok")
 
 

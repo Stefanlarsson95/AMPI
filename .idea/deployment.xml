@@ -7,6 +7,9 @@
           <mappings>
             <mapping deploy="/home/volumio/AMPI" local="$PROJECT_DIR$" web="/" />
           </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/hardware/PCB" />
+          </excludedPaths>
         </serverdata>
       </paths>
       <paths name="LaZer">
@@ -37,13 +40,6 @@
           </mappings>
         </serverdata>
       </paths>
-      <paths name="unicornnx@192.168.1.92:22 (2)">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
       <paths name="unicornnx@192.168.1.92:22 (3)">
         <serverdata>
           <mappings>
@@ -52,13 +48,6 @@
         </serverdata>
       </paths>
       <paths name="unicornnx@192.168.1.92:22 (4)">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="unicornnx@192.168.1.92:22 (5)">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />

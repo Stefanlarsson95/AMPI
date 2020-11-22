@@ -1,4 +1,6 @@
-# Todo I2C guard to only read if ADAU1701 is confirmed configured.
+# Todo:
+#  I2C guard to only read if ADAU1701 is confirmed configured.
+#  Make Volume controller separate process
 
 
 from hardware import adau1701 as DSP
@@ -13,9 +15,11 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 # GPIO.setwarnings(False)
 GPIO.setup(ACTIVITY_PIN, GPIO.IN, GPIO.PUD_DOWN)
-GPIO.setup([VOL_UP_PIN, VOL_DN_PIN], GPIO.OUT)
-vol_up = GPIO.PWM(VOL_UP_PIN, 1000)  # Setup PWM
-vol_dn = GPIO.PWM(VOL_DN_PIN, 1000)  # Setup PWM
+GPIO.setup([VOL_UP_PIN, VOL_DN_PIN, PWR_EN_12V_PIN], GPIO.OUT)
+vol_up = GPIO.PWM(VOL_UP_PIN, 5000)  # Setup PWM
+vol_dn = GPIO.PWM(VOL_DN_PIN, 5000)  # Setup PWM
+vol_up.start(0)
+vol_dn.start(0)
 GPIO.setwarnings(True)
 
 # fixme combine hi/lo addressing to one
@@ -39,12 +43,13 @@ class VolumeController:
         self._t_last_dsp_read = 0
         self._vol_change = False
         self._volume_master = None  # Volume source master, Only master can change volume until target is met
-        self._vol_event_timeout = 5
+        self._vol_event_timeout = 3
         self._update_freq = 10  # tread update frequency
         self._pwr_state = None
         self._vol_error = 0
         self.true_vol = self._get_hw_volume()
         self._new_reading = False
+        self.vol_thread = None
         GPIO.setmode(GPIO.BCM)
 
     def start(self):
@@ -52,13 +57,14 @@ class VolumeController:
         Start Volume controller Thread
         :return: Self
         """
-        t = Thread(target=self._vol_controller, name='volume controller thread', daemon=True)
-        t.start()
+        self.vol_thread = Thread(target=self._vol_controller, name='volume controller thread')
+        self.vol_thread.start()
         return self
 
     def stop(self):
         if self.is_alive:
             self.is_alive = False
+            self.vol_thread.join()
             return True
         return False
 
@@ -96,7 +102,7 @@ class VolumeController:
         Volume getter
         :return: Get requested volume
         """
-        return self._req_vol
+        return int(self._req_vol)
 
     def get_volume_source(self):
         """
@@ -152,8 +158,8 @@ class VolumeController:
 
             # increase volume if to low or decrease if to high, duh
             err = vol_req - vol_true
-            # change = np.sign(err) * max((abs(err) * 5, 100)[abs(err) > 20], 10)  # todo imp integral action
-            change = np.clip(err * 10 + I_err * 5, -100, 100)
+            # change = np.sign(err) * max((abs(err) * 5, 100)[abs(err) > 20], 10)
+            change = np.clip(err * 10 + I_err * 5, -100, 100)  # todo implement derivative action and antiwindup
             self._hw_vol_move(change=change)
             I_err += err
 
@@ -163,9 +169,12 @@ class VolumeController:
 
             # Ensure that error is decreasing
 
-            if 0 < self._vol_error < abs_err:
-                # Volume error not improving
-                return False
+            if 0 < self._vol_error <= abs_err:
+                if time.perf_counter() - t_start > 2:
+                    # Volume error not improving for 2 sec, return False
+                    log.err('HW-vol not decreasing!')
+                    self._hw_vol_stop()
+                    return False
             else:
                 t_start = time.perf_counter()
             self._vol_error = abs_err
@@ -174,7 +183,7 @@ class VolumeController:
         return False
 
     def _vol_controller(self):
-        global emit_shutdown
+        global emit_shutdown, emit_volume
         t_last_control = time.perf_counter()
         self.is_alive = True
         while self.is_alive and not emit_shutdown:
@@ -193,6 +202,7 @@ class VolumeController:
                 if abs(vol - self._req_vol) > 1:  # Volume change
                     self._req_vol = vol
                     self.emit_volume = True
+                    emit_volume = True
                 self._volume_master = (None, 'Manual')[self.emit_volume]  # Master is Manual until no longer emit volume
 
             # Software volume change
@@ -202,8 +212,8 @@ class VolumeController:
                     self.emit_volume = True
                 else:
                     # unable to change true volume
-                    log.warn('Unable to set volume')
-                    # self._req_vol = self._true_vol
+                    log.warn('Unable to set volume ')
+                    self._req_vol = self.true_vol
             # Clear master when no more activity
             elif not _hw_vol_activity:
                 self._volume_master = None
@@ -229,7 +239,8 @@ class VolumeController:
                 if self._pwr_state is None:
                     self._pwr_state = GPIO.input(PWR_EN_12V_PIN)  # store pwr state
                 speed = abs(change)
-                pin_pos, pin_neg = ([vol_up, vol_dn], [vol_dn, vol_up])[change < 0]
+                # pin_pos, pin_neg = ([vol_up, vol_dn], [vol_dn, vol_up])[change < 0]
+                pin_pos, pin_neg = [vol_up, vol_dn] if change > 0 else [vol_dn, vol_up]
                 pin_pos.ChangeDutyCycle(speed)
                 pin_neg.ChangeDutyCycle(0)
                 GPIO.output(PWR_EN_12V_PIN, GPIO.HIGH)
@@ -252,13 +263,15 @@ class VolumeController:
 
 if __name__ == '__main__':
 
-    vol_request = 4
+    vol_request = 20
 
+    GPIO.setup(SPDIF_ENABLE_PIN, GPIO.OUT)
+    GPIO.setup(SPDIF_LOCK_PIN, GPIO.IN, GPIO.PUD_UP)
     GPIO.output(SPDIF_ENABLE_PIN, not GPIO.input(SPDIF_LOCK_PIN))
-    time.sleep(0.1)
+    time.sleep(1)
 
     VOL = VolumeController().start()
-    VOL.set_volume(vol_request, source='master', timeout=10)
+    VOL.set_volume(vol_request, source='master', timeout=2)
     volumioIO = SocketIO(volumio_host, volumio_port)
 
 
@@ -273,12 +286,14 @@ if __name__ == '__main__':
         volumioIO.wait()
 
 
-    receive_thread = Thread(target=_receive_thread, name="Receiver", daemon=True).start()
+    receive_thread = Thread(target=_receive_thread, name="Receiver", daemon=True)
+    receive_thread.start()
     volumioIO.on('pushState', vol_ctrl)
     try:
         while True:
             vol = int(round(VOL.true_vol))
-            print('Volume: ' + str(vol))
+            act = str(GPIO.input(ACTIVITY_PIN))
+            print('\nVolume: ' + str(vol) + '\nDPS act: ' + act)
             if VOL.emit_volume:
                 volumioIO.emit('volume', vol)
                 VOL.emit_volume = False

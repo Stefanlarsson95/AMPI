@@ -7,9 +7,11 @@ import time
 import numpy as np
 
 GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 GPIO.setup([AMPLIFIER_FAN_PIN, CHASSIS_FAN_PIN], GPIO.OUT)
 amp_fan = GPIO.PWM(AMPLIFIER_FAN_PIN, 25)  # Setup PWM
 chassis_fan = GPIO.PWM(CHASSIS_FAN_PIN, 100)  # Setup PWM
+GPIO.setwarnings(True)
 
 # DS18B20 sensor path
 base_dir = '/sys/bus/w1/devices/'

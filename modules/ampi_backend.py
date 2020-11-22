@@ -5,10 +5,11 @@ Backend Code
 from threading import Thread
 from cfg import *
 from socketIO_client import SocketIO
-from time import time, sleep
 from modules.display import *
 from modules.rotaryencoder import *
 from modules.pushbutton import PushButton
+from modules.volumecontroller import *
+import time
 
 # todo evaluate if should be -4?
 image = Image.new('RGB', (oled.WIDTH + 4, oled.HEIGHT + 4))  # enlarged for pixelshift
@@ -24,10 +25,10 @@ hugefontaw = load_font('fa-solid-900.ttf', oled.HEIGHT - 18)
 
 def display_update_service():
     pixshift = [2, 2]
-    lastshift = prevTime = time()
+    lastshift = prevTime = time.time()
     while oled.update_interval > 0:
-        dt = time() - prevTime
-        prevTime = time()
+        dt = time.time() - prevTime
+        prevTime = time.time()
         # Shift pixels to prevent burn in
         if prevTime - lastshift > PIXEL_SHIFT_TIME:  # it's time for pixel shift
             lastshift = prevTime
@@ -61,7 +62,7 @@ def display_update_service():
         except RuntimeError as e:
             log.err("RuntimeError: ", str(e))
 
-        sleep(oled.update_interval)
+        time.sleep(oled.update_interval)
 
 
 # todo refactor as SetScreenState
@@ -69,10 +70,10 @@ def SetState(state):
     oled.state = state
     if state == STATE_CLOCK:
         oled.contrast(100)
-        sleep(0.1)
+        time.sleep(0.1)
     else:
         oled.contrast(255)
-        sleep(0.1)
+        time.sleep(0.1)
 
     if oled.state == STATE_PLAYER:
         oled.modal = NowPlayingScreen(oled.HEIGHT, oled.WIDTH, oled.activeArtist, oled.activeSong, font, font2, font3,
@@ -136,16 +137,20 @@ def onPushState(data):
 
     if 'seek' in data:
         oled.ptime = data['seek']
-        oled.pstart = time() - oled.ptime / 1000
+        oled.pstart = time.time() - oled.ptime / 1000
 
     if 'duration' in data:
         oled.duration = data['duration']
 
-    if oled.state != STATE_VOLUME:  # Update volume if not already changing
-        try:  # it is either number or unicode text
-            oled.volume = int(data['volume'])
-        except (KeyError, ValueError):
-            pass
+    if 'volume' in data:
+        vol_event(int(data['volume']), data.get('service', None))
+        # oled.volume = int(data['volume'])
+
+    # if oled.state != STATE_VOLUME:  # Update volume if not already changing
+    #    try:  # it is either number or unicode text
+    #        oled.volume = int(data['volume'])
+    #    except (KeyError, ValueError):
+    #        pass
 
     if 'disableVolumeControl' in data:
         oled.volumeControlDisabled = data['disableVolumeControl']
@@ -200,7 +205,7 @@ def EnterLibraryItem(itemNo):
         volumioIO.emit('addToQueue', oled.libraryFull['navigation']['lists'][0]['items'])
         oled.stateTimeout = 5.0  # maximum time to load new queue
         while len(oled.queue) == 0 and oled.stateTimeout > 0.1:
-            sleep(0.1)
+            time.sleep(0.1)
         oled.stateTimeout = 0.2
         log.info("Play position = " + str(itemNo))
         volumioIO.emit('play', {'value': itemNo})
@@ -259,17 +264,17 @@ def LeftKnob_PushEvent(hold_time):
     elif False:
         log.blue('LeftKnob_PushEvent LONG -> trying to shutdown')
         UPDATE_INTERVAL = 10  # stop updating screen
-        sleep(0.1)
+        time.sleep(0.1)
         show_logo("shutdown.ppm", oled)
         try:
             with open('oledconfig.json', 'w') as f:  # save current track number
                 json.dump({"track": oled.playPosition}, f)
         except IOError as e:
             log.err('Cannot save config file to current working directory', str(e))
-        sleep(1.5)
+        time.sleep(1.5)
         # oled.cleanup()  # put display into low power mode
         # volumioIO.emit('shutdown')
-        # sleep(60)
+        # time.sleep(60)
 
 
 def RightKnob_RotaryEvent(dir):
@@ -326,7 +331,7 @@ class TextScreen:
         self.playingText.DrawOn(image, self.textPos)
 
 
-# todo refacto as VolumioScreen
+# todo refactor as VolumioScreen
 class NowPlayingScreen:
     def __init__(self, height, width, row1, row2, font, font2, font3, fontaw, ptime, duration):
         self.height = height
@@ -358,9 +363,9 @@ class NowPlayingScreen:
         self.ptime = oled.ptime
         self.duration = oled.duration
         if self.ptime == 0:
-            self.tStart = time()
+            self.tStart = time.time()
         if oled.state != 'play':
-            self.tStart = time() - float(self.ptime) / 1000
+            self.tStart = time.time() - float(self.ptime) / 1000
 
     def DrawOn(self, image):
         if oled.playState == 'play':
@@ -436,9 +441,9 @@ class AUXScreen:
         self.ptime = oled.ptime
         self.duration = oled.duration
         if self.ptime == 0:
-            self.tStart = time()
+            self.tStart = time.time()
         if oled.state != 'play':
-            self.tStart = time() - float(self.ptime) / 1000
+            self.tStart = time.time() - float(self.ptime) / 1000
 
     def DrawOn(self, image):
         if oled.playState == 'play':
@@ -514,9 +519,9 @@ class SPDIFScreen:
         self.ptime = oled.ptime
         self.duration = oled.duration
         if self.ptime == 0:
-            self.tStart = time()
+            self.tStart = time.time()
         if oled.state != 'play':
-            self.tStart = time() - float(self.ptime) / 1000
+            self.tStart = time.time() - float(self.ptime) / 1000
 
     def DrawOn(self, image):
         if oled.playState == 'play':
@@ -736,6 +741,12 @@ def btn_prev_event(hold_time):
     log.info('emit previous')
     volumioIO.emit('prev')
 
+
+def vol_event(volume, source=None):
+    volume_controller.set_volume(volume, source)
+
+
+volume_controller = VolumeController()
 
 receive_thread = Thread(target=_receive_thread, name="Receiver")
 receive_thread.daemon = True

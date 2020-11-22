@@ -152,10 +152,12 @@ class InputSelector:
         :param t_sleep: Time waiting for DSP to initialize
         :return:
         """
+        GPIO.setwarnings(False)
         GPIO.setup(DSP_RST_PIN, GPIO.OUT)
         GPIO.output(DSP_RST_PIN, 0)
         time.sleep(0.05)
         GPIO.setup(DSP_RST_PIN, GPIO.IN)
+        GPIO.setwarnings(True)
         time.sleep(t_sleep)
         # todo implement activity detection indicating DSP is ready
         # while not GPIO.input(ACTIVITY_PIN) and time.perf_counter() < t_call + timeout:
