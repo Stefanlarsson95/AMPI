@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d4f1d42-ec0e-4bd6-aa58-8157da275fb6" name="Default Changelist" comment="" />
+    <list default="true" id="7d4f1d42-ec0e-4bd6-aa58-8157da275fb6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/modules/spdif.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/StefanX1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/StefanX1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AMPI.py" beforeDir="false" afterPath="$PROJECT_DIR$/AMPI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cfg.py" beforeDir="false" afterPath="$PROJECT_DIR$/cfg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hardware/PINOUT.md" beforeDir="false" afterPath="$PROJECT_DIR$/hardware/PINOUT.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/Input_selector.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/Input_selector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/ampi_backend.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/ampi_backend.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/logger.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="AMPI" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -13,9 +34,21 @@
   <component name="ProjectId" id="1h85Ak6NSyidd6P9kISjwnueCEB" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/hardware/PCB" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\StefanX1\PycharmProjects\AMPI" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -29,7 +62,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.AMPI">
     <configuration name="AMPI" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="AMPI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -52,9 +85,108 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="IRModuleExample" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="AMPI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/IR" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/IR/IRModuleExample.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Input_selector" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="AMPI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/modules" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modules/Input_selector.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="remote" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="AMPI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/modules" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modules/remote.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="spdif" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="AMPI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/modules" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modules/spdif.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.AMPI" />
+      <item itemvalue="Python.IRModuleExample" />
+      <item itemvalue="Python.remote" />
+      <item itemvalue="Python.spdif" />
+      <item itemvalue="Python.Input_selector" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.AMPI" />
+        <item itemvalue="Python.Input_selector" />
+        <item itemvalue="Python.spdif" />
+        <item itemvalue="Python.remote" />
+        <item itemvalue="Python.IRModuleExample" />
       </list>
     </recent_temporary>
   </component>
@@ -62,20 +194,120 @@
     <configuration />
   </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7d4f1d42-ec0e-4bd6-aa58-8157da275fb6" name="Default Changelist" comment="" />
+      <created>1599390435441</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1599390435441</updated>
+      <workItem from="1599390436655" duration="545000" />
+      <workItem from="1599391022168" duration="45350000" />
+      <workItem from="1599571226264" duration="10000" />
+      <workItem from="1599576798536" duration="14459000" />
+      <workItem from="1599921014121" duration="26725000" />
+      <workItem from="1600103481809" duration="1087000" />
+      <workItem from="1600197816695" duration="14000" />
+      <workItem from="1600278627245" duration="897000" />
+      <workItem from="1600286897217" duration="68000" />
+      <workItem from="1600286996783" duration="70000" />
+      <workItem from="1600332412506" duration="19000" />
+      <workItem from="1600449526865" duration="47232000" />
+      <workItem from="1600696125779" duration="22000" />
+      <workItem from="1600789596697" duration="14459000" />
+      <workItem from="1600846530115" duration="93000" />
+      <workItem from="1600876318139" duration="123000" />
+      <workItem from="1600876551536" duration="8291000" />
+      <workItem from="1600933106177" duration="137000" />
+      <workItem from="1600933745804" duration="552000" />
+      <workItem from="1601226213531" duration="3115000" />
+      <workItem from="1601383479154" duration="890000" />
+      <workItem from="1602407397691" duration="1401000" />
+      <workItem from="1602587345200" duration="845000" />
+      <workItem from="1602595865043" duration="6000" />
+      <workItem from="1602944659456" duration="802000" />
+      <workItem from="1602947038897" duration="18000" />
+      <workItem from="1602947091665" duration="7891000" />
+      <workItem from="1603094853167" duration="6000" />
+      <workItem from="1603395948936" duration="1893000" />
+      <workItem from="1603791959225" duration="60000" />
+      <workItem from="1603830000988" duration="671000" />
+      <workItem from="1603874312958" duration="80000" />
+      <workItem from="1603979610907" duration="2604000" />
+      <workItem from="1605362833383" duration="594000" />
+      <workItem from="1605446401613" duration="3590000" />
+      <workItem from="1605540958708" duration="1642000" />
+      <workItem from="1605542627047" duration="5652000" />
+      <workItem from="1605816860805" duration="651000" />
+      <workItem from="1605888895995" duration="6574000" />
+      <workItem from="1605898506814" duration="337000" />
+      <workItem from="1605955774241" duration="27885000" />
+      <workItem from="1606055768842" duration="476000" />
+    </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/modules/remote.py</url>
+          <line>37</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/modules/ampi_backend.py</url>
+          <line>735</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/modules/ampi_backend.py</url>
+          <line>730</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="DSP.read_back(_SPDIF_DETECT_REG[0], _SPDIF_DETECT_REG[1])" language="Python" />
+      </configuration>
+    </watches-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/AMPI$AMPI.coverage" NAME="AMPI Coverage Results" MODIFIED="1599379870806" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AMPI$volume.coverage" NAME="volume Coverage Results" MODIFIED="1599584275499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
+    <SUITE FILE_PATH="coverage/AMPI$activety_detect.coverage" NAME="activety_detect Coverage Results" MODIFIED="1599395731494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
+    <SUITE FILE_PATH="coverage/AMPI$volumecontroller.coverage" NAME="volumecontroller Coverage Results" MODIFIED="1605976677086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
+    <SUITE FILE_PATH="coverage/AMPI$AMPI.coverage" NAME="AMPI Coverage Results" MODIFIED="1606056197453" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AMPI$fan_controller.coverage" NAME="fan_controller Coverage Results" MODIFIED="1600603031677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
+    <SUITE FILE_PATH="coverage/AMPI$temp_controller.coverage" NAME="temp_controller Coverage Results" MODIFIED="1605976844911" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
+    <SUITE FILE_PATH="coverage/AMPI$remote.coverage" NAME="remote Coverage Results" MODIFIED="1605980852375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
+    <SUITE FILE_PATH="coverage/AMPI$Input_selector.coverage" NAME="Input_selector Coverage Results" MODIFIED="1606055772628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
+    <SUITE FILE_PATH="coverage/AMPI$FanControll.coverage" NAME="FanControll Coverage Results" MODIFIED="1600519181397" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
+    <SUITE FILE_PATH="coverage/AMPI$IRModule.coverage" NAME="IRModule Coverage Results" MODIFIED="1605977936257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/IR" />
+    <SUITE FILE_PATH="coverage/AMPI$spdif.coverage" NAME="spdif Coverage Results" MODIFIED="1605985484548" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
+    <SUITE FILE_PATH="coverage/AMPI$pushconfig.coverage" NAME="pushconfig Coverage Results" MODIFIED="1605956059290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hardware" />
+    <SUITE FILE_PATH="coverage/AMPI$AMPI_v3.coverage" NAME="AMPI_v3 Coverage Results" MODIFIED="1600011364116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AMPI$IRModuleExample.coverage" NAME="IRModuleExample Coverage Results" MODIFIED="1605980385729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/IR" />
   </component>
 </project>

@@ -5,27 +5,29 @@
 
 Pin:  Usage | Pin:  Usage
 ------------- | ------------- 
-1: 3.3V|2: 5VDC|
-3: SDA|4: 5VDC Power in|
+1: 3V3|2: 5VIN|
+3: SDA|4: 5VIN|
 5: SCL|6: GND|
-7: Amp Temp|8: DSP rest (NC!)|
-9: GND|10(15): Motor A |
-11(17):IR |12: reserved_pwm0|
-13(27):Amp_En |14: GND|
-15:Fan B RPM |16(23): 12V EN/Able|
-17: 3.3V VolPot|18: |
+7: Amp Temp|8: DSP_RST|
+9: GND|10:(15): MOTOR_A |
+11(17):BTN_PREW |12: I2S_BCLK_IN|
+13(27):AMP_EN |14: GND|
+15:TAC_A |16(23): 12V_EN|
+17: 3V3 |18: I2S_BCLK|
 19:SPI_MOSI|20:GND|
-21:N/A|22(25):|
-23:SPI_CLK|24:|
-25:GND|26: S/PDIF LOCK(INV)| 
-27:N/A|28(1):|
-29(5): N/A(rotA)|30: GND|
-31(6): N/A(rotB)|32(12): Fan A|
-33(13):Fan B|34: GND|
-35:I2S_LRCK|36(16): Motor B|
-37:N/A|38: I2S_DATA_IN|
+21:(9) BTN_NEXT|22(25): SPI_DC|
+23:SPI_CLK|24:(8) SPI_CS|
+25:GND|26: S/PDIF_LOCK(INV)| 
+27: (0) DSP_ACT|28(1): SPDIF EN|
+29(5): ROT_BTN|30: GND|
+31(6): ROT_A|32(12): FAN_A|
+33(13):FAN_B|34: GND|
+35:I2S_LRCK|36(16): MOTOR_B|
+37: (26) ROT_B/IR|38: I2S_DATA_IN|
 39:GND|40: I2S_DATA_OUT|
-
+Note:
+* No TAC_B connected
+#
 ### Daughterboard I/O
 
 ![Daughterboard I/O](IDC_HEADER_10-1.png)
@@ -42,3 +44,7 @@ Pinout  |
 8: Fan A Power |
 9: 12VDC |
 10: Fan B Power |
+#
+#### OLED pinout
+
+https://github.com/alidaf/raspberryPi/tree/master/displayPi/ssd1322-spi

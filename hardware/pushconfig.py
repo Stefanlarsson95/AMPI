@@ -1,18 +1,17 @@
 #!/usr/bin/python3 -B
 #
-from cfg import *
-import eeprom
-import adau1701
-import sigmaimporter
+from hardware import eeprom, adau1701, sigmaimporter
+#import eeprom
+#import adau1701
+#import sigmaimporter
 import sys
 import getopt
 # import RPi.GPIO as GPIO
 import time
+from cfg import *
 
-# GPIO.setmode(GPIO.BCM)
-# GPIO.setwarnings(False)
-GPIO.setup(DPS_WP_PIN, GPIO.OUT)
-GPIO.output(DPS_WP_PIN, GPIO.HIGH)
+#GPIO.setup(DPS_WP_PIN, GPIO.OUT)
+#GPIO.output(DPS_WP_PIN, GPIO.HIGH)
 
 sys.dont_write_bytecode = True
 
@@ -26,8 +25,8 @@ def write_device(data, destination=DSP, verbose=0):
         if verbose:
             print('Writing to EEPROM, WP disabled')
             time.sleep(1)
-        GPIO.setup(DPS_WP_PIN, GPIO.OUT)
-        GPIO.output(DPS_WP_PIN, 0)  # Enable  write to EEPROM by disabling WP.
+        #GPIO.setup(DPS_WP_PIN, GPIO.OUT)
+        #GPIO.output(DPS_WP_PIN, 0)  # Enable  write to EEPROM by disabling WP.
         time.sleep(0.1)
         addr = 0
 
@@ -42,8 +41,8 @@ def write_device(data, destination=DSP, verbose=0):
             code = code[blocksize:]
             addr += blocksize
             time.sleep(0.01)
-        GPIO.output(DPS_WP_PIN, 1)
-        GPIO.setup(DPS_WP_PIN, GPIO.IN)
+        #GPIO.output(DPS_WP_PIN, 1)
+        #GPIO.setup(DPS_WP_PIN, GPIO.IN)
         if verbose:
             print('Write to EEPROM done, WP restored')
 
@@ -98,14 +97,3 @@ def main(argv):
 if __name__ == "__main__":
     main(sys.argv)
 
-# mpv http://www.nasa.gov/mp3/590331main_ringtone_smallStep.mp3
-# aplay -t raw -r 48000 -c 2 -f S16_LE /dev/zero
-# vcgencmd get_throttled	// Power status. trottled=0x50005 =  bad 0x50000 = good
-# sudo apt-get update
-# sudo apt-get dist-upgrade
-
-# // BanditRock
-# vlc http://fm02-icecast.mtg-r.net/fm02_mp3
-
-# // Core temp
-# /opt/vc/bin/vcgencmd measure_temp

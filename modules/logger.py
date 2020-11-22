@@ -1,14 +1,15 @@
-
 '''
 Multicollor logger by Stefan Larsson
 '''
 
 import datetime
+import logging
 
 
 class LOGLEVEL:
     def __init__(self):
         pass
+
     FATAL = -1
     ERROR = 0
     WARN = 1
@@ -16,6 +17,7 @@ class LOGLEVEL:
     DEBUG = 3
 
 
+# todo make subclass to logging class
 class Log:
     def __init__(self, level=LOGLEVEL.WARN):
         self._lvl = level
@@ -23,15 +25,16 @@ class Log:
     def fatal(self, text):  # Red
         print("{}--:\033[91m FATAL\033[0m :--- {}".format(datetime.datetime.now().strftime("t:%S.%f"), text))
 
-    def err(self, text, err=''):    # Red
+    def err(self, text, err=''):  # Red
         if self._lvl >= LOGLEVEL.ERROR:
-            print("{}--:\033[91m ERROR\033[0m :--- {}: {}".format(datetime.datetime.now().strftime("t:%S.%f"), text, err))
+            print(
+                "{}--:\033[91m ERROR\033[0m :--- {}: {}".format(datetime.datetime.now().strftime("t:%S.%f"), text, err))
 
-    def warn(self, text):   # Magenta
+    def warn(self, text):  # Magenta
         if self._lvl >= LOGLEVEL.WARN:
             print("{}--:\033[95m Warning\033[0m :--- {}".format(datetime.datetime.now().strftime("t:%S.%f"), text))
 
-    def info(self, text):   # Green
+    def info(self, text):  # Green
         if self._lvl >= LOGLEVEL.INFO:
             print("{}--:\033[92m Info\033[0m :--- {}".format(datetime.datetime.now().strftime("t:%S.%f"), text))
 
@@ -39,7 +42,7 @@ class Log:
         if self._lvl >= LOGLEVEL.DEBUG:
             print("{}--:\033[93m Debug\033[0m :--- {}".format(datetime.datetime.now().strftime("t:%S.%f"), text))
 
-    def blue(self, text):    # Blue
+    def blue(self, text):  # Blue
         if self._lvl >= LOGLEVEL.DEBUG:
             print("{}--:\033[94m Debug\033[0m :--- {}".format(datetime.datetime.now().strftime("t:%S.%f"), text))
 
@@ -51,4 +54,3 @@ class Log:
 
     def get_level(self):
         return self._lvl
-

@@ -24,8 +24,8 @@ import RPi.GPIO as GPIO
 import IRModule
 import time
 
-def remote_callback(code):        
 
+def remote_callback(code):
     # Codes listed below are for the
     # Sparkfun 9 button remote
 
@@ -52,8 +52,9 @@ def remote_callback(code):
 
     return
 
+
 # set up IR pi pin and IR remote object
-irPin = 17
+irPin = 26
 ir = IRModule.IRRemote(callback='DECODE')
 # using 'DECODE' option for callback will print out
 # the IR code received in hexadecimal
@@ -62,16 +63,16 @@ ir = IRModule.IRRemote(callback='DECODE')
 
 # set up GPIO options and set callback function required
 # by the IR remote module (ir.pWidth)        
-#GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)      # uses numbering outside circles
-GPIO.setup(irPin, GPIO.IN)   # set irPin to input
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)  # uses numbering outside circles
+GPIO.setup(irPin, GPIO.IN)  # set irPin to input
 GPIO.add_event_detect(irPin, GPIO.BOTH, callback=ir.pWidth)
 
-ir.set_verbose() # verbose option prints outs high and low width durations (ms)
+ir.set_verbose()  # verbose option prints outs high and low width durations (ms)
 print('Starting IR remote sensing using DECODE function and verbose setting equal True ')
 print('Use ctrl-c to exit program')
 
-try:    
+try:
     time.sleep(5)
 
     # turn off verbose option and change callback function
@@ -83,7 +84,7 @@ try:
     # This is where you could do other stuff
     # Blink a light, turn a motor, run a webserver
     # count sheep or mine bitcoin
-    
+
     while True:
         time.sleep(1)
 

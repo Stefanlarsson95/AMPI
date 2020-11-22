@@ -146,12 +146,3 @@ def read_back(H_addr, L_addr):
     ret = (np.uint32(np.uint(val[0])) << 24 | np.uint32(val[1]) << 16 | np.uint32(val[2]) << 8 & 0xFFFFFF00)
     ret = (float(ret) / (np.uint32(1) << 27))
     return ret
-
-
-def main():
-    #print(read_back(0x00, 0xA6))
-    print(read_back(0x00, 0xB2))  # volume
-
-
-if __name__ == '__main__':
-    main()

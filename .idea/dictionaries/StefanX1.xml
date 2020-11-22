@@ -4,7 +4,14 @@
       <w>ampi</w>
       <w>blocksize</w>
       <w>gpio</w>
+      <w>hysteres</w>
+      <w>lastshift</w>
+      <w>lrclk</w>
+      <w>oled</w>
+      <w>pixshift</w>
       <w>spdif</w>
+      <w>tach</w>
+      <w>volumio</w>
     </words>
   </dictionary>
 </component>
