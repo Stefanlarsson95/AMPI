@@ -176,4 +176,6 @@ if __name__ == '__main__':
 
             time.sleep(0.5)
     except KeyboardInterrupt:
+        input_select.stop()
         GPIO.output(AMP_EN_PIN, 0)
+        print('\nInput selector terminated')

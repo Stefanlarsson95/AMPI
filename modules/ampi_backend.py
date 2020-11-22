@@ -1,4 +1,3 @@
-
 """
 Backend Code
 """
@@ -11,9 +10,9 @@ from modules.display import *
 from modules.rotaryencoder import *
 from modules.pushbutton import PushButton
 
+# todo evaluate if should be -4?
 image = Image.new('RGB', (oled.WIDTH + 4, oled.HEIGHT + 4))  # enlarged for pixelshift
 volumioIO = SocketIO(volumio_host, volumio_port)
-
 
 # Fonts
 font = load_font('Roboto-Regular.ttf', 28)
@@ -41,8 +40,7 @@ def display_update_service():
             else:
                 pixshift[0] -= 1
 
-        # Show current screen until oled timeout then
-        # return to home display screen
+        # Show current screen until oled timeout then return to default screen
         if oled.stateTimeout > 0:
             oled.timeOutRunning = True
             oled.stateTimeout -= dt
@@ -66,6 +64,7 @@ def display_update_service():
         sleep(oled.update_interval)
 
 
+# todo refactor as SetScreenState
 def SetState(state):
     oled.state = state
     if state == STATE_CLOCK:
@@ -92,7 +91,7 @@ def SetState(state):
                                 label='------ Music Library ------')
     elif oled.state == STATE_CLOCK:
         oled.modal = ClockScreen(oled.HEIGHT, oled.WIDTH, font, font2, hugefontaw)
-        oled.modal.SetPlayingIcon(oled.playState)
+        # oled.modal.SetPlayingIcon(oled.playState) # todo remove?
 
 
 def _receive_thread():
@@ -245,7 +244,7 @@ def LeftKnob_RotaryEvent(dir):
 
 
 def LeftKnob_PushEvent(hold_time):
-    #global UPDATE_INTERVAL
+    # global UPDATE_INTERVAL
     if hold_time < 3:
         log.blue('LeftKnob_PushEvent SHORT')
         if oled.state == STATE_PLAYER:
@@ -327,7 +326,164 @@ class TextScreen:
         self.playingText.DrawOn(image, self.textPos)
 
 
+# todo refacto as VolumioScreen
 class NowPlayingScreen:
+    def __init__(self, height, width, row1, row2, font, font2, font3, fontaw, ptime, duration):
+        self.height = height
+        self.width = width
+        self.font = font
+        self.fontaw = fontaw
+        self.playingText1 = StaticText(self.height, self.width, row1, font2, center=True)
+        self.playingText2 = ScrollText(self.height, self.width, row2, font)
+        self.icon = {'play': '\uf04b', 'pause': '\uf04c', 'stop': '\uf04d', 'mute': '\uf026', 'normalVol': '\uf027',
+                     'highVol': '\uf028'}
+        self.playingIcon = self.icon['play']
+        self.volumeIcon = self.icon['mute']
+        self.iconcountdown = 0
+        self.text1Pos = (3, 6)
+        self.text2Pos = (3, 21)  # 37
+        self.barHeight = 4
+        self.barWidth = width - 60  # 220
+        self.seekBar = Bar(self.height, self.width, self.barHeight, self.barWidth)
+        self.barPos = (30, 61)
+        self.alfaimage = Image.new('RGBA', image.size, (0, 0, 0, 0))
+        self.duration = duration
+        self.seekBar.SetFilledPercentage(50)
+        self.ptime = 0
+        self.played = 0
+
+    def UpdatePlayingInfo(self, row1, row2):
+        self.playingText1 = StaticText(self.height, self.width, row1, font2, center=True)
+        self.playingText2 = ScrollText(self.height, self.width, row2, font)
+        self.ptime = oled.ptime
+        self.duration = oled.duration
+        if self.ptime == 0:
+            self.tStart = time()
+        if oled.state != 'play':
+            self.tStart = time() - float(self.ptime) / 1000
+
+    def DrawOn(self, image):
+        if oled.playState == 'play':
+            t_now = float(time())
+            self.ptime = (t_now - oled.pstart)
+            if self.duration:  # Only Draw if duration data is received.
+                self.played = float(self.ptime / self.duration) * 100
+                self.seekBar.SetFilledPercentage(self.played)
+                self.seekBar.DrawOn(image, self.barPos)
+
+            self.playingText1.DrawOn(image, self.text1Pos)
+            self.playingText2.DrawOn(image, self.text2Pos)
+
+        if self.iconcountdown > 0:
+            compositeimage = Image.composite(self.alfaimage, image.convert('RGBA'), self.alfaimage)
+            image.paste(compositeimage.convert('RGB'), (0, 0))
+            self.iconcountdown -= 1
+        if oled.volume in range(1, 50):
+            self.volumeIcon = ['normVol']
+        elif oled.volume > 50:
+            self.volumeIcon = ['highVol']
+        else:
+            self.volumeIcon = ['mute']
+
+    def SetPlayingIcon(self, state, time=0):
+        if state in self.icon:
+            self.playingIcon = self.icon[state]
+        self.alfaimage.paste((0, 0, 0, 0), [0, 0, image.size[0], image.size[1]])
+        drawalfa = ImageDraw.Draw(self.alfaimage)
+        iconwidth, iconheight = drawalfa.textsize(self.playingIcon, font=self.fontaw)
+        left = (self.width - iconwidth) / 2
+        drawalfa.text((left, 14), self.playingIcon, font=self.fontaw, fill=(255, 255, 255, 155))
+        self.iconcountdown = time
+
+    def NextOption(self):
+        log.info("Play next")
+        volumioIO.emit('next')
+
+    def PrevOption(self):
+        log.info("Play previous")
+        volumioIO.emit('prev')
+
+
+# todo design and implement
+class AUXScreen:
+    def __init__(self, height, width, row1, row2, font, font2, font3, fontaw, ptime, duration):
+        self.height = height
+        self.width = width
+        self.font = font
+        self.fontaw = fontaw
+        self.playingText1 = StaticText(self.height, self.width, row1, font2, center=True)
+        self.playingText2 = ScrollText(self.height, self.width, row2, font)
+        self.icon = {'play': '\uf04b', 'pause': '\uf04c', 'stop': '\uf04d', 'mute': '\uf026', 'normalVol': '\uf027',
+                     'highVol': '\uf028'}
+        self.playingIcon = self.icon['play']
+        self.volumeIcon = self.icon['mute']
+        self.iconcountdown = 0
+        self.text1Pos = (3, 6)
+        self.text2Pos = (3, 21)  # 37
+        self.barHeight = 4
+        self.barWidth = width - 60  # 220
+        self.seekBar = Bar(self.height, self.width, self.barHeight, self.barWidth)
+        self.barPos = (30, 61)
+        self.alfaimage = Image.new('RGBA', image.size, (0, 0, 0, 0))
+        self.duration = duration
+        self.seekBar.SetFilledPercentage(50)
+        self.ptime = 0
+        self.played = 0
+
+    def UpdatePlayingInfo(self, row1, row2):
+        self.playingText1 = StaticText(self.height, self.width, row1, font2, center=True)
+        self.playingText2 = ScrollText(self.height, self.width, row2, font)
+        self.ptime = oled.ptime
+        self.duration = oled.duration
+        if self.ptime == 0:
+            self.tStart = time()
+        if oled.state != 'play':
+            self.tStart = time() - float(self.ptime) / 1000
+
+    def DrawOn(self, image):
+        if oled.playState == 'play':
+            t_now = float(time())
+            self.ptime = (t_now - oled.pstart)
+            if self.duration:  # Only Draw if duration data is received.
+                self.played = float(self.ptime / self.duration) * 100
+                self.seekBar.SetFilledPercentage(self.played)
+                self.seekBar.DrawOn(image, self.barPos)
+
+            self.playingText1.DrawOn(image, self.text1Pos)
+            self.playingText2.DrawOn(image, self.text2Pos)
+
+        if self.iconcountdown > 0:
+            compositeimage = Image.composite(self.alfaimage, image.convert('RGBA'), self.alfaimage)
+            image.paste(compositeimage.convert('RGB'), (0, 0))
+            self.iconcountdown -= 1
+        if oled.volume in range(1, 50):
+            self.volumeIcon = ['normVol']
+        elif oled.volume > 50:
+            self.volumeIcon = ['highVol']
+        else:
+            self.volumeIcon = ['mute']
+
+    def SetPlayingIcon(self, state, time=0):
+        if state in self.icon:
+            self.playingIcon = self.icon[state]
+        self.alfaimage.paste((0, 0, 0, 0), [0, 0, image.size[0], image.size[1]])
+        drawalfa = ImageDraw.Draw(self.alfaimage)
+        iconwidth, iconheight = drawalfa.textsize(self.playingIcon, font=self.fontaw)
+        left = (self.width - iconwidth) / 2
+        drawalfa.text((left, 14), self.playingIcon, font=self.fontaw, fill=(255, 255, 255, 155))
+        self.iconcountdown = time
+
+    def NextOption(self):
+        log.info("Play next")
+        volumioIO.emit('next')
+
+    def PrevOption(self):
+        log.info("Play previous")
+        volumioIO.emit('prev')
+
+
+# todo design and implement
+class SPDIFScreen:
     def __init__(self, height, width, row1, row2, font, font2, font3, fontaw, ptime, duration):
         self.height = height
         self.width = width
@@ -478,6 +634,37 @@ class VolumeScreen:
         self.volumeBar.DrawOn(img, self.barPos)
 
 
+# todo design and implement
+class EQScreen:
+    def __init__(self, height, width, volume, font, font2):
+        self.height = height
+        self.width = width
+        self.font = font
+        self.font2 = font2
+        self.volumeLabel = None
+        self.labelPos = (10, 3)
+        self.volumeNumber = None
+        self.numberPos = (225, 50)
+        self.barHeight = 8
+        self.barWidth = 195
+        self.volumeBar = Bar(self.height, self.width, self.barHeight, self.barWidth)
+        self.barPos = (30, 38)
+        self.DisplayVolume(volume)
+        self.volume = volume
+
+    def DisplayVolume(self, vol):
+        self.volume = vol
+        self.volumeNumber = StaticText(self.height, self.width, str(vol) + '%', self.font2, True)
+        self.volumeLabel = StaticText(self.height, self.width, 'Volume', self.font, True)
+        self.volumeBar.SetFilledPercentage(vol)
+
+    def DrawOn(self, img):
+        self.volumeLabel.DrawOn(img, self.labelPos)
+        self.volumeNumber.DrawOn(img, self.numberPos)
+        self.volumeBar.DrawOn(img, self.barPos)
+
+
+# todo include settings
 class MenuScreen:
     def __init__(self, height, width, font2, menuList, selected=0, rows=3, label='', showIndex=False):
         self.height = height
@@ -540,6 +727,16 @@ class MenuScreen:
             self.menuText[0].DrawOn(image, (15, self.menuYPos))
 
 
+def btn_next_event(hold_time):
+    log.info('emit next')
+    volumioIO.emit('next')
+
+
+def btn_prev_event(hold_time):
+    log.info('emit previous')
+    volumioIO.emit('prev')
+
+
 receive_thread = Thread(target=_receive_thread, name="Receiver")
 receive_thread.daemon = True
 
@@ -550,4 +747,17 @@ volumioIO.on('pushBrowseSources', onPushBrowseSources)
 # Todo test below
 # volumioIO.on('pushBrowseLibrary', onLibraryBrowse)
 
-# get list of Playlists and initial state
+# LeftKnob_Push = PushButton(5, max_time=3)
+# LeftKnob_Push.setCallback(LeftKnob_PushEvent)
+# LeftKnob_Rotation = RotaryEncoder(6, 26, pulses_per_cycle=4)
+# LeftKnob_Rotation.setCallback(LeftKnob_RotaryEvent)
+
+RightKnob_Push = PushButton(ROT_ENTER_PIN, max_time=1)
+RightKnob_Push.setCallback(RightKnob_PushEvent)
+RightKnob_Rotation = RotaryEncoder(ROT_A_PIN, ROT_B_PIN, pulses_per_cycle=4)
+RightKnob_Rotation.setCallback(RightKnob_RotaryEvent)
+
+BtnNext = PushButton(BTN_NEXT, max_time=1)
+BtnNext.setCallback(btn_next_event)
+BtnPrev = PushButton(BTN_PREV, max_time=1)
+BtnPrev.setCallback(btn_prev_event)

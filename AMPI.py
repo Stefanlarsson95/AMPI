@@ -20,36 +20,29 @@ from modules.display import *
 from modules.Input_selector import InputSelector
 import modules.temp_controller as temp_ctrl
 from modules import temp_controller as temp_ctrl
-#from hardware.pushconfig import write_device as Write_DSP
+
+# from hardware.pushconfig import write_device as Write_DSP
 GPIO.setmode(GPIO.BCM)
 
 """
 Startup initializer
 """
-# LeftKnob_Push = PushButton(5, max_time=3)
-# LeftKnob_Push.setCallback(LeftKnob_PushEvent)
-# LeftKnob_Rotation = RotaryEncoder(6, 26, pulses_per_cycle=4)
-# LeftKnob_Rotation.setCallback(LeftKnob_RotaryEvent)
+
 oled.clear()
 
-if not GPIO.input(SPDIF_LOCK_PIN) and not AMP_ALWAYS_OFF:
-    GPIO.output(PWR_EN_12V_PIN, 1)
-    sleep(0.1)
-else:
-    GPIO.output(PWR_EN_12V_PIN, 0)
-#GPIO.output(AMPLIFIER_ENABLE_PIN, 1)  # enable amplifier for startup melody
-
-RightKnob_Push = PushButton(ROT_ENTER_PIN, max_time=1)
-RightKnob_Push.setCallback(RightKnob_PushEvent)
-RightKnob_Rotation = RotaryEncoder(ROT_A_PIN, ROT_B_PIN, pulses_per_cycle=4)
-RightKnob_Rotation.setCallback(RightKnob_RotaryEvent)
 show_logo("volumio_logo.ppm", oled)
+
+screen_update_thread = Thread(target=display_update_service, name="Screen updater")
+screen_update_thread.daemon = True
+# Start threads
+receive_thread.start()
+screen_update_thread.start()
+input_selector = InputSelector().start()
+Volume = VolumeController().start()
+temp_ctrl.init_temp_controller()
 
 # Push configfile to DSP
 # Write_DSP(DSP_DATA, 2, verbose=False)
-
-# Create temp controller thread
-temp_ctrl.init_temp_controller()
 
 sleep(0.5)
 # run(["aplay --device plughw:CARD=1 ./startup.wav"], shell=True)
@@ -58,15 +51,13 @@ sleep(1.5)
 oled.modal = TextScreen(oled.HEIGHT - 10, oled.WIDTH, 'AMPI', font_stencil)
 oled.stateTimeout = 2
 
-screen_update_thread = Thread(target=display_update_service, name="Screen updater")
-screen_update_thread.daemon = True
-
 # Request Volumio Data
 volumioIO.emit('listPlaylist')
 volumioIO.emit('getState')
 volumioIO.emit('getQueue')
 # volumioIO.emit('getBrowseSources')
 sleep(0.1)
+
 try:
     with open('oledconfig.json', 'r') as f:  # load last playing track number
         config = json.load(f)
@@ -74,13 +65,6 @@ except IOError:
     pass
 else:
     oled.playPosition = config['track']
-
-# Start threads
-receive_thread.start()
-screen_update_thread.start()
-input_selector = InputSelector().start()
-Volume = VolumeController().start()
-temp_ctrl.init_temp_controller()
 
 
 def main():
@@ -145,7 +129,8 @@ def shutdown():
     input_selector.stop()
     oled.cleanup()
     oled.update_interval = 0
-    GPIO.cleanup()
+    GPIO.output(AMP_EN_PIN, 0)
+    GPIO.output(PWR_EN_12V_PIN, 0)
     print('\n')
     log.info("System exit ok")
 
@@ -156,5 +141,6 @@ if __name__ == '__main__':
     except(KeyboardInterrupt, SystemExit):
         shutdown()
 
-atexit.register(shutdown)
-signal.signal(signal.SIGTERM, lambda n, f: sys.exit(0))
+# todo necessary?
+# atexit.register(shutdown)
+# signal.signal(signal.SIGTERM, lambda n, f: sys.exit(0))
