@@ -40,18 +40,19 @@ _case_fan_tach_pin = CHASSIS_FAN_TACH_PIN
 # Temp PI params
 _Kp_amp = 3
 _Ki_amp = 10e-3
-_I_amp_lim = 75
-_Kp_case = 3
+_I_amp_lim = 65
+_Kp_case = 5
 _Ki_case = 10e-3
-_I_case_lim = 75
+_I_case_lim = 65
 
 amp_fan_speed = 0
 case_fan_speed = 0
 
 amp_fan_lb_threshold = 50
-case_fan_lb_threshold = 50
+case_fan_lb_threshold = 35
 
-is_alive=False
+is_alive = False
+
 
 def read_amp_temp():
     """
@@ -127,7 +128,7 @@ def temp_controller_thread():
 
         if amp_fan_speed or case_fan_speed:
             pwr12v.on()
-        else:
+        elif _amp_fan_speed < amp_fan_lb_threshold - 5 and _case_fan_speed < case_fan_lb_threshold - 5:
             pwr12v.off()
 
         amp_fan.ChangeDutyCycle(amp_fan_speed)
@@ -150,24 +151,23 @@ def temp_ctrl_test(temp, sensor='both'):
         log.warn('Unsupported sensor')
     init_temp_controller()
     import datetime
-    import csv
-    f = open('temperature_data.csv', 'w')
-    writer = csv.writer(f)
-    row = {'Time', 'Cpu Temp', 'Amp Temp', 'Case Fan Speed', 'Amp Fan Speed'}
-    writer.writerow(row)
-    with f:
-        while True:
-            amp_temp = read_amp_temp()
-            cpu_temp = read_cpu_temp()
-            t = datetime.datetime.now().strftime("%H:%M:%S")
-            print('Time: ' + t)
-            print('CpuTemp: ' + str(cpu_temp))
-            print('AmpTemp: ' + str(amp_temp))
-            print('CaseFanPwr: ' + str(round(case_fan_speed)))
-            print('AmpFanPwr: ' + str(round(amp_fan_speed)))
-            row = [t, cpu_temp, amp_temp, case_fan_speed, amp_fan_speed]
-            writer.writerow(row)
-            time.sleep(10)
+    #import csv
+    #f = open('temperature_data.csv', 'w')
+    #writer = csv.writer(f)
+    #row = {'Time', 'Cpu Temp', 'Amp Temp', 'Case Fan Speed', 'Amp Fan Speed'}
+    #writer.writerow(row)
+    while True:
+        amp_temp = read_amp_temp()
+        cpu_temp = read_cpu_temp()
+        t = datetime.datetime.now().strftime("%H:%M:%S")
+        print('Time: ' + t)
+        print('CpuTemp: ' + str(cpu_temp))
+        print('AmpTemp: ' + str(amp_temp))
+        print('CaseFanPwr: ' + str(round(case_fan_speed)))
+        print('AmpFanPwr: ' + str(round(amp_fan_speed)))
+        #row = [t, cpu_temp, amp_temp, case_fan_speed, amp_fan_speed]
+        #writer.writerow(row)
+        time.sleep(10)
 
 
 if __name__ == '__main__':
@@ -175,9 +175,8 @@ if __name__ == '__main__':
         GPIO.output(AMP_EN_PIN, 0)
         log.set_level(LOGLEVEL.INFO)
         pwr12v.verbose = True
-        temp_ctrl_test(25)
+        temp_ctrl_test(60)
 
     except KeyboardInterrupt:
         is_alive = False
         print('\nTemp read stopped')
-

@@ -46,8 +46,7 @@ class AMPLIFIER:
             if ident not in self._client_list:
                 log.warn('Amplifier was never activated by this thread!\nUse AMPLIFIER.on() to activate amplifier.')
             else:
-                idx = self._client_list.index(ident)
-                self._client_list.remove(idx)
+                self._client_list.remove(ident)
 
             if not self._client_list:
                 GPIO.output(AMP_EN_PIN, GPIO.LOW)

@@ -57,8 +57,7 @@ class POWER12V:
             if ident not in self._client_list:
                 log.warn('Power was never set from this thread!\nUse POWER12V.on() to enable power.')
             else:
-                idx = self._client_list.index(ident)
-                self._client_list.remove(idx)
+                self._client_list.remove(ident)
             if not self._client_list:
                 GPIO.output(PWR_EN_12V_PIN, GPIO.LOW)
                 if self.verbose:
