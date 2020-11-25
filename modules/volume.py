@@ -9,19 +9,17 @@ from threading import Thread
 import time
 import numpy as np
 from socketIO_client import SocketIO
+from modules.shared import *
 from cfg import *
 
-import RPi.GPIO as GPIO
-
 GPIO.setmode(GPIO.BCM)
-# GPIO.setwarnings(False)
+GPIO.setwarnings(False)
 GPIO.setup(ACTIVITY_PIN, GPIO.IN, GPIO.PUD_DOWN)
-# GPIO.setup([VOL_UP_PIN, VOL_DN_PIN, PWR_EN_12V_PIN], GPIO.OUT)
-# vol_up = GPIO.PWM(VOL_UP_PIN, 5000)  # Setup PWM
-# vol_dn = GPIO.PWM(VOL_DN_PIN, 5000)  # Setup PWM
-# vol_up.start(0)
-# vol_dn.start(0)
-GPIO.setwarnings(True)
+GPIO.setup([VOL_UP_PIN, VOL_DN_PIN], GPIO.OUT)
+vol_up = GPIO.PWM(VOL_UP_PIN, 1000)
+vol_dn = GPIO.PWM(VOL_DN_PIN, 1000)
+vol_up.start(0)
+vol_dn.start(0)
 
 
 class VolumeController:
@@ -169,7 +167,7 @@ class VolumeController:
                 pin_pos, pin_neg = [vol_up, vol_dn] if change > 0 else [vol_dn, vol_up]
                 pin_pos.ChangeDutyCycle(speed)
                 pin_neg.ChangeDutyCycle(0)
-                GPIO.output(PWR_EN_12V_PIN, GPIO.HIGH)
+                pwr12v.on()
                 return True
             else:
                 log.err('New HW volume read required!')
@@ -183,8 +181,7 @@ class VolumeController:
         vol_dn.ChangeDutyCycle(0)
         if self._pwr_state is None:
             return
-        GPIO.output(PWR_EN_12V_PIN, self._pwr_state)  # restore power state
-        self._pwr_state = None
+        pwr12v.off()
 
     def _vol_manager(self):
         t_last = time.perf_counter()

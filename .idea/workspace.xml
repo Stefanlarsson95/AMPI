@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d4f1d42-ec0e-4bd6-aa58-8157da275fb6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/modules/shared.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/AMPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AMPI.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/amplifier.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AMPI.py" beforeDir="false" afterPath="$PROJECT_DIR$/AMPI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1.dspproj" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1.dspproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cfg.py" beforeDir="false" afterPath="$PROJECT_DIR$/cfg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/logger.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/power.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/power.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/temp_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/temp_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/volume.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/volume.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/volumecontroller.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/volumecontroller.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -252,7 +245,7 @@
       <workItem from="1606207691461" duration="44000" />
       <workItem from="1606241594931" duration="9090000" />
       <workItem from="1606322836285" duration="6131000" />
-      <workItem from="1606334581823" duration="1944000" />
+      <workItem from="1606334581823" duration="3862000" />
     </task>
     <servers />
   </component>
