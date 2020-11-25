@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
+import os, sys, inspect
 
-from cfg import *
+# current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+# parent_dir = os.path.dirname(current_dir)
+# sys.path.insert(0, parent_dir)
+
+from modules.shared import *
 from threading import Thread
 import glob
 import time
@@ -8,9 +13,11 @@ import numpy as np
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-GPIO.setup([AMPLIFIER_FAN_PIN, CHASSIS_FAN_PIN], GPIO.OUT)
-amp_fan = GPIO.PWM(AMPLIFIER_FAN_PIN, 25)  # Setup PWM
-chassis_fan = GPIO.PWM(CHASSIS_FAN_PIN, 100)  # Setup PWM
+GPIO.setup([AMPLIFIER_FAN_PIN, CHASSIS_FAN_PIN, PWR_EN_12V_PIN, VOL_UP_PIN, VOL_DN_PIN, AMP_EN_PIN], GPIO.OUT)
+amp_fan = GPIO.PWM(AMPLIFIER_FAN_PIN, 1000)  # Setup PWM
+chassis_fan = GPIO.PWM(CHASSIS_FAN_PIN, 1000)  # Setup PWM
+amp_fan.start(0)
+chassis_fan.start(0)
 GPIO.setwarnings(True)
 
 # DS18B20 sensor path
@@ -44,6 +51,7 @@ case_fan_speed = 0
 amp_fan_lb_threshold = 50
 case_fan_lb_threshold = 50
 
+is_alive=False
 
 def read_amp_temp():
     """
@@ -80,18 +88,18 @@ def read_cpu_temp():
 
 
 def init_temp_controller():
-    trd = Thread(target=temp_controller_thread, name='TempCtrlThread', daemon=True).start()
+    trd = Thread(target=temp_controller_thread, name='TempCtrlThread').start()
     return trd
 
 
 def temp_controller_thread():
-    global amp_fan_speed, case_fan_speed, emit_shutdown
+    global amp_fan_speed, case_fan_speed, is_alive
     GPIO.setmode(GPIO.BCM)
     _t_last_update = time.perf_counter()
     _I_amp = 0
     _I_case = 0
-
-    while not emit_shutdown:
+    is_alive = True
+    while is_alive:
         # get time delta
         t_now = time.perf_counter()
         dt = t_now - _t_last_update
@@ -117,11 +125,17 @@ def temp_controller_thread():
         _case_fan_speed = np.clip(case_temp_err * _Kp_case + _I_case, 0, 100)
         case_fan_speed = (0, _case_fan_speed)[float(_case_fan_speed) > case_fan_lb_threshold]
 
+        if amp_fan_speed or case_fan_speed:
+            pwr12v.on()
+        else:
+            pwr12v.off()
+
         amp_fan.ChangeDutyCycle(amp_fan_speed)
         chassis_fan.ChangeDutyCycle(case_fan_speed)
 
         t_sleep = max(1 / update_interval - dt, 0.1)
         time.sleep(t_sleep)
+    pwr12v.off()
 
 
 def temp_ctrl_test(temp, sensor='both'):
@@ -134,24 +148,36 @@ def temp_ctrl_test(temp, sensor='both'):
         temp_target_amp = temp_target_cpu = temp
     else:
         log.warn('Unsupported sensor')
-
     init_temp_controller()
-    while True:
-        amp_temp = read_amp_temp()
-        print('CpuTemp: ' + str(read_cpu_temp()))
-        print('AmpTemp: ' + str(amp_temp))
-        print('CaseFanPwr: ' + str(round(case_fan_speed)))
-        print('AmpFanPwr: ' + str(round(amp_fan_speed)))
-        time.sleep(1)
+    import datetime
+    import csv
+    f = open('temperature_data.csv', 'w')
+    writer = csv.writer(f)
+    row = {'Time', 'Cpu Temp', 'Amp Temp', 'Case Fan Speed', 'Amp Fan Speed'}
+    writer.writerow(row)
+    with f:
+        while True:
+            amp_temp = read_amp_temp()
+            cpu_temp = read_cpu_temp()
+            t = datetime.datetime.now().strftime("%H:%M:%S")
+            print('Time: ' + t)
+            print('CpuTemp: ' + str(cpu_temp))
+            print('AmpTemp: ' + str(amp_temp))
+            print('CaseFanPwr: ' + str(round(case_fan_speed)))
+            print('AmpFanPwr: ' + str(round(amp_fan_speed)))
+            row = [t, cpu_temp, amp_temp, case_fan_speed, amp_fan_speed]
+            writer.writerow(row)
+            time.sleep(10)
 
 
 if __name__ == '__main__':
     try:
-        GPIO.output(PWR_EN_12V_PIN, 1)
-        temp_ctrl_test(45)
+        GPIO.output(AMP_EN_PIN, 0)
+        log.set_level(LOGLEVEL.INFO)
+        pwr12v.verbose = True
+        temp_ctrl_test(25)
 
     except KeyboardInterrupt:
+        is_alive = False
         print('\nTemp read stopped')
-        GPIO.output(PWR_EN_12V_PIN, 0)
-        time.sleep(0.1)
-        GPIO.cleanup(PWR_EN_12V_PIN)
+

@@ -5,13 +5,15 @@ from luma.core.interface.serial import spi
 from luma.oled.device import ssd1322
 from modules.logger import *
 from hardware import sigmaimporter
-from threading import Lock
+from threading import Lock, Event
 
 # Setup
 log = Log()
 _path = str(pathlib.Path().absolute())
 _root_path = _path.rsplit('/', 1)[0]
 i2c_lock = Lock()
+volume_event = Event()  # todo implement or remove
+eq_event = Event()  # todo implement or remove
 
 """
 General
@@ -48,9 +50,8 @@ source = INIT_SOURCE
 """
 GPIO config
 """
-# todo move pin config to module level
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
+# Setup Mutual action pins
+# pwr12v = POWER12V()
 
 # Input
 ACTIVITY_PIN = 0

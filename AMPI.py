@@ -80,7 +80,7 @@ def main():
         if oled.standby \
                 and not emit_volume \
                 and not volume_controller.emit_volume \
-                and True or not GPIO.input(ACTIVITY_PIN) \
+                and not GPIO.input(ACTIVITY_PIN) \
                 and oled.playState in ['stop', 'pause']:
             oled.update_interval = STANDBY_UPDATE_INTERVAL
             sleep(1)

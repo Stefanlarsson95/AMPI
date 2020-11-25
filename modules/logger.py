@@ -17,10 +17,13 @@ class LOGLEVEL:
     DEBUG = 3
 
 
-# todo make subclass to logging class
+# todo:
+#  make subclass to logging class
+#  make log save to file if file_path is defined
 class Log:
-    def __init__(self, level=LOGLEVEL.WARN):
+    def __init__(self, level=LOGLEVEL.WARN, file_path=""):
         self._lvl = level
+        self.path = file_path
 
     def fatal(self, text):  # Red
         print("{}--:\033[91m FATAL\033[0m :--- {}".format(datetime.datetime.now().strftime("t:%S.%f"), text))

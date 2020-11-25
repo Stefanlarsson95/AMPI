@@ -1,6 +1,7 @@
 # Todo:
 #  I2C guard to only read if ADAU1701 is confirmed configured.
 #  Make Volume controller separate process
+#  Use i2c_lock for locking i2c and volume_event for indicating new event
 
 
 from hardware import adau1701 as DSP
@@ -50,7 +51,6 @@ class VolumeController:
         self.true_vol = self._get_hw_volume()
         self._new_reading = False
         self.vol_thread = None
-        GPIO.setmode(GPIO.BCM)
 
     def start(self):
         """
@@ -186,6 +186,9 @@ class VolumeController:
         global emit_shutdown, emit_volume
         t_last_control = time.perf_counter()
         self.is_alive = True
+        GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(ACTIVITY_PIN, GPIO.IN)
         while self.is_alive and not emit_shutdown:
             # Update time variables
             _t_now = time.perf_counter()
