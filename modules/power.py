@@ -14,6 +14,7 @@ import os, sys, inspect
 
 from cfg import *
 from threading import get_ident, Lock
+import time
 
 
 class POWER12V:
@@ -25,10 +26,11 @@ class POWER12V:
         self._client_list = []
         self._action_lock = Lock()
         self.verbose = verbose
+        self.t_on = 0
         if init_on:
-            self.on()
+            self.set()
 
-    def on(self):
+    def set(self):
         """
         Add calling thread to client list and enable 12v power.
         :return: True if power was turned on, False if already on.
@@ -41,24 +43,33 @@ class POWER12V:
             if not GPIO.input(PWR_EN_12V_PIN):
                 GPIO.output(PWR_EN_12V_PIN, GPIO.HIGH)
                 pwr_new = True
+                self.t_on = time.perf_counter()
         if self.verbose and pwr_new:
             log.info('12V power activated by: ' + str(ident))
         return pwr_new
 
-    def off(self):
+    def release(self, enforce=False):
         """
         Remove calling thread if in client list. Will deactivate 12v power if client list is empty.
         :return: True if power was disabled, else False
         """
         ident = get_ident()
+        t_now = time.perf_counter()
         with self._action_lock:
             if not GPIO.input(PWR_EN_12V_PIN):
                 return False
+            # if enforce ensure shutdown
+            if enforce:
+                self._client_list = [ident]  # set enforcer caller as only client
             if ident not in self._client_list:
                 log.warn('Power was never set from this thread!\nUse POWER12V.on() to enable power.')
             else:
                 self._client_list.remove(ident)
             if not self._client_list:
+                # Ensure minimum of 2sec since activation
+                if t_now - self.t_on < 2:
+                    time.sleep(2 - (t_now - self.t_on))
+                    return self.release()
                 GPIO.output(PWR_EN_12V_PIN, GPIO.LOW)
                 if self.verbose:
                     log.info('12V power deactivated by: ' + str(ident))

@@ -1,18 +1,20 @@
-#from threading import Thread
+# from threading import Thread
 import os
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 
+
 def show_logo(filename, device):
     logoImage = Image.new('RGB', (device.width, device.height))
     img_path = os.path.dirname(os.path.realpath(__file__)) + '/../misc/img/'
     try:
-        logoImage = Image.open(img_path + filename) #.resize((device.width, device.height), Image.ANTIALIAS)
+        logoImage = Image.open(img_path + filename)  # .resize((device.width, device.height), Image.ANTIALIAS)
     except IOError:
         print("Cannot open file %s" % filename)
         pass
     device.display(logoImage)
+
 
 def load_font(filename, font_size):
     font_path = os.path.dirname(os.path.realpath(__file__)) + '/../misc/fonts/'
@@ -23,9 +25,9 @@ def load_font(filename, font_size):
         font = ImageFont.load_default()
     return font
 
-class Screen(object): # screen base class
-    def __init__(self, width, height):
 
+class Screen(object):  # screen base class
+    def __init__(self, width, height):
         self.width = width
         self.height = height
 
@@ -37,6 +39,7 @@ class Screen(object): # screen base class
     def Image(self):
         return self.image
 
+
 class StaticText(Screen):
     def __init__(self, height, width, textlabel, font, center=False, fill="white", bgcolor="black"):
         super(StaticText, self).__init__(height, width)
@@ -44,17 +47,18 @@ class StaticText(Screen):
         self.textlabel = textlabel
         self.textwidth, self.textheight = self.draw.textsize(textlabel, font=font)
         self.center = center
-        self.image = Image.new('RGB', (self.textwidth+2, self.textheight+2), bgcolor)
+        self.image = Image.new('RGB', (self.textwidth + 2, self.textheight + 2), bgcolor)
         self.draw = ImageDraw.Draw(self.image)
-        #self.draw.fontmode = "1"  #no antialiasing
+        # self.draw.fontmode = "1"  #no antialiasing
         self.draw.text((0, 0), textlabel, font=font, fill=fill)
 
     def DrawOn(self, image, position):
         if self.center:
             width, height = image.size
             if self.textwidth < width:
-                position = (int((width-self.textwidth)/2), position[1])
+                position = (int((width - self.textwidth) / 2), position[1])
         image.paste(self.image, position)
+
 
 class ScrollText(Screen):
     def __init__(self, height, width, textlabel, font):
@@ -68,7 +72,7 @@ class ScrollText(Screen):
 
         self.textlabel = textlabel
         self.textwidth, self.textheight = self.draw.textsize(textlabel, font=font)
-        self.stopPosition =  self.textwidth - width + self.endScrollMargin
+        self.stopPosition = self.textwidth - width + self.endScrollMargin
 
         self.image = Image.new('RGB', (self.textwidth + 4, self.textheight + 4))
         self.draw = ImageDraw.Draw(self.image)
@@ -80,20 +84,21 @@ class ScrollText(Screen):
 
         self.offset += self.scrollSpeed
         if self.offset > self.stopPosition + self.endScrollDelay:
-            self.offset = -self.startScrollDelay     #scrolling start is delayed 
+            self.offset = -self.startScrollDelay  # scrolling start is delayed
 
         i = 0
-        if self.textwidth <= width:                  # center text
-            position = (int((width-self.textwidth)/2), position[1])
-        elif self.offset <= 0:                       # start position before scrolling
+        if self.textwidth <= width:  # center text
+            position = (int((width - self.textwidth) / 2), position[1])
+        elif self.offset <= 0:  # start position before scrolling
             i = 0
-        elif self.offset < self.stopPosition:        # scroll text by offset
+        elif self.offset < self.stopPosition:  # scroll text by offset
             i = int(self.offset)
-        else:                                        # stop position when scrolling ended
+        else:  # stop position when scrolling ended
             i = self.stopPosition
 
-        temp = self.image.crop((i, 0, width+i, self.textheight))
+        temp = self.image.crop((i, 0, width + i, self.textheight))
         image.paste(temp, position)
+
 
 class Bar(Screen):
     def __init__(self, height, width, barHeight, barWidth):
@@ -107,10 +112,9 @@ class Bar(Screen):
         self.draw = ImageDraw.Draw(self.image)
 
     def SetFilledPercentage(self, percent):
-        self.filledPixels = int(self.barWidth*percent/100)
+        self.filledPixels = int(self.barWidth * percent / 100)
 
     def DrawOn(self, image, position):
-        self.draw.rectangle((0, 0, self.barWidth-1 , self.barHeight-1), outline="white", fill="#2f2f2f")
-        self.draw.rectangle((1, 1, self.filledPixels-2 , self.barHeight-2), fill="white")
+        self.draw.rectangle((0, 0, self.barWidth - 1, self.barHeight - 1), outline="white", fill="#2f2f2f")
+        self.draw.rectangle((1, 1, self.filledPixels - 2, self.barHeight - 2), fill="white")
         image.paste(self.image, position)
-

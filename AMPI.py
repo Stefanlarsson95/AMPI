@@ -20,6 +20,7 @@ from modules.display import *
 from modules.Input_selector import InputSelector
 import modules.temp_controller as temp_ctrl
 from modules import temp_controller as temp_ctrl
+from modules.shared import *
 
 # from hardware.pushconfig import write_device as Write_DSP
 GPIO.setmode(GPIO.BCM)
@@ -34,11 +35,8 @@ show_logo("volumio_logo.ppm", oled)
 
 # Push configfile to DSP
 # Write_DSP(DSP_DATA, 2, verbose=False)
-
-sleep(0.5)
-# run(["aplay --device plughw:CARD=1 ./startup.wav"], shell=True)
-sleep(1.5)
-oled.modal = TextScreen(oled.HEIGHT - 10, oled.WIDTH, 'AMPI', font_stencil)
+#oled.modal = TextScreen(oled.HEIGHT - 10, oled.WIDTH, 'AMPI', font_stencil)
+oled.modal = ampi_logo()
 oled.stateTimeout = 2
 
 # Start threads
@@ -48,7 +46,16 @@ screen_update_thread.start()
 # Start Controllers
 input_selector = InputSelector().start()
 volume_controller.start()
-temp_ctrl.init_temp_controller()
+temp_ctrl.start()
+
+# startup sound fixme source select not working!
+#input_selector.set_dsp_source(SOURCE_RPI)
+#amp.set()
+sleep(0.5)
+#run(["aplay --device plughw:CARD=1 ./startup.wav"], shell=True)
+sleep(1.5)
+#amp.release()
+#input_selector.set_dsp_source(SOURCE_AUTO)
 
 # Request Volumio Data
 volumioIO.emit('listPlaylist')
@@ -72,11 +79,13 @@ def main():
     _playState = None
     while True:
         # if inactive, set in standby
+        # todo impl function changing pause -> stop if timeout passed ?
         if not oled.standby and oled.playState in ['stop', 'pause']:
             oled.standby = True
-            oled.state_default = STATE_CLOCK
+            oled.state_default = STATE.CLOCK
             oled.stateTimeout = 0.1
 
+        # standby state
         if oled.standby \
                 and not emit_volume \
                 and not volume_controller.emit_volume \
@@ -128,8 +137,9 @@ def shutdown():
     oled.stateTimeout = 10
     show_logo("shutdown.ppm", oled)
     input_selector.stop()
-    GPIO.setup(AMP_EN_PIN, GPIO.OUT, initial=GPIO.LOW)
-    GPIO.setup(PWR_EN_12V_PIN, GPIO.OUT, initial=GPIO.LOW)
+    amp.release(enforce=True)
+    #GPIO.setup(AMP_EN_PIN, GPIO.OUT, initial=GPIO.LOW)
+    #GPIO.setup(PWR_EN_12V_PIN, GPIO.OUT, initial=GPIO.LOW)
     sleep(2)
     oled.cleanup()
     log.info("\nSystem exit ok")

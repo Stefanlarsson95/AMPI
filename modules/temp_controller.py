@@ -14,6 +14,7 @@ import numpy as np
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup([AMPLIFIER_FAN_PIN, CHASSIS_FAN_PIN, PWR_EN_12V_PIN, VOL_UP_PIN, VOL_DN_PIN, AMP_EN_PIN], GPIO.OUT)
+GPIO.setup(CHASSIS_FAN_TACH_PIN, GPIO.IN, GPIO.PUD_UP)
 amp_fan = GPIO.PWM(AMPLIFIER_FAN_PIN, 1000)  # Setup PWM
 chassis_fan = GPIO.PWM(CHASSIS_FAN_PIN, 1000)  # Setup PWM
 amp_fan.start(0)
@@ -28,30 +29,35 @@ device_file = device_folder + '/w1_slave'
 cpu_temp_file = "/sys/class/thermal/thermal_zone0/temp"
 
 # Fan speed controller params
-temp_target_amp = AMP_TEMP_TARGET
-temp_target_cpu = CPU_TEMP_TARGET
-update_interval = 2
+temp_max_amp = 80
+temp_max_cpu = 85
+temp_min_amp = 55
+temp_min_cpu = 55
+update_frequency = 2
 
+# Fan power lower bound cutoff
+_amp_fan_lb_threshold = 10
+_case_fan_lb_threshold = 5
+
+# Fan rpm data
 _amp_fan_rpm_max = AMP_FAN_MAX_RPM
 _amp_fan_tach_pin = AMPLIFIER_FAN_TACH_PIN
 _case_fan_rpm_max = CHASSIS_FAN_MAX_RPM
 _case_fan_tach_pin = CHASSIS_FAN_TACH_PIN
 
-# Temp PI params
-_Kp_amp = 3
-_Ki_amp = 10e-3
-_I_amp_lim = 65
-_Kp_case = 5
-_Ki_case = 10e-3
-_I_case_lim = 65
-
+# Temp ctrl params
+_Kp_amp = 1
+_Kp_case = 1
 amp_fan_speed = 0
 case_fan_speed = 0
-
-amp_fan_lb_threshold = 50
-case_fan_lb_threshold = 35
-
 is_alive = False
+trd = None
+
+# tach vars
+rpm_case = 0
+rpm_amp = 0
+_tach_amp = _tach_case = 0
+_t_last_rpm_read = time.perf_counter()
 
 
 def read_amp_temp():
@@ -83,14 +89,63 @@ def read_cpu_temp():
     :return: RPi cpu temperature
     """
     c = open(cpu_temp_file)
-    CPUTemp = int(c.read()) / 1000
+    CPUTemp = float(c.read()) / 1000
     c.close()
     return CPUTemp
 
 
-def init_temp_controller():
+def start():
+    global trd
     trd = Thread(target=temp_controller_thread, name='TempCtrlThread').start()
     return trd
+
+
+def stop():
+    global is_alive, trd
+    if trd is not None and is_alive:
+        is_alive = False
+        trd.join()
+        trd = None
+        return True
+    return False
+
+
+def tach_callback(channel):
+    global _tach_amp, _tach_case
+    if channel == AMPLIFIER_FAN_TACH_PIN:
+        _tach_amp += 1
+    else:
+        _tach_case += 1
+
+
+# GPIO.add_event_detect(AMPLIFIER_FAN_TACH_PIN, GPIO.FALLING, tach_callback) # todo add when supported by hw
+GPIO.add_event_detect(CHASSIS_FAN_TACH_PIN, GPIO.FALLING, tach_callback)
+
+
+def get_fan_rpm(fan=""):
+    """
+    Return rpm of fan
+    :param fan: select fan
+        "amp": Amplifier fan
+        "case": case fan
+        else : amp and case
+    :return: selected fan(s) rpm
+    """
+    global _t_last_rpm_read, rpm_amp, rpm_case, _tach_amp, _tach_case
+
+    dt = time.perf_counter() - _t_last_rpm_read
+    rpm_amp = _tach_amp / dt
+    rpm_case = _tach_case / dt
+    _tach_case = _tach_amp = 0
+
+    _t_last_rpm_read = time.perf_counter()
+
+    if 'amp' in fan.lower():
+        return rpm_amp
+    elif 'case' in fan.lower():
+        return rpm_case
+    else:
+        return rpm_amp, rpm_case
 
 
 def temp_controller_thread():
@@ -111,71 +166,54 @@ def temp_controller_thread():
         cpu_temp = read_cpu_temp()
 
         # get temp error
-        amp_temp_err = amp_temp - temp_target_amp
-        case_temp_err = max(cpu_temp - temp_target_cpu, amp_temp_err)
-
-        # error integration
-        _I_amp += amp_temp_err * _Ki_amp * dt
-        _I_amp = np.clip(_I_amp, 0, _I_amp_lim)
-        _I_case += case_temp_err * _Ki_case * dt
-        _I_case = np.clip(_I_case, 0, _I_case_lim)
+        amp_norm_err = np.clip((amp_temp - temp_min_amp) / temp_max_amp, 0.0, 1.0)
+        cpu_norm_err = np.clip((cpu_temp - temp_min_cpu) / temp_max_cpu, 0.0, 1.0)
+        case_norm_err = max(cpu_norm_err, amp_norm_err)
 
         # get fan speed
-        _amp_fan_speed = np.clip(amp_temp_err * _Kp_amp + _I_amp, 0, 100)
-        amp_fan_speed = (0, _amp_fan_speed)[float(_amp_fan_speed) > amp_fan_lb_threshold]
-        _case_fan_speed = np.clip(case_temp_err * _Kp_case + _I_case, 0, 100)
-        case_fan_speed = (0, _case_fan_speed)[float(_case_fan_speed) > case_fan_lb_threshold]
+        _amp_fan_speed = np.clip(100 * amp_norm_err * _Kp_amp, 0, 100)
+        _case_fan_speed = np.clip(100 * case_norm_err * _Kp_case, 0, 100)
+
+        # set fan speed
+        amp_fan_speed = (0, _amp_fan_speed)[float(_amp_fan_speed) > _amp_fan_lb_threshold]
+        case_fan_speed = (0, _case_fan_speed)[float(_case_fan_speed) > _case_fan_lb_threshold]
 
         if amp_fan_speed or case_fan_speed:
-            pwr12v.on()
-        elif _amp_fan_speed < amp_fan_lb_threshold - 5 and _case_fan_speed < case_fan_lb_threshold - 5:
-            pwr12v.off()
+            pwr12v.set()
+            if get_fan_rpm('case') < 10:
+                case_fan_speed = 100
+        elif _amp_fan_speed < _amp_fan_lb_threshold - 5 and _case_fan_speed < _case_fan_lb_threshold - 5:
+            pwr12v.release()
 
         amp_fan.ChangeDutyCycle(amp_fan_speed)
         chassis_fan.ChangeDutyCycle(case_fan_speed)
 
-        t_sleep = max(1 / update_interval - dt, 0.1)
+        t_sleep = max(1 / update_frequency - dt, 0.1)
         time.sleep(t_sleep)
-    pwr12v.off()
+    pwr12v.release()
 
 
-def temp_ctrl_test(temp, sensor='both'):
-    global temp_target_amp, temp_target_cpu
-    if sensor == 'cpu':
-        temp_target_cpu = temp
-    elif sensor == 'amp':
-        temp_target_amp = temp
-    elif sensor == 'both':
-        temp_target_amp = temp_target_cpu = temp
-    else:
-        log.warn('Unsupported sensor')
-    init_temp_controller()
+def temp_ctrl_test():
+    start()
     import datetime
-    #import csv
-    #f = open('temperature_data.csv', 'w')
-    #writer = csv.writer(f)
-    #row = {'Time', 'Cpu Temp', 'Amp Temp', 'Case Fan Speed', 'Amp Fan Speed'}
-    #writer.writerow(row)
     while True:
         amp_temp = read_amp_temp()
         cpu_temp = read_cpu_temp()
         t = datetime.datetime.now().strftime("%H:%M:%S")
         print('Time: ' + t)
+        print('Freq:' + str(get_fan_rpm('case')))
         print('CpuTemp: ' + str(cpu_temp))
         print('AmpTemp: ' + str(amp_temp))
         print('CaseFanPwr: ' + str(round(case_fan_speed)))
         print('AmpFanPwr: ' + str(round(amp_fan_speed)))
-        #row = [t, cpu_temp, amp_temp, case_fan_speed, amp_fan_speed]
-        #writer.writerow(row)
-        time.sleep(10)
+        time.sleep(2)
 
 
 if __name__ == '__main__':
     try:
-        GPIO.output(AMP_EN_PIN, 0)
         log.set_level(LOGLEVEL.INFO)
         pwr12v.verbose = True
-        temp_ctrl_test(60)
+        temp_ctrl_test()
 
     except KeyboardInterrupt:
         is_alive = False

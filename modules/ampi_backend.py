@@ -65,8 +65,8 @@ def display_update_service():
         time.sleep(oled.update_interval)
 
 
-# todo refactor as SetScreenState
-def SetState(state):
+# todo refactor as SetScreenState ?
+def SetState(state, param=None):
     oled.state = state
     if state == STATE_CLOCK:
         oled.contrast(100)
@@ -75,22 +75,26 @@ def SetState(state):
         oled.contrast(255)
         time.sleep(0.1)
 
-    if oled.state == STATE_PLAYER:
+    if oled.state == STATE.PLAYER:
         oled.modal = NowPlayingScreen(oled.HEIGHT, oled.WIDTH, oled.activeArtist, oled.activeSong, font, font2, font3,
                                       hugefontaw, oled.ptime, oled.duration)
         oled.modal.SetPlayingIcon(oled.playState, 10)
-    elif oled.state == STATE_VOLUME:
+    elif oled.state == STATE.VOLUME:
         oled.modal = VolumeScreen(oled.HEIGHT, oled.WIDTH, oled.volume, font, font2)
-    elif oled.state == STATE_PLAYLIST_MENU:
+    elif oled.state == STATE.EQ:
+        if type(param) != 'str':
+            param = 'EQ'
+        oled.modal = EQScreen(oled.HEIGHT, oled.WIDTH, oled.volume, param, font, font2)
+    elif oled.state == STATE.PLAYLIST_MENU:
         oled.modal = MenuScreen(oled.HEIGHT, oled.WIDTH, font2, oled.playlistoptions, rows=3,
                                 label='------ Select Playlist ------')
-    elif oled.state == STATE_QUEUE_MENU:
+    elif oled.state == STATE.QUEUE:
         oled.modal = MenuScreen(oled.HEIGHT, oled.WIDTH, font2, oled.queue, rows=4, selected=oled.playPosition,
                                 showIndex=True)
-    elif oled.state == STATE_LIBRARY_MENU:
+    elif oled.state == STATE.LIBRARY_MENU:
         oled.modal = MenuScreen(oled.HEIGHT, oled.WIDTH, font2, oled.libraryNames, rows=3,
                                 label='------ Music Library ------')
-    elif oled.state == STATE_CLOCK:
+    elif oled.state == STATE.CLOCK:
         oled.modal = ClockScreen(oled.HEIGHT, oled.WIDTH, font, font2, hugefontaw)
         # oled.modal.SetPlayingIcon(oled.playState) # todo remove?
 
@@ -641,32 +645,33 @@ class VolumeScreen:
 
 # todo design and implement
 class EQScreen:
-    def __init__(self, height, width, volume, font, font2):
+    def __init__(self, height, width, EQ, name, font, font2):
         self.height = height
         self.width = width
         self.font = font
         self.font2 = font2
-        self.volumeLabel = None
+        self.EQLabel = None
         self.labelPos = (10, 3)
-        self.volumeNumber = None
+        self.EQNumber = None
         self.numberPos = (225, 50)
         self.barHeight = 8
         self.barWidth = 195
-        self.volumeBar = Bar(self.height, self.width, self.barHeight, self.barWidth)
+        self.EQBar = Bar(self.height, self.width, self.barHeight, self.barWidth)
         self.barPos = (30, 38)
-        self.DisplayVolume(volume)
-        self.volume = volume
+        self.DisplayEQ(EQ)
+        self.EQ = EQ
+        self.EQname = name
 
-    def DisplayVolume(self, vol):
-        self.volume = vol
-        self.volumeNumber = StaticText(self.height, self.width, str(vol) + '%', self.font2, True)
-        self.volumeLabel = StaticText(self.height, self.width, 'Volume', self.font, True)
-        self.volumeBar.SetFilledPercentage(vol)
+    def DisplayEQ(self, val):
+        self.EQ = val
+        self.EQNumber = StaticText(self.height, self.width, str(val) + '%', self.font2, True)
+        self.EQLabel = StaticText(self.height, self.width, self.EQname, self.font, True)
+        self.EQBar.SetFilledPercentage(val)
 
     def DrawOn(self, img):
-        self.volumeLabel.DrawOn(img, self.labelPos)
-        self.volumeNumber.DrawOn(img, self.numberPos)
-        self.volumeBar.DrawOn(img, self.barPos)
+        self.EQLabel.DrawOn(img, self.labelPos)
+        self.EQNumber.DrawOn(img, self.numberPos)
+        self.EQBar.DrawOn(img, self.barPos)
 
 
 # todo include settings
@@ -730,6 +735,10 @@ class MenuScreen:
             self.menuText[row].DrawOn(image, (5, self.menuYPos + row * 16))
         if self.totaloptions == 0:
             self.menuText[0].DrawOn(image, (15, self.menuYPos))
+
+
+def ampi_logo():
+    return TextScreen(oled.HEIGHT - 10, oled.WIDTH, 'AMPI', font_stencil)
 
 
 def btn_next_event(hold_time):

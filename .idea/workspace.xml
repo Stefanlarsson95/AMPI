@@ -2,10 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d4f1d42-ec0e-4bd6-aa58-8157da275fb6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/StefanX1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/StefanX1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AMPI.py" beforeDir="false" afterPath="$PROJECT_DIR$/AMPI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1.dspproj" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1.dspproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/as_code.enc" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/as_code.enc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list.cir2" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list.cir2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/compiler_output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/compiler_output.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/hex_program_data.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/hex_program_data.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/hex_program_simdata.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/hex_program_simdata.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/program_data.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/program_data.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/spi_map.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/spi_map.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/trap.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/trap.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/trap.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/trap.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cfg.py" beforeDir="false" afterPath="$PROJECT_DIR$/cfg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/Input_selector.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/Input_selector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/ampi_backend.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/ampi_backend.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/amplifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/amplifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/display.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/display.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/dsp_register.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/dsp_register.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/power.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/power.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/pushbutton.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/pushbutton.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/shared.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/shared.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/temp_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/temp_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/volume.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/volume.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +80,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.temp_controller">
+  <component name="RunManager" selected="Python.AMPI">
     <configuration name="AMPI" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="AMPI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -105,7 +125,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="spdif" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="dsp_register" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="AMPI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -118,7 +138,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modules/spdif.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modules/dsp_register.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -173,18 +193,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.AMPI" />
-      <item itemvalue="Python.spdif" />
       <item itemvalue="Python.Input_selector" />
       <item itemvalue="Python.volumecontroller" />
       <item itemvalue="Python.temp_controller" />
+      <item itemvalue="Python.dsp_register" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.temp_controller" />
         <item itemvalue="Python.AMPI" />
-        <item itemvalue="Python.volumecontroller" />
         <item itemvalue="Python.Input_selector" />
-        <item itemvalue="Python.spdif" />
+        <item itemvalue="Python.temp_controller" />
+        <item itemvalue="Python.dsp_register" />
+        <item itemvalue="Python.volumecontroller" />
       </list>
     </recent_temporary>
   </component>
@@ -245,7 +265,16 @@
       <workItem from="1606207691461" duration="44000" />
       <workItem from="1606241594931" duration="9090000" />
       <workItem from="1606322836285" duration="6131000" />
-      <workItem from="1606334581823" duration="6708000" />
+      <workItem from="1606334581823" duration="7088000" />
+      <workItem from="1606412638138" duration="2132000" />
+      <workItem from="1606464488833" duration="301000" />
+      <workItem from="1606500950756" duration="22377000" />
+      <workItem from="1606660884136" duration="18377000" />
+      <workItem from="1606747012536" duration="4765000" />
+      <workItem from="1606842094417" duration="15661000" />
+      <workItem from="1606926485900" duration="2085000" />
+      <workItem from="1607031098172" duration="376000" />
+      <workItem from="1607098166247" duration="13671000" />
     </task>
     <servers />
   </component>
@@ -284,16 +313,10 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="emit_shutdown" language="Python" />
-        <watch expression="self.is_alive" language="Python" />
-        <watch expression="self._volume_master" language="Python" />
-        <watch expression="vol_up" language="Python" />
-        <watch expression="0 &lt; self._vol_error &lt; abs_err" language="Python" />
-        <watch expression="volume_controller" language="Python" />
-        <watch expression="oled.pstart" language="Python" />
-        <watch expression="time()" language="Python" />
-        <watch expression="oled.playState" language="Python" />
-        <watch expression="emit_volume" language="Python" />
+        <watch expression="_tach_amp" language="Python" />
+        <watch expression="_tach_case" language="Python" />
+        <watch expression="data" language="Python" />
+        <watch expression="int(data['volume'])" language="Python" />
       </configuration>
     </watches-manager>
   </component>
@@ -301,16 +324,17 @@
     <SUITE FILE_PATH="coverage/AMPI$volume.coverage" NAME="volume Coverage Results" MODIFIED="1599584275499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/AMPI$activety_detect.coverage" NAME="activety_detect Coverage Results" MODIFIED="1599395731494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/AMPI$volumecontroller.coverage" NAME="volumecontroller Coverage Results" MODIFIED="1606065472894" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
-    <SUITE FILE_PATH="coverage/AMPI$AMPI.coverage" NAME="AMPI Coverage Results" MODIFIED="1606242452182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AMPI$AMPI.coverage" NAME="AMPI Coverage Results" MODIFIED="1607164361829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AMPI$fan_controller.coverage" NAME="fan_controller Coverage Results" MODIFIED="1600603031677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
-    <SUITE FILE_PATH="coverage/AMPI$temp_controller.coverage" NAME="temp_controller Coverage Results" MODIFIED="1606340985340" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
+    <SUITE FILE_PATH="coverage/AMPI$temp_controller.coverage" NAME="temp_controller Coverage Results" MODIFIED="1607102754417" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/AMPI$remote.coverage" NAME="remote Coverage Results" MODIFIED="1605980852375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
-    <SUITE FILE_PATH="coverage/AMPI$Input_selector.coverage" NAME="Input_selector Coverage Results" MODIFIED="1606057648203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
+    <SUITE FILE_PATH="coverage/AMPI$Input_selector.coverage" NAME="Input_selector Coverage Results" MODIFIED="1607102760137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/AMPI$FanControll.coverage" NAME="FanControll Coverage Results" MODIFIED="1600519181397" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/AMPI$IRModule.coverage" NAME="IRModule Coverage Results" MODIFIED="1605977936257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/IR" />
     <SUITE FILE_PATH="coverage/AMPI$spdif.coverage" NAME="spdif Coverage Results" MODIFIED="1605985484548" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/AMPI$pushconfig.coverage" NAME="pushconfig Coverage Results" MODIFIED="1605956059290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hardware" />
     <SUITE FILE_PATH="coverage/AMPI$AMPI_v3.coverage" NAME="AMPI_v3 Coverage Results" MODIFIED="1600011364116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AMPI$dsp_register.coverage" NAME="dsp_register Coverage Results" MODIFIED="1606847987799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/AMPI$IRModuleExample.coverage" NAME="IRModuleExample Coverage Results" MODIFIED="1605980385729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/IR" />
   </component>
 </project>

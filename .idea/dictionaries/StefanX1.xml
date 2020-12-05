@@ -3,6 +3,7 @@
     <words>
       <w>ampi</w>
       <w>blocksize</w>
+      <w>extrinsics</w>
       <w>gpio</w>
       <w>hysteres</w>
       <w>lastshift</w>
@@ -11,6 +12,8 @@
       <w>pixshift</w>
       <w>spdif</w>
       <w>tach</w>
+      <w>textlabel</w>
+      <w>textwidth</w>
       <w>volumio</w>
     </words>
   </dictionary>

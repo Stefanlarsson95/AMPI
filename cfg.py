@@ -45,7 +45,7 @@ SOURCE_RPI = 1
 SOURCE_SPDIF = 2
 SOURCE_AUTO = 3
 INIT_SOURCE = None  # will read default from DSP
-source = INIT_SOURCE
+volumio_source = INIT_SOURCE
 
 """
 GPIO config
@@ -179,6 +179,8 @@ AUX_DETECT_REG = _dsp_reg_adr.get('source_select.aux_signal_detect')
 RPI_DETECT_REG = _dsp_reg_adr.get('source_select.rpi_signal_detect')
 SPDIF_DETECT_REG = _dsp_reg_adr.get('source_select.spdif_signal_detect')
 DSP_SOURCE_SELECT = _dsp_reg_adr.get('source_select.Input_selector')
+CORE_REG = 0x081C
+MUTE_BIT_MASK = 0b0010
 
 """
 DSP conf

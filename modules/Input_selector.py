@@ -1,14 +1,19 @@
 from cfg import *
+from modules.shared import amp
 from hardware import adau1701 as DSP
 import time
-from threading import Thread
+from threading import Thread, Event
 
+# todo
+#  rename/refactor as main DSP module
+"""
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(SPDIF_LOCK_PIN, GPIO.IN, GPIO.PUD_UP)
 GPIO.setup(SPDIF_ENABLE_PIN, GPIO.OUT)
-GPIO.setup(AMP_EN_PIN, GPIO.OUT)
 GPIO.setwarnings(True)
+"""
+
 
 class InputSelector:
     # Split register in high and low byte
@@ -16,6 +21,15 @@ class InputSelector:
     _RPI_DETECT_REG = divmod(RPI_DETECT_REG, 0x100)
     _SPDIF_DETECT_REG = divmod(SPDIF_DETECT_REG, 0x100)
     _DSP_SOURCE_SELECT = divmod(DSP_SOURCE_SELECT, 0x100)
+    _CORE_REG = divmod(CORE_REG, 0x100)
+    _MUTE_BIT = divmod(MUTE_BIT_MASK, 0x100)
+
+    # Setup GPIO
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
+    GPIO.setup(SPDIF_LOCK_PIN, GPIO.IN, GPIO.PUD_UP)
+    GPIO.setup(SPDIF_ENABLE_PIN, GPIO.OUT)
+    GPIO.setwarnings(True)
 
     def __init__(self, init_source=SOURCE_AUTO, signal_timeout=30):
         """
@@ -41,17 +55,25 @@ class InputSelector:
         self._t_active = 0
         self._t_debounce = 0.1
         self.is_alive = False
+        self.selector_thread = Thread(name='Input selector', target=self.run)
 
         # Set initial amplifier enable pin state1
-        GPIO.output(AMP_EN_PIN, self.amp_en)
+        if self.amp_en:
+            amp.set()
 
     def start(self):
-        t = Thread(target=self.run)
-        t.start()
+        if not self.is_alive:
+            self.selector_thread.start()
         return self
 
+    def stop(self):
+        if self.is_alive:
+            self.is_alive = False
+            return self.selector_thread.join()
+        return False
+
     def run(self):
-        global emit_shutdown
+        # global emit_shutdown
         _rpi = _spdif = _aux = False
         self.is_alive = True
         while self.is_alive and not emit_shutdown:
@@ -96,7 +118,11 @@ class InputSelector:
                 self._any_signal = False
                 if time.perf_counter() > self._t_last_signal + self.signal_timeout and not self.amp_always_on:
                     self.amp_en = False
-            GPIO.output(AMP_EN_PIN, self.amp_en)
+
+            if self.amp_en:
+                amp.set()
+            else:
+                amp.release()
 
             self.aux_detected = bool(_aux)
             self.rpi_detected = bool(_rpi)
@@ -106,10 +132,7 @@ class InputSelector:
             time.sleep(t_sleep)
 
         self.is_alive = False
-        GPIO.output(AMP_EN_PIN, 0)
-
-    def stop(self):
-        self.is_alive = False
+        amp.release()
 
     def set_dsp_source(self, dsp_source):
         """
@@ -127,7 +150,7 @@ class InputSelector:
         with i2c_lock:
             DSP.write_param(DSP_SOURCE_SELECT, dsp_source)
             time.sleep(0.1)
-            _source = DSP.read_back(InputSelector._DSP_SOURCE_SELECT[0], InputSelector._DSP_SOURCE_SELECT[0])
+            _source = DSP.read_back(InputSelector._DSP_SOURCE_SELECT[0], InputSelector._DSP_SOURCE_SELECT[1])
             self._dsp_source = _source
             return _source
 
@@ -163,21 +186,34 @@ class InputSelector:
         # while not GPIO.input(ACTIVITY_PIN) and time.perf_counter() < t_call + timeout:
         #    time.sleep(0)
 
+    # todo test
+    @staticmethod
+    def mute(state=True):
+        with i2c_lock:
+            core_state = DSP.read_back(InputSelector._CORE_REG[0], InputSelector._CORE_REG[1])
+            if state:
+                core_state |= 0b0010
+            else:
+                core_state &= 0b1101
+            DSP.write_param(CORE_REG, core_state)
+            time.sleep(0.1)
+            core_state = DSP.read_back(InputSelector._CORE_REG[0], InputSelector._CORE_REG[1])
+            return core_state >> 1 & 0x1
+
 
 if __name__ == '__main__':
 
-    input_select = InputSelector().start()
+    input_selector = InputSelector().start()
     try:
         while True:
-            aux = input_select.aux_detected
-            rpi = input_select.rpi_detected
-            spdif = input_select.spdif_detected
-            amp_on = input_select.amp_en
+            aux = input_selector.aux_detected
+            rpi = input_selector.rpi_detected
+            spdif = input_selector.spdif_detected
+            amp_on = input_selector.amp_en
 
             print('AUX: {}\nRPI: {}\nSPDIF: {}\nAMP enabled: {}'.format(aux, rpi, spdif, amp_on))
 
             time.sleep(0.5)
     except KeyboardInterrupt:
-        input_select.stop()
-        GPIO.output(AMP_EN_PIN, 0)
+        input_selector.stop()
         print('\nInput selector terminated')

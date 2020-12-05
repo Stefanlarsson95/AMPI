@@ -4,8 +4,8 @@ import time
 
 FILE_PATH = '../SigmaStudio/AMPI_1.xml'
 
-def get_reg(xml_path=FILE_PATH):
 
+def get_reg(xml_path=FILE_PATH):
     root = ET.parse(xml_path).getroot()
 
     _conf_dict = {}
