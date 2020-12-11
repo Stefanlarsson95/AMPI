@@ -2,30 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d4f1d42-ec0e-4bd6-aa58-8157da275fb6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/StefanX1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/StefanX1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AMPI.py" beforeDir="false" afterPath="$PROJECT_DIR$/AMPI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SigmaStudio/AMPI_1.dspproj" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/AMPI_1.dspproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/as_code.enc" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/as_code.enc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list.cir2" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list.cir2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/compiler_output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/compiler_output.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/hex_program_data.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/hex_program_data.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/hex_program_simdata.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/hex_program_simdata.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/program_data.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/program_data.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/spi_map.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/spi_map.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/trap.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/net_list_out2/trap.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/trap.dat" beforeDir="false" afterPath="$PROJECT_DIR$/SigmaStudio/IC 1_AMPI_1/trap.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cfg.py" beforeDir="false" afterPath="$PROJECT_DIR$/cfg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/Input_selector.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/Input_selector.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/ampi_backend.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/ampi_backend.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/amplifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/amplifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/display.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/display.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/dsp_register.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/dsp_register.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/power.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/power.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/pushbutton.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/pushbutton.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/shared.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/shared.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/temp_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/temp_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/volume.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/volume.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -201,8 +181,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.AMPI" />
-        <item itemvalue="Python.Input_selector" />
         <item itemvalue="Python.temp_controller" />
+        <item itemvalue="Python.Input_selector" />
         <item itemvalue="Python.dsp_register" />
         <item itemvalue="Python.volumecontroller" />
       </list>
@@ -274,7 +254,11 @@
       <workItem from="1606842094417" duration="15661000" />
       <workItem from="1606926485900" duration="2085000" />
       <workItem from="1607031098172" duration="376000" />
-      <workItem from="1607098166247" duration="13671000" />
+      <workItem from="1607098166247" duration="19452000" />
+      <workItem from="1607356487137" duration="1347000" />
+      <workItem from="1607370471428" duration="1259000" />
+      <workItem from="1607453307069" duration="2657000" />
+      <workItem from="1607701859925" duration="299000" />
     </task>
     <servers />
   </component>
@@ -324,9 +308,9 @@
     <SUITE FILE_PATH="coverage/AMPI$volume.coverage" NAME="volume Coverage Results" MODIFIED="1599584275499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/AMPI$activety_detect.coverage" NAME="activety_detect Coverage Results" MODIFIED="1599395731494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/AMPI$volumecontroller.coverage" NAME="volumecontroller Coverage Results" MODIFIED="1606065472894" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
-    <SUITE FILE_PATH="coverage/AMPI$AMPI.coverage" NAME="AMPI Coverage Results" MODIFIED="1607164361829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AMPI$AMPI.coverage" NAME="AMPI Coverage Results" MODIFIED="1607702140413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AMPI$fan_controller.coverage" NAME="fan_controller Coverage Results" MODIFIED="1600603031677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
-    <SUITE FILE_PATH="coverage/AMPI$temp_controller.coverage" NAME="temp_controller Coverage Results" MODIFIED="1607102754417" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
+    <SUITE FILE_PATH="coverage/AMPI$temp_controller.coverage" NAME="temp_controller Coverage Results" MODIFIED="1607245781158" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/AMPI$remote.coverage" NAME="remote Coverage Results" MODIFIED="1605980852375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/AMPI$Input_selector.coverage" NAME="Input_selector Coverage Results" MODIFIED="1607102760137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/AMPI$FanControll.coverage" NAME="FanControll Coverage Results" MODIFIED="1600519181397" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />

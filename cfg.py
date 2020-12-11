@@ -75,37 +75,6 @@ AMPLIFIER_FAN_PIN = 13
 PWR_EN_12V_PIN = 23
 AMP_EN_PIN = 27
 
-# Setup Outputs todo remove
-"""
-GPIO.setwarnings(False)
-GPIO.setup([PWR_EN_12V_PIN,
-            VOL_DN_PIN,
-            VOL_UP_PIN,
-            CHASSIS_FAN_PIN,
-            AMPLIFIER_FAN_PIN,
-            AMP_EN_PIN,
-            SPDIF_ENABLE_PIN], GPIO.OUT)  # Setup outputs
-GPIO.output(AMP_EN_PIN, 0)
-vol_up = GPIO.PWM(VOL_UP_PIN, 1000)  # Setup PWM outputs
-vol_dn = GPIO.PWM(VOL_DN_PIN, 1000)  # Setup PWM
-amp_fan = GPIO.PWM(AMPLIFIER_FAN_PIN, 25)  # Setup PWM
-chassis_fan = GPIO.PWM(CHASSIS_FAN_PIN, 100)  # Setup PWM
-vol_up.start(0)
-vol_dn.start(0)
-amp_fan.start(0)
-chassis_fan.start(0)
-# Setup Inputs
-GPIO.setup([ROT_A_PIN,
-            ROT_B_PIN,
-            ROT_ENTER_PIN,
-            DSP_RST_PIN,
-            LRCLK_PIN], GPIO.IN)
-GPIO.setup([ACTIVITY_PIN], GPIO.IN, GPIO.PUD_DOWN)
-GPIO.setup([CHASSIS_FAN_TACH_PIN, SPDIF_LOCK_PIN], GPIO.IN, GPIO.PUD_UP)
-GPIO.setup(AMPLIFIER_FAN_TACH_PIN, GPIO.IN, GPIO.PUD_UP)
-GPIO.setwarnings(True)
-"""
-
 """
 OlED/UI
 """
