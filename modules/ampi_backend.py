@@ -147,7 +147,9 @@ def onPushState(data):
         oled.duration = data['duration']
 
     if 'volume' in data:
-        vol_event(int(data.get('volume', None)), data.get('service', None))
+        vol = data.get('volume', 0.0)
+        vol = vol if type(vol) == float or type(vol) == int else 0.0
+        vol_event(int(vol), data.get('service', None))
         # oled.volume = int(data['volume'])
 
     # if oled.state != STATE_VOLUME:  # Update volume if not already changing

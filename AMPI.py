@@ -18,9 +18,9 @@ from modules.pushbutton import PushButton
 # from modules.volumecontroller import *
 from modules.display import *
 from modules.Input_selector import InputSelector
-import modules.temp_controller as temp_ctrl
 from modules import temp_controller as temp_ctrl
 from modules.shared import *
+from modules import runtime_cli as rtcli
 
 # from hardware.pushconfig import write_device as Write_DSP
 GPIO.setmode(GPIO.BCM)
@@ -35,7 +35,7 @@ show_logo("volumio_logo.ppm", oled)
 
 # Push configfile to DSP
 # Write_DSP(DSP_DATA, 2, verbose=False)
-#oled.modal = TextScreen(oled.HEIGHT - 10, oled.WIDTH, 'AMPI', font_stencil)
+# oled.modal = TextScreen(oled.HEIGHT - 10, oled.WIDTH, 'AMPI', font_stencil)
 oled.modal = ampi_logo()
 oled.stateTimeout = 2
 
@@ -48,14 +48,22 @@ input_selector = InputSelector().start()
 volume_controller.start()
 temp_ctrl.start()
 
+rtcli.init([temp_ctrl.read_cpu_temp,
+            temp_ctrl.read_amp_temp,
+            temp_ctrl.disp_temp,
+            input_selector.get_dsp_source,
+            volume_controller.get_volume,
+            volume_controller.set_volume,
+            volume_controller.get_volume_source])
+
 # startup sound fixme source select not working!
-#input_selector.set_dsp_source(SOURCE_RPI)
-#amp.set()
+# input_selector.set_dsp_source(SOURCE_RPI)
+# amp.set()
 sleep(0.5)
-#run(["aplay --device plughw:CARD=1 ./startup.wav"], shell=True)
+# run(["aplay --device plughw:CARD=1 ./startup.wav"], shell=True)
 sleep(1.5)
-#amp.release()
-#input_selector.set_dsp_source(SOURCE_AUTO)
+# amp.release()
+# input_selector.set_dsp_source(SOURCE_AUTO)
 
 # Request Volumio Data
 volumioIO.emit('listPlaylist')
@@ -138,8 +146,8 @@ def shutdown():
     show_logo("shutdown.ppm", oled)
     input_selector.stop()
     amp.release(enforce=True)
-    #GPIO.setup(AMP_EN_PIN, GPIO.OUT, initial=GPIO.LOW)
-    #GPIO.setup(PWR_EN_12V_PIN, GPIO.OUT, initial=GPIO.LOW)
+    # GPIO.setup(AMP_EN_PIN, GPIO.OUT, initial=GPIO.LOW)
+    # GPIO.setup(PWR_EN_12V_PIN, GPIO.OUT, initial=GPIO.LOW)
     sleep(2)
     oled.cleanup()
     log.info("\nSystem exit ok")

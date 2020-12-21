@@ -18,7 +18,7 @@ eq_event = Event()  # todo implement or remove
 """
 General
 """
-AMP_ALWAYS_OFF = False
+AMP_ALWAYS_OFF = True
 emit_volume = False
 emit_track = False
 emit_shutdown = False

@@ -29,7 +29,7 @@ _ADD_VOL_READBACK_LOW = VOLUME_READ_REG & 0x00ff
 
 
 class VolumeController:
-    def __init__(self, vol=0, bal=0):
+    def __init__(self, vol=0, bal=0, verbose=False):
         """
         Main Volume class
         :param vol: Initial volume
@@ -51,6 +51,7 @@ class VolumeController:
         self.true_vol = self._get_hw_volume()
         self._new_reading = False
         self.vol_thread = None
+        self.verbose = verbose
 
     def start(self):
         """
@@ -61,10 +62,11 @@ class VolumeController:
         self.vol_thread.start()
         return self
 
-    def stop(self):
+    def stop(self, join=True):
         if self.is_alive:
             self.is_alive = False
-            self.vol_thread.join()
+            if join:
+                self.vol_thread.join()
             return True
         return False
 
@@ -189,7 +191,7 @@ class VolumeController:
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(ACTIVITY_PIN, GPIO.IN)
-        while self.is_alive and not emit_shutdown:
+        while self.is_alive and not emit_shutdown and GPIO.getmode() == GPIO.BCM:
             # Update time variables
             _t_now = time.perf_counter()
             dt = _t_now - t_last_control
@@ -225,7 +227,7 @@ class VolumeController:
             t_sleep = (max(1 / self._update_freq - dt, 0.01), 1)[standby]
             time.sleep(t_sleep)
 
-        self.stop()
+        self.stop(join=False)
 
     def _hw_vol_move(self, change):
         """
@@ -251,7 +253,7 @@ class VolumeController:
             else:
                 log.err('New HW volume read required!')
         else:
-            log.err('Volume limit reached!')
+            log.err('Volume limit reached!')  # todo dont print when 0 or 100 is requested
         self._hw_vol_stop()
         return False
 

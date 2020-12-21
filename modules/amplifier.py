@@ -19,8 +19,13 @@ class AMPLIFIER:
     def set(self):
         """
         Activate amplifier and add caller to client list
-        :return: True if amplifier was turned on. False if already activated.
+        :return: True if amplifier was turned on. False if no change.
         """
+
+        if AMP_ALWAYS_OFF:
+            self.release(enforce=True)
+            return False
+
         ident = get_ident()
 
         new_act = False

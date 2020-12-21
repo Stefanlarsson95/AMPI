@@ -94,9 +94,9 @@ def read_cpu_temp():
     return CPUTemp
 
 
-def start():
+def start(verbose=False):
     global trd
-    trd = Thread(target=temp_controller_thread, name='TempCtrlThread').start()
+    trd = Thread(target=temp_controller_thread, name='TempCtrlThread', args=(verbose,)).start()
     return trd
 
 
@@ -148,7 +148,7 @@ def get_fan_rpm(fan=""):
         return rpm_amp, rpm_case
 
 
-def temp_controller_thread():
+def temp_controller_thread(verbose=False):
     global amp_fan_speed, case_fan_speed, is_alive
     GPIO.setmode(GPIO.BCM)
     _t_last_update = time.perf_counter()
@@ -188,24 +188,38 @@ def temp_controller_thread():
         amp_fan.ChangeDutyCycle(amp_fan_speed)
         chassis_fan.ChangeDutyCycle(case_fan_speed)
 
+        if verbose:
+            disp_temp(amp_temp, cpu_temp)
+
         t_sleep = max(1 / update_frequency - dt, 0.1)
         time.sleep(t_sleep)
     pwr12v.release()
 
 
+def disp_temp(t_amp=None, t_cpu=None):
+    if t_amp is None:
+        t_amp = read_amp_temp()
+    if t_cpu is None:
+        t_cpu = read_cpu_temp()
+
+    timestamp = datetime.datetime.now().strftime("%H:%M:%S")
+
+    log.info('\n\tTime: {}\n'
+             '\tCPU temp: {}\n'
+             '\tAMP temp: {}\n'
+             '\tCaseFan power: {}\n'
+             '\tAmpFan power: {}'.format(timestamp,
+                                         t_cpu,
+                                         t_amp,
+                                         round(case_fan_speed),
+                                         round(amp_fan_speed)))
+
+
 def temp_ctrl_test():
     start()
-    import datetime
     while True:
-        amp_temp = read_amp_temp()
-        cpu_temp = read_cpu_temp()
-        t = datetime.datetime.now().strftime("%H:%M:%S")
-        print('Time: ' + t)
-        print('Freq:' + str(get_fan_rpm('case')))
-        print('CpuTemp: ' + str(cpu_temp))
-        print('AmpTemp: ' + str(amp_temp))
-        print('CaseFanPwr: ' + str(round(case_fan_speed)))
-        print('AmpFanPwr: ' + str(round(amp_fan_speed)))
+        disp_temp()
+        print('\tFreq:' + str(get_fan_rpm('case')))
         time.sleep(2)
 
 

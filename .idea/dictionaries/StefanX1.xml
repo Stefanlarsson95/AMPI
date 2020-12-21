@@ -3,6 +3,7 @@
     <words>
       <w>ampi</w>
       <w>blocksize</w>
+      <w>disp</w>
       <w>extrinsics</w>
       <w>gpio</w>
       <w>hysteres</w>
@@ -10,6 +11,7 @@
       <w>lrclk</w>
       <w>oled</w>
       <w>pixshift</w>
+      <w>rtcli</w>
       <w>spdif</w>
       <w>tach</w>
       <w>textlabel</w>
