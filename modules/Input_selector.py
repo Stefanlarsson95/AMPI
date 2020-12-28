@@ -106,7 +106,7 @@ class InputSelector:
                     DSP.read_back(InputSelector._SPDIF_DETECT_REG[0], InputSelector._SPDIF_DETECT_REG[1]))
 
             # amp enable
-            if not AMP_ALWAYS_OFF and (_aux or _rpi or _spdif):
+            if not amp_always_off and (_aux or _rpi or _spdif):
                 if not self._any_signal:
                     self._any_signal = True
                     self._t_first_signal = time.perf_counter()

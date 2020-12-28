@@ -22,7 +22,7 @@ class AMPLIFIER:
         :return: True if amplifier was turned on. False if no change.
         """
 
-        if AMP_ALWAYS_OFF:
+        if amp_always_off:
             self.release(enforce=True)
             return False
 
