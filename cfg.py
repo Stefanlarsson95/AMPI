@@ -18,7 +18,7 @@ eq_event = Event()  # todo implement or remove
 """
 General
 """
-AMP_ALWAYS_OFF = True
+AMP_ALWAYS_OFF = False
 emit_volume = False
 emit_track = False
 emit_shutdown = False
@@ -111,6 +111,7 @@ class STATE:
     SOURCE_MENU = 9
 
 
+# todo move to oled cfg to not initiate for all cfg imports
 interface = spi(device=0, port=0)
 oled = ssd1322(interface)
 

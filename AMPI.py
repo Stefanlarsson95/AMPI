@@ -150,7 +150,7 @@ def shutdown():
     # GPIO.setup(PWR_EN_12V_PIN, GPIO.OUT, initial=GPIO.LOW)
     sleep(2)
     oled.cleanup()
-    log.info("\nSystem exit ok")
+    log.info("System exit ok")
 
 
 if __name__ == '__main__':

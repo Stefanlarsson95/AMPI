@@ -32,7 +32,7 @@ cpu_temp_file = "/sys/class/thermal/thermal_zone0/temp"
 temp_max_amp = 80
 temp_max_cpu = 85
 temp_min_amp = 55
-temp_min_cpu = 55
+temp_min_cpu = 25  # 55
 update_frequency = 2
 
 # Fan power lower bound cutoff
@@ -134,8 +134,9 @@ def get_fan_rpm(fan=""):
     global _t_last_rpm_read, rpm_amp, rpm_case, _tach_amp, _tach_case
 
     dt = time.perf_counter() - _t_last_rpm_read
-    rpm_amp = _tach_amp / dt
-    rpm_case = _tach_case / dt
+    # get rpm by dividing pulses (2/rot) by time delta and multiplying with 30 (60/2) to get pulses minute.
+    rpm_amp = 30 * _tach_amp / dt
+    rpm_case = 30 * _tach_case / dt
     _tach_case = _tach_amp = 0
 
     _t_last_rpm_read = time.perf_counter()
@@ -219,7 +220,7 @@ def temp_ctrl_test():
     start()
     while True:
         disp_temp()
-        print('\tFreq:' + str(get_fan_rpm('case')))
+        print('\tCase RPM:' + str(get_fan_rpm('case')))
         time.sleep(2)
 
 
